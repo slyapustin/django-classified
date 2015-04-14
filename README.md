@@ -1,28 +1,24 @@
-DCF is a Django Classified App
+# DCF is a Django Classified App
 
-Requirements:
+## Requirements:
  
- Django 1.8
+* Django 1.8
 
 
-Design:
+## Design:
 
-    Twitter Bootstrap Jumbotron http://getbootstrap.com/examples/jumbotron-narrow/
+* [Twitter Bootstrap Jumbotron] (http://getbootstrap.com/examples/jumbotron-narrow/)
 
-Credits:
+## Credits:
 
-    http://schinckel.net/2014/08/17/leveraging-html-and-django-forms%3A-pagination-of-filtered-results/ 
-    http://stackoverflow.com/questions/2013835/django-how-should-i-store-a-money-value - for currency field implementation
+* [Leveraging HTML and Django Forms: Pagination of Filtered Results](http://schinckel.net/2014/08/17/leveraging-html-and-django-forms%3A-pagination-of-filtered-results/) 
+* [Currency field implementation in Django](http://stackoverflow.com/questions/2013835/django-how-should-i-store-a-money-value) 
     
-Installation:
+## Installation:
 
-    manage.py syncdb
+* manage.py syncdb
 
-Demo site:
+## TODO:
 
-TODO:
-
- * user registration
- * user social auth
-
-
+* user registration
+* user social auth
