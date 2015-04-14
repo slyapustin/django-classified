@@ -1,0 +1,5 @@
+User-agent: *
+
+Sitemap: http://{{domain}}/sitemap.xml
+Disallow: /user/
+Host: {{domain}}

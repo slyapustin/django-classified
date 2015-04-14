@@ -1,0 +1,6 @@
+Django==1.8
+python-social-auth
+Pillow
+sorl-thumbnail
+unidecode
+django-bootstrap-form

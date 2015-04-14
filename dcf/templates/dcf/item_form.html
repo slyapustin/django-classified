@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+
+{% load bootstrap %}
+
+{% block title %}{% if form.instance.pk %}Редактирование{% else %}Добавление{% endif %} объявления{% endblock title %}
+
+{% block body %}
+    <div class="row">
+        <form enctype="multipart/form-data" method='post' role="form">
+
+            {{ formset.management_form }}
+
+            {% csrf_token %}
+
+            {{ form|bootstrap }}
+
+            {% for form in formset %}
+                {{ form|bootstrap }}
+            {% endfor %}
+            <input type='submit' class="btn" value='Сохранить'>
+
+        </form>
+    </div>
+{% endblock body %}

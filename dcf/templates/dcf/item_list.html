@@ -1,0 +1,42 @@
+{% load humanize %}
+{% load thumbnail %}
+
+
+<table class = "table table-hover">
+    <thead>
+    <tr>
+        <td>
+        </td>
+        <td>
+            USD
+        </td>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {% for object in object_list %}
+
+        <tr>
+            <td>
+                {% for img in object.image_set.all %}
+                    {% thumbnail img.file "45x45" crop="center" as im %}
+                        <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
+                            <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
+                        </a>
+                    {% endthumbnail %}
+                {% endfor %}
+                <a href='{{ object.get_absolute_url }}' title='{{object.get_title}}'>
+                    {{object.title}}
+                </a>
+            </td>
+            <td>
+                {{object.price}}
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>

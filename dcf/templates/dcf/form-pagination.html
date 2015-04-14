@@ -1,0 +1,41 @@
+<nav>
+    <ul class="pagination">
+        <li>
+            <button
+                    name="page"
+                    value="{% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% endif %}"
+                    type="submit"
+                    {% if not page_obj.has_previous %}
+                    disabled="disabled"
+                    {% endif %}>
+                prev
+            </button>
+        </li>
+
+        {% for page_number in paginator.page_range %}
+            <li class="{% if page_number = page_obj.number %}active{% endif %}">
+                <button
+                        name="page"
+                        value="{{ page_number }}"
+                        type="submit"
+                        {% if page_number = page_obj.number %}
+                        disabled="disabled"
+                        {% endif %}>
+                    {{ page_number }}
+                </button>
+            </li>
+        {% endfor %}
+
+        <li>
+            <button
+                    name="page"
+                    value="{% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}"
+                    type="submit"
+                    {% if not page_obj.has_next %}
+                    disabled="disabled"
+                    {% endif %}>
+                next
+            </button>
+        </li>
+    </ul>
+</nav>

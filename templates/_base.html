@@ -1,0 +1,89 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock title %} | {{ settings.SITE_NAME }} </title>
+    <meta name="description" content="{% block meta_description %}{% endblock meta_description %}" />
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <link href="{% static 'css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
+</head>
+
+<body>
+<div class="container">
+
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="{% url 'item-new' %}">Add new</a></li>
+                <li role="presentation"><a href="/">Home</a></li>
+                <li role="presentation"><a href="{% url 'search' %}">Search</a></li>
+                {% if user.is_authenticated %}
+                    <li role="presentation" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> {{user}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'my' %}">My listings ({{ user.item_set.count }})</a></li>
+                            <li><a href="{% url 'profile' %}">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li role="presentation"><a href="{% url 'login' %}" rel="nofollow"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <h3 class="text-muted">{{settings.SITE_NAME}}</h3>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class='row'>
+                <div class="col-md-12">
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ message|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block body %}
+
+    {% endblock %}
+
+    <footer class="footer">
+        <p>DCF Django Classified App</p>
+    </footer>
+
+</div> <!-- container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script src="{%  static 'js/lightbox.min.js' %}"></script>
+
+{% block ext_scripts%}{% endblock %}
+</body>
+</html>
