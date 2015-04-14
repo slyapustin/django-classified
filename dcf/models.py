@@ -4,13 +4,29 @@ from decimal import Decimal
 
 from django.db import models
 from django.conf import settings
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 from django.contrib.sites.models import Site
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import AbstractUser
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
+
+
+class CustomUser(AbstractUser):
+
+    phone = models.CharField(u'phone', max_length=30, null=True, blank=True)
+    receive_news = models.BooleanField(u'receive news', default=True, db_index=True)
+
+    def allow_add_item(self):
+
+        # TODO check if the user is in ban list
+        if self.item_set.count() > settings.DCF['ITEM_PER_USER_LIMIT']:
+            return False
+        else:
+            return True
+
+    def count(self):
+        return Item.objects.filter(user=self).count()
 
 
 class CurrencyField(models.DecimalField):
@@ -60,28 +76,6 @@ class Group(models.Model):
 
     def get_absolute_url(self):
         return reverse('group', kwargs={'pk': self.pk, 'slug': self.slug})
-
-
-class Profile(models.Model):
-
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    phone = models.CharField(u'phone', max_length=30, null=True, blank=True)
-    receive_news = models.BooleanField(u'receive news', default=True, db_index=True)
-
-    def __unicode__(self):
-        return self.user.email
-
-    def allow_add_item(self):
-
-        # TODO add check for blocking
-
-        if self.user.item_set.count() > settings.DCF['ITEM_PER_USER_LIMIT']:
-            return False
-        else:
-            return True
-
-    def count(self):
-        return self.user.item_set.count()
 
 
 class Item(models.Model):
@@ -136,9 +130,3 @@ class Image(models.Model):
 
     item = models.ForeignKey(Item)
     file = ImageField(u'image', upload_to='images')
-
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)

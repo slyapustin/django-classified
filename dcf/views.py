@@ -142,7 +142,7 @@ class ItemCreateView(FormsetMixin, CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not self.request.user.profile.allow_add_item():
+        if not self.request.user.allow_add_item():
             messages.error(self.request, 'You have reached limit!')
             return redirect(reverse('my'))
 
@@ -184,18 +184,13 @@ def delete(request, pk):
 def view_profile(request):
 
     if request.method == 'GET':
-        form = ProfileForm(instance=request.user.profile, initial={'email': request.user.email})
+        form = ProfileForm(instance=request.user, initial={'email': request.user.email})
     else:
-        form = ProfileForm(request.POST, instance=request.user.profile)
+        form = ProfileForm(request.POST, instance=request.user)
         if form.is_valid():
 
             form.save()
             messages.success(request, u'Your profile settings was updated!')
-            user = request.user
-            if user.email != form.cleaned_data['email']:
-                user.email = form.cleaned_data['email']
-                user.save()
-                messages.success(request, u'Email was changed successfully!')
 
             return redirect(reverse('profile'))
 

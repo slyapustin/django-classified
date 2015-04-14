@@ -1,5 +1,5 @@
 ﻿# -*- coding:utf-8 -*-
-from .models import Section, Group, Item, Image, Profile
+from .models import Section, Group, Item, Image
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
 
@@ -33,21 +33,13 @@ class SectionAdmin(admin.ModelAdmin):
 
 
 class MyUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'last_login', 'date_joined', 'is_active')
+    list_display = ('username', 'email', 'last_login', 'date_joined', 'is_active', 'receive_news', 'count')
     list_filter = ('last_login', 'date_joined', 'is_active')
     search_fields = ('username', 'email')
-
-
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'receive_news', 'count',)
-    list_filter = ('receive_news',)
-    search_fields = ('user__email',)
 
 
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Profile, ProfileAdmin)
 
-admin.site.unregister(get_user_model())
 admin.site.register(get_user_model(), MyUserAdmin)

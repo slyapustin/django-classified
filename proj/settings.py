@@ -39,7 +39,7 @@ TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
@@ -51,6 +51,8 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+
+USE_TZ = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: '/home/media/media.lawrence.com/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'uploads')
@@ -179,9 +181,10 @@ FORCE_SCRIPT_NAME = ''
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
+AUTH_USER_MODEL = 'dcf.CustomUser'
+
 DCF = {
     'SITE_NAME': u'Django CSF App',
-    'CURRENCY': 'USD',
     'ITEM_PER_USER_LIMIT': 20,
     'SITEMAP_LIMIT': 1000,
     'RSS_LIMIT': 100,

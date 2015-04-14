@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from django import forms
-from .models import Item, Profile, Group, Image
+from .models import Item, Group, Image
+from django.contrib.auth import get_user_model
 
 
 class SearchForm(forms.Form):
@@ -41,5 +42,5 @@ class ProfileForm(forms.ModelForm):
     email = forms.EmailField(required=False)
 
     class Meta:
-        model = Profile
+        model = get_user_model()
         fields = ('phone', 'email', 'receive_news', )
