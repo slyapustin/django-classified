@@ -176,7 +176,6 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
 FORCE_SCRIPT_NAME = ''
-FORCE_LOWERCASE_TAGS = True
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
