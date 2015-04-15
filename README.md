@@ -3,6 +3,8 @@
 ## Requirements:
  
 * Django 1.8
+* [Python Social Auth](https://github.com/omab/python-social-auth/)
+* 
 
 
 ## Design:
@@ -19,7 +21,10 @@
 * pip install -r requirements.txt
 * manage.py syncdb
 
-## TODO:
+## Installation:
 
-* user registration
-* user social auth
+* search improvement
+ 
+## Customization:
+ 
+ You can provide additional customization in DCF dictionary from settings.py
