@@ -27,6 +27,8 @@ urlpatterns = patterns(
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
     url(r'^user/profile/$', views.view_profile, name='profile'),
 
+    # authorization
+    url(r'user/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^user/login/', 'django.contrib.auth.views.login', name='login'),
     url(r'^user/logout/$', 'django.contrib.auth.views.logout', name='logout'),
 

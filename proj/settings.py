@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    'social.apps.django_app.default',
     'sorl.thumbnail',
     'bootstrapform',
 
@@ -142,6 +143,7 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -191,5 +193,12 @@ DCF = {
     'RELATED_LIMIT': 5,
     'ITEM_PER_PAGE': 10
 }
+
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+
+SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR_FACEBOOK_OAUTH2_KEY_HERE'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 # TODO need app for store Project settings and allow edit them from Admin page (like DJBLETS)

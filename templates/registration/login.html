@@ -1,17 +1,30 @@
 {% extends '_base.html' %}
 
-{% load bootstrap %}
-
 {% block title %}
     Login
 {% endblock title %}
 
 {% block body %}
+
     <div class="row">
-        <form method="post" class="form">
-            {% csrf_token %}
-            {{ form|bootstrap }}
-            <button type="submit" class="btn btn-default">Login</button>
-        </form>
+        <div class="col-lg-12">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Login via Social</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <a href="{% url "social:begin" "facebook"%}" class="btn btn-default">Facebook</a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+        </div>
     </div>
+
 {% endblock %}

@@ -28,6 +28,9 @@ class CustomUser(AbstractUser):
     def count(self):
         return Item.objects.filter(user=self).count()
 
+    def get_full_name(self):
+            return u'%s %s ' % (self.first_name, self.last_name)
+
 
 class CurrencyField(models.DecimalField):
     __metaclass__ = models.SubfieldBase

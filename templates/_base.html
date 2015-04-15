@@ -36,7 +36,7 @@
                 {% if user.is_authenticated %}
                     <li role="presentation" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span> {{user}}
+                            <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'my' %}">My listings ({{ user.item_set.count }})</a></li>
@@ -46,7 +46,7 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li role="presentation"><a href="{% url 'login' %}" rel="nofollow"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                    <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="Login using Facebook"><span class="glyphicon glyphicon-user"></span> Facebook</a></li>
                 {% endif %}
             </ul>
         </nav>
