@@ -4,9 +4,9 @@
 
 <head>
     <title>{% block title %}{% endblock title %} | {{ settings.SITE_NAME }} </title>
+
     <meta name="description" content="{% block meta_description %}{% endblock meta_description %}" />
     <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" />
@@ -22,6 +22,7 @@
 
     <link href="{% static 'css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
     <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
+
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="Login using Facebook"><span class="glyphicon glyphicon-user"></span> Facebook</a></li>
+                    <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="Login using Facebook"><span class="glyphicon glyphicon-user"></span> Login via Facebook</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -71,7 +72,7 @@
     {% endblock %}
 
     <footer class="footer">
-        <p>DCF Django Classified App</p>
+        <p><span class="pull-left">{{ settings.SITE_NAME }}</span>  <span class="pull-right">Powered by <a href="https://github.com/inoks/dcf" title="django classified app">DCF Django Classified App</a><span</p>
     </footer>
 
 </div> <!-- container -->
