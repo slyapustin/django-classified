@@ -27,7 +27,7 @@
 
 ## Design
 
-* [Twitter Bootstrap Jumbotron] (http://getbootstrap.com/examples/jumbotron-narrow/)
+* [Twitter Bootstrap Jumbotron](http://getbootstrap.com/examples/jumbotron-narrow/)
 
 ## Credits:
 
