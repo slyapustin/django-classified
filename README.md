@@ -21,6 +21,7 @@
 
 ## Requirements:
  
+* Python 2.7+
 * Django 1.8
 * [Python Social Auth](https://github.com/omab/python-social-auth/)
 
@@ -36,7 +37,9 @@
 ## Installation:
 
 * pip install -r requirements.txt
-* manage.py syncdb
+* python ./manage.py syncdb
+* python ./manage.py collectstatic
+* python ./manage.py runserver
 
 
 ## Customization:
