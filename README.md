@@ -17,7 +17,7 @@
     * sitemap.xml
     * robots.txt
     * RSS feed
-
+    * Google Analytics integration
 
 ## Requirements
  
