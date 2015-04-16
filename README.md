@@ -19,13 +19,13 @@
     * RSS feed
 
 
-## Requirements:
+## Requirements
  
 * Python 2.7+
 * Django 1.8
 * [Python Social Auth](https://github.com/omab/python-social-auth/)
 
-## Design:
+## Design
 
 * [Twitter Bootstrap Jumbotron] (http://getbootstrap.com/examples/jumbotron-narrow/)
 
@@ -34,7 +34,7 @@
 * [Leveraging HTML and Django Forms: Pagination of Filtered Results](http://schinckel.net/2014/08/17/leveraging-html-and-django-forms%3A-pagination-of-filtered-results/) 
 * [Currency field implementation in Django](http://stackoverflow.com/questions/2013835/django-how-should-i-store-a-money-value) 
     
-## Installation:
+## Installation
 
 * pip install -r requirements.txt
 * python ./manage.py syncdb
@@ -46,7 +46,7 @@
  
  You can provide additional customization in DCF dictionary from settings.py
  
-## Demo site
+## Demo sites
  * [http://craiglists.ru/](http://craiglists.ru?utm_source=github/)
 
 ## TODO
