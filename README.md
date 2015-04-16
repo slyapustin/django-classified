@@ -1,5 +1,24 @@
 # DCF is a Django Classified App
 
+
+
+## Features
+
+* User registration
+ * via social networks (Facebook as example)
+* Item groups and categories
+* Image
+    * upload multiple images per item
+    * generating preview (via [sorl-thumbnail](https://github.com/mariocesar/sorl-thumbnail))
+    * display using [Lightbox JS](http://lokeshdhakar.com/projects/lightbox2/) library
+* Search ability
+* SEO optimisation
+    * generating META description and meta keywords
+    * sitemap.xml
+    * robots.txt
+    * RSS feed
+
+
 ## Requirements:
  
 * Django 1.8
@@ -27,3 +46,5 @@
 ## TODO
 
 * search improvement
+* tests
+* demo site
