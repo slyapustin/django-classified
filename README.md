@@ -45,9 +45,11 @@
 ## Customization:
  
  You can provide additional customization in DCF dictionary from settings.py
+ 
+## Demo site
+ * [http://craiglists.ru/](http://craiglists.ru?utm_source=github/)
 
 ## TODO
 
 * search improvement
 * tests
-* demo site
