@@ -194,6 +194,8 @@ DCF = {
     'ITEM_PER_PAGE': 10
 }
 
+GOOGLE_ANALYTICS_PROPERTY_ID = ''
+
 SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 
