@@ -190,7 +190,7 @@ DCF = {
     'ITEM_PER_USER_LIMIT': 20,
     'SITEMAP_LIMIT': 1000,
     'RSS_LIMIT': 100,
-    'RELATED_LIMIT': 5,
+    'RELATED_LIMIT': 6,
     'ITEM_PER_PAGE': 10
 }
 
