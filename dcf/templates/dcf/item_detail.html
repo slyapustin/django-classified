@@ -39,7 +39,7 @@
             {% for img in object.image_set.all %}
 
                 {% thumbnail img.file "150x150" crop="center" as im %}
-                    <a href='{{img.file.url}}' rel="lightbox[{{object.id}}]" title="{{object.title}}">
+                    <a href='{{img.file.url}}' data-lightbox="lightbox[{{object.id}}]" title="{{object.title}}">
                         <img src='{{ im.url}}' alt='{{object.title}}' title='{{object.title}}' width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
                     </a>
                 {% endthumbnail %}
