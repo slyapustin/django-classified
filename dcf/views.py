@@ -109,7 +109,7 @@ class FormsetMixin(object):
 class GroupDetail(SingleObjectMixin, ListView):
 
     paginate_by = 10
-    template_name = 'dcf\group_detail.html'
+    template_name = 'dcf/group_detail.html'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Group.objects.all())
