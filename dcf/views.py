@@ -11,7 +11,7 @@ from django.views.generic import DetailView, CreateView,  UpdateView, ListView
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import FormMixin
 
-from .models import Item, Image, Group, Section
+from .models import Item, Image, Group, Section, CustomUser
 from .forms import ItemCreateEditForm, ProfileForm, SearchForm
 
 
@@ -200,3 +200,15 @@ def view_profile(request):
 def robots(request):
 
     return render(request, 'robots.txt', {'domain': Site.objects.get_current().domain}, content_type='text/plain')
+
+
+def page403(request):
+    return render(request, '403.html', {})
+
+
+def page404(request):
+    return render(request, '404.html', {})
+
+
+def page500(request):
+    return render(request, '500.html', {})

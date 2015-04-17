@@ -34,8 +34,14 @@ urlpatterns = patterns(
     url(r'^user/logout/$', 'django.contrib.auth.views.logout', name='logout'),
 
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^load', views.load),
+
 )
 
+handler404 = views.page404
+handler403 = views.page403
+handler500 = views.page500
 
 if settings.DEBUG:
     from django.conf.urls.static import static

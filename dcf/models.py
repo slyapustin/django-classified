@@ -73,7 +73,6 @@ class Group(models.Model):
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slugify(unidecode(self.title))
-            print self.slug
         super(Group, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
