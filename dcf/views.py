@@ -9,6 +9,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, CreateView,  UpdateView, ListView
 from django.utils.decorators import method_decorator
+from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
 
 from .models import Item, Image, Group, Section, CustomUser
@@ -41,7 +42,7 @@ def index(request):
     return render(request, 'dcf/index.html', {
         'groups': Group.objects.all(),
         'sections': Section.objects.all()
-        })
+    })
 
 
 class SearchView(FilteredListView):
@@ -105,11 +106,22 @@ class FormsetMixin(object):
         return self.render_to_response(self.get_context_data(form=form, formset=formset))
 
 
-class GroupDetailView(DetailView):
+class GroupDetail(SingleObjectMixin, ListView):
 
-    # TODO add pagination
+    paginate_by = 10
+    template_name = 'dcf\group_detail.html'
 
-    queryset = Group.objects.all()
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Group.objects.all())
+        return super(GroupDetail, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupDetail, self).get_context_data(**kwargs)
+        context['group'] = self.object
+        return context
+
+    def get_queryset(self):
+        return self.object.item_set.all()
 
 
 class ItemDetailView(DetailView):

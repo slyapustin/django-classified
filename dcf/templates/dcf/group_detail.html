@@ -17,12 +17,15 @@
 
     </div>
 
+    <div class="row">
+        <div class="col-lg-12">
+            {% include "dcf/item_list.html" %}
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-lg-12">
-            {% with object.item_set.all as object_list  %}
-                {% include "dcf/item_list.html" %}
-            {% endwith %}
+            {% include "dcf/list_pagination.html" %}
         </div>
     </div>
 

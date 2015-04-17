@@ -50,6 +50,7 @@
     </div>
 
 
+    {# CONTACT INFORMATION #}
     <div class="row">
         <div class="col-md-12">
             <hr />
@@ -62,8 +63,7 @@
     </div>
 
 
-    <!-- related objects -->
-
+    {# RELATED ITEMS #}
     <div class="row">
 
         <div class="col-lg-12">
@@ -84,7 +84,7 @@
                     {% endwith %}
                 {% endif %}
                 <br/>
-                <a href='{{item.get_absolute_url}}' title="{{item.get_title}}">{{item.title}}</a>
+                <a href='{{item.get_absolute_url}}' title="{{item.get_title}}">{{item.title|truncatewords:3}}</a>
             </div>
         {% endfor %}
     </div>

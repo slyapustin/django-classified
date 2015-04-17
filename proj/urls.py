@@ -17,7 +17,7 @@ urlpatterns = patterns(
 
     # listings
     url(r'^(?P<pk>\d+)-(?P<slug>[-\w]+)$', views.ItemDetailView.as_view(), name='item'),
-    url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)$', views.GroupDetailView.as_view(), name='group'),
+    url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)$', views.GroupDetail.as_view(), name='group'),
 
     url(r'^search/', views.SearchView.as_view(), name='search'),
     url(r'^robots\.txt$', views.robots),

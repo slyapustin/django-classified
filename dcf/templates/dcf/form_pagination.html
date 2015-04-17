@@ -12,20 +12,6 @@
             </button>
         </li>
 
-        {% for page_number in paginator.page_range %}
-            <li class="{% if page_number = page_obj.number %}active{% endif %}">
-                <button
-                        name="page"
-                        value="{{ page_number }}"
-                        type="submit"
-                        {% if page_number = page_obj.number %}
-                        disabled="disabled"
-                        {% endif %}>
-                    {{ page_number }}
-                </button>
-            </li>
-        {% endfor %}
-
         <li>
             <button
                     name="page"
