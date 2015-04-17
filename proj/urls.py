@@ -35,8 +35,6 @@ urlpatterns = patterns(
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^load', views.load),
-
 )
 
 handler404 = views.page404
