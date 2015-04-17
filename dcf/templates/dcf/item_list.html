@@ -19,13 +19,16 @@
 
         <tr>
             <td>
-                {% for img in object.image_set.all %}
-                    {% thumbnail img.file "45x45" crop="center" as im %}
+                {% if object.image_set.all|length > 0 %}
+                    {% thumbnail object.image_set.all.0.file "45x45" crop="center" as im %}
                         <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
                             <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
+                            {% if object.image_set.all|length > 1 %}
+                                <span class="badge badge-notify" title="{{ object.image_set.count }} photos available">{{ object.image_set.count }}</span>
+                            {% endif %}
                         </a>
                     {% endthumbnail %}
-                {% endfor %}
+                {% endif %}
                 <a href='{{ object.get_absolute_url }}' title='{{object.get_title}}'>
                     {{object.title}}
                 </a>
