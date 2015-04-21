@@ -17,6 +17,7 @@
     * robots.txt
     * RSS feed
     * Google Analytics integration
+* Caching
 
 ## Requirements
  
