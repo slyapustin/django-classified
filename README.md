@@ -1,5 +1,4 @@
-# DCF is a Django Classified App
-
+# DCF is a Django Classified Advertising App
 
 
 ## Features
