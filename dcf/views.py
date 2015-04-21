@@ -2,17 +2,17 @@
 
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
-from django.shortcuts import redirect, get_object_or_404, render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, CreateView,  UpdateView, ListView
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.views.generic import DetailView, CreateView,  UpdateView, ListView, DeleteView
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
 
-from .models import Item, Image, Group, Section, CustomUser
+from .models import Item, Image, Group, Section
 from .forms import ItemCreateEditForm, ProfileForm, SearchForm
 
 
@@ -176,20 +176,16 @@ class MyItemsView(ListView):
         return Item.objects.filter(user=self.request.user)
 
 
-@login_required
-def delete(request, pk):
+class ItemDeleteView(DeleteView):
 
-    # TODO replace for CBV
-    item = get_object_or_404(Item, pk=pk)
+    model = Item
+    success_url = reverse_lazy('my')
 
-    if item.user == request.user or request.user.is_superuser:
-        title = u'Item %s was successfully deleted!' % item.title
-        item.delete()
-        messages.info(request, title)
-    else:
-        raise PermissionDenied
-
-    return redirect(reverse('my'))
+    def get_object(self, queryset=None):
+        obj = super(ItemDeleteView, self).get_object()
+        if not obj.user == self.request.user and not self.request.user.is_superuser:
+            raise PermissionDenied
+        return obj
 
 
 @login_required
@@ -210,7 +206,6 @@ def view_profile(request):
 
 
 def robots(request):
-
     return render(request, 'robots.txt', {'domain': Site.objects.get_current().domain}, content_type='text/plain')
 
 

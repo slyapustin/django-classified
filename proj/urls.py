@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
@@ -26,7 +28,7 @@ urlpatterns = patterns(
 
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
     url(r'^user/profile/$', views.view_profile, name='profile'),
-    url(r'^user/my/delete/(?P<pk>\d+)\.html$', views.delete, name='my-delete'),
+    url(r'^user/my/delete/(?P<pk>\d+)$', views.ItemDeleteView.as_view(), name='my-delete'),
 
     # authorization
     url(r'user/', include('social.apps.django_app.urls', namespace='social')),
