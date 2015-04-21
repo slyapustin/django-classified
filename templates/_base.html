@@ -1,112 +1,112 @@
 {% spaceless %}
-{% load staticfiles %}
-<!DOCTYPE HTML>
-<html lang="en">
+    {% load staticfiles %}
+    <!DOCTYPE HTML>
+    <html lang="en">
 
-<head>
-    <title>{% block title %}{% endblock title %} | {{ settings.SITE_NAME }}</title>
+    <head>
+        <title>{% block title %}{% endblock title %} | {{ settings.SITE_NAME }}</title>
 
-    <meta name="description" content="{% block meta_description %}{% endblock meta_description %}" />
-    <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="description" content="{% block meta_description %}{% endblock meta_description %}" />
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
-    <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
-    <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
-    <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
+        <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
+        <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
 
-</head>
+    </head>
 
-<body>
-<div class="container">
+    <body>
+    <div class="container">
 
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="{% url 'item-new' %}">Add new</a></li>
-                <li role="presentation"><a href="/">Home</a></li>
-                <li role="presentation"><a href="{% url 'search' %}">Search</a></li>
-                {% if user.is_authenticated %}
-                    <li role="presentation" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{% url 'my' %}">My listings ({{ user.item_set.count }})</a></li>
-                            <li><a href="{% url 'profile' %}">Profile</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="Login using Facebook"><span class="glyphicon glyphicon-user"></span> Login via Facebook</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        <h3 class="text-muted">{{settings.SITE_NAME}}</h3>
-    </div>
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="{% url 'item-new' %}">Add new</a></li>
+                    <li role="presentation"><a href="/">Home</a></li>
+                    <li role="presentation"><a href="{% url 'search' %}">Search</a></li>
+                    {% if user.is_authenticated %}
+                        <li role="presentation" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'my' %}">My listings ({{ user.item_set.count }})</a></li>
+                                <li><a href="{% url 'profile' %}">Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="Login using Facebook"><span class="glyphicon glyphicon-user"></span> Login via Facebook</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <h3 class="text-muted">{{settings.SITE_NAME}}</h3>
+        </div>
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class='row'>
-                <div class="col-md-12">
-                    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        {{ message|safe }}
+        {% if messages %}
+            {% for message in messages %}
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ message|safe }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        {% block body %}
+
+        {% endblock %}
+
+        <footer class="footer">
+            <p>
+                <span class="pull-left">{{ settings.SITE_NAME }}</span>
+                <span class="pull-right">Powered by <a href="https://github.com/inoks/dcf?utm_source=powered" title="django classified app">DCF Django Classified App</a></span>
+            </p>
+        </footer>
+
+    </div> <!-- container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script src="{%  static 'dcf/js/lightbox.min.js' %}"></script>
+
+    {% block ext_scripts%}{% endblock %}
+
+    {% if GOOGLE_ANALYTICS_PROPERTY_ID %}
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
     {% endif %}
-
-    {% block body %}
-
-    {% endblock %}
-
-    <footer class="footer">
-        <p>
-            <span class="pull-left">{{ settings.SITE_NAME }}</span>
-            <span class="pull-right">Powered by <a href="https://github.com/inoks/dcf?utm_source=powered" title="django classified app">DCF Django Classified App</a></span>
-        </p>
-    </footer>
-
-</div> <!-- container -->
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-<script src="{%  static 'dcf/js/lightbox.min.js' %}"></script>
-
-{% block ext_scripts%}{% endblock %}
-
-{% if GOOGLE_ANALYTICS_PROPERTY_ID %}
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
-{% endif %}
-<!-- generated {% now "jS F Y H:i:s" %} -->
-</body>
-</html>
+    <!-- generated {% now "jS F Y H:i:s" %} -->
+    </body>
+    </html>
 {% endspaceless %}
