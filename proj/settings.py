@@ -191,6 +191,7 @@ AUTH_USER_MODEL = 'dcf.CustomUser'
 
 DCF = {
     'SITE_NAME': u'Django DCF App',
+    'SITE_DESCRIPTION': u'Demo Classified Advertisements web site Powered by Django DCF app',
     'ITEM_PER_USER_LIMIT': 20,
     'SITEMAP_LIMIT': 1000,
     'RSS_LIMIT': 100,
