@@ -12,8 +12,7 @@
 
             {% for group in section.group_set.all %}
                 <span>
-                    <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">{{group.title}}{% if group.count > 0 %}<span class="badge">{{group.count}}</span>{% endif %}</a>
-                </span>&nbsp;
+                    <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">{{group.title}}{% if group.count > 0 %}<span class="badge">{{group.count}}</span>{% endif %}</a>&nbsp;</span>
             {% endfor %}
         </div>
 
