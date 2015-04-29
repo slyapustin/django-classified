@@ -2,41 +2,45 @@
 {% load thumbnail %}
 
 
-<table class = "table table-hover">
-    <thead>
-    <tr>
-        <td></td>
-        <td>Price</td>
-    </tr>
-    </thead>
+{% for object in object_list %}
 
-    <tbody>
-
-    {% for object in object_list %}
-
+    {% if forloop.first  %}
+        <table class = "table table-hover">
+        <thead>
         <tr>
-            <td>
-                {% if object.image_set.all|length > 0 %}
-                    {% thumbnail object.image_set.all.0.file "45x45" crop="center" as im %}
-                        <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
-                            <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
-                            {% if object.image_set.all|length > 1 %}
-                                <span class="badge badge-notify" title="{{ object.image_set.count }} photos available">{{ object.image_set.count }}</span>
-                            {% endif %}
-                        </a>
-                    {% endthumbnail %}
-                {% endif %}
-                <a href='{{ object.get_absolute_url }}' title='{{object.get_title}}'>
-                    {{object.title}}
-                </a>
-            </td>
-            <td>
-                {{ object.price|default:"" }}
-            </td>
+            <td></td>
+            <td>Price</td>
         </tr>
+        </thead>
+        <tbody>
+    {%  endif %}
 
-    {% endfor %}
+    <tr>
+        <td>
+            {% if object.image_set.all|length > 0 %}
+                {% thumbnail object.image_set.all.0.file "45x45" crop="center" as im %}
+                    <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
+                        <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
+                        {% if object.image_set.all|length > 1 %}
+                            <span class="badge badge-notify" title="{{ object.image_set.count }} photos available">{{ object.image_set.count }}</span>
+                        {% endif %}
+                    </a>
+                {% endthumbnail %}
+            {% endif %}
+            <a href='{{ object.get_absolute_url }}' title='{{object.get_title}}'>
+                {{object.title}}
+            </a>
+        </td>
+        <td>
+            {{ object.price|default:"" }}
+        </td>
+    </tr>
 
-    </tbody>
+    {% if forloop.last  %}
+        </tbody>
+        </table>
+    {% endif %}
 
-</table>
+{% empty %}
+    <p>No item here yet. <a href="{% url 'item-new' %}" rel="nofollow">Add one now!</a></p>
+{% endfor %}
