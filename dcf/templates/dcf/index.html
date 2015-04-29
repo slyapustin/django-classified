@@ -4,23 +4,21 @@
 
 {% block body %}
 
-    {% for section in sections %}
-        <div class="row marketing">
+        {% for section in sections %}
+            {% if forloop.first %}<div class="row marketing">{% endif %}
 
-            <div class="col-lg-12">
-                <h4>{{ section }}</h4>
+        <div class="col-lg-4">
+            <h4>{{ section }}</h4>
 
-                {% for group in section.group_set.all %}
-                    <p>
-                        <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">{{group.title}}</a>
-                        {% if group.count > 0 %}
-                            <span class="badge">{{group.count}}</span>
-                        {% endif %}
-                    </p>
-
-                {% endfor %}
-            </div>
+            {% for group in section.group_set.all %}
+                <span>
+                    <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">{{group.title}}{% if group.count > 0 %}<span class="badge">{{group.count}}</span>{% endif %}</a>
+                </span>&nbsp;
+            {% endfor %}
         </div>
-    {% endfor %}
+
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row marketing">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
 
 {% endblock %}
