@@ -12,6 +12,7 @@
     * display using [Lightbox JS](http://lokeshdhakar.com/projects/lightbox2/) library
 * Search ability
 * SEO optimisation
+    * SEO-friendly urls 
     * generating META description and meta keywords
     * sitemap.xml
     * robots.txt
