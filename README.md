@@ -19,6 +19,9 @@
     * RSS feed
     * Google Analytics integration
 * Caching
+* Translation
+    * EN - basic version
+    * Russian 
 
 ## Requirements
  
