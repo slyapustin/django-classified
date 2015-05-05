@@ -18,6 +18,7 @@
     * robots.txt
     * RSS feed
     * Google Analytics integration
+    * [Yandex Metrika](https://metrika.yandex.com/) integration
 * Caching
 * Translation
     * EN - basic version
