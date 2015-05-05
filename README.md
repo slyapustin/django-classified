@@ -22,6 +22,7 @@
 * Translation
     * EN - basic version
     * Russian 
+    * French (thanx to [Teolemon](https://github.com/teolemon))
 
 ## Requirements
  
