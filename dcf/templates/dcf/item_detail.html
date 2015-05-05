@@ -2,6 +2,7 @@
 
 {% load humanize %}
 {% load thumbnail %}
+{% load i18n %}
 
 {% block title %}{{ object.get_title }}{% endblock title %}
 {% block meta_description %}{{ object.get_description }}{% endblock meta_description %}
@@ -55,7 +56,7 @@
         <div class="col-md-12">
             <hr />
             {% if settings.LOGIN_TO_CONTACT and not user.is_authenticated %}
-                Please <a href='{% url 'login' %}'>login</a>, to see contact information.
+                {% trans "Please" %} <a href='{% url 'login' %}'>{% trans "login" %}</a> {%  trans "to see contact information." %}
             {% else %}
                 Phone: {{ object.phone }}
             {% endif %}

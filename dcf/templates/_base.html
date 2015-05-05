@@ -1,5 +1,8 @@
 {% spaceless %}
+
     {% load staticfiles %}
+    {% load i18n %}
+
     <!DOCTYPE HTML>
     <html lang="en">
 
@@ -33,23 +36,23 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="{% url 'item-new' %}">Add new</a></li>
-                    <li role="presentation"><a href="/">Home</a></li>
-                    <li role="presentation"><a href="{% url 'search' %}">Search</a></li>
+                    <li role="presentation" class="active"><a href="{% url 'item-new' %}">{% trans "Add new" %}</a></li>
+                    <li role="presentation"><a href="/">{% trans "Home" %}</a></li>
+                    <li role="presentation"><a href="{% url 'search' %}">{% trans "Search" %}</a></li>
                     {% if user.is_authenticated %}
                         <li role="presentation" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'my' %}">My listings ({{ user.item_set.count }})</a></li>
-                                <li><a href="{% url 'profile' %}">Profile</a></li>
+                                <li><a href="{% url 'my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a></li>
+                                <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+                                <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
                             </ul>
                         </li>
                     {% else %}
-                        <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="Login using Facebook"><span class="glyphicon glyphicon-user"></span> Login via Facebook</a></li>
+                        <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="{% trans "Login via Facebook" %}"><span class="glyphicon glyphicon-user"></span> {% trans "Login via Facebook" %}</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -76,7 +79,7 @@
         <footer class="footer">
             <p>
                 <span class="pull-left">{{ settings.SITE_NAME }}</span>
-                <span class="pull-right">Powered by <a href="https://github.com/inoks/dcf?utm_source=powered" title="django classified app">DCF Django Classified App</a></span>
+                <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf?utm_source=powered" title="DCF Django Classified App">DCF Django Classified App</a></span>
             </p>
         </footer>
 

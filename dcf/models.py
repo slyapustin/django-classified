@@ -9,12 +9,13 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import AbstractUser
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
+from django.utils.translation import ugettext as _
 
 
 class CustomUser(AbstractUser):
 
-    phone = models.CharField(u'phone', max_length=30, null=True, blank=True)
-    receive_news = models.BooleanField(u'receive news', default=True, db_index=True)
+    phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
+    receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
 
@@ -55,7 +56,7 @@ class Section(models.Model):
 class Group(models.Model):
 
     slug = models.SlugField(blank=True, null=True)
-    title = models.CharField(u'название', max_length=100)
+    title = models.CharField(_('title'), max_length=100)
     section = models.ForeignKey('Section')
 
     def __unicode__(self):
@@ -85,15 +86,15 @@ class Item(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     group = models.ForeignKey(Group, verbose_name="group")
 
-    title = models.CharField('title', max_length=100)
-    description = models.TextField('description')
-    price = CurrencyField('price', max_digits=10, decimal_places=2)
-    phone = models.CharField('phone', max_length=30)
+    title = models.CharField(_('title'), max_length=100)
+    description = models.TextField(_('description'))
+    price = CurrencyField(_('price'), max_digits=10, decimal_places=2)
+    phone = models.CharField(_('phone'), max_length=30)
 
-    is_active = models.BooleanField('display', default=True, db_index=True)
+    is_active = models.BooleanField(_('display'), default=True, db_index=True)
 
-    updated = models.DateTimeField('updated', auto_now=True, db_index=True)
-    posted = models.DateTimeField('posted', auto_now_add=True)
+    updated = models.DateTimeField(_('updated'), auto_now=True, db_index=True)
+    posted = models.DateTimeField(_('posted'), auto_now_add=True)
 
     def __unicode__(self):
         return self.title
@@ -130,4 +131,4 @@ class Item(models.Model):
 class Image(models.Model):
 
     item = models.ForeignKey(Item)
-    file = ImageField(u'image', upload_to='images')
+    file = ImageField(_('image'), upload_to='images')

@@ -2,6 +2,7 @@
 from django.contrib.syndication.views import Feed
 from django.contrib.sites.models import Site
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from .models import Item
 
@@ -11,7 +12,7 @@ class LatestItemFeed(Feed):
     # TODO Should return proper XML content type
     title = Site.objects.get_current().name
     link = '/'
-    description = u'%s updates' % settings.DCF['SITE_NAME']
+    description = _(u'%s updates' % settings.DCF['SITE_NAME'])
 
     def items(self):
 

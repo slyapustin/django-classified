@@ -97,12 +97,14 @@ SECRET_KEY = '__PUT_SUPER_SECRET_RANDOM_STRING_HERE__'
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 
     'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 )
@@ -112,7 +114,6 @@ ROOT_URLCONF = 'proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,6 +127,9 @@ TEMPLATES = [
     },
 ]
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'dcf', 'locale'),
+)
 
 INSTALLED_APPS = (
     'django.contrib.admin',

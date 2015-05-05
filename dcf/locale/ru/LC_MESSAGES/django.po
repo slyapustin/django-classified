@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-05 12:58+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: .\dcf\feeds.py:15
+msgid "%s updates"
+msgstr "%s обновления"
+
+#: .\dcf\models.py:17 .\dcf\models.py:92
+msgid "phone"
+msgstr "телефон"
+
+#: .\dcf\models.py:18
+msgid "receive news"
+msgstr "получать новости"
+
+#: .\dcf\models.py:59 .\dcf\models.py:89
+msgid "title"
+msgstr "заголовок"
+
+#: .\dcf\models.py:90
+msgid "description"
+msgstr "описание"
+
+#: .\dcf\models.py:91
+msgid "price"
+msgstr "стоимость"
+
+#: .\dcf\models.py:94
+msgid "display"
+msgstr "отображать"
+
+#: .\dcf\models.py:96
+msgid "updated"
+msgstr "Обновлено"
+
+#: .\dcf\models.py:97
+msgid "posted"
+msgstr "Размещено"
+
+#: .\dcf\models.py:134
+msgid "image"
+msgstr "изображение"
+
+#: .\dcf\templates\403.html:10
+msgid "You have no access right to that page"
+msgstr "У вас нет прав доступа к этой странице"
+
+#: .\dcf\templates\404.html:10
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: .\dcf\templates\500.html:10
+msgid "Service is temporary unavailable"
+msgstr "Сервис временно недоступен"
+
+#: .\dcf\templates\_base.html:39
+msgid "Add new"
+msgstr "Добавить"
+
+#: .\dcf\templates\_base.html:40
+msgid "Home"
+msgstr "Главная"
+
+#: .\dcf\templates\_base.html:41
+msgid "Search"
+msgstr "Поиск"
+
+#: .\dcf\templates\_base.html:48 .\dcf\templates\dcf\user_item_list.html:6
+#: .\dcf\templates\dcf\user_item_list.html:11
+msgid "My items"
+msgstr "Мои объявления"
+
+#: .\dcf\templates\_base.html:49
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\dcf\templates\_base.html:51
+msgid "Logout"
+msgstr "Выйти"
+
+#: .\dcf\templates\_base.html:55
+msgid "Login via Facebook"
+msgstr "Войти с помощью Facebook"
+
+#: .\dcf\templates\_base.html:82
+msgid "Powered by"
+msgstr "Работает на"
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:15
+msgid "Are you sure you want to delete"
+msgstr "Вы действительно хотите удалить"
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:16
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: .\dcf\templates\dcf\item_detail.html:59
+msgid "Please"
+msgstr "Пожалуйста"
+
+#: .\dcf\templates\dcf\item_detail.html:59
+msgid "login"
+msgstr "Войдите"
+
+#: .\dcf\templates\dcf\item_detail.html:59
+msgid "to see contact information."
+msgstr "для просмотра контактной информации."
+
+#: .\dcf\templates\dcf\user_item_list.html:17
+msgid "Group"
+msgstr "Группа"
+
+#: .\dcf\templates\dcf\user_item_list.html:18
+msgid "Update"
+msgstr "Обновить"
+
+#: .\dcf\templates\dcf\user_item_list.html:19
+msgid "Link"
+msgstr "Ссылка"
+
+#: .\dcf\templates\dcf\user_item_list.html:20
+msgid "Price"
+msgstr "Цена"
+
+#: .\dcf\templates\dcf\user_item_list.html:21
+msgid "Posted"
+msgstr "Размещено"
+
+#: .\dcf\templates\dcf\user_item_list.html:28
+msgid "Edit item"
+msgstr "Редактировать объявление"
+
+#: .\dcf\templates\dcf\user_item_list.html:29
+msgid "Open item"
+msgstr "Открыть объявление"
+
+#: .\dcf\templates\dcf\user_item_list.html:29
+msgid "Open"
+msgstr "Открыть"
+
+#: .\dcf\templates\dcf\user_item_list.html:40
+msgid "You have no any item to show."
+msgstr "У вас нет ни одного объявления"
+
+#: .\dcf\templates\dcf\user_item_list.html:40
+msgid "Add one now!"
+msgstr "Добавить"
+
+#: .\dcf\templates\registration\login.html:5
+msgid "Login"
+msgstr "Войти"

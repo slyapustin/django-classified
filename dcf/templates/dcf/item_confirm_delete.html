@@ -2,8 +2,9 @@
 
 {% load humanize %}
 {% load thumbnail %}
+{% load i18n %}
 
-{% block title %}Delete {{ object.get_title }}{% endblock title %}
+{% block title %}{% trans "Delete" %} {{ object.get_title }}{% endblock title %}
 
 {% block body %}
 
@@ -11,8 +12,8 @@
         <div class="col-lg-12">
             <form action="" method="post">
                 {% csrf_token %}
-                <p>Are you sure you want to delete "<a href="{{ object.get_absolute_url }}">{{ object }}</a>"?</p>
-                <input type="submit" value="Confirm" class="btn" />
+                <p>{% trans "Are you sure you want to delete" %} "<a href="{{ object.get_absolute_url }}">{{ object }}</a>"?</p>
+                <input type="submit" value="{% trans "Confirm" %}" class="btn" />
             </form>
         </div>
     </div>
