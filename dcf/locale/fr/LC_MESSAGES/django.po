@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-05 13:36+0300\n"
+"PO-Revision-Date: 2015-05-05 14:17+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"X-Generator: Poedit 1.7.5\n"
+
+#: .\dcf\feeds.py:15
+#, python-format
+msgid "%s updates"
+msgstr "%s mises à jour"
+
+#: .\dcf\models.py:17 .\dcf\models.py:92
+msgid "phone"
+msgstr "téléphone"
+
+#: .\dcf\models.py:18
+msgid "receive news"
+msgstr "recevoir des informations"
+
+#: .\dcf\models.py:59 .\dcf\models.py:89
+msgid "title"
+msgstr "titre"
+
+#: .\dcf\models.py:90
+msgid "description"
+msgstr "description"
+
+#: .\dcf\models.py:91
+msgid "price"
+msgstr "prix"
+
+#: .\dcf\models.py:94
+msgid "display"
+msgstr "afficher"
+
+#: .\dcf\models.py:96
+msgid "updated"
+msgstr "mis à jour"
+
+#: .\dcf\models.py:97
+msgid "posted"
+msgstr "publié"
+
+#: .\dcf\models.py:134
+msgid "image"
+msgstr "image"
+
+#: .\dcf\templates\403.html:10
+msgid "You have no access right to that page"
+msgstr "Vous n'avez pas accès à cette page"
+
+#: .\dcf\templates\404.html:10
+msgid "Page not found"
+msgstr "Page introuvable"
+
+#: .\dcf\templates\500.html:10
+msgid "Service is temporary unavailable"
+msgstr "Le service est temporairement indisponible"
+
+#: .\dcf\templates\_base.html:39
+msgid "Add new"
+msgstr "Ajouter un nouveau"
+
+#: .\dcf\templates\_base.html:40
+msgid "Home"
+msgstr "Accueil"
+
+#: .\dcf\templates\_base.html:41 .\dcf\templates\dcf\search.html:7
+#: .\dcf\templates\dcf\search.html.py:15
+msgid "Search"
+msgstr "Rechercher"
+
+#: .\dcf\templates\_base.html:48 .\dcf\templates\dcf\user_item_list.html:6
+#: .\dcf\templates\dcf\user_item_list.html:11
+msgid "My items"
+msgstr "Mes éléments"
+
+#: .\dcf\templates\_base.html:49 .\dcf\templates\dcf\profile.html:6
+msgid "Profile"
+msgstr "Profil"
+
+#: .\dcf\templates\_base.html:51
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: .\dcf\templates\_base.html:55
+msgid "Login via Facebook"
+msgstr "Se connecter avec Facebook"
+
+#: .\dcf\templates\_base.html:82
+msgid "Powered by"
+msgstr "Propulsé par"
+
+#: .\dcf\templates\dcf\admin_toolbar.html:6
+#: .\dcf\templates\dcf\item_form.html:6
+msgid "Edit"
+msgstr "Modifier "
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:15
+msgid "Are you sure you want to delete"
+msgstr "Êtes-vous sûr de vouloir supprimer"
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:16
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: .\dcf\templates\dcf\item_detail.html:59
+msgid "Please"
+msgstr "Veuillez"
+
+#: .\dcf\templates\dcf\item_detail.html:59
+msgid "login"
+msgstr "﻿connexion"
+
+#: .\dcf\templates\dcf\item_detail.html:59
+msgid "to see contact information."
+msgstr "pour voir les coordonnées."
+
+#: .\dcf\templates\dcf\item_detail.html:61
+msgid "Phone"
+msgstr "Téléphone"
+
+#: .\dcf\templates\dcf\item_form.html:6
+msgid "Add"
+msgstr "Ajouter"
+
+#: .\dcf\templates\dcf\item_form.html:6
+msgid "item"
+msgstr "élément"
+
+#: .\dcf\templates\dcf\item_form.html:21
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: .\dcf\templates\dcf\item_list.html:13
+#: .\dcf\templates\dcf\user_item_list.html:20
+msgid "Price"
+msgstr "Prix"
+
+#: .\dcf\templates\dcf\item_list.html:26
+msgid "photos available"
+msgstr "photos disponibles"
+
+#: .\dcf\templates\dcf\item_list.html:46
+msgid "No item here yet."
+msgstr "Aucun élément pour le moment."
+
+#: .\dcf\templates\dcf\item_list.html:46
+#: .\dcf\templates\dcf\user_item_list.html:40
+msgid "Add one now!"
+msgstr "Ajouter un nouveau maintenant!"
+
+#: .\dcf\templates\dcf\list_pagination.html:8
+msgid "Prev"
+msgstr "Prec"
+
+#: .\dcf\templates\dcf\list_pagination.html:14
+msgid "Next"
+msgstr "Следующая"
+
+#: .\dcf\templates\dcf\profile.html:15
+#: .\dcf\templates\dcf\user_item_list.html:18
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: .\dcf\templates\dcf\search.html:7
+msgid "Search results for query"
+msgstr "Résultats de recherche pour la requête"
+
+#: .\dcf\templates\dcf\search.html:28
+#, python-format
+msgid "Search results (%(paginator.count)s items found):"
+msgstr "Résultats de recherche (%(paginator.count)s éléments trouvés):"
+
+#: .\dcf\templates\dcf\search.html:33
+msgid "Not found"
+msgstr "Introuvable"
+
+#: .\dcf\templates\dcf\user_item_list.html:17
+msgid "Group"
+msgstr "Groupe"
+
+#: .\dcf\templates\dcf\user_item_list.html:19
+msgid "Link"
+msgstr "Lien"
+
+#: .\dcf\templates\dcf\user_item_list.html:21
+msgid "Posted"
+msgstr "Publié"
+
+#: .\dcf\templates\dcf\user_item_list.html:28
+msgid "Edit item"
+msgstr "Modifier l'élément"
+
+#: .\dcf\templates\dcf\user_item_list.html:29
+msgid "Open item"
+msgstr "Ouvrir l'élément"
+
+#: .\dcf\templates\dcf\user_item_list.html:29
+msgid "Open"
+msgstr "Ouvrir"
+
+#: .\dcf\templates\dcf\user_item_list.html:40
+msgid "You have no any item to show."
+msgstr "Vous n'avez aucun élément à afficher."
+
+#: .\dcf\templates\registration\login.html:5
+msgid "Login"
+msgstr "﻿Connexion"
+
+#: .\dcf\templates\registration\login.html:15
+msgid "Login via Social"
+msgstr "Se connecter avec un Réseau Social"
