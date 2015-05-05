@@ -1,5 +1,6 @@
 {% load humanize %}
 {% load thumbnail %}
+{% load i18n %}
 
 
 {% for object in object_list %}
@@ -9,7 +10,7 @@
         <thead>
         <tr>
             <td></td>
-            <td>Price</td>
+            <td>{% trans "Price" %}</td>
         </tr>
         </thead>
         <tbody>
@@ -22,7 +23,7 @@
                     <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
                         <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
                         {% if object.image_set.all|length > 1 %}
-                            <span class="badge badge-notify" title="{{ object.image_set.count }} photos available">{{ object.image_set.count }}</span>
+                            <span class="badge badge-notify" title="{{ object.image_set.count }} {% trans 'photos available' %}">{{ object.image_set.count }}</span>
                         {% endif %}
                     </a>
                 {% endthumbnail %}
@@ -42,5 +43,5 @@
     {% endif %}
 
 {% empty %}
-    <p>No item here yet. <a href="{% url 'item-new' %}" rel="nofollow">Add one now!</a></p>
+    <p>{% trans "No item here yet." %} <a href="{% url 'item-new' %}" rel="nofollow">{% trans "Add one now!" %}</a></p>
 {% endfor %}

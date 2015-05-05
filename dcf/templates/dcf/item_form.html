@@ -1,8 +1,9 @@
 {% extends "_base.html" %}
 
+{% load i18n %}
 {% load bootstrap %}
 
-{% block title %}{% if form.instance.pk %}Редактирование{% else %}Добавление{% endif %} объявления{% endblock title %}
+{% block title %}{% if form.instance.pk %}{% trans "Edit" %}{% else %}{% trans "Add" %}{% endif %} {% trans "item" %}{% endblock title %}
 
 {% block body %}
     <div class="row">
@@ -17,7 +18,7 @@
             {% for form in formset %}
                 {{ form|bootstrap }}
             {% endfor %}
-            <input type='submit' class="btn" value='Сохранить'>
+            <input type='submit' class="btn" value='{% trans "Save" %}'>
 
         </form>
     </div>

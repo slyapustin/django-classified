@@ -1,10 +1,9 @@
 {% extends "_base.html" %}
 
+{% load i18n %}
 {% load bootstrap %}
 
-{% block title %}
-    Profile
-{% endblock title %}
+{% block title %}{% trans "Profile" %}{% endblock title %}
 
 {% block body %}
 
@@ -13,7 +12,7 @@
             <form method='post' role="form">
                 {% csrf_token %}
                 {{ form|bootstrap }}
-                <input type='submit' value='Update' class="btn">
+                <input type='submit' value='{% trans "Update" %}' class="btn">
             </form>
         </div>
     </div>

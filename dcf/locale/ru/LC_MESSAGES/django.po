@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-05 12:58+0300\n"
+"POT-Creation-Date: 2015-05-05 13:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: .\dcf\feeds.py:15
+#, python-format
 msgid "%s updates"
 msgstr "%s обновления"
 
@@ -78,7 +79,8 @@ msgstr "Добавить"
 msgid "Home"
 msgstr "Главная"
 
-#: .\dcf\templates\_base.html:41
+#: .\dcf\templates\_base.html:41 .\dcf\templates\dcf\search.html:7
+#: .\dcf\templates\dcf\search.html.py:15
 msgid "Search"
 msgstr "Поиск"
 
@@ -87,7 +89,7 @@ msgstr "Поиск"
 msgid "My items"
 msgstr "Мои объявления"
 
-#: .\dcf\templates\_base.html:49
+#: .\dcf\templates\_base.html:49 .\dcf\templates\dcf\profile.html:6
 msgid "Profile"
 msgstr "Профиль"
 
@@ -102,6 +104,11 @@ msgstr "Войти с помощью Facebook"
 #: .\dcf\templates\_base.html:82
 msgid "Powered by"
 msgstr "Работает на"
+
+#: .\dcf\templates\dcf\admin_toolbar.html:6
+#: .\dcf\templates\dcf\item_form.html:6
+msgid "Edit"
+msgstr "Редактировать"
 
 #: .\dcf\templates\dcf\item_confirm_delete.html:15
 msgid "Are you sure you want to delete"
@@ -123,21 +130,73 @@ msgstr "Войдите"
 msgid "to see contact information."
 msgstr "для просмотра контактной информации."
 
-#: .\dcf\templates\dcf\user_item_list.html:17
-msgid "Group"
-msgstr "Группа"
+#: .\dcf\templates\dcf\item_detail.html:61
+msgid "Phone"
+msgstr "Телефон"
 
+#: .\dcf\templates\dcf\item_form.html:6
+msgid "Add"
+msgstr "Добавить"
+
+#: .\dcf\templates\dcf\item_form.html:6
+msgid "item"
+msgstr "объявление"
+
+#: .\dcf\templates\dcf\item_form.html:21
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\dcf\templates\dcf\item_list.html:13
+#: .\dcf\templates\dcf\user_item_list.html:20
+msgid "Price"
+msgstr "Стоимость"
+
+#: .\dcf\templates\dcf\item_list.html:26
+msgid "photos available"
+msgstr "фотографий доступно"
+
+#: .\dcf\templates\dcf\item_list.html:46
+msgid "No item here yet."
+msgstr "Еще нет объявлений"
+
+#: .\dcf\templates\dcf\item_list.html:46
+#: .\dcf\templates\dcf\user_item_list.html:40
+msgid "Add one now!"
+msgstr "Добавить"
+
+#: .\dcf\templates\dcf\list_pagination.html:8
+msgid "Prev"
+msgstr "Предыдущая"
+
+#: .\dcf\templates\dcf\list_pagination.html:14
+msgid "Next"
+msgstr "Следующая"
+
+#: .\dcf\templates\dcf\profile.html:15
 #: .\dcf\templates\dcf\user_item_list.html:18
 msgid "Update"
 msgstr "Обновить"
 
+#: .\dcf\templates\dcf\search.html:7
+msgid "Search results for query"
+msgstr "Результаты по запросу"
+
+#: .\dcf\templates\dcf\search.html:28
+#, python-format
+msgid "Search results (%(paginator.count)s items found):"
+msgstr "Результаты поиска (%(paginator.count)s найдено):"
+
+#: .\dcf\templates\dcf\search.html:33
+msgid "Not found"
+msgstr "Не найдено"
+
+#: .\dcf\templates\dcf\user_item_list.html:17
+msgid "Group"
+msgstr "Группа"
+
 #: .\dcf\templates\dcf\user_item_list.html:19
 msgid "Link"
 msgstr "Ссылка"
-
-#: .\dcf\templates\dcf\user_item_list.html:20
-msgid "Price"
-msgstr "Цена"
 
 #: .\dcf\templates\dcf\user_item_list.html:21
 msgid "Posted"
@@ -159,10 +218,10 @@ msgstr "Открыть"
 msgid "You have no any item to show."
 msgstr "У вас нет ни одного объявления"
 
-#: .\dcf\templates\dcf\user_item_list.html:40
-msgid "Add one now!"
-msgstr "Добавить"
-
 #: .\dcf\templates\registration\login.html:5
 msgid "Login"
 msgstr "Войти"
+
+#: .\dcf\templates\registration\login.html:15
+msgid "Login via Social"
+msgstr "Войти с через социальные сети"
