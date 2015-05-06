@@ -2,12 +2,13 @@
 from django import forms
 from .models import Item, Group, Image
 from django.contrib.auth import get_user_model
+from django.utils.translation import ugettext as _
 
 
 class SearchForm(forms.Form):
 
-    group = forms.ModelChoiceField(label=u'Group', queryset=Group.objects.all(), required=False)
-    q = forms.CharField(required=False, label='Query',)
+    group = forms.ModelChoiceField(label=_('Group'), queryset=Group.objects.all(), required=False)
+    q = forms.CharField(required=False, label=_('Query'),)
 
     def filter_by(self):
 

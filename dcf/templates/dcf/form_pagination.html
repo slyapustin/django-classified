@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <nav>
     <ul class="pagination">
         <li>
@@ -8,7 +10,7 @@
                     {% if not page_obj.has_previous %}
                     disabled="disabled"
                     {% endif %}>
-                prev
+                {% trans "Prev" %}
             </button>
         </li>
 
@@ -20,7 +22,7 @@
                     {% if not page_obj.has_next %}
                     disabled="disabled"
                     {% endif %}>
-                next
+               {% trans "Next" %}
             </button>
         </li>
     </ul>
