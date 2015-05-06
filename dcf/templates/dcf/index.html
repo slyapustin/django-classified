@@ -12,7 +12,7 @@
 
             {% for group in section.group_set.all %}
                 {% if group.count > 0 %}
-                    <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">{{group.title}}<span class="badge">{{group.count}}</span></a><br/>
+                    <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">{{group.title}} [{{group.count}}]</a><br/>
                 {% endif %}
             {% endfor %}
         </div>
