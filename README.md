@@ -58,4 +58,4 @@
 ## TODO
 
 * search improvement
-* tests
+* favorites
