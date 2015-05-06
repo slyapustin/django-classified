@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-05 13:36+0300\n"
+"POT-Creation-Date: 2015-05-06 10:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,7 +80,7 @@ msgid "Home"
 msgstr "Главная"
 
 #: .\dcf\templates\_base.html:41 .\dcf\templates\dcf\search.html:7
-#: .\dcf\templates\dcf\search.html.py:15
+#: .\dcf\templates\dcf\search.html.py:15 .\dcf\templates\dcf\search.html:19
 msgid "Search"
 msgstr "Поиск"
 
@@ -104,6 +104,13 @@ msgstr "Войти с помощью Facebook"
 #: .\dcf\templates\_base.html:82
 msgid "Powered by"
 msgstr "Работает на"
+
+#: .\dcf\templates\dcf\admin_toolbar.html:6
+#: .\dcf\templates\dcf\item_confirm_delete.html:7
+#: .\dcf\templates\dcf\user_item_list.html:22
+#: .\dcf\templates\dcf\user_item_list.html:32
+msgid "Delete"
+msgstr "Удалить"
 
 #: .\dcf\templates\dcf\admin_toolbar.html:6
 #: .\dcf\templates\dcf\item_form.html:6
