@@ -29,7 +29,7 @@ msgstr "Группа"
 
 #: .\dcf\forms.py:11
 msgid "Query"
-msgstr ""
+msgstr "Запрос"
 
 #: .\dcf\models.py:17 .\dcf\models.py:92
 msgid "phone"
