@@ -21,7 +21,7 @@ urlpatterns = patterns(
     url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)$', cache_page(60 * 15)(views.GroupDetail.as_view()), name='group'),
 
     url(r'^search/', views.SearchView.as_view(), name='search'),
-    url(r'^robots\.txt$', views.robots, name='robots'),
+    url(r'^robots\.txt$', cache_page(60 * 60)(views.RobotsView.as_view()), name='robots'),
 
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemap.sitemaps_dict}, name='sitemap'),

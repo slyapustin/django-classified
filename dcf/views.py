@@ -207,8 +207,15 @@ def view_profile(request):
     return render(request, 'dcf/profile.html', {'form': form})
 
 
-def robots(request):
-    return render(request, 'robots.txt', {'domain': Site.objects.get_current().domain}, content_type='text/plain')
+class RobotsView(TemplateView):
+
+    template_name = 'robots.txt'
+    content_type = 'text/plain'
+
+    def get_context_data(self, **kwargs):
+        context = super(RobotsView, self).get_context_data(**kwargs)
+        context['domain'] = Site.objects.get_current().domain
+        return context
 
 
 def page403(request):

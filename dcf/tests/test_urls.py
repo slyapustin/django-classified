@@ -41,6 +41,10 @@ class TestUrls(GenericViewTestCase):
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
 
+        response = self.client.get('/robots.txt')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'text/plain')
+
         response = self.client.get(self.item.get_absolute_url())
         self.assertEqual(response.status_code, 200)
 
