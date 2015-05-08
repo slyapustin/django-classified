@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.views.generic import DetailView, CreateView,  UpdateView, ListView, DeleteView
+from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
@@ -37,12 +37,14 @@ class FilteredListView(FormMixin, ListView):
         return self.render_to_response(context)
 
 
-def index(request):
+class IndexPageView(TemplateView):
 
-    return render(request, 'dcf/index.html', {
-        'groups': Group.objects.all(),
-        'sections': Section.objects.all()
-    })
+    template_name = "dcf/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexPageView, self).get_context_data(**kwargs)
+        context['sections'] = Section.objects.all()
+        return context
 
 
 class SearchView(FilteredListView):

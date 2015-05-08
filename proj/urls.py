@@ -11,7 +11,7 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', cache_page(60 * 15)(views.index)),
+    url(r'^$', cache_page(60 * 15)(views.IndexPageView.as_view())),
 
     url(r'^new$', views.ItemCreateView.as_view(), name='item-new'),
     url(r'^edit/(?P<pk>\d+)$', views.ItemUpdateView.as_view(), name='item-edit'),
