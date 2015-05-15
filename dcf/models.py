@@ -82,7 +82,7 @@ class Group(models.Model):
 
 class Item(models.Model):
 
-    slug = models.SlugField(blank=True, null=True)
+    slug = models.SlugField(blank=True, null=True, max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     group = models.ForeignKey(Group, verbose_name="group")
 
