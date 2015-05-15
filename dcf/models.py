@@ -44,7 +44,7 @@ class CurrencyField(models.DecimalField):
 
 class Section(models.Model):
 
-    title = models.CharField(u'название', max_length=100)
+    title = models.CharField(_('title'), max_length=100)
 
     def __unicode__(self):
         return self.title
