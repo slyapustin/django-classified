@@ -53,7 +53,7 @@
  You can provide additional customization in DCF dictionary from settings.py
  
 ## Demo sites
- * [http://craiglists.ru/](http://craiglists.ru?utm_source=github/)
+ * [http://craiglists.ru/](http://craiglists.ru?utm_source=github)
 
 ## TODO
 
