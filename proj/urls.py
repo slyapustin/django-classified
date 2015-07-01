@@ -13,12 +13,12 @@ urlpatterns = patterns(
     '',
     url(r'^$', cache_page(60 * 15)(views.IndexPageView.as_view())),
 
-    url(r'^new$', views.ItemCreateView.as_view(), name='item-new'),
-    url(r'^edit/(?P<pk>\d+)$', views.ItemUpdateView.as_view(), name='item-edit'),
+    url(r'^new/$', views.ItemCreateView.as_view(), name='item-new'),
+    url(r'^edit/(?P<pk>\d+)/$', views.ItemUpdateView.as_view(), name='item-edit'),
 
     # listings
-    url(r'^(?P<pk>\d+)-(?P<slug>[-\w]+)$', cache_page(60 * 15)(views.ItemDetailView.as_view()), name='item'),
-    url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)$', cache_page(60 * 15)(views.GroupDetail.as_view()), name='group'),
+    url(r'^(?P<pk>\d+)-(?P<slug>[-\w]+)/$', cache_page(60 * 15)(views.ItemDetailView.as_view()), name='item'),
+    url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)/$', cache_page(60 * 15)(views.GroupDetail.as_view()), name='group'),
 
     url(r'^search/', views.SearchView.as_view(), name='search'),
     url(r'^robots\.txt$', cache_page(60 * 60)(views.RobotsView.as_view()), name='robots'),
@@ -29,7 +29,7 @@ urlpatterns = patterns(
 
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
     url(r'^user/profile/$', views.view_profile, name='profile'),
-    url(r'^user/my/delete/(?P<pk>\d+)$', views.ItemDeleteView.as_view(), name='my-delete'),
+    url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
 
     # authorization
     url(r'user/', include('social.apps.django_app.urls', namespace='social')),
