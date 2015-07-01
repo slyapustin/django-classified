@@ -14,9 +14,11 @@
         <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% if GOOGLE_SITE_VERIFICATION_ID %}
-        <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION_ID }}" />
+            <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION_ID }}" />
         {% endif %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        {% block meta_og %}{% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
 
@@ -102,7 +104,7 @@
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
@@ -114,33 +116,33 @@
     {% endif %}
 
     {% if YANDEX_METRIKA_PROPERTY_ID %}
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter{{ YANDEX_METRIKA_PROPERTY_ID }} = new Ya.Metrika({id:{{ YANDEX_METRIKA_PROPERTY_ID }},
-                        webvisor:true,
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true});
-            } catch(e) { }
-        });
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function() {
+                    try {
+                        w.yaCounter{{ YANDEX_METRIKA_PROPERTY_ID }} = new Ya.Metrika({id:{{ YANDEX_METRIKA_PROPERTY_ID }},
+                            webvisor:true,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true});
+                    } catch(e) { }
+                });
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+                var n = d.getElementsByTagName("script")[0],
+                        s = d.createElement("script"),
+                        f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-    </script>
-    <noscript><div><img src="//mc.yandex.ru/watch/{{ YANDEX_METRIKA_PROPERTY_ID }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <noscript><div><img src="//mc.yandex.ru/watch/{{ YANDEX_METRIKA_PROPERTY_ID }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
     {% endif %}
 
     <!-- generated {% now "jS F Y H:i:s" %} -->

@@ -8,6 +8,19 @@
 {% block meta_description %}{{ object.get_description }}{% endblock meta_description %}
 {% block meta_keywords %}{{ object.get_keywords }}{% endblock meta_keywords %}
 
+{% block meta_og %}
+
+    <meta property="og:url" content="{{ site }}{{ object.get_absolute_url }}" />
+    <meta property="og:title" content="{{object.get_title}}" />
+    <meta property="og:description" content="{{ object.get_description }}" />
+    {% for img in object.image_set.all %}
+        {% thumbnail img.file "640x480" padding=True as im %}
+            <meta property="og:image" content="{{ site }}{{ im.url }}" />
+        {% endthumbnail %}
+    {% endfor %}
+
+{% endblock %}
+
 {% block body %}
 
     {% include "dcf/admin_toolbar.html" %}
