@@ -19,6 +19,7 @@
     * RSS feed
     * Google Analytics integration
     * [Yandex Metrika](https://metrika.yandex.com/) integration
+    * Compress CSS/JS (via [Django Compressor](https://github.com/django-compressor/django-compressor))
 * Caching
 * Translation
     * EN - basic version
