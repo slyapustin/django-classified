@@ -7,19 +7,21 @@
 
 {% block body %}
     <div class="row">
-        <form enctype="multipart/form-data" method='post' role="form">
+        <div class="col-md-12">
+            <form enctype="multipart/form-data" method='post' role="form">
 
-            {{ formset.management_form }}
+                {{ formset.management_form }}
 
-            {% csrf_token %}
+                {% csrf_token %}
 
-            {{ form|bootstrap }}
-
-            {% for form in formset %}
                 {{ form|bootstrap }}
-            {% endfor %}
-            <input type='submit' class="btn" value='{% trans "Save" %}'>
 
-        </form>
+                {% for form in formset %}
+                    {{ form|bootstrap }}
+                {% endfor %}
+                <input type='submit' class="btn" value='{% trans "Save" %}'>
+
+            </form>
+        </div>
     </div>
 {% endblock body %}
