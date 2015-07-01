@@ -1,5 +1,6 @@
 {% spaceless %}
 
+    {% load compress %}
     {% load staticfiles %}
     {% load i18n %}
 
@@ -22,13 +23,12 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
         <!-- Custom styles for this template -->
-        <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
-        <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
-        <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
+        {% compress css %}
+            <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
+            <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
+            <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
+        {% endcompress %}
         <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
 
     </head>

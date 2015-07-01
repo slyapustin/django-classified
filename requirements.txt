@@ -4,3 +4,4 @@ Pillow
 sorl-thumbnail
 unidecode
 django-bootstrap-form
+django_compressor

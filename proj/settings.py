@@ -24,7 +24,8 @@ DATABASES = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
     }
 }
 
@@ -90,6 +91,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -145,6 +147,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'sorl.thumbnail',
     'bootstrapform',
+    'compressor',
 
     'dcf',
 
@@ -218,3 +221,8 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 # TODO need app for store Project settings and allow edit them from Admin page (like DJBLETS)
+
+COMPRESS_ENABLED = True
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter']
