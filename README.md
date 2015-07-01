@@ -20,6 +20,7 @@
     * Google Analytics integration
     * [Yandex Metrika](https://metrika.yandex.com/) integration
     * Compress CSS/JS (via [Django Compressor](https://github.com/django-compressor/django-compressor))
+    * [Open Graph protocol](http://ogp.me/) support
 * Caching
 * Translation
     * EN - basic version
