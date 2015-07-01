@@ -20,10 +20,7 @@
 
         <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- Custom styles for this template -->
+        {# <!-- Custom styles for this template --> #}
         {% compress css %}
             <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
             <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
@@ -88,10 +85,13 @@
 
     </div> <!-- container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    {# <!-- Latest compiled and minified CSS --> #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    {# <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> #}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
+    {# <!-- Latest compiled and minified JavaScript --> #}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <script src="{%  static 'dcf/js/lightbox.min.js' %}"></script>
