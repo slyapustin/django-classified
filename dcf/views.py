@@ -145,6 +145,10 @@ class ItemUpdateView(FormsetMixin, UpdateView):
             raise PermissionDenied
         return obj
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ItemUpdateView, self).dispatch(*args, **kwargs)
+
 
 class ItemCreateView(FormsetMixin, CreateView):
 
@@ -177,6 +181,10 @@ class MyItemsView(ListView):
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(MyItemsView, self).dispatch(*args, **kwargs)
+
 
 class ItemDeleteView(DeleteView):
 
@@ -188,6 +196,10 @@ class ItemDeleteView(DeleteView):
         if not obj.user == self.request.user and not self.request.user.is_superuser:
             raise PermissionDenied
         return obj
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ItemDeleteView, self).dispatch(*args, **kwargs)
 
 
 @login_required
