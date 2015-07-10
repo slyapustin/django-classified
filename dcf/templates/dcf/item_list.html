@@ -23,7 +23,7 @@
                     <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
                         <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
                         {% if object.image_set.all|length > 1 %}
-                            <span class="badge badge-notify" title="{{ object.image_set.count }} {% trans 'photos available' %}">{{ object.image_set.count }}</span>
+                            <span class="badge badge-notify" title="{{ object.image_set.count|add:-1 }} {% trans 'more photos available' %}"> + {{ object.image_set.count|add:-1}}</span>
                         {% endif %}
                     </a>
                 {% endthumbnail %}
