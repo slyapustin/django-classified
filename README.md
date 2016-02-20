@@ -55,6 +55,7 @@
  
 ## Demo sites
  * [http://craiglists.ru/](http://craiglists.ru?utm_source=github)
+ * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de)
 
 ## TODO
 
