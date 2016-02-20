@@ -17,18 +17,18 @@
             <form method="get" role="form">
                 {{ form|bootstrap }}
                 <button type="submit" class="btn" name="page" value="1">{% trans "Search" %}</button>
-                {% include 'dcf/form_pagination.html' %}
+                {% if object_list|length %}
+                    {% include 'dcf/form_pagination.html' %}
+                {% endif %}
             </form>
 
         </div>
     </div>
     <div>
-
-        {% if object_list|length > 0 %}
+        <hr/>
+        {% if object_list|length %}
             <h4>{% blocktrans %}Search results ({{ paginator.count }} items found):{% endblocktrans %}</h4>
-
-               {% include "dcf/item_list.html" with item=object %}
-
+            {% include "dcf/item_list.html" with item=object %}
         {% else %}
             <h4>{% trans "Not found" %}</h4>
         {% endif %}

@@ -9,11 +9,12 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
 
-from .models import Item, Image, Group, Section
-from .forms import ItemCreateEditForm, ProfileForm, SearchForm
+from dcf.models import Item, Image, Group, Section
+from dcf.forms import ItemCreateEditForm, ProfileForm, SearchForm
 
 
 class FilteredListView(FormMixin, ListView):
@@ -161,7 +162,7 @@ class ItemCreateView(FormsetMixin, CreateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         if not self.request.user.allow_add_item():
-            messages.error(self.request, 'You have reached limit!')
+            messages.error(self.request, _('You have reached the limit!'))
             return redirect(reverse('my'))
 
         return super(ItemCreateView, self).dispatch(*args, **kwargs)
@@ -212,7 +213,7 @@ def view_profile(request):
         if form.is_valid():
 
             form.save()
-            messages.success(request, u'Your profile settings was updated!')
+            messages.success(request, _('Your profile settings was updated!'))
 
             return redirect(reverse('profile'))
 

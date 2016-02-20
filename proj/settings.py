@@ -2,7 +2,6 @@
 import os
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -15,7 +14,6 @@ MANAGERS = ADMINS
 ALLOWED_HOSTS = []
 
 DATABASES = {
-
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'sqlite.db'),
@@ -52,7 +50,6 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-
 USE_TZ = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: '/home/media/media.lawrence.com/media/'
@@ -84,7 +81,6 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -204,12 +200,11 @@ DCF = {
     'RSS_LIMIT': 100,
     'RELATED_LIMIT': 6,
     'ITEM_PER_PAGE': 10,
-    'LOGIN_TO_CONTACT': True,
+    'LOGIN_TO_CONTACT': True
 }
 
 GOOGLE_ANALYTICS_PROPERTY_ID = ''
 GOOGLE_SITE_VERIFICATION_ID = ''
-YANDEX_METRIKA_PROPERTY_ID = ''
 
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
 
@@ -223,6 +218,3 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 # TODO need app for store Project settings and allow edit them from Admin page (like DJBLETS)
 
 COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter']

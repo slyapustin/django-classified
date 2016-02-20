@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
 from django import forms
-from .models import Item, Group, Image
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
+
+from dcf.models import Item, Group, Image
 
 
 class SearchForm(forms.Form):

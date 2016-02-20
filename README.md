@@ -18,7 +18,6 @@
     * robots.txt
     * RSS feed
     * Google Analytics integration
-    * [Yandex Metrika](https://metrika.yandex.com/) integration
     * Compress CSS/JS (via [Django Compressor](https://github.com/django-compressor/django-compressor))
     * [Open Graph protocol](http://ogp.me/) support
 * Caching
@@ -30,7 +29,7 @@
 ## Requirements
  
 * Python 2.7+
-* Django 1.8
+* Django 1.9
 * [Python Social Auth](https://github.com/omab/python-social-auth/)
 
 ## Design

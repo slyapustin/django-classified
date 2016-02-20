@@ -1,8 +1,6 @@
 {% spaceless %}
 
-    {% load compress %}
-    {% load staticfiles %}
-    {% load i18n %}
+    {% load compress staticfiles i18n %}
 
     <!DOCTYPE HTML>
     <html lang="en">
@@ -22,7 +20,6 @@
 
         <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
 
-        {# <!-- Custom styles for this template --> #}
         {% compress css %}
             <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
             <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
@@ -79,22 +76,15 @@
         {% endblock %}
 
         <footer class="footer">
-            <p>
-                <span class="pull-left">{{ settings.SITE_NAME }}</span>
-                <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf?utm_source=powered" title="DCF Django Classified App">DCF Django Classified App</a></span>
-            </p>
+            <span class="pull-left">{{ settings.SITE_NAME }}</span>
+            <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf" title="DCF Django Classified App">DCF Django Classified App</a></span>
         </footer>
 
-    </div> <!-- container -->
+    </div>
 
-    {# <!-- Latest compiled and minified CSS --> #}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    {# <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> #}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    {# <!-- Latest compiled and minified JavaScript --> #}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="{%  static 'dcf/js/lightbox.min.js' %}"></script>
 
@@ -110,39 +100,8 @@
 
             ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');
             ga('send', 'pageview');
-
         </script>
 
-    {% endif %}
-
-    {% if YANDEX_METRIKA_PROPERTY_ID %}
-        <!-- Yandex.Metrika counter -->
-        <script type="text/javascript">
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function() {
-                    try {
-                        w.yaCounter{{ YANDEX_METRIKA_PROPERTY_ID }} = new Ya.Metrika({id:{{ YANDEX_METRIKA_PROPERTY_ID }},
-                            webvisor:true,
-                            clickmap:true,
-                            trackLinks:true,
-                            accurateTrackBounce:true});
-                    } catch(e) { }
-                });
-
-                var n = d.getElementsByTagName("script")[0],
-                        s = d.createElement("script"),
-                        f = function () { n.parentNode.insertBefore(s, n); };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else { f(); }
-            })(document, window, "yandex_metrika_callbacks");
-        </script>
-        <noscript><div><img src="//mc.yandex.ru/watch/{{ YANDEX_METRIKA_PROPERTY_ID }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-        <!-- /Yandex.Metrika counter -->
     {% endif %}
 
     <!-- generated {% now "jS F Y H:i:s" %} -->

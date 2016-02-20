@@ -12,11 +12,19 @@ class GenericViewTestCase(TestCase):
     def setUp(self):
 
         self.section = Section.objects.create(title=u'Cars')
-        self.group = Group.objects.create(title=u'Electric Cars', section=self.section)
+        self.group = Group.objects.create(
+            title=u'Electric Cars',
+            section=self.section
+        )
         self.user = get_user_model().objects.create(username="test")
-        self.item = Item.objects.create(user=self.user, group=self.group, title=u'Tesla S',
-                                        description=u'Super new 2015 Tesla S electric Car',
-                                        price=79000.00, phone='1-121-12-90')
+        self.item = Item.objects.create(
+            user=self.user,
+            group=self.group,
+            title=u'Tesla Model III',
+            description=u'Super new 2016 Tesla Model III electric Car',
+            price=79000.00,
+            phone='1-121-12-90'
+        )
 
 
 class TestUrls(GenericViewTestCase):

@@ -2,6 +2,8 @@
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth.views import logout, login
+from django.contrib.sitemaps.views import sitemap as sitemap_view
 from django.conf import settings
 from django.views.decorators.cache import cache_page
 
@@ -9,8 +11,7 @@ from dcf import views, feeds, sitemap
 
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', cache_page(60 * 15)(views.IndexPageView.as_view())),
 
     url(r'^new/$', views.ItemCreateView.as_view(), name='item-new'),
@@ -23,22 +24,20 @@ urlpatterns = patterns(
     url(r'^search/', views.SearchView.as_view(), name='search'),
     url(r'^robots\.txt$', cache_page(60 * 60)(views.RobotsView.as_view()), name='robots'),
 
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
-        {'sitemaps': sitemap.sitemaps_dict}, name='sitemap'),
+    url(r'^sitemap\.xml$', sitemap_view, {'sitemaps': sitemap.sitemaps_dict}, name='sitemap'),
     url(r'^rss\.xml$', cache_page(60 * 15)(feeds.LatestItemFeed()), name='rss'),
 
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
     url(r'^user/profile/$', views.view_profile, name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
 
-    # authorization
+    # Authorization
     url(r'user/', include('social.apps.django_app.urls', namespace='social')),
-    url(r'^user/login/', 'django.contrib.auth.views.login', name='login'),
-    url(r'^user/logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^user/login/', login, name='login'),
+    url(r'^user/logout/$', logout, name='logout'),
 
     url(r'^admin/', include(admin.site.urls)),
-
-)
+]
 
 handler404 = views.page404
 handler403 = views.page403

@@ -43,5 +43,5 @@
     {% endif %}
 
 {% empty %}
-    <p>{% trans "No item here yet." %} <a href="{% url 'item-new' %}" rel="nofollow">{% trans "Add one now!" %}</a></p>
+    <p>{% trans "No item here yet." %} <a href="{% url 'item-new' %}">{% trans "Add one now!" %}</a></p>
 {% endfor %}

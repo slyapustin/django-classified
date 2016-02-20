@@ -1,8 +1,6 @@
 {% extends "_base.html" %}
 
-{% load humanize %}
-{% load thumbnail %}
-{% load i18n %}
+{% load humanize thumbnail i18n %}
 
 {% block title %}{{ object.get_title }}{% endblock title %}
 {% block meta_description %}{{ object.get_description }}{% endblock meta_description %}
@@ -10,12 +8,12 @@
 
 {% block meta_og %}
 
-    <meta property="og:url" content="{{ site }}{{ object.get_absolute_url }}" />
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}" />
     <meta property="og:title" content="{{object.get_title}}" />
     <meta property="og:description" content="{{ object.get_description }}" />
     {% for img in object.image_set.all %}
         {% thumbnail img.file "640x480" padding=True as im %}
-            <meta property="og:image" content="{{ site }}{{ im.url }}" />
+            <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ im.url }}" />
         {% endthumbnail %}
     {% endfor %}
 
@@ -63,8 +61,6 @@
         </div>
     </div>
 
-
-    {# CONTACT INFORMATION #}
     <div class="row">
         <div class="col-md-12">
             <hr />
@@ -76,8 +72,6 @@
         </div>
     </div>
 
-
-    {# RELATED ITEMS #}
     <div class="row">
 
         <div class="col-lg-12">
