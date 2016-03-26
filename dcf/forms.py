@@ -1,9 +1,8 @@
 # -*- coding:utf-8 -*-
 from django import forms
-from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 
-from dcf.models import Item, Group, Image
+from dcf.models import Item, Group, Image, Profile
 
 
 class SearchForm(forms.Form):
@@ -13,7 +12,7 @@ class SearchForm(forms.Form):
 
     def filter_by(self):
 
-        # TODO search by more than one field
+        # TODO search using more than one field
         # TODO split query string and make seaprate search by words
         filters = {}
 
@@ -41,8 +40,6 @@ class AdImageForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
 
-    email = forms.EmailField(required=False)
-
     class Meta:
-        model = get_user_model()
-        fields = ('phone', 'email', 'receive_news', )
+        model = Profile
+        fields = ('phone', )

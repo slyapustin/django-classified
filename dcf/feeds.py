@@ -10,9 +10,11 @@ from dcf.models import Item
 class LatestItemFeed(Feed):
 
     # TODO Should return proper XML content type
-    title = Site.objects.get_current().name
     link = '/'
     description = _(u'%s updates' % settings.DCF['SITE_NAME'])
+
+    def title(self):
+        return Site.objects.get_current().name
 
     def items(self):
         return Item.objects.all().order_by('-updated')[:settings.DCF['RSS_LIMIT']]

@@ -8,37 +8,23 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
-from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext as _
+from django.db.models.signals import post_save
 
 
-class CustomUser(AbstractUser):
+class Profile(models.Model):
 
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
-    receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
-
-        # TODO check if the user is in ban list
-        if self.item_set.count() > settings.DCF['ITEM_PER_USER_LIMIT']:
-            return False
-        else:
-            return True
+        return self.user.item_set.count() < settings.DCF['ITEM_PER_USER_LIMIT']
 
     def count(self):
-        return Item.objects.filter(user=self).count()
+        return self.user.item_set.count()
 
     def get_full_name(self):
             return u'%s %s ' % (self.first_name, self.last_name)
-
-
-class CurrencyField(models.DecimalField):
-
-    def to_python(self, value):
-        try:
-            return super(CurrencyField, self).to_python(value).quantize(Decimal("0.01"))
-        except AttributeError:
-            return None
 
 
 class Section(models.Model):
@@ -49,7 +35,8 @@ class Section(models.Model):
         return self.title
 
     def count(self):
-        return Item.objects.filter(is_active=True).filter(group__section=self).count()
+        return Item.objects.filter(is_active=True)\
+            .filter(group__section=self).count()
 
 
 class Group(models.Model):
@@ -87,7 +74,7 @@ class Item(models.Model):
 
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
-    price = CurrencyField(_('price'), max_digits=10, decimal_places=2)
+    price = models.DecimalField(_('price'), max_digits=10, decimal_places=2)
     phone = models.CharField(_('phone'), max_length=30)
 
     is_active = models.BooleanField(_('display'), default=True, db_index=True)
@@ -131,3 +118,11 @@ class Image(models.Model):
 
     item = models.ForeignKey(Item)
     file = ImageField(_('image'), upload_to='images')
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile(user=instance).save()
+
+
+post_save.connect(create_user_profile, sender=settings.AUTH_USER_MODEL)

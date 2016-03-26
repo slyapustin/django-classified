@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import os
 
-DEBUG = False
+DEBUG = True
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -143,7 +143,6 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'sorl.thumbnail',
     'bootstrapform',
-    'compressor',
 
     'dcf',
 
@@ -190,8 +189,6 @@ FORCE_SCRIPT_NAME = ''
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-AUTH_USER_MODEL = 'dcf.CustomUser'
-
 DCF = {
     'SITE_NAME': u'Django DCF App',
     'SITE_DESCRIPTION': u'Demo Classified Advertisements web site Powered by Django DCF app',
@@ -216,5 +213,3 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 # TODO need app for store Project settings and allow edit them from Admin page (like DJBLETS)
-
-COMPRESS_ENABLED = True

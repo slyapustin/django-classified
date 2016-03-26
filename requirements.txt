@@ -1,7 +1,7 @@
-Django==1.9.2
+Django==1.9.4
 python-social-auth==0.2.14
 Pillow==3.1.1
-sorl-thumbnail==12.3
+sorl-thumbnail==12.4a1
 unidecode==0.04.19
 django-bootstrap-form==3.2
-django_compressor==2.0
+django-appconf==1.0.1

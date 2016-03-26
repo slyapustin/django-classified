@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% load compress staticfiles i18n %}
+    {% load staticfiles i18n %}
 
     <!DOCTYPE HTML>
     <html lang="en">
@@ -20,11 +20,10 @@
 
         <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
 
-        {% compress css %}
-            <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
-            <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
-            <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
-        {% endcompress %}
+        <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
+        <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
+
         <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
 
     </head>
