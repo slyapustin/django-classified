@@ -6,5 +6,5 @@ v0.2 (26/03/2016)
 
 Removed custom user model, since it's make impossible for app integrate with existed  solution
 Removed django_compressor integrations, due to problem with installation on some platform (searching for good solution now).
-Added initial igrations and updated installation guide in readme file.
+Added initial migrations and updated installation guide in readme file.
 Django 1.9.4
