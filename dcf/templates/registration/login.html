@@ -8,22 +8,16 @@
 
     <div class="row">
         <div class="col-lg-12">
-
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">{% trans "Login via Social" %}</h4>
-                        </div>
-
-                        <div class="modal-body">
-
-                            <a href="{% url "social:begin" "facebook"%}" class="btn btn-default">Facebook</a>
-
-                        </div>
-
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans "Login via Social" %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <a href="{% url "social:begin" "facebook"%}" class="btn btn-default">Facebook</a>
                     </div>
                 </div>
-
+            </div>
         </div>
     </div>
 

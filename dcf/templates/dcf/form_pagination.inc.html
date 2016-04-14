@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<nav>
+    <ul class="pagination">
+        <li>
+            <button class="btn"
+                name="page"
+                value="{% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% endif %}"
+                type="submit"
+                {% if not page_obj.has_previous %}
+                disabled="disabled"
+                {% endif %}>
+                {% trans "Prev" %}
+            </button>
+        </li>
+
+        <li>
+            <button class="btn"
+                name="page"
+                value="{% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}"
+                type="submit"
+                {% if not page_obj.has_next %}
+                disabled="disabled"
+                {% endif %}>
+               {% trans "Next" %}
+            </button>
+        </li>
+    </ul>
+</nav>

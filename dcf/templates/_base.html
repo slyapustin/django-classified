@@ -90,7 +90,6 @@
     {% block ext_scripts%}{% endblock %}
 
     {% if GOOGLE_ANALYTICS_PROPERTY_ID %}
-
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -100,7 +99,6 @@
             ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');
             ga('send', 'pageview');
         </script>
-
     {% endif %}
 
     <!-- generated {% now "jS F Y H:i:s" %} -->

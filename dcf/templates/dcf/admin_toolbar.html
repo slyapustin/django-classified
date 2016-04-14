@@ -1,9 +1,0 @@
-{% load i18n %}
-
-{% if user.is_superuser %}
-    <div class="row">
-        <div class="col-lg-12">
-            [<a href = '{% url 'my-delete' item.pk %}'>{% trans "Delete" %}</a>][<a href = '{% url 'item-edit' item.pk %}'>{% trans "Edit" %}</a>]
-        </div>
-    </div>
-{% endif %}

@@ -145,7 +145,6 @@ INSTALLED_APPS = (
     'bootstrapform',
 
     'dcf',
-
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -211,5 +210,3 @@ SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR_FACEBOOK_OAUTH2_KEY_HERE'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-
-# TODO need app for store Project settings and allow edit them from Admin page (like DJBLETS)

@@ -7,7 +7,6 @@
 {% block meta_keywords %}{{ object.get_keywords }}{% endblock meta_keywords %}
 
 {% block meta_og %}
-
     <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}" />
     <meta property="og:title" content="{{object.get_title}}" />
     <meta property="og:description" content="{{ object.get_description }}" />
@@ -16,12 +15,10 @@
             <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ im.url }}" />
         {% endthumbnail %}
     {% endfor %}
-
 {% endblock %}
 
 {% block body %}
-
-    {% include "dcf/admin_toolbar.html" %}
+    {% include "dcf/admin_toolbar.inc.html" %}
 
     <div class="row">
         <div class="col-lg-12">
@@ -96,5 +93,4 @@
             </div>
         {% endfor %}
     </div>
-
 {% endblock %}
