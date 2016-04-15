@@ -22,8 +22,7 @@ DATABASES = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
@@ -187,6 +186,8 @@ LOGIN_URL = 'login'
 FORCE_SCRIPT_NAME = ''
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+AUTH_USER_MODEL = 'dcf.CustomUser'
 
 DCF = {
     'SITE_NAME': u'Django DCF App',

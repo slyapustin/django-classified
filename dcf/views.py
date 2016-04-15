@@ -161,7 +161,7 @@ class ItemCreateView(FormsetMixin, CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not self.request.user.profile.allow_add_item():
+        if not self.request.user.allow_add_item():
             messages.error(self.request, _('You have reached the limit!'))
             return redirect(reverse('my'))
 

@@ -1,4 +1,8 @@
 *.pyc
 .idea
+*.db
 settings_local.py
 settings_prod.py
+media/
+static/*
+migrations/
