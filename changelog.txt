@@ -1,6 +1,13 @@
 Changelog
 =========
 
+v0.2.1 (15/04/2016)
+-----------------
+
+Custom user model is back!
+New way for providing custom settings (dispose of DCF dictionary)
+Django 1.9.5
+
 v0.2 (26/03/2016)
 -----------------
 
