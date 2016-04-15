@@ -41,8 +41,11 @@
 * [Leveraging HTML and Django Forms: Pagination of Filtered Results](http://schinckel.net/2014/08/17/leveraging-html-and-django-forms%3A-pagination-of-filtered-results/) 
     
 ## Installation
+   [Install + activate virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
+
 
     pip install -r requirements.txt
+    python ./manage.py makemigrations dcf
     python ./manage.py migrate
     python ./manage.py createsuperuser
     python ./manage.py runserver
