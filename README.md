@@ -1,4 +1,4 @@
-# DCF is a Django Classified Advertising App
+# DCF is a Django Classified App
 
 
 ## Features
@@ -68,5 +68,6 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
 
 ## TODO
 
-* search improvement
-* favorites
+* RESTful 
+* Angual2
+ 
