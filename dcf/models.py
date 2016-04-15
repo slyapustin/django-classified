@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
-        if self.item_set.count() > settings.DCF['ITEM_PER_USER_LIMIT']:
+        if self.item_set.count() > settings.DCF_ITEM_PER_USER_LIMIT:
             return False
         else:
             return True
@@ -95,7 +95,7 @@ class Item(models.Model):
     def get_related(self):
 
         # TODO Need more complicated related select
-        return Item.objects.exclude(pk=self.pk)[:settings.DCF['RELATED_LIMIT']]
+        return Item.objects.exclude(pk=self.pk)[:settings.DCF_RELATED_LIMIT]
 
     def save(self, *args, **kwargs):
         if self.slug is None:

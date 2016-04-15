@@ -189,16 +189,15 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 AUTH_USER_MODEL = 'dcf.CustomUser'
 
-DCF = {
-    'SITE_NAME': u'Django DCF App',
-    'SITE_DESCRIPTION': u'Demo Classified Advertisements web site Powered by Django DCF app',
-    'ITEM_PER_USER_LIMIT': 20,
-    'SITEMAP_LIMIT': 1000,
-    'RSS_LIMIT': 100,
-    'RELATED_LIMIT': 6,
-    'ITEM_PER_PAGE': 10,
-    'LOGIN_TO_CONTACT': True
-}
+# DCF specific settings
+DCF_SITE_NAME = u'Django DCF App'
+DCF_SITE_DESCRIPTION = u'Demo Classified Advertisements web site Powered by Django DCF app'
+DCF_ITEM_PER_USER_LIMIT = 20
+DCF_SITEMAP_LIMIT = 1000
+DCF_RSS_LIMIT = 100
+DCF_RELATED_LIMIT = 6
+DCF_ITEM_PER_PAGE = 10
+DCF_LOGIN_TO_CONTACT = True
 
 GOOGLE_ANALYTICS_PROPERTY_ID = ''
 GOOGLE_SITE_VERIFICATION_ID = ''

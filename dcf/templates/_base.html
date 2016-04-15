@@ -6,9 +6,9 @@
     <html lang="en">
 
     <head>
-        <title>{% block title %}{% endblock title %} | {{ settings.SITE_NAME }}</title>
+        <title>{% block title %}{% endblock title %} | {{ DCF_SITE_NAME }}</title>
 
-        <meta name="description" content="{% block meta_description %}{{ settings.SITE_DESCRIPTION }}{% endblock meta_description %}" />
+        <meta name="description" content="{% block meta_description %}{{ DCF_SITE_DESCRIPTION }}{% endblock meta_description %}" />
         <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% if GOOGLE_SITE_VERIFICATION_ID %}
@@ -54,7 +54,7 @@
                     {% endif %}
                 </ul>
             </nav>
-            <h3 class="text-muted">{{settings.SITE_NAME}}</h3>
+            <h3 class="text-muted">{{DCF_SITE_NAME}}</h3>
         </div>
 
         {% if messages %}
@@ -75,7 +75,7 @@
         {% endblock %}
 
         <footer class="footer">
-            <span class="pull-left">{{ settings.SITE_NAME }}</span>
+            <span class="pull-left">{{ DCF_SITE_NAME }}</span>
             <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf" title="DCF Django Classified App">DCF Django Classified App</a></span>
         </footer>
 

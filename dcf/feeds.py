@@ -11,13 +11,13 @@ class LatestItemFeed(Feed):
 
     # TODO Should return proper XML content type
     link = '/'
-    description = _(u'%s updates' % settings.DCF['SITE_NAME'])
+    description = _(u'%s updates' % settings.DCF_SITE_NAME)
 
     def title(self):
         return Site.objects.get_current().name
 
     def items(self):
-        return Item.objects.all().order_by('-updated')[:settings.DCF['RSS_LIMIT']]
+        return Item.objects.all().order_by('-updated')[:settings.DCF_RSS_LIMIT]
 
     def item_title(self, item):
         return item.get_title()
