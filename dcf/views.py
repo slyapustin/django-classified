@@ -1,24 +1,22 @@
 # -*- coding:utf-8 -*-
-
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
+from django.conf import settings
 
 from dcf.models import Item, Image, Group, Section
 from dcf.forms import ItemCreateEditForm, ProfileForm, SearchForm
 
 
 class FilteredListView(FormMixin, ListView):
-
     def get_form_kwargs(self):
         return {
             'initial': self.get_initial(),
@@ -38,18 +36,11 @@ class FilteredListView(FormMixin, ListView):
         return self.render_to_response(context)
 
 
-class IndexPageView(TemplateView):
-
-    template_name = "dcf/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexPageView, self).get_context_data(**kwargs)
-        context['sections'] = Section.objects.all()
-        return context
+class SectionListView(ListView):
+    model = Section
 
 
 class SearchView(FilteredListView):
-
     form_class = SearchForm
     queryset = Item.objects.filter(is_active=True).all()
     paginate_by = 10
@@ -110,9 +101,7 @@ class FormsetMixin(object):
 
 
 class GroupDetail(SingleObjectMixin, ListView):
-
-    paginate_by = 10
-    template_name = 'dcf/group_detail.html'
+    paginate_by = settings.DCF_ITEM_PER_PAGE
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Group.objects.all())
@@ -128,13 +117,10 @@ class GroupDetail(SingleObjectMixin, ListView):
 
 
 class ItemDetailView(DetailView):
-
     queryset = Item.objects.filter(is_active=True)
 
 
 class ItemUpdateView(FormsetMixin, UpdateView):
-
-    template_name = 'dcf/item_form.html'
     is_update_view = True
     model = Item
     form_class = ItemCreateEditForm
@@ -152,8 +138,6 @@ class ItemUpdateView(FormsetMixin, UpdateView):
 
 
 class ItemCreateView(FormsetMixin, CreateView):
-
-    template_name = 'dcf/item_form.html'
     is_update_view = False
     model = Item
     form_class = ItemCreateEditForm
@@ -176,7 +160,6 @@ class ItemCreateView(FormsetMixin, CreateView):
 
 
 class MyItemsView(ListView):
-
     template_name = 'dcf/user_item_list.html'
 
     def get_queryset(self):
@@ -188,7 +171,6 @@ class MyItemsView(ListView):
 
 
 class ItemDeleteView(DeleteView):
-
     model = Item
     success_url = reverse_lazy('my')
 
@@ -205,7 +187,6 @@ class ItemDeleteView(DeleteView):
 
 @login_required
 def view_profile(request):
-
     if request.method == 'GET':
         form = ProfileForm(instance=request.user, initial={'email': request.user.email})
     else:
@@ -221,14 +202,8 @@ def view_profile(request):
 
 
 class RobotsView(TemplateView):
-
     template_name = 'robots.txt'
     content_type = 'text/plain'
-
-    def get_context_data(self, **kwargs):
-        context = super(RobotsView, self).get_context_data(**kwargs)
-        context['domain'] = Site.objects.get_current().domain
-        return context
 
 
 def page403(request):

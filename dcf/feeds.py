@@ -8,7 +8,6 @@ from dcf.models import Item
 
 
 class LatestItemFeed(Feed):
-
     # TODO Should return proper XML content type
     link = '/'
     description = _(u'%s updates' % settings.DCF_SITE_NAME)

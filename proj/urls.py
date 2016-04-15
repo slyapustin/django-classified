@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import logout, login
 from django.contrib.sitemaps.views import sitemap as sitemap_view
@@ -12,7 +12,7 @@ from dcf import views, feeds, sitemap
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', cache_page(60 * 15)(views.IndexPageView.as_view())),
+    url(r'^$', cache_page(60 * 15)(views.SectionListView.as_view())),
 
     url(r'^new/$', never_cache(views.ItemCreateView.as_view()), name='item-new'),
     url(r'^edit/(?P<pk>\d+)/$', never_cache(views.ItemUpdateView.as_view()), name='item-edit'),

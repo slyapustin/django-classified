@@ -3,15 +3,15 @@
 {% block title %}{{DCF_SITE_NAME}}{% endblock title %}
 
 {% block body %}
-    {% for section in sections %}
+    {% for object in object_list %}
         {% if forloop.first %}
             <div class="row marketing">
         {% endif %}
 
         <div class="col-lg-4">
-            <h4>{{ section }}</h4>
+            <h4>{{ object }}</h4>
 
-            {% for group in section.group_set.all %}
+            {% for group in object.group_set.all %}
                 {% if group.count > 0 %}
                     <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">
                         {{group.title}} [{{group.count}}]<br/>

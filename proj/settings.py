@@ -99,7 +99,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 
@@ -128,7 +127,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'dcf', 'locale'),
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -144,7 +143,7 @@ INSTALLED_APPS = (
     'bootstrapform',
 
     'dcf',
-)
+]
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
