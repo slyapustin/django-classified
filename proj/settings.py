@@ -210,3 +210,12 @@ SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR_FACEBOOK_OAUTH2_KEY_HERE'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# Try to load local or prod settings if such exists
+try:
+    from settings_local import *
+except ImportError as e:
+    try:
+        from settings_prod import *
+    except ImportError as e:
+        pass
