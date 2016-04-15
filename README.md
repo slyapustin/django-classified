@@ -51,7 +51,16 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
 
 ## Customization:
  
- You can provide additional customization in DCF dictionary from settings.py
+ You can provide additional customization in settings.py
+ 
+ * DCF_SITE_NAME - Site title
+ * DCF_SITE_DESCRIPTION - Site description
+ * DCF_ITEM_PER_USER_LIMIT - Max Items allowed per user
+ * DCF_SITEMAP_LIMIT - Sitemap items limit 
+ * DCF_RSS_LIMIT - RSS feed items limit
+ * DCF_RELATED_LIMIT - Number of related items displayed
+ * DCF_ITEM_PER_PAGE - Number of items per page
+ * DCF_LOGIN_TO_CONTACT - Hide contact information for unauthorized requests  
  
 ## Demo sites
  * [http://craiglists.ru/](http://craiglists.ru?utm_source=github)
