@@ -143,6 +143,8 @@ INSTALLED_APPS = [
     'bootstrapform',
 
     'dcf',
+
+    'rest_framework',
 ]
 
 AUTHENTICATION_BACKENDS = (
