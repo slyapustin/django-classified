@@ -25,12 +25,14 @@
     * EN - basic version
     * Russian 
     * French (thanx to [Teolemon](https://github.com/teolemon))
+* RESTful API for [DCF Angular2 Application](https://github.com/inoks/dcf-angular2-app)
 
 ## Requirements
  
-* Python 2.7+
+* Python 2.7
 * Django 1.9
 * [Python Social Auth](https://github.com/omab/python-social-auth/)
+* [Django REST Framework](http://www.django-rest-framework.org/)
 
 ## Design
 
@@ -71,6 +73,5 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
 
 ## TODO
 
-* RESTful 
-* Angual2
+* RESTful API Enhancement
  
