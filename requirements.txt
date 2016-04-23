@@ -1,7 +1,9 @@
 Django==1.9.5
-python-social-auth==0.2.16
+python-social-auth==0.2.18
 Pillow==3.2.0
 sorl-thumbnail==12.4a1
 unidecode==0.04.19
 django-bootstrap-form==3.2
 djangorestframework==3.3.3
+django-cors-headers=1.1.0
+django-filter==0.13.0
