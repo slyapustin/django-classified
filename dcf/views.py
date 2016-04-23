@@ -42,7 +42,7 @@ class SectionListView(ListView):
 
 class SearchView(FilteredListView):
     form_class = SearchForm
-    queryset = Item.objects.filter(is_active=True).all()
+    queryset = Item.objects.filter(is_active=True)
     paginate_by = 10
     template_name = 'dcf/search.html'
 
