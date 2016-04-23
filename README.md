@@ -22,9 +22,10 @@
     * [Open Graph protocol](http://ogp.me/) support
 * Caching
 * Translation
-    * EN - basic version
+    * English
     * Russian 
-    * French (thanx to [Teolemon](https://github.com/teolemon))
+    * French (thanks to [Teolemon](https://github.com/teolemon))
+    * Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
 * RESTful API for [DCF Angular2 Application](https://github.com/inoks/dcf-angular2-app)
 
 ## Requirements
