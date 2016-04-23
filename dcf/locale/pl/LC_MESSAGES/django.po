@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-23 22:03+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: .\dcf\feeds.py:13
+#, python-format
+msgid "%s updates"
+msgstr ""
+
+#: .\dcf\forms.py:9 .\dcf\templates\dcf\user_item_list.html.py:16
+msgid "Group"
+msgstr ""
+
+#: .\dcf\forms.py:10
+msgid "Query"
+msgstr ""
+
+#: .\dcf\models.py:14 .\dcf\models.py:75
+msgid "phone"
+msgstr ""
+
+#: .\dcf\models.py:15
+msgid "receive news"
+msgstr ""
+
+#: .\dcf\models.py:25 .\dcf\models.py:41 .\dcf\models.py:72
+msgid "title"
+msgstr ""
+
+#: .\dcf\models.py:35 .\dcf\models.py:42
+msgid "section"
+msgstr ""
+
+#: .\dcf\models.py:36
+msgid "sections"
+msgstr ""
+
+#: .\dcf\models.py:51 .\dcf\models.py:70
+msgid "group"
+msgstr ""
+
+#: .\dcf\models.py:52
+msgid "groups"
+msgstr ""
+
+#: .\dcf\models.py:73
+msgid "description"
+msgstr ""
+
+#: .\dcf\models.py:74
+msgid "price"
+msgstr ""
+
+#: .\dcf\models.py:76
+msgid "display"
+msgstr ""
+
+#: .\dcf\models.py:77
+msgid "updated"
+msgstr ""
+
+#: .\dcf\models.py:78
+msgid "posted"
+msgstr ""
+
+#: .\dcf\models.py:84 .\dcf\templates\dcf\item_form.html.py:5
+msgid "item"
+msgstr ""
+
+#: .\dcf\models.py:85
+msgid "items"
+msgstr ""
+
+#: .\dcf\models.py:116
+msgid "image"
+msgstr ""
+
+#: .\dcf\templates\403.html:10
+msgid "You have no access right to that page"
+msgstr ""
+
+#: .\dcf\templates\404.html:10
+msgid "Page not found"
+msgstr ""
+
+#: .\dcf\templates\500.html:10
+msgid "Service is temporary unavailable"
+msgstr ""
+
+#: .\dcf\templates\_base.html:37
+msgid "Add new"
+msgstr ""
+
+#: .\dcf\templates\_base.html:38
+msgid "Home"
+msgstr ""
+
+#: .\dcf\templates\_base.html:39 .\dcf\templates\dcf\search.html.py:6
+#: .\dcf\templates\dcf\search.html:12 .\dcf\templates\dcf\search.html.py:15
+msgid "Search"
+msgstr ""
+
+#: .\dcf\templates\_base.html:46 .\dcf\templates\dcf\user_item_list.html:5
+#: .\dcf\templates\dcf\user_item_list.html:10
+msgid "My items"
+msgstr ""
+
+#: .\dcf\templates\_base.html:47 .\dcf\templates\dcf\profile.html.py:5
+msgid "Profile"
+msgstr ""
+
+#: .\dcf\templates\_base.html:49
+msgid "Logout"
+msgstr ""
+
+#: .\dcf\templates\_base.html:53
+msgid "Login via Facebook"
+msgstr ""
+
+#: .\dcf\templates\_base.html:79
+msgid "Powered by"
+msgstr ""
+
+#: .\dcf\templates\dcf\admin_toolbar.inc.html:6
+#: .\dcf\templates\dcf\item_confirm_delete.html:5
+#: .\dcf\templates\dcf\user_item_list.html:21
+#: .\dcf\templates\dcf\user_item_list.html:31
+msgid "Delete"
+msgstr ""
+
+#: .\dcf\templates\dcf\admin_toolbar.inc.html:7
+#: .\dcf\templates\dcf\item_form.html:5
+msgid "Edit"
+msgstr ""
+
+#: .\dcf\templates\dcf\form_pagination.inc.html:13
+#: .\dcf\templates\dcf\list_pagination.inc.html:7
+msgid "Prev"
+msgstr ""
+
+#: .\dcf\templates\dcf\form_pagination.inc.html:25
+#: .\dcf\templates\dcf\list_pagination.inc.html:12
+msgid "Next"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:13
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:16
+msgid "Confirm"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_detail.html:64
+msgid "Please"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_detail.html:64
+msgid "login"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_detail.html:64
+msgid "to see contact information."
+msgstr ""
+
+#: .\dcf\templates\dcf\item_detail.html:66
+msgid "Phone"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_form.html:5
+msgid "Add"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_form.html:20
+msgid "Save"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_list.inc.html:9
+#: .\dcf\templates\dcf\user_item_list.html:19
+msgid "Price"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_list.inc.html:21
+msgid "more photos available"
+msgstr ""
+
+#: .\dcf\templates\dcf\item_list.inc.html:41
+msgid "No item here yet."
+msgstr ""
+
+#: .\dcf\templates\dcf\item_list.inc.html:42
+#: .\dcf\templates\dcf\user_item_list.html:41
+msgid "Add one now!"
+msgstr ""
+
+#: .\dcf\templates\dcf\profile.html:13
+#: .\dcf\templates\dcf\user_item_list.html:17
+msgid "Update"
+msgstr ""
+
+#: .\dcf\templates\dcf\search.html:6
+msgid "Search results for query"
+msgstr ""
+
+#: .\dcf\templates\dcf\search.html:25
+#, python-format
+msgid "Search results (%(paginator.count)s items found):"
+msgstr ""
+
+#: .\dcf\templates\dcf\search.html:28
+msgid "Not found"
+msgstr ""
+
+#: .\dcf\templates\dcf\user_item_list.html:18
+msgid "Link"
+msgstr ""
+
+#: .\dcf\templates\dcf\user_item_list.html:20
+msgid "Posted"
+msgstr ""
+
+#: .\dcf\templates\dcf\user_item_list.html:27
+msgid "Edit item"
+msgstr ""
+
+#: .\dcf\templates\dcf\user_item_list.html:28
+msgid "Open item"
+msgstr ""
+
+#: .\dcf\templates\dcf\user_item_list.html:28
+msgid "Open"
+msgstr ""
+
+#: .\dcf\templates\dcf\user_item_list.html:40
+msgid "You have no items to show."
+msgstr ""
+
+#: .\dcf\templates\registration\login.html:5
+msgid "Login"
+msgstr ""
+
+#: .\dcf\templates\registration\login.html:14
+msgid "Login via Social"
+msgstr ""
+
+#: .\dcf\views.py:149
+msgid "You have reached the limit!"
+msgstr ""
+
+#: .\dcf\views.py:197
+msgid "Your profile settings was updated!"
+msgstr ""
