@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 17:04+0200\n"
+"POT-Creation-Date: 2016-04-23 17:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "Группа"
 msgid "Query"
 msgstr "Запрос"
 
-#: .\dcf\models.py:14 .\dcf\models.py:69
+#: .\dcf\models.py:14 .\dcf\models.py:75
 msgid "phone"
 msgstr "телефон"
 
@@ -38,31 +38,55 @@ msgstr "телефон"
 msgid "receive news"
 msgstr "получать новости"
 
-#: .\dcf\models.py:25 .\dcf\models.py:37 .\dcf\models.py:66
+#: .\dcf\models.py:25 .\dcf\models.py:41 .\dcf\models.py:72
 msgid "title"
 msgstr "заголовок"
 
-#: .\dcf\models.py:67
+#: .\dcf\models.py:35 .\dcf\models.py:42
+msgid "section"
+msgstr "раздел"
+
+#: .\dcf\models.py:36
+msgid "sections"
+msgstr "разделы"
+
+#: .\dcf\models.py:51 .\dcf\models.py:70
+msgid "group"
+msgstr "группа"
+
+#: .\dcf\models.py:52
+msgid "groups"
+msgstr "группы"
+
+#: .\dcf\models.py:73
 msgid "description"
 msgstr "описание"
 
-#: .\dcf\models.py:68
+#: .\dcf\models.py:74
 msgid "price"
 msgstr "стоимость"
 
-#: .\dcf\models.py:70
+#: .\dcf\models.py:76
 msgid "display"
 msgstr "отображать"
 
-#: .\dcf\models.py:71
+#: .\dcf\models.py:77
 msgid "updated"
 msgstr "Обновлено"
 
-#: .\dcf\models.py:72
+#: .\dcf\models.py:78
 msgid "posted"
 msgstr "Размещено"
 
-#: .\dcf\models.py:108
+#: .\dcf\models.py:84 .\dcf\templates\dcf\item_form.html.py:5
+msgid "item"
+msgstr "объявление"
+
+#: .\dcf\models.py:85
+msgid "items"
+msgstr "объявления"
+
+#: .\dcf\models.py:116
 msgid "image"
 msgstr "изображение"
 
@@ -162,10 +186,6 @@ msgstr "Телефон"
 msgid "Add"
 msgstr "Добавить"
 
-#: .\dcf\templates\dcf\item_form.html:5
-msgid "item"
-msgstr "объявление"
-
 #: .\dcf\templates\dcf\item_form.html:20
 msgid "Save"
 msgstr "Сохранить"
@@ -176,8 +196,6 @@ msgid "Price"
 msgstr "Стоимость"
 
 #: .\dcf\templates\dcf\item_list.inc.html:21
-#, fuzzy
-#| msgid "photos available"
 msgid "more photos available"
 msgstr "фотографий доступно"
 
@@ -229,8 +247,6 @@ msgid "Open"
 msgstr "Открыть"
 
 #: .\dcf\templates\dcf\user_item_list.html:40
-#, fuzzy
-#| msgid "You have no any item to show."
 msgid "You have no items to show."
 msgstr "У вас нет ни одного объявления"
 
@@ -244,8 +260,8 @@ msgstr "Войти с через социальные сети"
 
 #: .\dcf\views.py:149
 msgid "You have reached the limit!"
-msgstr ""
+msgstr "Вы достигли лимита"
 
 #: .\dcf\views.py:197
 msgid "Your profile settings was updated!"
-msgstr ""
+msgstr "Ваши настройки были обновлены!"

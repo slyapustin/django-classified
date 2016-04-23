@@ -31,11 +31,15 @@ class Section(models.Model):
         return Item.objects.filter(is_active=True)\
             .filter(group__section=self).count()
 
+    class Meta:
+        verbose_name = _('section')
+        verbose_name_plural = _('sections')
+
 
 class Group(models.Model):
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(_('title'), max_length=100)
-    section = models.ForeignKey('Section')
+    section = models.ForeignKey('Section', verbose_name=_('section'))
 
     def __unicode__(self):
         return u'%s - %s' % (self.section.title, self.title)
@@ -44,6 +48,8 @@ class Group(models.Model):
         return self.item_set.filter(is_active=True).count()
 
     class Meta:
+        verbose_name = _('group')
+        verbose_name_plural = _('groups')
         ordering = ['section__title', 'title', ]
 
     def get_title(self):
@@ -61,7 +67,7 @@ class Group(models.Model):
 class Item(models.Model):
     slug = models.SlugField(blank=True, null=True, max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    group = models.ForeignKey(Group, verbose_name="group")
+    group = models.ForeignKey(Group, verbose_name=_('group'))
 
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
@@ -75,25 +81,27 @@ class Item(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = _('item')
+        verbose_name_plural = _('items')
         ordering = ('-updated', )
 
     def get_absolute_url(self):
-        return reverse('item', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('item', kwargs={
+            'pk': self.pk,
+            'slug': self.slug
+        })
 
     def get_title(self):
         return u'%s' % self.title
 
     def get_description(self):
-
         return u'%s' % self.description[:155]
 
     def get_keywords(self):
-
         # TODO need more optimal keywords selection
         return ",".join(set(self.description.split()))
 
     def get_related(self):
-
         # TODO Need more complicated related select
         return Item.objects.exclude(pk=self.pk)[:settings.DCF_RELATED_LIMIT]
 

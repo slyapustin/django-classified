@@ -8,240 +8,271 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 11:05+0000\n"
+"POT-Creation-Date: 2016-04-23 17:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: dcf/feeds.py:13
+#: .\dcf\feeds.py:13
 #, python-format
 msgid "%s updates"
 msgstr "%s güncellemeleri"
 
-#: dcf/forms.py:9 dcf/templates/dcf/user_item_list.html.py:16
+#: .\dcf\forms.py:9 .\dcf\templates\dcf\user_item_list.html.py:16
 msgid "Group"
 msgstr "Grup"
 
-#: dcf/forms.py:10
+#: .\dcf\forms.py:10
 msgid "Query"
 msgstr "Sorgu"
 
-#: dcf/models.py:14 dcf/models.py:69
+#: .\dcf\models.py:14 .\dcf\models.py:75
 msgid "phone"
 msgstr "telefon"
 
-#: dcf/models.py:15
+#: .\dcf\models.py:15
 msgid "receive news"
 msgstr "haberleri al"
 
-#: dcf/models.py:25 dcf/models.py:37 dcf/models.py:66
+#: .\dcf\models.py:25 .\dcf\models.py:41 .\dcf\models.py:72
 msgid "title"
 msgstr "başlık"
 
-#: dcf/models.py:67
+#: .\dcf\models.py:35 .\dcf\models.py:42
+#, fuzzy
+#| msgid "description"
+msgid "section"
+msgstr "açıklama"
+
+#: .\dcf\models.py:36
+#, fuzzy
+#| msgid "description"
+msgid "sections"
+msgstr "açıklama"
+
+#: .\dcf\models.py:51 .\dcf\models.py:70
+#, fuzzy
+#| msgid "Group"
+msgid "group"
+msgstr "Grup"
+
+#: .\dcf\models.py:52
+#, fuzzy
+#| msgid "Group"
+msgid "groups"
+msgstr "Grup"
+
+#: .\dcf\models.py:73
 msgid "description"
 msgstr "açıklama"
 
-#: dcf/models.py:68
+#: .\dcf\models.py:74
 msgid "price"
 msgstr "fiyat"
 
-#: dcf/models.py:70
+#: .\dcf\models.py:76
 msgid "display"
 msgstr "göster"
 
-#: dcf/models.py:71
+#: .\dcf\models.py:77
 msgid "updated"
 msgstr "güncellendi"
 
-#: dcf/models.py:72
+#: .\dcf\models.py:78
 msgid "posted"
 msgstr "gönderildi"
 
-#: dcf/models.py:108
-msgid "image"
-msgstr "imaj"
-
-#: dcf/templates/403.html:10
-msgid "You have no access right to that page"
-msgstr "Bu sayfayı görüntülemeye hakkınız yok"
-
-#: dcf/templates/404.html:10
-msgid "Page not found"
-msgstr "Sayfa bulunamadı"
-
-#: dcf/templates/500.html:10
-msgid "Service is temporary unavailable"
-msgstr "Servis dışı, daha sonra tekrar deneyin"
-
-#: dcf/templates/_base.html:37
-msgid "Add new"
-msgstr "Yeni ekle"
-
-#: dcf/templates/_base.html:38
-msgid "Home"
-msgstr "Ev"
-
-#: dcf/templates/_base.html:39 dcf/templates/dcf/search.html.py:6
-#: dcf/templates/dcf/search.html:12 dcf/templates/dcf/search.html.py:15
-msgid "Search"
-msgstr "Ara"
-
-#: dcf/templates/_base.html:46 dcf/templates/dcf/user_item_list.html.py:5
-#: dcf/templates/dcf/user_item_list.html:10
-msgid "My items"
-msgstr "Benim İlanlarım"
-
-#: dcf/templates/_base.html:47 dcf/templates/dcf/profile.html.py:5
-msgid "Profile"
-msgstr ""
-
-#: dcf/templates/_base.html:49
-msgid "Logout"
-msgstr "Çıkış Yap"
-
-#: dcf/templates/_base.html:53
-msgid "Login via Facebook"
-msgstr "Facebook ile Giriş"
-
-#: dcf/templates/_base.html:79
-msgid "Powered by"
-msgstr ""
-
-#: dcf/templates/dcf/admin_toolbar.inc.html:6
-#: dcf/templates/dcf/item_confirm_delete.html:5
-#: dcf/templates/dcf/user_item_list.html:21
-#: dcf/templates/dcf/user_item_list.html:31
-msgid "Delete"
-msgstr "Sil"
-
-#: dcf/templates/dcf/admin_toolbar.inc.html:7
-#: dcf/templates/dcf/item_form.html:5
-msgid "Edit"
-msgstr "Düzenle"
-
-#: dcf/templates/dcf/form_pagination.inc.html:13
-#: dcf/templates/dcf/list_pagination.inc.html:7
-msgid "Prev"
-msgstr "Önceki"
-
-#: dcf/templates/dcf/form_pagination.inc.html:25
-#: dcf/templates/dcf/list_pagination.inc.html:12
-msgid "Next"
-msgstr "Sonraki"
-
-#: dcf/templates/dcf/item_confirm_delete.html:13
-msgid "Are you sure you want to delete"
-msgstr "Silmek istediğinize emin misiniz?"
-
-#: dcf/templates/dcf/item_confirm_delete.html:16
-msgid "Confirm"
-msgstr "Onayla"
-
-#: dcf/templates/dcf/item_detail.html:65
-msgid "Please"
-msgstr "Lütfen"
-
-#: dcf/templates/dcf/item_detail.html:65
-msgid "login"
-msgstr "giriş yap"
-
-#: dcf/templates/dcf/item_detail.html:65
-msgid "to see contact information."
-msgstr "iletişim bilgilerini görmek için"
-
-#: dcf/templates/dcf/item_detail.html:67
-msgid "Phone"
-msgstr "Telefon"
-
-#: dcf/templates/dcf/item_form.html:5
-msgid "Add"
-msgstr "Ekle"
-
-#: dcf/templates/dcf/item_form.html:5
+#: .\dcf\models.py:84 .\dcf\templates\dcf\item_form.html.py:5
 msgid "item"
 msgstr "ilan"
 
-#: dcf/templates/dcf/item_form.html:20
+#: .\dcf\models.py:85
+#, fuzzy
+#| msgid "item"
+msgid "items"
+msgstr "ilan"
+
+#: .\dcf\models.py:116
+msgid "image"
+msgstr "imaj"
+
+#: .\dcf\templates\403.html:10
+msgid "You have no access right to that page"
+msgstr "Bu sayfayı görüntülemeye hakkınız yok"
+
+#: .\dcf\templates\404.html:10
+msgid "Page not found"
+msgstr "Sayfa bulunamadı"
+
+#: .\dcf\templates\500.html:10
+msgid "Service is temporary unavailable"
+msgstr "Servis dışı, daha sonra tekrar deneyin"
+
+#: .\dcf\templates\_base.html:37
+msgid "Add new"
+msgstr "Yeni ekle"
+
+#: .\dcf\templates\_base.html:38
+msgid "Home"
+msgstr "Ev"
+
+#: .\dcf\templates\_base.html:39 .\dcf\templates\dcf\search.html.py:6
+#: .\dcf\templates\dcf\search.html:12 .\dcf\templates\dcf\search.html.py:15
+msgid "Search"
+msgstr "Ara"
+
+#: .\dcf\templates\_base.html:46 .\dcf\templates\dcf\user_item_list.html:5
+#: .\dcf\templates\dcf\user_item_list.html:10
+msgid "My items"
+msgstr "Benim İlanlarım"
+
+#: .\dcf\templates\_base.html:47 .\dcf\templates\dcf\profile.html.py:5
+msgid "Profile"
+msgstr ""
+
+#: .\dcf\templates\_base.html:49
+msgid "Logout"
+msgstr "Çıkış Yap"
+
+#: .\dcf\templates\_base.html:53
+msgid "Login via Facebook"
+msgstr "Facebook ile Giriş"
+
+#: .\dcf\templates\_base.html:79
+msgid "Powered by"
+msgstr ""
+
+#: .\dcf\templates\dcf\admin_toolbar.inc.html:6
+#: .\dcf\templates\dcf\item_confirm_delete.html:5
+#: .\dcf\templates\dcf\user_item_list.html:21
+#: .\dcf\templates\dcf\user_item_list.html:31
+msgid "Delete"
+msgstr "Sil"
+
+#: .\dcf\templates\dcf\admin_toolbar.inc.html:7
+#: .\dcf\templates\dcf\item_form.html:5
+msgid "Edit"
+msgstr "Düzenle"
+
+#: .\dcf\templates\dcf\form_pagination.inc.html:13
+#: .\dcf\templates\dcf\list_pagination.inc.html:7
+msgid "Prev"
+msgstr "Önceki"
+
+#: .\dcf\templates\dcf\form_pagination.inc.html:25
+#: .\dcf\templates\dcf\list_pagination.inc.html:12
+msgid "Next"
+msgstr "Sonraki"
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:13
+msgid "Are you sure you want to delete"
+msgstr "Silmek istediğinize emin misiniz?"
+
+#: .\dcf\templates\dcf\item_confirm_delete.html:16
+msgid "Confirm"
+msgstr "Onayla"
+
+#: .\dcf\templates\dcf\item_detail.html:65
+msgid "Please"
+msgstr "Lütfen"
+
+#: .\dcf\templates\dcf\item_detail.html:65
+msgid "login"
+msgstr "giriş yap"
+
+#: .\dcf\templates\dcf\item_detail.html:65
+msgid "to see contact information."
+msgstr "iletişim bilgilerini görmek için"
+
+#: .\dcf\templates\dcf\item_detail.html:67
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\dcf\templates\dcf\item_form.html:5
+msgid "Add"
+msgstr "Ekle"
+
+#: .\dcf\templates\dcf\item_form.html:20
 msgid "Save"
 msgstr "Kaydet"
 
-#: dcf/templates/dcf/item_list.inc.html:9
-#: dcf/templates/dcf/user_item_list.html:19
+#: .\dcf\templates\dcf\item_list.inc.html:9
+#: .\dcf\templates\dcf\user_item_list.html:19
 msgid "Price"
 msgstr "Fiyat"
 
-#: dcf/templates/dcf/item_list.inc.html:21
+#: .\dcf\templates\dcf\item_list.inc.html:21
 msgid "more photos available"
 msgstr "daha fazla fotoğraf var"
 
-#: dcf/templates/dcf/item_list.inc.html:41
+#: .\dcf\templates\dcf\item_list.inc.html:41
 msgid "No item here yet."
 msgstr "Burada henüz hiç ilan yok"
 
-#: dcf/templates/dcf/item_list.inc.html:42
-#: dcf/templates/dcf/user_item_list.html:41
+#: .\dcf\templates\dcf\item_list.inc.html:42
+#: .\dcf\templates\dcf\user_item_list.html:41
 msgid "Add one now!"
 msgstr "Bir tane ekle!"
 
-#: dcf/templates/dcf/profile.html:13 dcf/templates/dcf/user_item_list.html:17
+#: .\dcf\templates\dcf\profile.html:13
+#: .\dcf\templates\dcf\user_item_list.html:17
 msgid "Update"
 msgstr "Güncelle"
 
-#: dcf/templates/dcf/search.html:6
+#: .\dcf\templates\dcf\search.html:6
 msgid "Search results for query"
 msgstr ""
 
-#: dcf/templates/dcf/search.html:25
+#: .\dcf\templates\dcf\search.html:25
 #, python-format
 msgid "Search results (%(paginator.count)s items found):"
 msgstr "Arama sonuçları (%(paginator.count)s ilan bulundu):"
 
-#: dcf/templates/dcf/search.html:28
+#: .\dcf\templates\dcf\search.html:28
 msgid "Not found"
 msgstr "Bulunamadı"
 
-#: dcf/templates/dcf/user_item_list.html:18
+#: .\dcf\templates\dcf\user_item_list.html:18
 msgid "Link"
 msgstr "Link"
 
-#: dcf/templates/dcf/user_item_list.html:20
+#: .\dcf\templates\dcf\user_item_list.html:20
 msgid "Posted"
 msgstr "Gönderildi"
 
-#: dcf/templates/dcf/user_item_list.html:27
+#: .\dcf\templates\dcf\user_item_list.html:27
 msgid "Edit item"
 msgstr "İlanı düzenle"
 
-#: dcf/templates/dcf/user_item_list.html:28
+#: .\dcf\templates\dcf\user_item_list.html:28
 msgid "Open item"
 msgstr "İlanı Aç"
 
-#: dcf/templates/dcf/user_item_list.html:28
+#: .\dcf\templates\dcf\user_item_list.html:28
 msgid "Open"
 msgstr "Aç"
 
-#: dcf/templates/dcf/user_item_list.html:40
+#: .\dcf\templates\dcf\user_item_list.html:40
 msgid "You have no items to show."
 msgstr "Gösterecek hiç ilanınız yok"
 
-#: dcf/templates/registration/login.html:5
+#: .\dcf\templates\registration\login.html:5
 msgid "Login"
 msgstr "Giriş yap"
 
-#: dcf/templates/registration/login.html:14
+#: .\dcf\templates\registration\login.html:14
 msgid "Login via Social"
 msgstr "Sosyal medya ile giriş"
 
-#: dcf/views.py:149
+#: .\dcf\views.py:149
 msgid "You have reached the limit!"
 msgstr "Limite ulaştınız!"
 
-#: dcf/views.py:197
+#: .\dcf\views.py:197
 msgid "Your profile settings was updated!"
 msgstr "Profil bilgileriniz güncellendi!"
