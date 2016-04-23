@@ -26,6 +26,8 @@
     * Russian 
     * French (thanks to [Teolemon](https://github.com/teolemon))
     * Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
+    * Help translate to other languages at [Transifex](https://www.transifex.com/inoks/dcf/)
+    
 * RESTful API for [DCF Angular2 Application](https://github.com/inoks/dcf-angular2-app)
 
 ## Requirements
