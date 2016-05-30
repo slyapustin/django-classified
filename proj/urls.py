@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^new/$', never_cache(views.ItemCreateView.as_view()), name='item-new'),
     url(r'^edit/(?P<pk>\d+)/$', never_cache(views.ItemUpdateView.as_view()), name='item-edit'),
 
-    # listings
+    # Listings
     url(r'^(?P<pk>\d+)-(?P<slug>[-\w]+)/$', views.ItemDetailView.as_view(), name='item'),
     url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)/$', views.GroupDetail.as_view(), name='group'),
 
@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^rss\.xml$', cache_page(60 * 15)(feeds.LatestItemFeed()), name='rss'),
 
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
-    url(r'^user/profile/$', views.view_profile, name='profile'),
+    url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
 
     # Authorization
