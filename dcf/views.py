@@ -185,20 +185,25 @@ class ItemDeleteView(DeleteView):
         return super(ItemDeleteView, self).dispatch(*args, **kwargs)
 
 
-@login_required
-def view_profile(request):
-    if request.method == 'GET':
-        form = ProfileForm(instance=request.user, initial={'email': request.user.email})
-    else:
-        form = ProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
+class ProfileView(UpdateView):
+    template_name = 'dcf/profile.html'
+    form_class = ProfileForm
+    success_url = reverse_lazy('profile')
 
-            form.save()
-            messages.success(request, _('Your profile settings was updated!'))
+    def get_object(self, queryset=None):
+        return self.request.user
 
-            return redirect(reverse('profile'))
+    def get_initial(self):
+        initial = super(ProfileView, self).get_initial()
+        return initial
 
-    return render(request, 'dcf/profile.html', {'form': form})
+    def form_valid(self, form):
+        messages.success(self.request, _('Your profile settings was updated!'))
+        return super(ProfileView, self).form_valid(form)
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfileView, self).dispatch(*args, **kwargs)
 
 
 class RobotsView(TemplateView):
