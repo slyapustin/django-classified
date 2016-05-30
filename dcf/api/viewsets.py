@@ -27,7 +27,7 @@ class SectionViewSet(viewsets.ModelViewSet):
     serializer_class = SectionSerializer
     permission_classes = (IsStaffOrReadOnly,)
 
-    @detail_route(methods=['get',])
+    @detail_route(methods=['get', ])
     def groups(self, request, pk):
         groups = Group.objects.filter(section=pk)
 
