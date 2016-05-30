@@ -4,4 +4,4 @@ Pillow>=3.2,<3.3
 sorl-thumbnail>=12,<13
 unidecode>=0.04,<0.05
 django-bootstrap-form>=3.2,<3.3
-djangorestframework==>=3.3,<3.4
+djangorestframework==>3.3,<3.4
