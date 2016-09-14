@@ -29,8 +29,13 @@ urlpatterns = [
     url(r'^rss\.xml$', cache_page(60 * 15)(feeds.LatestItemFeed()), name='rss'),
 
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
+    url(r'^user/fav/$', views.MyFavoritesItemsView.as_view(), name='fav'),
     url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
+    url(r'^user/my/favdel/(?P<pk>\d+)/$', views.FavItemDeleteView.as_view(), name='fav-delete'),
+
+    url(r'^add_favorites/', views.add_favorites),
+    url(r'^del_favorites/', views.del_favorites),
 
     # Authorization
     url(r'user/', include('social.apps.django_app.urls', namespace='social')),

@@ -25,6 +25,8 @@ class GenericViewTestCase(TestCase):
             price=79000.00,
             phone='1-121-12-90'
         )
+        self.user1 = get_user_model().objects.create(username="test1")
+        self.user1.favorites.add(self.item)
 
 
 class TestUrls(GenericViewTestCase):
@@ -58,3 +60,13 @@ class TestUrls(GenericViewTestCase):
 
         response = self.client.get(self.group.get_absolute_url())
         self.assertEqual(response.status_code, 200)
+
+    def test_add_favorites(self):
+        farovites = self.user1.favorites.get()
+        self.assertEqual(self.item, farovites)
+
+    def test_remove_favorites(self):
+        before_fav = self.user1.favorites.count()
+        self.user1.favorites.remove(self.item)
+        after_fav = self.user1.favorites.count()
+        self.assertNotEquals(before_fav, after_fav)

@@ -24,6 +24,7 @@
         <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
+
         <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
 
     </head>
@@ -44,6 +45,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a></li>
+                                <li><a href="{% url 'fav' %}">{% trans "My favorites" %} ({{ user.favorites.count }})</a></li>
                                 <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
@@ -86,6 +88,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="{%  static 'dcf/js/lightbox.min.js' %}"></script>
+    <script src="{%  static 'dcf/js/main.js' %}"></script>
 
     {% block ext_scripts%}{% endblock %}
 

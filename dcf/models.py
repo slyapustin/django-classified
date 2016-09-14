@@ -13,6 +13,7 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
+    favorites = models.ManyToManyField('Item', related_name='favorites')
 
     def allow_add_item(self):
         if self.item_set.count() > settings.DCF_ITEM_PER_USER_LIMIT:
@@ -114,3 +115,9 @@ class Item(models.Model):
 class Image(models.Model):
     item = models.ForeignKey(Item)
     file = ImageField(_('image'), upload_to='images')
+
+
+class FavoritsInfo(models.Model):
+    customuser = models.ForeignKey(CustomUser)
+    item = models.ForeignKey(Item)
+    liked = models.DateTimeField(null=True, blank=True, auto_now_add=True)
