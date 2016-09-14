@@ -1,5 +1,5 @@
 from rest_framework import viewsets, filters
-from rest_framework.decorators import detail_route, api_view
+from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
 from dcf.models import Group, Section, Item
