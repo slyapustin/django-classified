@@ -1,5 +1,5 @@
 from rest_framework import viewsets, filters
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, api_view
 from rest_framework.response import Response
 
 from dcf.models import Group, Section, Item
@@ -33,6 +33,24 @@ class SectionViewSet(viewsets.ModelViewSet):
 
         serializer = GroupSerializer(groups, many=True)
         return Response(serializer.data)
+
+    @detail_route(methods=['put'])
+    def update_item(self, request, pk):
+        item = Item.objects.get(pk=pk)
+        serializer = self.serializer_class(item, request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response()
+        else:
+            # TODO: return error code
+            pass
+
+    @detail_route(methods=['delete'])
+    def delete(self, request, pk):
+        item = self.queryset.get(pk=pk)
+        item.delete()
+
+        return Response()
 
 
 class ItemViewSet(viewsets.ModelViewSet):
