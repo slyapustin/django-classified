@@ -76,6 +76,7 @@ class Item(models.Model):
     is_active = models.BooleanField(_('display'), default=True, db_index=True)
     updated = models.DateTimeField(_('updated'), auto_now=True, db_index=True)
     posted = models.DateTimeField(_('posted'), auto_now_add=True)
+    favorites = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='favorites')
 
     def __unicode__(self):
         return self.title
