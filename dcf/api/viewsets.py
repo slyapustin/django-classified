@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 from rest_framework import viewsets, filters
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
@@ -21,6 +23,30 @@ class GroupViewSet(viewsets.ModelViewSet):
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data)
 
+    def update(self, request, pk):
+        if not request.user.is_staff:
+            return Response(status=403)
+        try:
+            group = Group.objects.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response(status=404)
+        serializer = self.serializer_class(group, request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response()
+        # TODO: return error code if object not valid
+
+    def destroy(self, request, pk):
+        if not request.user.is_staff:
+            return Response(status=403)
+        try:
+            group = self.queryset.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response(status=404)
+        group.delete()
+
+        return Response()
+
 
 class SectionViewSet(viewsets.ModelViewSet):
     queryset = Section.objects.all()
@@ -34,20 +60,26 @@ class SectionViewSet(viewsets.ModelViewSet):
         serializer = GroupSerializer(groups, many=True)
         return Response(serializer.data)
 
-    @detail_route(methods=['put'])
-    def update_item(self, request, pk):
-        item = Item.objects.get(pk=pk)
-        serializer = self.serializer_class(item, request.data)
+    def update(self, request, pk):
+        if not request.user.is_staff:
+            return Response(status=403)
+        try:
+            section = Section.objects.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response(status=404)
+        serializer = self.serializer_class(section, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
-        else:
-            # TODO: return error code
-            pass
+        # TODO: return error code if object not valid
 
-    @detail_route(methods=['delete'])
-    def delete(self, request, pk):
-        item = self.queryset.get(pk=pk)
+    def destroy(self, request, pk):
+        if not request.user.is_staff:
+            return Response(status=403)
+        try:
+            item = self.queryset.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response(status=404)
         item.delete()
 
         return Response()
@@ -59,3 +91,27 @@ class ItemViewSet(viewsets.ModelViewSet):
     permission_classes = (IsStaffOrReadOnly,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = ItemFilter
+
+    def update(self, request, pk):
+        try:
+            item = self.queryset.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response(status=404)
+        if not item.user == request.user:
+            return Response(status=403)
+        serialzer = self.serializer_class(item, request.data)
+        if serialzer.is_valid():
+            serialzer.save()
+            return Response()
+        # TODO: return error code if object not valid
+
+    def destroy(self, request, pk):
+        try:
+            item = self.queryset.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response(status=404)
+        if not item.user == request.user:
+            return Response(status=403)
+        item.delete()
+
+        return Response()
