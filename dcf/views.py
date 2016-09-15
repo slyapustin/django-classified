@@ -120,6 +120,16 @@ class GroupDetail(SingleObjectMixin, ListView):
 class ItemDetailView(DetailView):
     queryset = Item.objects.filter(is_active=True)
 
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetailView, self).get_context_data(**kwargs)
+        user = self.request.user
+        obj = self.get_object()
+        if obj in user.favorites.all():
+           context['like'] = 'mark'
+        else:
+           context['like'] = 'unmark'
+        return context
+
 
 class ItemUpdateView(FormsetMixin, UpdateView):
     is_update_view = True
