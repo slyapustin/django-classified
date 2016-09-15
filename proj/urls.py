@@ -34,6 +34,9 @@ urlpatterns = [
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
     url(r'^user/my/favdel/(?P<pk>\d+)/$', views.FavItemDeleteView.as_view(), name='fav-delete'),
 
+    url(r'^add_favorites/', views.add_favorites),
+    url(r'^del_favorites/', views.del_favorites),
+
     # Authorization
     url(r'user/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^user/login/', login, name='login'),

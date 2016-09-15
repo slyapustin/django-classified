@@ -36,6 +36,7 @@
                     <img class="favorit" id="{{ like }}" src="{% static "dcf/img/icon-check-unmark.png" %}" />
                 {% endif %}
                 {{ object.title }}</h1>
+                <input type="hidden" id="for_mark" value="{{ object.id}}" />
         </div>
         <div class="col-lg-3">
             <h2>{{ object.price|default:"" }}</h2>

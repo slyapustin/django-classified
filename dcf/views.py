@@ -265,3 +265,32 @@ def page404(request):
 
 def page500(request):
     return render(request, '500.html', {}, status=500)
+
+
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def add_favorites(request):
+    item_id = request.POST.get('item')
+    user = (request.user)
+    if request.is_ajax():
+        message = "Yes, AJAX!"
+        user.favorites.add(item_id)
+        print(message)
+    else:
+        message = "Not Ajax"
+    return HttpResponse(message)
+
+
+@csrf_exempt
+def del_favorites(request):
+    item_id = request.POST.get('item')
+    user = (request.user)
+    if request.is_ajax():
+        message = "Yes, AJAX!"
+        user.favorites.remove(item_id)
+        print(message)
+    else:
+        message = "Not Ajax"
+    return HttpResponse(message)
