@@ -44,6 +44,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a></li>
+                                <li><a href="{% url 'fav' %}">{% trans "My favorites" %} ({{ user.favorites.count }})</a></li>
                                 <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>

@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -183,6 +184,39 @@ class ItemDeleteView(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ItemDeleteView, self).dispatch(*args, **kwargs)
+
+
+class MyFavoritesItemsView(ListView):
+    template_name = 'dcf/user_favorites_list.html'
+
+    def get_queryset(self):
+        Customer= self.request.user
+        return Customer.favorites.all()
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(MyFavoritesItemsView, self).dispatch(*args, **kwargs)
+
+
+class FavItemDeleteView(DeleteView):
+    model = Item
+    success_url = reverse_lazy('my')
+
+    def get_object(self, queryset=None):
+        obj = super(FavItemDeleteView, self).get_object()
+        if not obj.user == self.request.user and not self.request.user.is_superuser:
+            raise PermissionDenied
+        return obj
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        user = self.request.user
+        user.favorites.remove(obj)
+        return HttpResponseRedirect(reverse_lazy('my'))
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(FavItemDeleteView, self).dispatch(*args, **kwargs)
 
 
 class ProfileView(UpdateView):
