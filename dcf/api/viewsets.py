@@ -23,7 +23,18 @@ class GroupViewSet(viewsets.ModelViewSet):
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data)
 
+    def create(self, request):
+        if not request.user.is_staff:
+            return Response(status=403)
+        serializer = self.serializer_class(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response()
+
+    # TODO: return error code if object not valid
+
     def update(self, request, pk):
+        print(request.user)
         if not request.user.is_staff:
             return Response(status=403)
         try:
@@ -60,6 +71,14 @@ class SectionViewSet(viewsets.ModelViewSet):
         serializer = GroupSerializer(groups, many=True)
         return Response(serializer.data)
 
+    def create(self, request):
+        if not request.user.is_staff:
+            return Response(status=403)
+        serializer = self.serializer_class(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response()
+
     def update(self, request, pk):
         if not request.user.is_staff:
             return Response(status=403)
@@ -91,6 +110,17 @@ class ItemViewSet(viewsets.ModelViewSet):
     permission_classes = (IsStaffOrReadOnly,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = ItemFilter
+
+    def create(self, request):
+        if not request.user.is_authenticated or request.user.is_anonymous:
+            return Response(status=403)
+        print(request.user)
+        request.data['user'] = request.user.id
+        print(request.data)
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response()
 
     def update(self, request, pk):
         try:
