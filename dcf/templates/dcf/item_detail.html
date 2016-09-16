@@ -30,12 +30,15 @@
     <div class="row">
         <div class="col-lg-9">
             <h1>
+            {% if user.is_authenticated %}
                 {% if like == 'mark' %}
-                    <img class="favorit" id="{{ like }}" src="{% static "dcf/img/icon-check-mark.png" %}" />
+                    <span id="{{ like }}" class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 {% else %}
-                    <img class="favorit" id="{{ like }}" src="{% static "dcf/img/icon-check-unmark.png" %}" />
+                    <span id="{{ like }}" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                 {% endif %}
-                {{ object.title }}</h1>
+            {% endif %}
+                {{ object.title }}
+            </h1>
                 <input type="hidden" id="for_mark" value="{{ object.id}}" />
         </div>
         <div class="col-lg-3">

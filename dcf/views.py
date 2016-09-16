@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 from dcf.models import Item, Image, Group, Section
 from dcf.forms import ItemCreateEditForm, ProfileForm, SearchForm
@@ -124,7 +125,7 @@ class ItemDetailView(DetailView):
         context = super(ItemDetailView, self).get_context_data(**kwargs)
         user = self.request.user
         obj = self.get_object()
-        if obj in user.favorites.all():
+        if not user.is_anonymous() and obj in user.favorites.all():
            context['like'] = 'mark'
         else:
            context['like'] = 'unmark'
@@ -267,30 +268,25 @@ def page500(request):
     return render(request, '500.html', {}, status=500)
 
 
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-
 @csrf_exempt
 def add_favorites(request):
     item_id = request.POST.get('item')
-    user = (request.user)
+    user = request.user
     if request.is_ajax():
-        message = "Yes, AJAX!"
         user.favorites.add(item_id)
-        print(message)
+        message = "success"
     else:
-        message = "Not Ajax"
+        message = "error"
     return HttpResponse(message)
 
 
 @csrf_exempt
 def del_favorites(request):
     item_id = request.POST.get('item')
-    user = (request.user)
+    user = request.user
     if request.is_ajax():
-        message = "Yes, AJAX!"
         user.favorites.remove(item_id)
-        print(message)
+        message = 'success'
     else:
-        message = "Not Ajax"
+        message = "error"
     return HttpResponse(message)

@@ -4,3 +4,8 @@
     top: -20px;
     left: -15px;
 }
+
+span.glyphicon {
+    color: #337ab7;
+    cursor: pointer;
+}

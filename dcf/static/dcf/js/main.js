@@ -3,11 +3,10 @@
  */
 jQuery(function($){
 
-  $("img.favorit").on("click", function(){
+  $("span.glyphicon").on("click", function(){
       if (this.id === 'unmark') {
-          $('img.favorit').attr('src', '/static/dcf/img/icon-check-mark.png');
+          $("span.glyphicon").toggleClass("glyphicon-star-empty glyphicon-star")
           this.id = 'mark';
-
 
           $.ajax({
             type: "POST",
@@ -15,14 +14,10 @@ jQuery(function($){
             dataType: "json",
             data: { "item": document.getElementById("for_mark").value },
             success: function() {
-                alert('good');
             }
           });
-
-
-
       } else {
-          $('img.favorit').attr('src', '/static/dcf/img/icon-check-unmark.png');
+          $("span.glyphicon").toggleClass("glyphicon-star glyphicon-star-empty")
           this.id = 'unmark';
 
           $.ajax({
@@ -31,7 +26,6 @@ jQuery(function($){
             dataType: "json",
             data: { "item": document.getElementById("for_mark").value },
             success: function() {
-                alert('good');
             }
           });
       }
