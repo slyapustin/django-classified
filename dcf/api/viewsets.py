@@ -114,9 +114,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     def create(self, request):
         if not request.user.is_authenticated or request.user.is_anonymous:
             return Response(status=403)
-        print(request.user)
-        request.data['user'] = request.user.id
-        print(request.data)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()

@@ -34,67 +34,65 @@ class ApiTestCase(APITestCase):
             phone='8-800-7800-123'
         )
 
-    def test_api(self):
-
-        # get methods
+    def test_groups_api(self):
         response = self.client.get('/api/groups/')
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.get('/api/sections/')
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.get('/api/items/')
         self.assertEqual(response.status_code, 200)
 
         response = self.client.get('/api/groups/1/')
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get('/api/sections/1/')
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.get('/api/items/1/')
-        self.assertEqual(response.status_code, 200)
-
         response = self.client.get('/api/groups/10/')
         self.assertEqual(response.status_code, 404)
 
-        response = self.client.get('/api/sections/10/')
-        self.assertEqual(response.status_code, 404)
-
-        response = self.client.get('/api/items/10/')
-        self.assertEqual(response.status_code, 404)
-
-        # post methods without user
         response = self.client.post('/api/groups/', {
             "title": "test",
             "section": 1
         })
         self.assertEqual(response.status_code, 403)
 
+        response = self.client.put('/api/groups/1/', {})
+        self.assertEqual(response.status_code, 403)
+
+        response = self.client.delete('/api/groups/1/', {})
+        self.assertEqual(response.status_code, 403)
+
+    def test_sections_api(self):
+        response = self.client.get('/api/sections/')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/api/sections/1/')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/api/sections/10/')
+        self.assertEqual(response.status_code, 404)
+
         response = self.client.post('/api/sections/', {
             "title": "test"
         })
         self.assertEqual(response.status_code, 403)
 
-        response = self.client.post('/api/items/', {})
-        self.assertEqual(response.status_code, 403)
-
-        # put methods without user
-        response = self.client.put('/api/groups/1/', {})
-        self.assertEqual(response.status_code, 403)
-
         response = self.client.put('/api/sections/1/', {})
-        self.assertEqual(response.status_code, 403)
-
-        response = self.client.put('/api/items/1/', {})
-        self.assertEqual(response.status_code, 403)
-
-        # delete method without user
-        response = self.client.delete('/api/groups/1/', {})
         self.assertEqual(response.status_code, 403)
 
         response = self.client.delete('/api/sections/1/', {})
         self.assertEqual(response.status_code, 403)
 
+    def test_items_api(self):
+        response = self.client.get('/api/items/')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/api/items/1/')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/api/items/10/')
+        self.assertEqual(response.status_code, 404)
+
+        response = self.client.post('/api/items/', {})
+        self.assertEqual(response.status_code, 403)
+
+        response = self.client.put('/api/items/1/', {})
+        self.assertEqual(response.status_code, 403)
+
         response = self.client.delete('/api/items/1/', {})
         self.assertEqual(response.status_code, 403)
+
