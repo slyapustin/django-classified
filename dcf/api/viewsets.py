@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets, filters
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from dcf.models import Group, Section, Item
 
@@ -26,15 +27,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     def create(self, request):
         if not request.user.is_staff:
             return Response(status=403)
-        serializer = self.serializer_class(request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
-
-    # TODO: return error code if object not valid
+        # TODO: return error code if object not valid
 
     def update(self, request, pk):
-        print(request.user)
         if not request.user.is_staff:
             return Response(status=403)
         try:
@@ -74,7 +73,7 @@ class SectionViewSet(viewsets.ModelViewSet):
     def create(self, request):
         if not request.user.is_staff:
             return Response(status=403)
-        serializer = self.serializer_class(request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
@@ -107,17 +106,17 @@ class SectionViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    permission_classes = (IsStaffOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = ItemFilter
 
     def create(self, request):
-        if not request.user.is_authenticated or request.user.is_anonymous:
-            return Response(status=403)
+        request.data['user'] = request.user.id
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
+        # TODO: return error
 
     def update(self, request, pk):
         try:
@@ -126,9 +125,10 @@ class ItemViewSet(viewsets.ModelViewSet):
             return Response(status=404)
         if not item.user == request.user:
             return Response(status=403)
-        serialzer = self.serializer_class(item, request.data)
-        if serialzer.is_valid():
-            serialzer.save()
+        request.data['user'] = request.user.id
+        serializer = self.serializer_class(item, request.data)
+        if serializer.is_valid():
+            serializer.save()
             return Response()
         # TODO: return error code if object not valid
 
