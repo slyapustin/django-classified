@@ -25,8 +25,6 @@ class GroupViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        if not request.user.is_staff:
-            return Response(status=403)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -34,8 +32,6 @@ class GroupViewSet(viewsets.ModelViewSet):
         # TODO: return error code if object not valid
 
     def update(self, request, pk):
-        if not request.user.is_staff:
-            return Response(status=403)
         try:
             group = Group.objects.get(pk=pk)
         except ObjectDoesNotExist:
@@ -47,8 +43,6 @@ class GroupViewSet(viewsets.ModelViewSet):
         # TODO: return error code if object not valid
 
     def destroy(self, request, pk):
-        if not request.user.is_staff:
-            return Response(status=403)
         try:
             group = self.queryset.get(pk=pk)
         except ObjectDoesNotExist:
@@ -71,16 +65,12 @@ class SectionViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        if not request.user.is_staff:
-            return Response(status=403)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
 
     def update(self, request, pk):
-        if not request.user.is_staff:
-            return Response(status=403)
         try:
             section = Section.objects.get(pk=pk)
         except ObjectDoesNotExist:
@@ -92,8 +82,6 @@ class SectionViewSet(viewsets.ModelViewSet):
         # TODO: return error code if object not valid
 
     def destroy(self, request, pk):
-        if not request.user.is_staff:
-            return Response(status=403)
         try:
             item = self.queryset.get(pk=pk)
         except ObjectDoesNotExist:
