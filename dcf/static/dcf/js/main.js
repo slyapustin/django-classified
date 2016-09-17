@@ -3,9 +3,9 @@
  */
 jQuery(function($){
 
-  $("span.glyphicon").on("click", function(){
+  $("span.star").on("click", function(){
       if (this.id === 'unmark') {
-          $("span.glyphicon").toggleClass("glyphicon-star-empty glyphicon-star")
+          $(this).toggleClass("glyphicon-star-empty glyphicon-star")
           this.id = 'mark';
 
           $.ajax({
@@ -13,11 +13,12 @@ jQuery(function($){
             url: "/add_favorites/",
             dataType: "json",
             data: { "item": document.getElementById("for_mark").value },
-            success: function() {
+            success: function(data) {
+                data.msg;
             }
           });
       } else {
-          $("span.glyphicon").toggleClass("glyphicon-star glyphicon-star-empty")
+          $(this).toggleClass("glyphicon-star glyphicon-star-empty")
           this.id = 'unmark';
 
           $.ajax({
@@ -25,7 +26,8 @@ jQuery(function($){
             url: "/del_favorites/",
             dataType: "json",
             data: { "item": document.getElementById("for_mark").value },
-            success: function() {
+            success: function(data) {
+                data.msg
             }
           });
       }

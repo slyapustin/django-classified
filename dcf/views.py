@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -277,7 +277,7 @@ def add_favorites(request):
         message = "success"
     else:
         message = "error"
-    return HttpResponse(message)
+    return JsonResponse({'msg': message})
 
 
 @csrf_exempt
@@ -289,4 +289,4 @@ def del_favorites(request):
         message = 'success'
     else:
         message = "error"
-    return HttpResponse(message)
+    return JsonResponse({'msg': message})

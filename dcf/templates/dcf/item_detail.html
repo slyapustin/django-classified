@@ -32,9 +32,9 @@
             <h1>
             {% if user.is_authenticated and object.user != user %}
                 {% if like == 'mark' %}
-                    <span id="{{ like }}" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span id="{{ like }}" class="star glyphicon glyphicon-star" aria-hidden="true"></span>
                 {% else %}
-                    <span id="{{ like }}" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span id="{{ like }}" class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                 {% endif %}
             {% endif %}
                 {{ object.title }}
