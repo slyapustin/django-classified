@@ -31,15 +31,14 @@
         <div class="col-lg-9">
             <h1>
             {% if user.is_authenticated and object.user != user %}
-                {% if like == 'mark' %}
-                    <span id="{{ like }}" class="star glyphicon glyphicon-star" aria-hidden="true"></span>
+                {% if object in user.favorites.all %}
+                    <span id="{{ object.id }}" class="star glyphicon glyphicon-star" aria-hidden="true"></span>
                 {% else %}
-                    <span id="{{ like }}" class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span id="{{ object.id }}" class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                 {% endif %}
             {% endif %}
                 {{ object.title }}
             </h1>
-                <input type="hidden" id="for_mark" value="{{ object.id}}" />
         </div>
         <div class="col-lg-3">
             <h2>{{ object.price|default:"" }}</h2>
