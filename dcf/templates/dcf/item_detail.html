@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 
+{% load staticfiles %}
 {% load humanize thumbnail i18n %}
 
 {% block title %}{{ object.get_title }}{% endblock title %}
@@ -28,7 +29,16 @@
 
     <div class="row">
         <div class="col-lg-9">
-            <h1>{{ object.title }}</h1>
+            <h1>
+            {% if user.is_authenticated and object.user != user %}
+                {% if object in user.favorites.all %}
+                    <span id="{{ object.id }}" class="star glyphicon glyphicon-star" aria-hidden="true"></span>
+                {% else %}
+                    <span id="{{ object.id }}" class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                {% endif %}
+            {% endif %}
+                {{ object.title }}
+            </h1>
         </div>
         <div class="col-lg-3">
             <h2>{{ object.price|default:"" }}</h2>
