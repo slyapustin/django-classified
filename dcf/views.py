@@ -14,7 +14,7 @@ from django.views.generic.edit import FormMixin
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
-from dcf.models import Item, Image, Group, Section
+from dcf.models import Item, Image, Group, Section, FavoritsInfo
 from dcf.forms import ItemCreateEditForm, ProfileForm, SearchForm
 
 
@@ -269,11 +269,16 @@ def page500(request):
 
 
 @csrf_exempt
+@login_required
 def add_favorites(request):
     item_id = request.POST.get('item')
     user = request.user
     if request.is_ajax():
         user.favorites.add(item_id)
+        FavoritsInfo.objects.create(
+            customuser = user,
+            item = Item.objects.get(pk=item_id)
+        )
         message = "success"
     else:
         message = "error"
@@ -281,11 +286,16 @@ def add_favorites(request):
 
 
 @csrf_exempt
+@login_required
 def del_favorites(request):
     item_id = request.POST.get('item')
     user = request.user
     if request.is_ajax():
         user.favorites.remove(item_id)
+        FavoritsInfo.objects.filter(
+            customuser = user,
+            item = Item.objects.get(pk=item_id)
+        ).delete()
         message = 'success'
     else:
         message = "error"
