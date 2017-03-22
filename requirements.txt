@@ -1,9 +1,0 @@
-Django>=1.10,<1.11
-social-auth-app-django>=1.1.0,<1.2.0
-Pillow>=4.0,<4.1
-sorl-thumbnail>=12,<13
-unidecode>=0.04,<0.05
-django-bootstrap-form>=3.2,<3.3
-djangorestframework>=3.6,<3.7
-django-filter>=1.0,<1.1
-django-cors-headers>=1.1,<1.2

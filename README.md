@@ -49,7 +49,7 @@
    [Install + activate virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 
 
-    pip install -r requirements.txt
+    pip install -r requirements/base.txt
     python ./manage.py makemigrations dcf
     python ./manage.py migrate
     python ./manage.py createsuperuser
