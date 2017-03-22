@@ -1,12 +1,13 @@
 ﻿# -*- coding:utf-8 -*-
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+from sorl.thumbnail.admin import AdminImageMixin
 
 from dcf.models import Section, Group, Item, Image
 
 
-class ImageInline(admin.StackedInline):
+class ImageInline(AdminImageMixin, admin.StackedInline):
     model = Image
     extra = 5
 
