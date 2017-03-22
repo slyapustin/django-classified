@@ -5,5 +5,5 @@ Django>=1.10,<1.11
 djangorestframework>=3.6,<3.7
 Pillow>=4.0,<4.1
 social-auth-app-django>=1.1.0,<1.2.0
-sorl-thumbnail>=12,<13
+sorl-thumbnail==12.4a1
 unidecode>=0.04,<0.05
