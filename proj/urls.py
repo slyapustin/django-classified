@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
 
     # Authorization
-    url(r'user/', include('social.apps.django_app.urls', namespace='social')),
+    url(r'user/', include('social_django.urls', namespace='social')),
     url(r'^user/login/', login, name='login'),
     url(r'^user/logout/$', logout, name='logout'),
 

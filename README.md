@@ -33,8 +33,8 @@
 ## Requirements
  
 * Python 2.7
-* Django 1.9
-* [Python Social Auth](https://github.com/omab/python-social-auth/)
+* Django 1.10
+* [Python Social Auth - Application - Django](https://github.com/python-social-auth/social-app-django)
 * [Django REST Framework](http://www.django-rest-framework.org/)
 
 ## Design
