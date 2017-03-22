@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 
-from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
+from django.test import TestCase
 
 from dcf.models import Item, Group, Section
 
@@ -40,7 +40,7 @@ class TestUrls(GenericViewTestCase):
         response = self.client.get(reverse('search'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('sitemap'))
+        response = self.client.get(reverse('django.contrib.sitemaps.views.sitemap'))
         self.assertEqual(response.status_code, 200)
 
         response = self.client.get(reverse('rss'))

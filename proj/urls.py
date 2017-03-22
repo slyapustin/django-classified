@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^search/', views.SearchView.as_view(), name='search'),
     url(r'^robots\.txt$', cache_page(60 * 60)(views.RobotsView.as_view()), name='robots'),
 
-    url(r'^sitemap\.xml$', sitemap_view, {'sitemaps': sitemap.sitemaps_dict}, name='sitemap'),
+    url(r'^sitemap\.xml$', sitemap_view, {'sitemaps': sitemap.sitemaps_dict},
+        name='django.contrib.sitemaps.views.sitemap'),
     url(r'^rss\.xml$', cache_page(60 * 15)(feeds.LatestItemFeed()), name='rss'),
 
     url(r'^user/$', views.MyItemsView.as_view(), name='my'),
