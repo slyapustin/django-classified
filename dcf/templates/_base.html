@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% load staticfiles i18n %}
+    {% load flatpages staticfiles i18n %}
 
     <!DOCTYPE HTML>
     <html lang="en">
@@ -75,6 +75,12 @@
         {% endblock %}
 
         <footer class="footer">
+            {% get_flatpages as flatpages %}
+            <ul class="list-inline">
+                {% for page in flatpages %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
             <span class="pull-left">{{ DCF_SITE_NAME }}</span>
             <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf" title="DCF Django Classified App">DCF Django Classified App</a></span>
         </footer>
@@ -92,8 +98,13 @@
     {% if GOOGLE_ANALYTICS_PROPERTY_ID %}
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
             ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');

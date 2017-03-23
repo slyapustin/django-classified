@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
 ]
 
 handler404 = views.page404
