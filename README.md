@@ -71,7 +71,7 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
  * DCF_LOGIN_TO_CONTACT - Hide contact information for unauthorized requests  
  
 ## Demo sites
- * [http://craiglists.ru/](http://craiglists.ru?utm_source=github)
+ * [https://craiglists.ru/](https://craiglists.ru?utm_source=github)
  * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de)
 
 ## TODO
