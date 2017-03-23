@@ -82,7 +82,10 @@
                 {% endfor %}
             </ul>
             <span class="pull-left">{{ DCF_SITE_NAME }}</span>
-            <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf" title="DCF Django Classified App">DCF Django Classified App</a></span>
+            {% if DCF_DISPLAY_CREDITS %}
+                <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf"
+                                                                     title="DCF Django Classified App">DCF Django Classified App</a></span>
+            {% endif %}
         </footer>
 
     </div>
