@@ -9,6 +9,19 @@ ADMINS = (
     ('Admin', 'admin@example.com'),
 )
 
+DCF_ITEM_MAX_AGE_DAYS = 90
+
+
+EMAIL_HOST = 'smtp.serverhost.com'
+EMAIL_HOST_USER = 'user.name@serverhost.com'
+EMAIL_ADDRESS_FROM = ''
+EMAIL_HOST_PASSWORD = 'passW0rd!'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = []
