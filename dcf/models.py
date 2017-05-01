@@ -12,8 +12,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
-    receive_news = models.BooleanField(
-        _('receive news'), default=True, db_index=True)
+    receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
         if self.item_set.count() > settings.DCF_ITEM_PER_USER_LIMIT:
