@@ -72,7 +72,7 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
  
 ## Demo sites
  * [https://craiglists.ru/](https://craiglists.ru?utm_source=github)
- * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de)
+ * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de) (referral link, you get $10 after registration)
 
 ## TODO
 
