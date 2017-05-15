@@ -1,0 +1,8 @@
+{% load i18n %}
+
+{% trans 'Your items:' %}
+{% for item in items %}
+    {{ domain }}{{ item.get_absolute_url }}
+{% endfor %}
+{% blocktrans %} will be deactivated {{ age_days }} days. {% endblocktrans %}
+
