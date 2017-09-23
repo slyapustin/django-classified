@@ -16,6 +16,10 @@
         {% endif %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+      {% if FACEBOOK_APP_ID %}
+        <meta property="fb:app_id" content="{{ FACEBOOK_APP_ID }}"/>
+      {% endif %}
+      <meta property="og:type" content="website"/>
         {% block meta_og %}{% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />

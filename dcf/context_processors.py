@@ -12,6 +12,7 @@ def common_values(request):
         'DCF_CURRENCY': settings.DCF_CURRENCY,
         'GOOGLE_ANALYTICS_PROPERTY_ID': settings.GOOGLE_ANALYTICS_PROPERTY_ID,
         'GOOGLE_SITE_VERIFICATION_ID': settings.GOOGLE_SITE_VERIFICATION_ID,
+        'FACEBOOK_APP_ID': settings.FACEBOOK_APP_ID,
     }
 
     return values
