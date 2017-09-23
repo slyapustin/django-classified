@@ -9,6 +9,10 @@ ADMINS = (
     ('Admin', 'admin@example.com'),
 )
 
+DAY = 1
+INT_DAYS_BEFORE_START_NOTIFICATION = 2 * DAY
+DCF_ITEM_MAX_AGE_DAYS = 90 * DAY
+
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = []
