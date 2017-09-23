@@ -14,6 +14,7 @@ class ItemSitemap(Sitemap):
     def items(self):
         return Item.objects.all()[:settings.DCF_SITEMAP_LIMIT]
 
+
 sitemaps_dict = {
     'Item': ItemSitemap,
-    }
+}

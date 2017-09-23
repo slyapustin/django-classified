@@ -17,8 +17,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'sqlite.db'),
-        },
-    }
+    },
+}
 
 CACHES = {
     'default': {
@@ -227,9 +227,9 @@ REST_FRAMEWORK = {
 
 # Try to load local or prod settings if such exists
 try:
-    from settings_local import *
+    from settings_local import *  # noqa
 except ImportError as e:
     try:
-        from settings_prod import *
+        from settings_prod import *  # noqa
     except ImportError as e:
         pass

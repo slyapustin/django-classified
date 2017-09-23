@@ -85,7 +85,7 @@ class FormsetMixin(object):
             kwargs.update({
                 'data': self.request.POST,
                 'files': self.request.FILES,
-                })
+            })
         return kwargs
 
     def form_valid(self, form, formset):
