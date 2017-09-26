@@ -1,14 +1,13 @@
 # -*- coding:utf-8 -*-
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.core.urlresolvers import reverse
+from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils.functional import cached_property
+from django.utils.translation import ugettext as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
-
-from django.db import models
-from django.conf import settings
-from django.template.defaultfilters import slugify
-from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext as _
-from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
