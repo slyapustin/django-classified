@@ -103,7 +103,7 @@ MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware',
 )
 
-ROOT_URLCONF = 'proj.urls'
+ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
