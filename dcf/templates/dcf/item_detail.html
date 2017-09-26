@@ -11,7 +11,7 @@
     <meta property="og:title" content="{{object.get_title}}" />
     <meta property="og:description" content="{{ object.get_description }}" />
     {% for img in object.image_set.all %}
-        {% thumbnail img.file "640x480" padding=True as im %}
+      {% thumbnail img.file "x800" as im %}
             <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ im.url }}" />
           <meta property="og:image:alt" content="{{ object.get_title }}"/>
         {% endthumbnail %}
