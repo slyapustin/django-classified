@@ -13,8 +13,8 @@
     {%  endif %}
                 <tr>
                     <td>
-                        {% if object.image_set.all|length > 0 %}
-                            {% thumbnail object.image_set.all.0.file "45x45" crop="center" as im %}
+                      {% if object.featured_image %}
+                        {% thumbnail object.featured_image.file "45x45" crop="center" as im %}
                                 <a href='{{ object.get_absolute_url }}' title="{{object.get_title}}">
                                     <img src='{{im.url}}' alt='{{object.title}}' title='{{object.title}}'  width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
                                     {% if object.image_set.all|length > 1 %}

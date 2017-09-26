@@ -102,6 +102,10 @@ class Item(models.Model):
         return ",".join(set(self.description.split()))
 
     @cached_property
+    def featured_image(self):
+        return self.image_set.all().first()
+
+    @cached_property
     def related_items(self):
         qs = Item.objects \
             .filter(is_active=True) \

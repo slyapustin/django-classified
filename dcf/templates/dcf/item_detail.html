@@ -86,16 +86,12 @@
 
       {% for item in object.related_items %}
             <div class="col-md-2">
-                {% if item.image_set.all %}
-                    {% with item.image_set.all.0 as img %}
-
-                        {% thumbnail img.file "70x70" crop="center" as im %}
+              {% if item.featured_image %}
+                {% thumbnail featured_image.file "70x70" crop="center" as im %}
                             <a href='{{item.get_absolute_url}}' title="{{item.get_title}}">
                                 <img src='{{im.url}}' alt='{{item.title}}' title='{{item.title}}' width="{{ im.width }}" height="{{ im.height }}" class="img-rounded" />
                             </a>
                         {% endthumbnail %}
-
-                    {% endwith %}
                 {% endif %}
                 <br/>
                 <a href='{{item.get_absolute_url}}' title="{{item.get_title}}">{{item.title|truncatewords:3}}</a>
