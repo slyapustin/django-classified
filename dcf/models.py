@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from django.utils.functional import cached_property
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
 
@@ -101,9 +102,14 @@ class Item(models.Model):
         # TODO need more optimal keywords selection
         return ",".join(set(self.description.split()))
 
-    def get_related(self):
-        # TODO Need more complicated related select
-        return Item.objects.exclude(pk=self.pk)[:settings.DCF_RELATED_LIMIT]
+    @cached_property
+    def related_items(self):
+        qs = Item.objects \
+            .filter(is_active=True) \
+            .filter(group=self.group) \
+            .exclude(pk=self.pk)
+
+        return qs[:settings.DCF_RELATED_LIMIT]
 
     def save(self, *args, **kwargs):
         if self.slug is None:

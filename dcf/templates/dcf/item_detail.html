@@ -84,7 +84,7 @@
             <hr />
         </div>
 
-        {% for item in object.get_related %}
+      {% for item in object.related_items %}
             <div class="col-md-2">
                 {% if item.image_set.all %}
                     {% with item.image_set.all.0 as img %}
