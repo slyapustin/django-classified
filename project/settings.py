@@ -86,7 +86,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -137,13 +136,12 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
+    'bootstrapform',
+    'rest_framework',
     'social_django',
     'sorl.thumbnail',
-    'bootstrapform',
 
     'dcf',
-
-    'rest_framework',
 ]
 
 AUTHENTICATION_BACKENDS = (
