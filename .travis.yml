@@ -23,4 +23,4 @@ script:
   - coverage run manage.py test
 
 after_success:
-  - coverage report --include=./*
+  - coverage report
