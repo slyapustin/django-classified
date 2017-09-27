@@ -13,23 +13,17 @@ class SearchForm(forms.Form):
         # TODO search using more than one field
         # TODO split query string and make seaprate search by words
         filters = {}
-        if self.cleaned_data['group'] is not None:
+        if self.cleaned_data['group']:
             filters['group'] = self.cleaned_data['group']
         filters['description__icontains'] = self.cleaned_data['q']
 
         return filters
 
 
-class ItemCreateEditForm(forms.ModelForm):
+class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ('group', 'title', 'description', 'price', 'phone', 'is_active')
-
-
-class AdImageForm(forms.ModelForm):
-    class Meta:
-        model = Image
-        exclude = ('owner',)
 
 
 class ProfileForm(forms.ModelForm):

@@ -13,7 +13,7 @@ from django.views.generic.edit import FormMixin
 from django.conf import settings
 
 from dcf.models import Item, Image, Group, Section
-from dcf.forms import ItemCreateEditForm, ProfileForm, SearchForm
+from dcf.forms import ItemForm, ProfileForm, SearchForm
 
 
 class FilteredListView(FormMixin, ListView):
@@ -123,7 +123,7 @@ class ItemDetailView(DetailView):
 class ItemUpdateView(FormsetMixin, UpdateView):
     is_update_view = True
     model = Item
-    form_class = ItemCreateEditForm
+    form_class = ItemForm
     formset_class = inlineformset_factory(Item, Image, extra=3, fields=('file', ))
 
     def get_object(self, *args, **kwargs):
@@ -140,7 +140,7 @@ class ItemUpdateView(FormsetMixin, UpdateView):
 class ItemCreateView(FormsetMixin, CreateView):
     is_update_view = False
     model = Item
-    form_class = ItemCreateEditForm
+    form_class = ItemForm
     formset_class = inlineformset_factory(Item, Image, extra=3, fields=('file', ))
 
     @method_decorator(login_required)
