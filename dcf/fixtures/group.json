@@ -1,0 +1,56 @@
+[
+  {
+    "model": "dcf.group",
+    "pk": 1,
+    "fields": {
+      "slug": "new-cars",
+      "title": "New cars",
+      "section": 1
+    }
+  },
+  {
+    "model": "dcf.group",
+    "pk": 2,
+    "fields": {
+      "slug": "used-cars",
+      "title": "Used cars",
+      "section": 1
+    }
+  },
+  {
+    "model": "dcf.group",
+    "pk": 3,
+    "fields": {
+      "slug": "engineering",
+      "title": "Engineering",
+      "section": 2
+    }
+  },
+  {
+    "model": "dcf.group",
+    "pk": 4,
+    "fields": {
+      "slug": "sales",
+      "title": "Sales",
+      "section": 2
+    }
+  },
+  {
+    "model": "dcf.group",
+    "pk": 5,
+    "fields": {
+      "slug": "rent",
+      "title": "Rent",
+      "section": 3
+    }
+  },
+  {
+    "model": "dcf.group",
+    "pk": 6,
+    "fields": {
+      "slug": "sale",
+      "title": "Sale",
+      "section": 3
+    }
+  }
+]

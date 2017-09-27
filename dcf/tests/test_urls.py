@@ -8,29 +8,26 @@ from dcf.models import Item, Group, Section
 
 
 class GenericViewTestCase(TestCase):
+    fixtures = [
+        'section',
+        'group'
+    ]
 
     def setUp(self):
-
-        self.section = Section.objects.create(title=u'Cars')
-        self.group = Group.objects.create(
-            title=u'Electric Cars',
-            section=self.section
-        )
         self.user = get_user_model().objects.create(username="test")
+        self.group = Group.objects.get(slug='new-cars')
         self.item = Item.objects.create(
             user=self.user,
             group=self.group,
-            title=u'Tesla Model III',
-            description=u'Super new 2016 Tesla Model III electric Car',
-            price=79000.00,
+            title='Tesla Model 3',
+            description='Super new 2017 Tesla Model 3 electric Car',
+            price=35000.00,
             phone='1-121-12-90'
         )
 
 
 class TestUrls(GenericViewTestCase):
-
     def test_pages(self):
-
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
