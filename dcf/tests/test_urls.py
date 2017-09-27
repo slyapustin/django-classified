@@ -55,6 +55,3 @@ class TestUrls(GenericViewTestCase):
 
         response = self.client.get(self.group.get_absolute_url())
         self.assertEqual(response.status_code, 200)
-
-    def test_this_should_fail(self):
-        self.assertTrue(False)
