@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - 2.7
+  - 3.5
+
+env:
+  - DJANGO=1.10.8
+  - DJANGO=1.11.5
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=project.settings
+  - export PYTHONPATH=$HOME/builds/inoks/dcf
+  - export PIP_USE_MIRRORS=true
+
+install:
+  - pip install -r requirements/base.txt
+  - pip install django==$DJANGO --quiet
+
+script:
+  - python manage.py migrate --noinput
+  - python manage.py test
+
