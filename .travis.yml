@@ -19,6 +19,5 @@ install:
   - pip install django==$DJANGO --quiet
 
 script:
-  - python manage.py migrate --noinput
   - python manage.py test
 
