@@ -1,5 +1,6 @@
 # Django Classified App
 
+[![Build Status](https://travis-ci.org/inoks/dcf.svg?branch=master)](https://travis-ci.org/inoks/dcf)
 
 ## Features
 
@@ -32,7 +33,7 @@
 
 ## Requirements
  
-* Python 2.7
+* Python 2.7, 3.5, 3.6
 * Django 1.10, 1.11
 * [Python Social Auth - Application - Django](https://github.com/python-social-auth/social-app-django)
 * [Django REST Framework](http://www.django-rest-framework.org/)
