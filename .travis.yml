@@ -17,7 +17,10 @@ before_install:
 install:
   - pip install -r requirements/base.txt
   - pip install django==$DJANGO --quiet
+  - pip install coverage
 
 script:
-  - python manage.py test
+  - coverage run manage.py test
 
+after_success:
+  - coverage report
