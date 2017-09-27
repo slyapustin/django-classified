@@ -34,7 +34,7 @@
 ## Requirements
  
 * Python 2.7, 3.5, 3.6
-* Django 1.10, 1.11
+* Django 1.8, 1.9, 1.10, 1.11
 * [Python Social Auth - Application - Django](https://github.com/python-social-auth/social-app-django)
 * [Django REST Framework](http://www.django-rest-framework.org/)
 
