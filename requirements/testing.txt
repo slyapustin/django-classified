@@ -1,0 +1,4 @@
+-r base.txt
+
+flake8>=3.4,<3.5
+coverage>=4.4,<4.5
