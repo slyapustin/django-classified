@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
