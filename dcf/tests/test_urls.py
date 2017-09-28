@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from dcf.models import Item, Group, Section
+from dcf.models import Item, Group
 
 
 class GenericViewTestCase(TestCase):
