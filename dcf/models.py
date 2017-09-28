@@ -44,6 +44,7 @@ class Group(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.section.title, self.title)
 
+    @cached_property
     def count(self):
         return self.item_set.filter(is_active=True).count()
 
@@ -51,9 +52,6 @@ class Group(models.Model):
         verbose_name = _('group')
         verbose_name_plural = _('groups')
         ordering = ['section__title', 'title', ]
-
-    def get_title(self):
-        return u'%s' % self.title
 
     def save(self, *args, **kwargs):
         if self.slug is None:
@@ -91,15 +89,13 @@ class Item(models.Model):
             'slug': self.slug
         })
 
-    def get_title(self):
-        return u'%s' % self.title
-
-    def get_description(self):
-        return u'%s' % self.description[:155]
-
     def get_keywords(self):
         # TODO need more optimal keywords selection
         return ",".join(set(self.description.split()))
+
+    @cached_property
+    def image_count(self):
+        return self.image_set.count()
 
     @cached_property
     def featured_image(self):

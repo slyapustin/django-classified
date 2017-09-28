@@ -19,7 +19,7 @@ class LatestItemFeed(Feed):
         return Item.objects.all().order_by('-updated')[:settings.DCF_RSS_LIMIT]
 
     def item_title(self, item):
-        return item.get_title()
+        return item.title
 
     def item_description(self, item):
         return item.description[:200]
