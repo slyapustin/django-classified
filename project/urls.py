@@ -1,14 +1,13 @@
 # -*- coding:utf-8 -*-
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import logout, login
 from django.contrib.sitemaps.views import sitemap as sitemap_view
-from django.conf import settings
 from django.views.decorators.cache import cache_page, never_cache
-from django.conf.urls.static import static
 
 from dcf import views, feeds, sitemap
-from dcf.api.routers import router
 
 admin.autodiscover()
 
@@ -37,9 +36,6 @@ urlpatterns = [
     url(r'user/', include('social_django.urls', namespace='social')),
     url(r'^user/login/', login, name='login'),
     url(r'^user/logout/$', logout, name='logout'),
-
-    # API
-    url(r'^api/', include(router.urls)),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('django.contrib.flatpages.urls')),

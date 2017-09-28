@@ -28,8 +28,6 @@
     * French (thanks to [Teolemon](https://github.com/teolemon))
     * Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
     * Help translate to other languages at [Transifex](https://www.transifex.com/inoks/dcf/)
-    
-* RESTful API for [DCF Angular2 Application](https://github.com/inoks/dcf-angular2-app)
 
 ## Requirements
  
@@ -74,8 +72,4 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
 ## Demo sites
  * [https://craiglists.ru/](https://craiglists.ru?utm_source=github)
  * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de) (referral link, you get $10 after registration)
-
-## TODO
-
-* RESTful API Enhancement
  
