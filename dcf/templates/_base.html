@@ -24,7 +24,8 @@
 
         <link rel="icon" type="image/x-icon" href="{% static 'dcf/img/favicon.ico' %}" />
 
-        <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet">
+      <link href="{% static 'dcf/css/bootstrap.min.css' %}" rel="stylesheet"/>
+      <link href="{% static 'dcf/css/jumbotron-narrow.css' %}" rel="stylesheet"/>
         <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
@@ -94,10 +95,8 @@
 
     </div>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+    <script src="{% static 'dcf/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dcf/js/bootstrap.min.js' %}"></script>
     <script src="{%  static 'dcf/js/lightbox.min.js' %}"></script>
 
     {% block ext_scripts%}{% endblock %}
