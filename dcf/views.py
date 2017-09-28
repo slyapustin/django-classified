@@ -1,20 +1,19 @@
 # -*- coding:utf-8 -*-
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
+from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
-from django.conf import settings
 
-from dcf.models import Item, Image, Group, Section
-from dcf.forms import ItemForm, ProfileForm, SearchForm
 from dcf import settings as dcf_settings
+from dcf.forms import ItemForm, ProfileForm, SearchForm
+from dcf.models import Item, Image, Group, Section
 
 
 class FilteredListView(FormMixin, ListView):
