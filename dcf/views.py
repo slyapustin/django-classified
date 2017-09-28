@@ -13,7 +13,7 @@ from django.views.generic.edit import FormMixin
 
 from dcf import settings as dcf_settings
 from dcf.forms import ItemForm, ProfileForm, SearchForm
-from dcf.models import Item, Image, Group, Section
+from dcf.models import Item, Image, Group, Section, Profile
 
 
 class FilteredListView(FormMixin, ListView):
@@ -191,7 +191,12 @@ class ProfileView(UpdateView):
     success_url = reverse_lazy('profile')
 
     def get_object(self, queryset=None):
-        return self.request.user
+        if hasattr(self.request.user, 'profile'):
+            profile = self.request.user.profile
+        else:
+            profile = Profile.objects.create(user=self.request.user)
+
+        return profile
 
     def get_initial(self):
         initial = super(ProfileView, self).get_initial()

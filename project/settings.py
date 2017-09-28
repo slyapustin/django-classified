@@ -183,8 +183,6 @@ FORCE_SCRIPT_NAME = ''
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-AUTH_USER_MODEL = 'dcf.CustomUser'
-
 FACEBOOK_APP_ID = ''
 
 GOOGLE_ANALYTICS_PROPERTY_ID = ''
@@ -204,9 +202,9 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 
 # Try to load local or prod settings if such exists
 try:
-    from settings_local import *  # noqa
+    from project.settings_local import *  # noqa
 except ImportError as e:
     try:
-        from settings_prod import *  # noqa
+        from project.settings_prod import *  # noqa
     except ImportError as e:
         pass

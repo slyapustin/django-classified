@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
-from dcf.models import Item, Group, CustomUser
+from dcf.models import Item, Group, Profile
 
 
 class SearchForm(forms.Form):
@@ -28,5 +28,5 @@ class ItemForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = CustomUser
+        model = Profile
         fields = ('phone', )

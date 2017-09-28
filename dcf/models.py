@@ -12,15 +12,13 @@ from unidecode import unidecode
 from dcf import settings as dcf_settings
 
 
-class CustomUser(AbstractUser):
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
-        if self.item_set.count() > dcf_settings.DCF_ITEM_PER_USER_LIMIT:
-            return False
-        else:
-            return True
+        return self.user.item_set.count() < dcf_settings.DCF_ITEM_PER_USER_LIMIT
 
 
 class Section(models.Model):
