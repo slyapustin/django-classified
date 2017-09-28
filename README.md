@@ -19,7 +19,6 @@
     * robots.txt
     * RSS feed
     * Google Analytics integration
-    * Compress CSS/JS (via [Django Compressor](https://github.com/django-compressor/django-compressor))
     * [Open Graph protocol](http://ogp.me/) support
 * Caching
 * Translation
@@ -34,7 +33,6 @@
 * Python 2.7, 3.5, 3.6
 * Django 1.8, 1.9, 1.10, 1.11
 * [Python Social Auth - Application - Django](https://github.com/python-social-auth/social-app-django)
-* [Django REST Framework](http://www.django-rest-framework.org/)
 
 ## Design
 
