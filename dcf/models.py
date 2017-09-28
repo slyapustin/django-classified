@@ -20,6 +20,13 @@ class Profile(models.Model):
     def allow_add_item(self):
         return self.user.item_set.count() < dcf_settings.DCF_ITEM_PER_USER_LIMIT
 
+    @staticmethod
+    def get_or_create_for_user(user):
+        if hasattr(user, 'profile'):
+            return user.profile
+        else:
+            return Profile.objects.create(user=user)
+
 
 class Section(models.Model):
     title = models.CharField(_('title'), max_length=100)

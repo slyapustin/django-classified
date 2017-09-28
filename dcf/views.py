@@ -145,14 +145,14 @@ class ItemCreateView(FormsetMixin, CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not self.request.user.allow_add_item():
+        profile = Profile.get_or_create_for_user(self.request.user)
+        if not profile.allow_add_item():
             messages.error(self.request, _('You have reached the limit!'))
             return redirect(reverse('my'))
 
         return super(ItemCreateView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form, formset):
-
         form.instance.user = self.request.user
         form.save()
 
@@ -191,12 +191,7 @@ class ProfileView(UpdateView):
     success_url = reverse_lazy('profile')
 
     def get_object(self, queryset=None):
-        if hasattr(self.request.user, 'profile'):
-            profile = self.request.user.profile
-        else:
-            profile = Profile.objects.create(user=self.request.user)
-
-        return profile
+        return Profile.get_or_create_for_user(self.request.user)
 
     def get_initial(self):
         initial = super(ProfileView, self).get_initial()
