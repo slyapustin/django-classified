@@ -14,6 +14,7 @@ from django.conf import settings
 
 from dcf.models import Item, Image, Group, Section
 from dcf.forms import ItemForm, ProfileForm, SearchForm
+from dcf import settings as dcf_settings
 
 
 class FilteredListView(FormMixin, ListView):
@@ -101,7 +102,7 @@ class FormsetMixin(object):
 
 
 class GroupDetail(SingleObjectMixin, ListView):
-    paginate_by = settings.DCF_ITEM_PER_PAGE
+    paginate_by = dcf_settings.DCF_ITEM_PER_PAGE
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Group.objects.all())

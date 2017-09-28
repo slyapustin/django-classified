@@ -9,13 +9,15 @@ from django.utils.translation import ugettext as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
 
+from dcf import settings as dcf_settings
+
 
 class CustomUser(AbstractUser):
     phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
-        if self.item_set.count() > settings.DCF_ITEM_PER_USER_LIMIT:
+        if self.item_set.count() > dcf_settings.DCF_ITEM_PER_USER_LIMIT:
             return False
         else:
             return True
@@ -108,7 +110,7 @@ class Item(models.Model):
             .filter(group=self.group) \
             .exclude(pk=self.pk)
 
-        return qs[:settings.DCF_RELATED_LIMIT]
+        return qs[:dcf_settings.DCF_RELATED_LIMIT]
 
     def save(self, *args, **kwargs):
         if self.slug is None:
