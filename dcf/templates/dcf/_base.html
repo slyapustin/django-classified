@@ -51,13 +51,19 @@
                             <ul class="dropdown-menu">
                               <li><a href="{% url 'dcf:my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
                               </li>
-                              <li><a href="{% url 'dcf:profile' %}">{% trans "Profile" %}</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
+                              <li>
+                                <a href="{% url 'dcf:profile' %}">{% trans "Profile" %}</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
                             </ul>
                         </li>
                     {% else %}
-                        <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="{% trans "Login via Facebook" %}"><span class="glyphicon glyphicon-user"></span> {% trans "Login via Facebook" %}</a></li>
+                      <li role="presentation">
+                        <a href="{% url 'dcf:profile' %}" title="{% trans "Login" %}">
+                          <span class="glyphicon glyphicon-user"></span> {% trans "Login" %}
+                        </a>
+                      </li>
                     {% endif %}
                 </ul>
             </nav>
