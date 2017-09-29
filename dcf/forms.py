@@ -23,7 +23,7 @@ class SearchForm(forms.Form):
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('group', 'title', 'description', 'price', 'phone', 'is_active')
+        fields = ('group', 'title', 'description', 'price', 'is_active')
 
 
 class ProfileForm(forms.ModelForm):

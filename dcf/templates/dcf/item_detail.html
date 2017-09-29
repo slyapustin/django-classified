@@ -68,7 +68,7 @@
             {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
                 {% trans "Please" %} <a href='{% url 'login' %}'>{% trans "login" %}</a> {%  trans "to see contact information." %}
             {% else %}
-                {% trans "Phone" %}: {{ object.phone }}
+              {% trans "Phone" %}: {{ object.user.profile.phone }}
             {% endif %}
         </div>
     </div>

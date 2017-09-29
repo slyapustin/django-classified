@@ -33,9 +33,12 @@ class Section(models.Model):
     def __unicode__(self):
         return self.title
 
+    @cached_property
     def count(self):
-        return Item.objects.filter(is_active=True)\
-            .filter(group__section=self).count()
+        return Item.objects \
+            .filter(is_active=True) \
+            .filter(group__section=self) \
+            .count()
 
     class Meta:
         verbose_name = _('section')
@@ -60,7 +63,7 @@ class Group(models.Model):
         ordering = ['section__title', 'title', ]
 
     def save(self, *args, **kwargs):
-        if self.slug is None:
+        if not self.slug:
             self.slug = slugify(unidecode(self.title))
         super(Group, self).save(*args, **kwargs)
 
@@ -76,7 +79,6 @@ class Item(models.Model):
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
     price = models.DecimalField(_('price'), max_digits=10, decimal_places=2)
-    phone = models.CharField(_('phone'), max_length=30)
     is_active = models.BooleanField(_('display'), default=True, db_index=True)
     updated = models.DateTimeField(_('updated'), auto_now=True, db_index=True)
     posted = models.DateTimeField(_('posted'), auto_now_add=True)
@@ -117,7 +119,7 @@ class Item(models.Model):
         return qs[:dcf_settings.DCF_RELATED_LIMIT]
 
     def save(self, *args, **kwargs):
-        if self.slug is None:
+        if not self.slug:
             self.slug = slugify(unidecode(self.title))
         super(Item, self).save(*args, **kwargs)
 

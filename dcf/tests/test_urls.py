@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from dcf.models import Item, Group
+from dcf.models import Item, Group, Profile
 
 
 class GenericViewTestCase(TestCase):
@@ -14,7 +14,18 @@ class GenericViewTestCase(TestCase):
     ]
 
     def setUp(self):
-        self.user = get_user_model().objects.create(username="test")
+        self.username = 'John'
+        self.password = 'summer'
+        self.email = 'john@example.com'
+        self.user = get_user_model().objects.create_user(
+            self.username,
+            self.email,
+            self.password
+        )
+        self.profile = Profile.get_or_create_for_user(self.user)
+        self.profile.phone = '0123456789'
+        self.profile.save()
+
         self.group = Group.objects.get(slug='new-cars')
         self.item = Item.objects.create(
             user=self.user,
@@ -22,7 +33,6 @@ class GenericViewTestCase(TestCase):
             title='Tesla Model 3',
             description='Super new 2017 Tesla Model 3 electric Car',
             price=35000.00,
-            phone='1-121-12-90'
         )
 
 
@@ -55,3 +65,18 @@ class TestUrls(GenericViewTestCase):
 
         response = self.client.get(self.group.get_absolute_url())
         self.assertEqual(response.status_code, 200)
+
+    def test_profile_update(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+
+        response = self.client.get(reverse('profile'))
+        self.assertContains(response, self.profile.phone)
+
+        new_data = {'phone': '1111111111'}
+        self.client.post(reverse('profile'), new_data)
+
+        self.profile.refresh_from_db()
+        self.assertEqual(self.profile.phone, new_data['phone'])
