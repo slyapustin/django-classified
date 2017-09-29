@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 
 from dcf.models import Item, Group, Profile
+from dcf.settings import DCF_ITEM_PER_USER_LIMIT
 
 
 class BaseTestCase(TestCase):
@@ -118,6 +119,29 @@ class DCFTestCase(BaseTestCase):
         }
         response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
         self.assertContains(response, item_data['title'])
+
+    def test_user_can_not_add_more_than_allowed_items(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+
+        self.assertTrue(self.profile.allow_add_item())
+
+        item_data = {
+            'image_set-TOTAL_FORMS': 0,
+            'image_set-INITIAL_FORMS': 0,
+            'group': self.group.pk,
+            'title': 'iPhone X',
+            'description': 'New, Unlocked. Face ID',
+            'price': 999,
+            'is_active': True
+        }
+        for i in range(self.user.item_set.count(), DCF_ITEM_PER_USER_LIMIT + 10):
+            self.client.post(reverse('dcf:item-new'), item_data)
+
+        self.assertFalse(self.profile.allow_add_item())
+        self.assertEqual(self.user.item_set.count(), DCF_ITEM_PER_USER_LIMIT)
 
     def test_user_can_delete_item(self):
         self.client.login(
