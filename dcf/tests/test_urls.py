@@ -109,6 +109,9 @@ class DCFTestCase(BaseTestCase):
 
         self.assertTrue(self.profile.allow_add_item(), True)
 
+        response = self.client.get(reverse('dcf:item-new'))
+        self.assertEqual(response.status_code, 200)
+
         item_data = {
             'image_set-TOTAL_FORMS': 0,
             'image_set-INITIAL_FORMS': 0,
@@ -128,6 +131,9 @@ class DCFTestCase(BaseTestCase):
         )
 
         self.assertEqual(self.user.item_set.count(), 1)
+
+        response = self.client.get(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}))
+        self.assertEqual(response.status_code, 200)
 
         item_data = {
             'image_set-TOTAL_FORMS': 0,
@@ -173,6 +179,9 @@ class DCFTestCase(BaseTestCase):
             password=self.password
         )
         self.assertEqual(Item.objects.all().count(), 1)
+        response = self.client.get(reverse('dcf:my-delete', kwargs={'pk': self.item.pk}))
+        self.assertEqual(response.status_code, 200)
+
         self.client.post(reverse('dcf:my-delete', kwargs={'pk': self.item.pk}))
         self.assertEqual(Item.objects.all().count(), 0)
 
