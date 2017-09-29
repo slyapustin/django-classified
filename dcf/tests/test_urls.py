@@ -120,6 +120,29 @@ class DCFTestCase(BaseTestCase):
         response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
         self.assertContains(response, item_data['title'])
 
+    def test_user_can_update_item(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+
+        self.assertEqual(self.user.item_set.count(), 1)
+
+        item_data = {
+            'image_set-TOTAL_FORMS': 0,
+            'image_set-INITIAL_FORMS': 0,
+            'group': self.group.pk,
+            'title': 'iPhone X',
+            'description': 'New, Unlocked. Face ID',
+            'price': 999,
+            'is_active': True
+        }
+        response = self.client.post(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}), item_data, follow=True)
+        self.assertEqual(self.user.item_set.count(), 1)
+        self.assertContains(response, item_data['title'])
+        self.item.refresh_from_db()
+        self.assertEqual(self.item.title, item_data['title'])
+
     def test_user_can_not_add_more_than_allowed_items(self):
         self.client.login(
             username=self.username,
