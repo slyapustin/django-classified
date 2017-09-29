@@ -11,7 +11,7 @@ def common_values(request):
         'DCF_LOGIN_TO_CONTACT': dcf_settings.DCF_LOGIN_TO_CONTACT,
         'DCF_SITE_DESCRIPTION': dcf_settings.DCF_SITE_DESCRIPTION,
         'DCF_SITE_NAME': dcf_settings.DCF_SITE_NAME,
-        'FACEBOOK_APP_ID': getattr(settings, 'FACEBOOK_APP_ID'),
-        'GOOGLE_ANALYTICS_PROPERTY_ID': getattr(settings, 'GOOGLE_ANALYTICS_PROPERTY_ID'),
-        'GOOGLE_SITE_VERIFICATION_ID': getattr(settings, 'GOOGLE_SITE_VERIFICATION_ID'),
+        'FACEBOOK_APP_ID': getattr(settings, 'FACEBOOK_APP_ID', ''),
+        'GOOGLE_ANALYTICS_PROPERTY_ID': getattr(settings, 'GOOGLE_ANALYTICS_PROPERTY_ID', ''),
+        'GOOGLE_SITE_VERIFICATION_ID': getattr(settings, 'GOOGLE_SITE_VERIFICATION_ID', ''),
     }
