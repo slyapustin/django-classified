@@ -1,0 +1,6 @@
+django-bootstrap-form>=3.2,<3.4
+django-filter>=1.0,<1.1
+Django>=1.10,<1.12
+Pillow>=4.0,<4.3
+sorl-thumbnail==12.4a1
+unidecode>=0.04,<0.05

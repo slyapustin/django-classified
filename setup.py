@@ -4,7 +4,7 @@ from distutils.core import setup
 
 
 def get_requirements():
-    with open(os.path.join(os.path.dirname(__file__), "requirements/base.txt")) as f:
+    with open(os.path.join(os.path.dirname(__file__), "dcf/requirements.txt")) as f:
         requirements_list = [req.strip() for req in f.readlines()]
 
     return requirements_list
