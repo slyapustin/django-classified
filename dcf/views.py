@@ -207,5 +207,5 @@ class ProfileView(UpdateView):
 
 
 class RobotsView(TemplateView):
-    template_name = 'robots.txt'
+    template_name = 'dcf/robots.txt'
     content_type = 'text/plain'
