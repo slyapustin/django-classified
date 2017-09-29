@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% load flatpages staticfiles i18n %}
+  {% load staticfiles i18n %}
 
     <!DOCTYPE HTML>
     <html lang="en">
@@ -29,7 +29,7 @@
         <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
-        <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
+      <link rel="alternate" type="application/rss+xml" href="{% url 'dcf:rss' %}">
 
     </head>
 
@@ -39,23 +39,31 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="{% url 'item-new' %}">{% trans "Add new" %}</a></li>
+                  <li role="presentation" class="active"><a href="{% url 'dcf:item-new' %}">{% trans "Add new" %}</a>
+                  </li>
                     <li role="presentation"><a href="/">{% trans "Home" %}</a></li>
-                    <li role="presentation"><a href="{% url 'search' %}">{% trans "Search" %}</a></li>
+                  <li role="presentation"><a href="{% url 'dcf:search' %}">{% trans "Search" %}</a></li>
                     {% if user.is_authenticated %}
                         <li role="presentation" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a></li>
-                                <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
+                              <li><a href="{% url 'dcf:my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
+                              </li>
+                              <li>
+                                <a href="{% url 'dcf:profile' %}">{% trans "Profile" %}</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
                             </ul>
                         </li>
                     {% else %}
-                        <li role="presentation"><a href="{% url "social:begin" "facebook"%}" title="{% trans "Login via Facebook" %}"><span class="glyphicon glyphicon-user"></span> {% trans "Login via Facebook" %}</a></li>
+                      <li role="presentation">
+                        <a href="{% url 'dcf:profile' %}" title="{% trans "Login" %}">
+                          <span class="glyphicon glyphicon-user"></span> {% trans "Login" %}
+                        </a>
+                      </li>
                     {% endif %}
                 </ul>
             </nav>
@@ -80,12 +88,6 @@
         {% endblock %}
 
         <footer class="footer">
-            {% get_flatpages as flatpages %}
-            <ul class="list-inline">
-                {% for page in flatpages %}
-                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                {% endfor %}
-            </ul>
             <span class="pull-left">{{ DCF_SITE_NAME }}</span>
             {% if DCF_DISPLAY_CREDITS %}
                 <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf"

@@ -47,6 +47,6 @@
 {% empty %}
     <p>
         {% trans "No item here yet." %}
-        <a href="{% url 'item-new' %}">{% trans "Add one now!" %}</a>
+      <a href="{% url 'dcf:item-new' %}">{% trans "Add one now!" %}</a>
     </p>
 {% endfor %}

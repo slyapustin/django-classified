@@ -41,16 +41,16 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('robots'))
+        response = self.client.get(reverse('dcf:robots'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('search'))
+        response = self.client.get(reverse('dcf:search'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('django.contrib.sitemaps.views.sitemap'))
+        response = self.client.get(reverse('dcf:sitemap'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('rss'))
+        response = self.client.get(reverse('dcf:rss'))
         self.assertEqual(response.status_code, 200)
 
         response = self.client.get(reverse('login'))
@@ -68,39 +68,35 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get(self.group.get_absolute_url())
         self.assertEqual(response.status_code, 200)
 
-    def test_404_page(self):
-        response = self.client.get('/this-is-wrong-path')
-        self.assertContains(response, '404', status_code=404)
-
     def test_profile_update(self):
         self.client.login(
             username=self.username,
             password=self.password
         )
 
-        response = self.client.get(reverse('profile'))
+        response = self.client.get(reverse('dcf:profile'))
         self.assertContains(response, self.profile.phone)
 
         new_data = {'phone': '1111111111'}
-        self.client.post(reverse('profile'), new_data)
+        self.client.post(reverse('dcf:profile'), new_data)
 
         self.profile.refresh_from_db()
         self.assertEqual(self.profile.phone, new_data['phone'])
 
     def test_item_search_by_title(self):
-        response = self.client.get(reverse('search'), {'q': self.item.title})
+        response = self.client.get(reverse('dcf:search'), {'q': self.item.title})
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_item_search_by_description(self):
-        response = self.client.get(reverse('search'), {'q': self.item.description})
+        response = self.client.get(reverse('dcf:search'), {'q': self.item.description})
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_item_search_by_group(self):
-        response = self.client.get(reverse('search'), {'group': self.item.group.pk})
+        response = self.client.get(reverse('dcf:search'), {'group': self.item.group.pk})
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_item_search_not_found(self):
-        response = self.client.get(reverse('search'), {'q': 'WRONG KEYWORDS'})
+        response = self.client.get(reverse('dcf:search'), {'q': 'WRONG KEYWORDS'})
         self.assertNotContains(response, self.item.get_absolute_url())
 
     def test_user_can_add_item(self):
@@ -120,5 +116,5 @@ class DCFTestCase(BaseTestCase):
             'price': 999,
             'is_active': True
         }
-        response = self.client.post(reverse('item-new'), item_data, follow=True)
+        response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
         self.assertContains(response, item_data['title'])

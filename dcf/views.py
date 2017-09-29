@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms import inlineformset_factory
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
@@ -188,7 +188,7 @@ class ItemDeleteView(DeleteView):
 class ProfileView(UpdateView):
     template_name = 'dcf/profile.html'
     form_class = ProfileForm
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('dcf:profile')
 
     def get_object(self, queryset=None):
         return Profile.get_or_create_for_user(self.request.user)
@@ -207,17 +207,5 @@ class ProfileView(UpdateView):
 
 
 class RobotsView(TemplateView):
-    template_name = 'robots.txt'
+    template_name = 'dcf/robots.txt'
     content_type = 'text/plain'
-
-
-def page403(request):
-    return render(request, '403.html', {}, status=403)
-
-
-def page404(request):
-    return render(request, '404.html', {}, status=404)
-
-
-def page500(request):
-    return render(request, '500.html', {}, status=500)
