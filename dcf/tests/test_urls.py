@@ -60,11 +60,17 @@ class DCFTestCase(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'text/plain')
 
+    def test_item_page(self):
         response = self.client.get(self.item.get_absolute_url())
-        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.item.title)
 
+    def test_group_page(self):
         response = self.client.get(self.group.get_absolute_url())
         self.assertEqual(response.status_code, 200)
+
+    def test_404_page(self):
+        response = self.client.get('/this-is-wrong-path')
+        self.assertContains(response, '404', status_code=404)
 
     def test_profile_update(self):
         self.client.login(
@@ -96,3 +102,23 @@ class DCFTestCase(BaseTestCase):
     def test_item_search_not_found(self):
         response = self.client.get(reverse('search'), {'q': 'WRONG KEYWORDS'})
         self.assertNotContains(response, self.item.get_absolute_url())
+
+    def test_user_can_add_item(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+
+        self.assertTrue(self.profile.allow_add_item(), True)
+
+        item_data = {
+            'image_set-TOTAL_FORMS': 0,
+            'image_set-INITIAL_FORMS': 0,
+            'group': self.group.pk,
+            'title': 'iPhone X',
+            'description': 'New, Unlocked. Face ID',
+            'price': 999,
+            'is_active': True
+        }
+        response = self.client.post(reverse('item-new'), item_data, follow=True)
+        self.assertContains(response, item_data['title'])
