@@ -4,34 +4,12 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import logout, login
-from django.contrib.sitemaps.views import sitemap as sitemap_view
-from django.views.decorators.cache import cache_page, never_cache
 
-from dcf import views, feeds, sitemap
+from dcf import views
 
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', views.SectionListView.as_view()),
-
-    url(r'^new/$', never_cache(views.ItemCreateView.as_view()), name='item-new'),
-    url(r'^edit/(?P<pk>\d+)/$', never_cache(views.ItemUpdateView.as_view()), name='item-edit'),
-
-    # Listings
-    url(r'^(?P<pk>\d+)-(?P<slug>[-\w]+)/$', views.ItemDetailView.as_view(), name='item'),
-    url(r'^group/(?P<pk>\d+)-(?P<slug>[-\w]+)/$', views.GroupDetail.as_view(), name='group'),
-
-    url(r'^search/', views.SearchView.as_view(), name='search'),
-    url(r'^robots\.txt$', cache_page(60 * 60)(views.RobotsView.as_view()), name='robots'),
-
-    url(r'^sitemap\.xml$', sitemap_view, {'sitemaps': sitemap.sitemaps_dict},
-        name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^rss\.xml$', cache_page(60 * 15)(feeds.LatestItemFeed()), name='rss'),
-
-    url(r'^user/$', views.MyItemsView.as_view(), name='my'),
-    url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
-    url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
-
     # Authorization
     url(r'user/', include('social_django.urls', namespace='social')),
     url(r'^user/login/', login, name='login'),
@@ -39,6 +17,9 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
+
+    # url(r'^', include('dcf.urls', namespace='dcf')),
+    url(r'^', include('dcf.urls')),
 ]
 
 handler404 = views.page404
