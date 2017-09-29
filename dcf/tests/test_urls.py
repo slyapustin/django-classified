@@ -81,6 +81,18 @@ class DCFTestCase(BaseTestCase):
         self.profile.refresh_from_db()
         self.assertEqual(self.profile.phone, new_data['phone'])
 
-    def test_item_search(self):
+    def test_item_search_by_title(self):
         response = self.client.get(reverse('search'), {'q': self.item.title})
         self.assertContains(response, self.item.get_absolute_url())
+
+    def test_item_search_by_description(self):
+        response = self.client.get(reverse('search'), {'q': self.item.description})
+        self.assertContains(response, self.item.get_absolute_url())
+
+    def test_item_search_by_group(self):
+        response = self.client.get(reverse('search'), {'group': self.item.group.pk})
+        self.assertContains(response, self.item.get_absolute_url())
+
+    def test_item_search_not_found(self):
+        response = self.client.get(reverse('search'), {'q': 'WRONG KEYWORDS'})
+        self.assertNotContains(response, self.item.get_absolute_url())
