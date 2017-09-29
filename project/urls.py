@@ -5,25 +5,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import logout, login
 
-from dcf import views
-
 admin.autodiscover()
 
 urlpatterns = [
     # Authorization
-    url(r'user/', include('social_django.urls', namespace='social')),
+    url(r'^user/', include('social_django.urls', namespace='social')),
     url(r'^user/login/', login, name='login'),
     url(r'^user/logout/$', logout, name='logout'),
-
     url(r'^admin/', include(admin.site.urls)),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
 
     url(r'^', include('dcf.urls', namespace='dcf')),
 ]
-
-handler404 = views.page404
-handler403 = views.page403
-handler500 = views.page500
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

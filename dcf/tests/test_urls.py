@@ -68,10 +68,6 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get(self.group.get_absolute_url())
         self.assertEqual(response.status_code, 200)
 
-    def test_404_page(self):
-        response = self.client.get('/this-is-wrong-path')
-        self.assertContains(response, '404', status_code=404)
-
     def test_profile_update(self):
         self.client.login(
             username=self.username,
