@@ -49,7 +49,7 @@
                                 <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="{% url 'dcf:my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
+                              <li><a href="{% url 'dcf:user-items' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
                               </li>
                               <li>
                                 <a href="{% url 'dcf:profile' %}">{% trans "Profile" %}</a>

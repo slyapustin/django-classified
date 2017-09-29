@@ -127,3 +127,12 @@ class DCFTestCase(BaseTestCase):
         self.assertEqual(Item.objects.all().count(), 1)
         self.client.post(reverse('dcf:my-delete', kwargs={'pk': self.item.pk}))
         self.assertEqual(Item.objects.all().count(), 0)
+
+    def test_user_can_view_own_items(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+        self.assertEqual(Item.objects.all().count(), 1)
+        response = self.client.get(reverse('dcf:user-items'))
+        self.assertContains(response, self.item.get_absolute_url())

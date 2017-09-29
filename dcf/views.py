@@ -148,7 +148,7 @@ class ItemCreateView(FormsetMixin, CreateView):
         profile = Profile.get_or_create_for_user(self.request.user)
         if not profile.allow_add_item():
             messages.error(self.request, _('You have reached the limit!'))
-            return redirect(reverse('my'))
+            return redirect(reverse('dcf:user-items'))
 
         return super(ItemCreateView, self).dispatch(*args, **kwargs)
 
