@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.functional import cached_property
+from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
@@ -27,10 +28,11 @@ class Profile(models.Model):
             return Profile.objects.create(user=user)
 
 
+@python_2_unicode_compatible
 class Section(models.Model):
     title = models.CharField(_('title'), max_length=100)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @cached_property
@@ -45,13 +47,14 @@ class Section(models.Model):
         verbose_name_plural = _('sections')
 
 
+@python_2_unicode_compatible
 class Group(models.Model):
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(_('title'), max_length=100)
     section = models.ForeignKey('Section', verbose_name=_('section'))
 
-    def __unicode__(self):
-        return u'%s - %s' % (self.section.title, self.title)
+    def __str__(self):
+        return '%s - %s' % (self.section.title, self.title)
 
     @cached_property
     def count(self):
@@ -71,6 +74,7 @@ class Group(models.Model):
         return reverse('dcf:group', kwargs={'pk': self.pk, 'slug': self.slug})
 
 
+@python_2_unicode_compatible
 class Item(models.Model):
     slug = models.SlugField(blank=True, null=True, max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -83,7 +87,7 @@ class Item(models.Model):
     updated = models.DateTimeField(_('updated'), auto_now=True, db_index=True)
     posted = models.DateTimeField(_('posted'), auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     class Meta:
