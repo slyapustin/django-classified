@@ -118,3 +118,12 @@ class DCFTestCase(BaseTestCase):
         }
         response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
         self.assertContains(response, item_data['title'])
+
+    def test_user_can_delete_item(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+        self.assertEqual(Item.objects.all().count(), 1)
+        self.client.post(reverse('dcf:my-delete', kwargs={'pk': self.item.pk}))
+        self.assertEqual(Item.objects.all().count(), 0)

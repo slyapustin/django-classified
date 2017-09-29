@@ -172,7 +172,7 @@ class MyItemsView(ListView):
 
 class ItemDeleteView(DeleteView):
     model = Item
-    success_url = reverse_lazy('my')
+    success_url = reverse_lazy('dcf:my')
 
     def get_object(self, queryset=None):
         obj = super(ItemDeleteView, self).get_object()
