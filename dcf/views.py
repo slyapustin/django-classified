@@ -174,11 +174,13 @@ class ItemDeleteView(DeleteView):
     model = Item
     success_url = reverse_lazy('dcf:user-items')
 
-    def get_object(self, queryset=None):
-        obj = super(ItemDeleteView, self).get_object()
-        if not obj.user == self.request.user and not self.request.user.is_superuser:
-            raise PermissionDenied
-        return obj
+    def get_queryset(self):
+        qs = super(ItemDeleteView, self).get_queryset()
+
+        if not self.request.user.is_superuser:
+            qs = qs.filter(user=self.request.user)
+
+        return qs
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -192,10 +194,6 @@ class ProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return Profile.get_or_create_for_user(self.request.user)
-
-    def get_initial(self):
-        initial = super(ProfileView, self).get_initial()
-        return initial
 
     def form_valid(self, form):
         messages.success(self.request, _('Your profile settings was updated!'))
