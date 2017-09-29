@@ -68,7 +68,7 @@ class Group(models.Model):
         super(Group, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('group', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('dcf:group', kwargs={'pk': self.pk, 'slug': self.slug})
 
 
 class Item(models.Model):
@@ -92,7 +92,7 @@ class Item(models.Model):
         ordering = ('-updated', )
 
     def get_absolute_url(self):
-        return reverse('item', kwargs={
+        return reverse('dcf:item', kwargs={
             'pk': self.pk,
             'slug': self.slug
         })

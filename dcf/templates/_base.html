@@ -29,7 +29,7 @@
         <link href="{% static 'dcf/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'dcf/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
-        <link rel="alternate" type="application/rss+xml" href="{% url 'rss' %}">
+      <link rel="alternate" type="application/rss+xml" href="{% url 'dcf:rss' %}">
 
     </head>
 
@@ -39,17 +39,19 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="{% url 'item-new' %}">{% trans "Add new" %}</a></li>
+                  <li role="presentation" class="active"><a href="{% url 'dcf:item-new' %}">{% trans "Add new" %}</a>
+                  </li>
                     <li role="presentation"><a href="/">{% trans "Home" %}</a></li>
-                    <li role="presentation"><a href="{% url 'search' %}">{% trans "Search" %}</a></li>
+                  <li role="presentation"><a href="{% url 'dcf:search' %}">{% trans "Search" %}</a></li>
                     {% if user.is_authenticated %}
                         <li role="presentation" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a></li>
-                                <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
+                              <li><a href="{% url 'dcf:my' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
+                              </li>
+                              <li><a href="{% url 'dcf:profile' %}">{% trans "Profile" %}</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
                             </ul>

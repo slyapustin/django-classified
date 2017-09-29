@@ -24,11 +24,12 @@
                 {%  endif %}
             <tr>
                 <td><a href='{{ object.group.get_absolute_url }}'>{{object.group}}</a></td>
-                <td><a href='{% url 'item-edit' object.pk %}' title='{%  trans "Edit item" %}'>{{object.title}}</a></td>
-                <td><a href='{{ object.get_absolute_url }}' title='{%  trans "Open item" %}'>{%  trans "Open" %}</a></td>
+              <td><a href='{% url 'dcf:item-edit' object.pk %}' title='{% trans "Edit item" %}'>{{ object.title }}</a>
+              </td>
+              <td><a href='{{ object.get_absolute_url }}' title='{% trans "Open item" %}'>{% trans "Open" %}</a></td>
                 <td>{{object.price|intcomma}}</td>
                 <td>{{object.posted|date:"d.m.Y"}}</td>
-                <td><a href='{% url 'my-delete' object.id %}'>{%  trans "Delete" %}</a></td>
+              <td><a href='{% url 'dcf:my-delete' object.id %}'>{% trans "Delete" %}</a></td>
             </tr>
 
             {% if forloop.last  %}
@@ -38,7 +39,7 @@
             {% empty %}
                 <p>
                     {%  trans "You have no items to show." %}
-                    <a href="{% url 'item-new' %}">{% trans "Add one now!" %}</a>
+                  <a href="{% url 'dcf:item-new' %}">{% trans "Add one now!" %}</a>
                 </p>
             {% endfor %}
         </div>

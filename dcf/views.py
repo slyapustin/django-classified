@@ -188,7 +188,7 @@ class ItemDeleteView(DeleteView):
 class ProfileView(UpdateView):
     template_name = 'dcf/profile.html'
     form_class = ProfileForm
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('dcf:profile')
 
     def get_object(self, queryset=None):
         return Profile.get_or_create_for_user(self.request.user)
