@@ -12,7 +12,7 @@ def get_requirements():
 
 setup(
     name='dcf',
-    version='0.1',
+    version='0.3',
     description='Django Classifieds Application',
     url='https://github.com/inoks/dcf',
     author='Inoks <inoks@mail.ru>',
