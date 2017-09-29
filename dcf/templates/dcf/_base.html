@@ -1,6 +1,6 @@
 {% spaceless %}
 
-    {% load flatpages staticfiles i18n %}
+  {% load staticfiles i18n %}
 
     <!DOCTYPE HTML>
     <html lang="en">
@@ -82,12 +82,6 @@
         {% endblock %}
 
         <footer class="footer">
-            {% get_flatpages as flatpages %}
-            <ul class="list-inline">
-                {% for page in flatpages %}
-                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                {% endfor %}
-            </ul>
             <span class="pull-left">{{ DCF_SITE_NAME }}</span>
             {% if DCF_DISPLAY_CREDITS %}
                 <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/dcf"

@@ -13,7 +13,6 @@ urlpatterns = [
     url(r'^user/login/', login, name='login'),
     url(r'^user/logout/$', logout, name='logout'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^pages/', include('django.contrib.flatpages.urls')),
 
     url(r'^', include('dcf.urls', namespace='dcf')),
 ]
