@@ -24,7 +24,7 @@ before_script:
   - flake8  --ignore=E501
 
 script:
-  - coverage run --source='.' manage.py test
+  - coverage run --source='./dcf' manage.py test
 
 after_success:
   - coverage report
