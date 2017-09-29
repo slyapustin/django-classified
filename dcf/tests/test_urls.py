@@ -7,7 +7,7 @@ from django.test import TestCase
 from dcf.models import Item, Group, Profile
 
 
-class GenericViewTestCase(TestCase):
+class BaseTestCase(TestCase):
     fixtures = [
         'section',
         'group'
@@ -36,7 +36,7 @@ class GenericViewTestCase(TestCase):
         )
 
 
-class TestUrls(GenericViewTestCase):
+class DCFTestCase(BaseTestCase):
     def test_pages(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
@@ -80,3 +80,7 @@ class TestUrls(GenericViewTestCase):
 
         self.profile.refresh_from_db()
         self.assertEqual(self.profile.phone, new_data['phone'])
+
+    def test_item_search(self):
+        response = self.client.get(reverse('search'), {'q': self.item.title})
+        self.assertContains(response, self.item.get_absolute_url())
