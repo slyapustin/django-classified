@@ -112,17 +112,20 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get(reverse('dcf:item-new'))
         self.assertEqual(response.status_code, 200)
 
-        item_data = {
-            'image_set-TOTAL_FORMS': 0,
-            'image_set-INITIAL_FORMS': 0,
-            'group': self.group.pk,
-            'title': 'iPhone X',
-            'description': 'New, Unlocked. Face ID',
-            'price': 999,
-            'is_active': True
-        }
-        response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
-        self.assertContains(response, item_data['title'])
+        with open('dcf/static/dcf/img/close.png', 'rb') as image_file:
+            item_data = {
+                'image_set-TOTAL_FORMS': 1,
+                'image_set-INITIAL_FORMS': 3,
+                'image_set-0-file': image_file,
+                'image_set-0-id': '1',
+                'group': self.group.pk,
+                'title': 'iPhone X',
+                'description': 'New, Unlocked. Face ID',
+                'price': 999,
+                'is_active': True
+            }
+            response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
+            self.assertContains(response, item_data['title'])
 
     def test_user_can_update_item(self):
         self.client.login(
