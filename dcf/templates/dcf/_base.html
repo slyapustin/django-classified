@@ -41,7 +41,7 @@
                 <ul class="nav nav-pills pull-right">
                   <li role="presentation" class="active"><a href="{% url 'dcf:item-new' %}">{% trans "Add new" %}</a>
                   </li>
-                    <li role="presentation"><a href="/">{% trans "Home" %}</a></li>
+                  <li role="presentation"><a href="{% url 'dcf:index' %}">{% trans "Home" %}</a></li>
                   <li role="presentation"><a href="{% url 'dcf:search' %}">{% trans "Search" %}</a></li>
                     {% if user.is_authenticated %}
                         <li role="presentation" class="dropdown">

@@ -6,7 +6,7 @@ from django.views.decorators.cache import cache_page, never_cache
 from dcf import views, feeds, sitemap
 
 urlpatterns = [
-    url(r'^$', views.SectionListView.as_view()),
+    url(r'^$', views.SectionListView.as_view(), name='index'),
     url(r'^new/$', never_cache(views.ItemCreateView.as_view()), name='item-new'),
     url(r'^edit/(?P<pk>\d+)/$', never_cache(views.ItemUpdateView.as_view()), name='item-edit'),
     url(r'^(?P<pk>\d+)-(?P<slug>[-\w]+)/$', views.ItemDetailView.as_view(), name='item'),

@@ -38,10 +38,11 @@ class BaseTestCase(TestCase):
 
 
 class DCFTestCase(BaseTestCase):
-    def test_pages(self):
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
+    def test_index_page(self):
+        response = self.client.get(reverse('dcf:index'))
+        self.assertContains(response, self.group.section.title)
 
+    def test_pages(self):
         response = self.client.get(reverse('dcf:robots'))
         self.assertEqual(response.status_code, 200)
 
