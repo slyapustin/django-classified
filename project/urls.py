@@ -10,10 +10,9 @@ admin.autodiscover()
 urlpatterns = [
     # Authorization
     url(r'^user/', include('social_django.urls', namespace='social')),
-    url(r'^user/login/', login, name='login'),
-    url(r'^user/logout/$', logout, name='logout'),
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include('dcf.urls', namespace='dcf')),
 ]
 
