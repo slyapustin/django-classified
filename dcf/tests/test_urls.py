@@ -196,3 +196,15 @@ class DCFTestCase(BaseTestCase):
         self.assertEqual(Item.objects.all().count(), 1)
         response = self.client.get(reverse('dcf:user-items'))
         self.assertContains(response, self.item.get_absolute_url())
+
+    def test_related_items(self):
+        new_item = Item.objects.create(
+            user=self.user,
+            title='Tesla Model X',
+            group=self.group,
+            description='Old Tesla car in good shape',
+            price=11000
+        )
+
+        response = self.client.get(self.item.get_absolute_url())
+        self.assertContains(response, new_item.get_absolute_url())
