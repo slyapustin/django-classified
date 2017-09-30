@@ -27,4 +27,4 @@ script:
   - coverage run --source='./dcf' manage.py test
 
 after_success:
-  - coverage report
+  - coverage report --show-missing
