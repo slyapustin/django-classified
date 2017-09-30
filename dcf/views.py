@@ -124,7 +124,7 @@ class ItemUpdateView(FormsetMixin, UpdateView):
     is_update_view = True
     model = Item
     form_class = ItemForm
-    formset_class = inlineformset_factory(Item, Image, extra=3, fields=('file', ))
+    formset_class = inlineformset_factory(Item, Image, fields=('file',))
 
     def get_object(self, *args, **kwargs):
         obj = super(ItemUpdateView, self).get_object(*args, **kwargs)
