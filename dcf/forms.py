@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
-from dcf.models import Item, Group, Image, CustomUser
+from dcf.models import Item, Group, Profile
 
 
 class SearchForm(forms.Form):
@@ -13,26 +13,20 @@ class SearchForm(forms.Form):
         # TODO search using more than one field
         # TODO split query string and make seaprate search by words
         filters = {}
-        if self.cleaned_data['group'] is not None:
+        if self.cleaned_data['group']:
             filters['group'] = self.cleaned_data['group']
         filters['description__icontains'] = self.cleaned_data['q']
 
         return filters
 
 
-class ItemCreateEditForm(forms.ModelForm):
+class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('group', 'title', 'description', 'price', 'phone', 'is_active')
-
-
-class AdImageForm(forms.ModelForm):
-    class Meta:
-        model = Image
-        exclude = ('owner',)
+        fields = ('group', 'title', 'description', 'price', 'is_active')
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = CustomUser
+        model = Profile
         fields = ('phone', )

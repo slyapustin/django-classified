@@ -1,0 +1,23 @@
+[
+  {
+    "model": "dcf.section",
+    "pk": 1,
+    "fields": {
+      "title": "Cars"
+    }
+  },
+  {
+    "model": "dcf.section",
+    "pk": 2,
+    "fields": {
+      "title": "Jobs"
+    }
+  },
+  {
+    "model": "dcf.section",
+    "pk": 3,
+    "fields": {
+      "title": "Real Estate"
+    }
+  }
+]

@@ -1,6 +1,6 @@
-{% extends "_base.html" %}
+{% extends "dcf/_base.html" %}
 
-{% block title %}{{DCF_SITE_NAME}}{% endblock title %}
+{% block title %}{{ DCF_SITE_NAME }}{% endblock title %}
 
 {% block body %}
     {% for object in object_list %}
@@ -13,8 +13,8 @@
 
             {% for group in object.group_set.all %}
                 {% if group.count > 0 %}
-                    <a href='{{ group.get_absolute_url }}' title="{{ group.get_title }}">
-                        {{group.title}} [{{group.count}}]<br/>
+                  <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
+                    {{ group.title }} [{{ group.count }}]<br/>
                     </a>
                 {% endif %}
             {% endfor %}

@@ -1,5 +1,6 @@
 # Django Classified App
 
+[![Build Status](https://travis-ci.org/inoks/dcf.svg?branch=master)](https://travis-ci.org/inoks/dcf)
 
 ## Features
 
@@ -18,7 +19,6 @@
     * robots.txt
     * RSS feed
     * Google Analytics integration
-    * Compress CSS/JS (via [Django Compressor](https://github.com/django-compressor/django-compressor))
     * [Open Graph protocol](http://ogp.me/) support
 * Caching
 * Translation
@@ -27,15 +27,12 @@
     * French (thanks to [Teolemon](https://github.com/teolemon))
     * Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
     * Help translate to other languages at [Transifex](https://www.transifex.com/inoks/dcf/)
-    
-* RESTful API for [DCF Angular2 Application](https://github.com/inoks/dcf-angular2-app)
 
 ## Requirements
  
-* Python 2.7
-* Django 1.9
-* [Python Social Auth](https://github.com/omab/python-social-auth/)
-* [Django REST Framework](http://www.django-rest-framework.org/)
+* Python 2.7, 3.5, 3.6
+* Django 1.8, 1.9, 1.10, 1.11
+* [Python Social Auth - Application - Django](https://github.com/python-social-auth/social-app-django)
 
 ## Design
 
@@ -49,7 +46,7 @@
    [Install + activate virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 
 
-    pip install -r requirements.txt
+    pip install -r requirements/base.txt
     python ./manage.py makemigrations dcf
     python ./manage.py migrate
     python ./manage.py createsuperuser
@@ -71,10 +68,6 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
  * DCF_LOGIN_TO_CONTACT - Hide contact information for unauthorized requests  
  
 ## Demo sites
- * [http://craiglists.ru/](http://craiglists.ru?utm_source=github)
- * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de)
-
-## TODO
-
-* RESTful API Enhancement
+ * [https://craiglists.ru/](https://craiglists.ru?utm_source=github)
+ * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de) (referral link, you get $10 after registration)
  

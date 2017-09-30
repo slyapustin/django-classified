@@ -1,19 +1,19 @@
 # -*- coding:utf-8 -*-
-from django.core.exceptions import PermissionDenied
-from django.forms import inlineformset_factory
-from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
+from django.forms import inlineformset_factory
+from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
+from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
-from django.conf import settings
 
-from dcf.models import Item, Image, Group, Section
-from dcf.forms import ItemCreateEditForm, ProfileForm, SearchForm
+from dcf import settings as dcf_settings
+from dcf.forms import ItemForm, ProfileForm, SearchForm
+from dcf.models import Item, Image, Group, Section, Profile
 
 
 class FilteredListView(FormMixin, ListView):
@@ -85,7 +85,7 @@ class FormsetMixin(object):
             kwargs.update({
                 'data': self.request.POST,
                 'files': self.request.FILES,
-                })
+            })
         return kwargs
 
     def form_valid(self, form, formset):
@@ -101,7 +101,7 @@ class FormsetMixin(object):
 
 
 class GroupDetail(SingleObjectMixin, ListView):
-    paginate_by = settings.DCF_ITEM_PER_PAGE
+    paginate_by = dcf_settings.DCF_ITEM_PER_PAGE
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Group.objects.all())
@@ -123,7 +123,7 @@ class ItemDetailView(DetailView):
 class ItemUpdateView(FormsetMixin, UpdateView):
     is_update_view = True
     model = Item
-    form_class = ItemCreateEditForm
+    form_class = ItemForm
     formset_class = inlineformset_factory(Item, Image, extra=3, fields=('file', ))
 
     def get_object(self, *args, **kwargs):
@@ -140,19 +140,19 @@ class ItemUpdateView(FormsetMixin, UpdateView):
 class ItemCreateView(FormsetMixin, CreateView):
     is_update_view = False
     model = Item
-    form_class = ItemCreateEditForm
+    form_class = ItemForm
     formset_class = inlineformset_factory(Item, Image, extra=3, fields=('file', ))
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not self.request.user.allow_add_item():
+        profile = Profile.get_or_create_for_user(self.request.user)
+        if not profile.allow_add_item():
             messages.error(self.request, _('You have reached the limit!'))
-            return redirect(reverse('my'))
+            return redirect(reverse('dcf:user-items'))
 
         return super(ItemCreateView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form, formset):
-
         form.instance.user = self.request.user
         form.save()
 
@@ -172,13 +172,15 @@ class MyItemsView(ListView):
 
 class ItemDeleteView(DeleteView):
     model = Item
-    success_url = reverse_lazy('my')
+    success_url = reverse_lazy('dcf:user-items')
 
-    def get_object(self, queryset=None):
-        obj = super(ItemDeleteView, self).get_object()
-        if not obj.user == self.request.user and not self.request.user.is_superuser:
-            raise PermissionDenied
-        return obj
+    def get_queryset(self):
+        qs = super(ItemDeleteView, self).get_queryset()
+
+        if not self.request.user.is_superuser:
+            qs = qs.filter(user=self.request.user)
+
+        return qs
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -188,14 +190,10 @@ class ItemDeleteView(DeleteView):
 class ProfileView(UpdateView):
     template_name = 'dcf/profile.html'
     form_class = ProfileForm
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('dcf:profile')
 
     def get_object(self, queryset=None):
-        return self.request.user
-
-    def get_initial(self):
-        initial = super(ProfileView, self).get_initial()
-        return initial
+        return Profile.get_or_create_for_user(self.request.user)
 
     def form_valid(self, form):
         messages.success(self.request, _('Your profile settings was updated!'))
@@ -207,17 +205,5 @@ class ProfileView(UpdateView):
 
 
 class RobotsView(TemplateView):
-    template_name = 'robots.txt'
+    template_name = 'dcf/robots.txt'
     content_type = 'text/plain'
-
-
-def page403(request):
-    return render(request, '403.html', {}, status=403)
-
-
-def page404(request):
-    return render(request, '404.html', {}, status=404)
-
-
-def page500(request):
-    return render(request, '500.html', {}, status=500)

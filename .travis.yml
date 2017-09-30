@@ -1,0 +1,30 @@
+language: python
+
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+
+env:
+  - DJANGO=1.8.18
+  - DJANGO=1.9.13
+  - DJANGO=1.10.8
+  - DJANGO=1.11.5
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=project.settings
+  - export PYTHONPATH=$HOME/builds/inoks/dcf
+  - export PIP_USE_MIRRORS=true
+
+install:
+  - pip install -r requirements/testing.txt
+  - pip install django==$DJANGO --quiet
+
+before_script:
+  - flake8  --ignore=E501
+
+script:
+  - coverage run --source='./dcf' manage.py test
+
+after_success:
+  - coverage report

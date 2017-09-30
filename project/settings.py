@@ -17,8 +17,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'sqlite.db'),
-        },
-    }
+    },
+}
 
 CACHES = {
     'default': {
@@ -86,7 +86,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -98,16 +97,16 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
-ROOT_URLCONF = 'proj.urls'
+ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -128,24 +127,22 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
+    'django.contrib.staticfiles',
 
-    'social.apps.django_app.default',
-    'sorl.thumbnail',
     'bootstrapform',
+    'social_django',
+    'sorl.thumbnail',
 
     'dcf',
-
-    'rest_framework',
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.facebook.FacebookOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -185,42 +182,28 @@ FORCE_SCRIPT_NAME = ''
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-AUTH_USER_MODEL = 'dcf.CustomUser'
-
-# DCF specific settings
-DCF_SITE_NAME = u'Django DCF App'
-DCF_SITE_DESCRIPTION = u'Demo Classified Advertisements web site Powered by Django DCF app'
-DCF_ITEM_PER_USER_LIMIT = 20
-DCF_SITEMAP_LIMIT = 1000
-DCF_RSS_LIMIT = 100
-DCF_RELATED_LIMIT = 6
-DCF_ITEM_PER_PAGE = 10
-DCF_LOGIN_TO_CONTACT = True
+FACEBOOK_APP_ID = ''
 
 GOOGLE_ANALYTICS_PROPERTY_ID = ''
 GOOGLE_SITE_VERIFICATION_ID = ''
 
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
 
-SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
-SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
 SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR_FACEBOOK_OAUTH2_KEY_HERE'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
 }
 
 # Try to load local or prod settings if such exists
 try:
-    from settings_local import *
+    from project.settings_local import *  # noqa
 except ImportError as e:
     try:
-        from settings_prod import *
+        from project.settings_prod import *  # noqa
     except ImportError as e:
         pass

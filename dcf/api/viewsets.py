@@ -29,7 +29,7 @@ class GroupViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response()
-        # TODO: return error code if object not valid
+        return Response({'error': 'Not valid data.'})
 
     def update(self, request, pk):
         try:
@@ -40,7 +40,7 @@ class GroupViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response()
-        # TODO: return error code if object not valid
+        return Response({'error': 'Not valid data.'})
 
     def destroy(self, request, pk):
         try:
@@ -69,6 +69,7 @@ class SectionViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response()
+        return Response({'error': 'Not valid data.'})
 
     def update(self, request, pk):
         try:
@@ -79,7 +80,7 @@ class SectionViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response()
-        # TODO: return error code if object not valid
+        return Response({'error': 'Not valid data.'})
 
     def destroy(self, request, pk):
         try:
@@ -95,16 +96,20 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_class = ItemFilter
+    # filter_backends = (filters.DjangoFilterBackend,)
+    # filter_class = ItemFilter
+
+    def list(self, request):
+        queryset = Item.objects.all()
+        serializer = ItemSerializer(queryset, many=True)
+        return Response(serializer.data)
 
     def create(self, request):
-        request.data['user'] = request.user.id
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
-        # TODO: return error
+        return Response({'error': 'Not valid data.'})
 
     def update(self, request, pk):
         try:
@@ -113,12 +118,12 @@ class ItemViewSet(viewsets.ModelViewSet):
             return Response(status=404)
         if not item.user == request.user:
             return Response(status=403)
-        request.data['user'] = request.user.id
+        # request.data['user'] = request.user.id
         serializer = self.serializer_class(item, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response()
-        # TODO: return error code if object not valid
+        return Response({'error': 'Not valid data.'})
 
     def destroy(self, request, pk):
         try:
