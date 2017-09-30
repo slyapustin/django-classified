@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from dcf.models import Item, Group, Profile
+from dcf.models import Item, Group, Profile, Section
 from dcf.settings import DCF_ITEM_PER_USER_LIMIT
 
 
@@ -112,20 +112,21 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get(reverse('dcf:item-new'))
         self.assertEqual(response.status_code, 200)
 
-        with open('dcf/static/dcf/img/close.png', 'rb') as image_file:
-            item_data = {
-                'image_set-TOTAL_FORMS': 1,
-                'image_set-INITIAL_FORMS': 3,
-                'image_set-0-file': image_file,
-                'image_set-0-id': '1',
-                'group': self.group.pk,
-                'title': 'iPhone X',
-                'description': 'New, Unlocked. Face ID',
-                'price': 999,
-                'is_active': True
-            }
-            response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
-            self.assertContains(response, item_data['title'])
+        image_file = open('dcf/static/dcf/img/close.png', 'rb')
+        item_data = {
+            'image_set-TOTAL_FORMS': 1,
+            'image_set-INITIAL_FORMS': 0,
+            'image_set-0-file': image_file,
+            'group': self.group.pk,
+            'title': 'iPhone X',
+            'description': 'New, Unlocked. Face ID',
+            'price': 999,
+            'is_active': True
+        }
+        response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
+        self.assertContains(response, item_data['title'])
+        new_item = Item.objects.get(title=item_data['title'])
+        self.assertEqual(new_item.image_count, 1)
 
     def test_user_can_update_item(self):
         self.client.login(
@@ -152,6 +153,35 @@ class DCFTestCase(BaseTestCase):
         self.assertContains(response, item_data['title'])
         self.item.refresh_from_db()
         self.assertEqual(self.item.title, item_data['title'])
+
+    def test_another_user_cannot_update_other_user_item(self):
+        another_user = get_user_model().objects.create_user(
+            'Andy',
+            'andy@hotmail.com',
+            'pass'
+        )
+
+        self.client.login(
+            username=another_user.username,
+            password='pass'
+        )
+
+        self.assertEqual(another_user.item_set.count(), 0)
+
+        response = self.client.get(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}))
+        self.assertEqual(response.status_code, 403)
+
+        item_data = {
+            'image_set-TOTAL_FORMS': 0,
+            'image_set-INITIAL_FORMS': 0,
+            'group': self.group.pk,
+            'title': 'iPhone X',
+            'description': 'New, Unlocked. Face ID',
+            'price': 999,
+            'is_active': True
+        }
+        response = self.client.post(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}), item_data, follow=True)
+        self.assertEqual(response.status_code, 403)
 
     def test_user_can_not_add_more_than_allowed_items(self):
         self.client.login(
@@ -208,3 +238,12 @@ class DCFTestCase(BaseTestCase):
 
         response = self.client.get(self.item.get_absolute_url())
         self.assertContains(response, new_item.get_absolute_url())
+
+    def test_group_slug_autocreated(self):
+        section = Section.objects.first()
+        new_group = Group.objects.create(
+            title='Some Cool Staff',
+            section=section
+        )
+
+        self.assertEqual(new_group.slug, 'some-cool-staff')
