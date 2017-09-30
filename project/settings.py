@@ -137,6 +137,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'social_django',
     'sorl.thumbnail',
+    'rest_framework',
 
     'dcf',
 ]

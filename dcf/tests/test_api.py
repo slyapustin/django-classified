@@ -24,18 +24,16 @@ class ApiTestCase(APITestCase):
         self.item1 = Item.objects.create(
             user=self.admin,
             group=self.group,
-            title=u'testitem1',
+            title='testitem1',
             description=u'test descr',
             price=1000.00,
-            phone='8-800-9000-900'
         )
         self.item2 = Item.objects.create(
             user=self.user,
             group=self.group,
-            title=u'testitem2',
-            description=u'test descr',
+            title='testitem2',
+            description='test descr',
             price=2000.00,
-            phone='8-800-7800-123'
         )
 
     def test_groups_api(self):
@@ -69,9 +67,22 @@ class ApiTestCase(APITestCase):
             "title": "test",
             "section": 1
         })
+
+        request_json_error = self.factory.post('/api/groups/', {
+            "title": "test",
+            "section": ''
+        })
+
+        # when user has no permissions
         force_authenticate(request, user=self.user)
         response = view(request)
         self.assertEqual(response.status_code, 403)
+
+        # send not valid data
+        force_authenticate(request_json_error, user=self.admin)
+        response = view(request_json_error)
+        self.assertEqual(response.data['error'], 'Not valid data.')
+
         force_authenticate(request, user=self.admin)
         response = view(request)
         self.assertEqual(response.status_code, 200)
@@ -80,9 +91,22 @@ class ApiTestCase(APITestCase):
             "title": "test updating groups",
             "section": 1
         })
+
+        request_json_error = self.factory.put('/api/groups/1/', {
+            "title": "",
+            "section": 1
+        })
+
+        # when user has no permissions
         force_authenticate(request, user=self.user)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 403)
+
+        # send not valid data
+        force_authenticate(request_json_error, user=self.admin)
+        response = view(request_json_error, pk=1)
+        self.assertEqual(response.data['error'], 'Not valid data.')
+
         force_authenticate(request, user=self.admin)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 200)
@@ -91,6 +115,7 @@ class ApiTestCase(APITestCase):
         force_authenticate(request, user=self.user)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 403)
+
         force_authenticate(request, user=self.admin)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 200)
@@ -121,12 +146,25 @@ class ApiTestCase(APITestCase):
             'put': 'update',
             'delete': 'destroy'
         })
+
         request = self.factory.post('/api/groups/', {
             'title': 'new group'
         })
+
+        request_json_error = self.factory.post('/api/groups/', {
+            'title': ''
+        })
+
+        # when user has no permissions
         force_authenticate(request, user=self.user)
         response = view(request)
         self.assertEqual(response.status_code, 403)
+
+        # send not valid data
+        force_authenticate(request_json_error, user=self.admin)
+        response = view(request_json_error)
+        self.assertEqual(response.data['error'], 'Not valid data.')
+
         force_authenticate(request, user=self.admin)
         response = view(request)
         self.assertEqual(response.status_code, 200)
@@ -134,9 +172,21 @@ class ApiTestCase(APITestCase):
         request = self.factory.put('/api/groups/1/', {
             'title': 'update group'
         })
+
+        request_json_error = self.factory.put('/api/groups/1/', {
+            'title': ''
+        })
+
+        # when user has no permissions
         force_authenticate(request, user=self.user)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 403)
+
+        # send not valid data
+        force_authenticate(request_json_error, user=self.admin)
+        response = view(request_json_error, pk=1)
+        self.assertEqual(response.data['error'], 'Not valid data.')
+
         force_authenticate(request, user=self.admin)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 200)
@@ -145,6 +195,7 @@ class ApiTestCase(APITestCase):
         force_authenticate(request, user=self.user)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 403)
+
         force_authenticate(request, user=self.admin)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 200)
@@ -173,25 +224,54 @@ class ApiTestCase(APITestCase):
             'put': 'update',
             'delete': 'destroy'
         })
-        request = self.factory.post('/api/items/', {
+        request_error = self.factory.post('/api/items/', {
             "title": "add new item",
             "description": "this is cool item",
             "price": 1200,
-            "group": 1
+            "group": 1,
         })
-        force_authenticate(request, user=self.user)
-        response = view(request)
+
+        force_authenticate(request_error, user=self.user)
+        response = view(request_error)
+        self.assertEqual(response.data['error'], 'Not valid data.')
+
+        request_200 = self.factory.post('/api/items/', {
+            "title": "add new item",
+            "description": "this is cool item",
+            "price": 1200,
+            "group": 1,
+            "user": 1
+        })
+
+        force_authenticate(request_200, user=self.user)
+        response = view(request_200)
         self.assertEqual(response.status_code, 200)
 
-        request = self.factory.put('/api/items/1/', {
+        request_json_error = self.factory.put('/api/items/1/', {
             "title": "update title",
             "description": "this is cool item",
             "price": 1200,
             "group": 1
         })
+
+        request = self.factory.put('/api/items/1/', {
+            "title": "update title",
+            "description": "this is cool item",
+            "price": 1200,
+            "group": 1,
+            "user": 1
+        })
+
+        # when user has no permissions
         force_authenticate(request, user=self.user)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 403)
+
+        # send not valid data
+        force_authenticate(request_json_error, user=self.admin)
+        response = view(request_json_error, pk=1)
+        self.assertEqual(response.data['error'], 'Not valid data.')
+
         force_authenticate(request, user=self.admin)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 200)
@@ -200,6 +280,7 @@ class ApiTestCase(APITestCase):
         force_authenticate(request, user=self.user)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 403)
+
         force_authenticate(request, user=self.admin)
         response = view(request, pk=1)
         self.assertEqual(response.status_code, 200)

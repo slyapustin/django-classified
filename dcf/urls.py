@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap as sitemap_view
 from django.views.decorators.cache import cache_page, never_cache
 
 from dcf import views, feeds, sitemap
+from dcf.api.routers import router
 
 urlpatterns = [
     url(r'^$', views.SectionListView.as_view(), name='index'),
@@ -18,4 +19,6 @@ urlpatterns = [
     url(r'^user/$', views.MyItemsView.as_view(), name='user-items'),
     url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
+    # API
+    url(r'^api/', include(router.urls)),
 ]
