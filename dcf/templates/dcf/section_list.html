@@ -9,7 +9,7 @@
         {% endif %}
 
         <div class="col-lg-4">
-            <h4>{{ object }}</h4>
+          <h4>{{ object }} [{{ object.count }}]</h4>
 
             {% for group in object.group_set.all %}
                 {% if group.count > 0 %}
