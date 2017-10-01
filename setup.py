@@ -11,11 +11,21 @@ def get_requirements():
 
 
 setup(
-    name='dcf',
-    version='0.5',
-    description='Django Classifieds Application',
-    url='https://github.com/inoks/dcf',
     author='Inoks <inoks@mail.ru>',
     author_email='inoks@mail.ru',
+    description='Django Classifieds Application',
     install_requires=get_requirements(),
+    keywords='django classified development bootstrap',
+    license='MIT',
+    name='dcf',
+    url='https://github.com/inoks/dcf',
+    version='0.5',
+    classifiers=[
+        'Development Status :: 3 - Beta',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+    ]
 )
