@@ -119,6 +119,8 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DEBUG = DEBUG
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'dcf', 'locale'),
 )
