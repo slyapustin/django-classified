@@ -1,0 +1,19 @@
+{% extends "dcf/_base.html" %}
+
+{% load i18n bootstrap %}
+
+{% block title %}
+{% trans "Complaint" %}
+{% endblock title %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{% url 'dcf:complaint' pk slug %}" method='post' class="form">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <input type='submit' class="btn" value='{% trans "Save" %}'>
+            </form>
+        </div>
+    </div>
+{% endblock body %} 

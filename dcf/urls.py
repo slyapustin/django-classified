@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^user/$', views.MyItemsView.as_view(), name='user-items'),
     url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
+    url(r'^complaint/(?P<pk>\d+)-(?P<slug>[-\w]+)/$', views.complaint, name='complaint'),
 ]
