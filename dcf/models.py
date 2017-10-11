@@ -131,3 +131,21 @@ class Item(models.Model):
 class Image(models.Model):
     item = models.ForeignKey(Item)
     file = ImageField(_('image'), upload_to='images')
+
+
+class Complaint(models.Model):
+    title = models.CharField(_('title'), max_length=100)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
+    item = models.ForeignKey(Item, verbose_name=_('item'))
+    date = models.DateTimeField(_('date'), auto_now=True, db_index=True)
+    text = models.TextField(_('description'))
+
+    class Meta:
+        verbose_name = _('complaint')
+        verbose_name_plural = _('complaints')
+
+    def __str__(self):
+        return self.title
+        
+    def get_absolute_url(self):
+        return reverse('dcf:index')
