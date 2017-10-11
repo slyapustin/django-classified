@@ -18,4 +18,6 @@ urlpatterns = [
     url(r'^user/$', views.MyItemsView.as_view(), name='user-items'),
     url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
+    url(r'^complaint/(?P<item_id>\d+)/$', never_cache(views.ComplaintCreateView.as_view()),
+        name='complaint'),
 ]
