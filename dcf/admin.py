@@ -2,7 +2,7 @@
 from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 
-from dcf.models import Section, Group, Item, Image
+from dcf.models import Section, Group, Item, Image, Complaint
 
 
 class ImageInline(AdminImageMixin, admin.StackedInline):
@@ -29,6 +29,11 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
+class AppealAdmin(admin.ModelAdmin):
+    list_display = ('title','text','item','date','user')
+
+
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Item, ItemAdmin)
+admin.site.register(Complaint, ComplaintAdmin)
