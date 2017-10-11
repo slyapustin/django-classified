@@ -29,7 +29,7 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
-class AppealAdmin(admin.ModelAdmin):
+class ComplaintAdmin(admin.ModelAdmin):
     list_display = ('title','text','item','date','user')
 
 

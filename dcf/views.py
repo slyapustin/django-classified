@@ -210,8 +210,8 @@ class RobotsView(TemplateView):
     content_type = 'text/plain'
 
 
-class AppealCreateView(CreateView):
-    model = Appeal
+class ComplaintCreateView(CreateView):
+    model = Complaint
     fields = ['title', 'text']
 
     def form_valid(self, form):
@@ -219,7 +219,7 @@ class AppealCreateView(CreateView):
         form.instance.item = Item.objects.get(id=self.kwargs['item_id'])
         form.save()
         self.send_email(form)
-        return super(AppealCreateView, self).form_valid(form)
+        return super(ComplaintCreateView, self).form_valid(form)
 
     def send_email(self, form):
         mail_to = [admin[1] for admin in dcf_settings.settings.ADMINS]
@@ -233,5 +233,5 @@ class AppealCreateView(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(AppealCreateView, self).dispatch(*args, **kwargs)
+        return super(ComplaintCreateView, self).dispatch(*args, **kwargs)
 

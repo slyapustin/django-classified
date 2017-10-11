@@ -98,4 +98,7 @@
             </div>
         {% endfor %}
     </div>
+    <div class="row col-lg-12">
+      <a href="{% url 'dcf:complaint' item_id=object.id %}" class="button btn btn-warning">{% trans "Complain" %}</a></div>
+    </div>
 {% endblock %}
