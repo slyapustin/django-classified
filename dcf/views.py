@@ -2,6 +2,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect
@@ -13,7 +14,7 @@ from django.views.generic.edit import FormMixin
 
 from dcf import settings as dcf_settings
 from dcf.forms import ItemForm, ProfileForm, SearchForm
-from dcf.models import Item, Image, Group, Section, Profile
+from dcf.models import Item, Image, Group, Section, Profile, Complaint
 
 
 class FilteredListView(FormMixin, ListView):
@@ -207,3 +208,30 @@ class ProfileView(UpdateView):
 class RobotsView(TemplateView):
     template_name = 'dcf/robots.txt'
     content_type = 'text/plain'
+
+
+class AppealCreateView(CreateView):
+    model = Appeal
+    fields = ['title', 'text']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.item = Item.objects.get(id=self.kwargs['item_id'])
+        form.save()
+        self.send_email(form)
+        return super(AppealCreateView, self).form_valid(form)
+
+    def send_email(self, form):
+        mail_to = [admin[1] for admin in dcf_settings.settings.ADMINS]
+        mail_subject = "Поступила жалоба на объявление"
+        mail_text = str('Объявление: "{item}"\n' + \
+                '{title}\n' + \
+                '{text}').format(
+                        item=form.instance.item.title,
+                        title=form.instance.title, text=form.instance.text)
+        send_mail(mail_subject, mail_text, 'noreply@localhost', mail_to)
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(AppealCreateView, self).dispatch(*args, **kwargs)
+
