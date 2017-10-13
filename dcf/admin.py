@@ -30,7 +30,7 @@ class SectionAdmin(admin.ModelAdmin):
 
 
 class ComplaintAdmin(admin.ModelAdmin):
-    list_display = ('title','text','item','date','user')
+    list_display = ('title', 'text', 'item', 'date', 'user')
 
 
 admin.site.register(Section, SectionAdmin)

@@ -224,14 +224,14 @@ class ComplaintCreateView(CreateView):
     def send_email(self, form):
         mail_to = [admin[1] for admin in dcf_settings.settings.ADMINS]
         mail_subject = "Поступила жалоба на объявление"
-        mail_text = str('Объявление: "{item}"\n' + \
-                '{title}\n' + \
-                '{text}').format(
-                        item=form.instance.item.title,
-                        title=form.instance.title, text=form.instance.text)
+        mail_text = str(
+            'Объявление: "{item}"\n' +
+            '{title}\n' +
+            '{text}').format(
+                item=form.instance.item.title,
+                title=form.instance.title, text=form.instance.text)
         send_mail(mail_subject, mail_text, 'noreply@localhost', mail_to)
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ComplaintCreateView, self).dispatch(*args, **kwargs)
-
