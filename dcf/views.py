@@ -222,15 +222,16 @@ class ComplaintCreateView(CreateView):
         return super(ComplaintCreateView, self).form_valid(form)
 
     def send_email(self, form):
-        mail_to = [admin[1] for admin in dcf_settings.settings.ADMINS]
-        mail_subject = "Поступила жалоба на объявление"
+        mail_subject = "Received a complaint"
         mail_text = str(
-            'Объявление: "{item}"\n' +
-            '{title}\n' +
+            'Advert: "{item}"\n\n' +
+            'Complaint: {title}\n' +
             '{text}').format(
                 item=form.instance.item.title,
                 title=form.instance.title, text=form.instance.text)
-        send_mail(mail_subject, mail_text, 'noreply@localhost', mail_to)
+        mail_from = dcf_settings.settings.DEFAULT_FROM_EMAIL
+        mail_to = [address for name, address in dcf_settings.settings.ADMINS]
+        send_mail(mail_subject, mail_text, mail_from, mail_to)
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

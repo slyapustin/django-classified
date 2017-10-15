@@ -133,6 +133,7 @@ class Image(models.Model):
     file = ImageField(_('image'), upload_to='images')
 
 
+@python_2_unicode_compatible
 class Complaint(models.Model):
     title = models.CharField(_('title'), max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))

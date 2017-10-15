@@ -11,6 +11,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+DEFAULT_FROM_EMAIL = 'noreply@example.com'
+
 ALLOWED_HOSTS = []
 
 DATABASES = {
