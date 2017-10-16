@@ -222,15 +222,15 @@ class ComplaintCreateView(CreateView):
         return super(ComplaintCreateView, self).form_valid(form)
 
     def send_email(self, form):
-        mail_subject = "Received a complaint"
+        mail_subject = _('Received a complaint')
         mail_text = str(
-            'Advert: "{item}"\n\n' +
-            'Complaint: {title}\n' +
+            _('Item') + ': "{item}"\n\n' +
+            _('Complaint') + ': {title}\n' +
             '{text}').format(
                 item=form.instance.item.title,
                 title=form.instance.title, text=form.instance.text)
-        mail_from = dcf_settings.settings.DEFAULT_FROM_EMAIL
-        mail_to = [address for name, address in dcf_settings.settings.ADMINS]
+        mail_from = settings.DEFAULT_FROM_EMAIL
+        mail_to = [address for name, address in settings.ADMINS]
         send_mail(mail_subject, mail_text, mail_from, mail_to)
 
     @method_decorator(login_required)
