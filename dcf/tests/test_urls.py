@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from dcf.models import Item, Group, Profile, Section
+from dcf.models import Item, Group, Profile, Section, Complaint
 from dcf.settings import DCF_ITEM_PER_USER_LIMIT
 
 
@@ -34,6 +34,12 @@ class BaseTestCase(TestCase):
             title='Tesla Model 3',
             description='Super new 2017 Tesla Model 3 electric Car',
             price=35000.00,
+        )
+        self.complaint = Complaint.objects.create(
+            user=self.user,
+            item=self.item,
+            title='Attention!',
+            text='This is very bad item',
         )
 
 
@@ -65,6 +71,32 @@ class DCFTestCase(BaseTestCase):
     def test_item_page(self):
         response = self.client.get(self.item.get_absolute_url())
         self.assertContains(response, self.item.title)
+
+    def test_complain_page(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+        response = self.client.get(reverse('dcf:complaint', kwargs={'item_id': self.complaint.item.id}))
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_can_complain(self):
+        self.client.login(
+            username=self.username,
+            password=self.password
+        )
+        complain_data = {
+            'item': self.item,
+            'user': self.user,
+            'title': 'Danger!',
+            'text': 'More bad item',
+        }
+        response = self.client.post(reverse('dcf:complaint', kwargs={'item_id': self.complaint.item.id}), complain_data)
+        self.assertEqual(len(Complaint.objects.all()), 2)
+
+    def test_user_cant_complain(self):
+        response = self.client.get(reverse('dcf:complaint', kwargs={'item_id': self.complaint.item.id}))
+        self.assertIn('/login/?next=/complaint/', response.url)
 
     def test_group_page(self):
         response = self.client.get(self.group.get_absolute_url())
