@@ -7,261 +7,291 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 17:46+0200\n"
+"POT-Creation-Date: 2017-10-16 04:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: .\dcf\feeds.py:13
-#, python-format
-msgid "%s updates"
-msgstr "%s обновления"
-
-#: .\dcf\forms.py:9 .\dcf\templates\dcf\user_item_list.html.py:16
+#: dcf/forms.py:9 dcf/templates/dcf/user_item_list.html:16
 msgid "Group"
 msgstr "Группа"
 
-#: .\dcf\forms.py:10
+#: dcf/forms.py:10
 msgid "Query"
 msgstr "Запрос"
 
-#: .\dcf\models.py:14 .\dcf\models.py:75
+#: dcf/models.py:17
 msgid "phone"
 msgstr "телефон"
 
-#: .\dcf\models.py:15
+#: dcf/models.py:18
 msgid "receive news"
 msgstr "получать новости"
 
-#: .\dcf\models.py:25 .\dcf\models.py:41 .\dcf\models.py:72
+#: dcf/models.py:33 dcf/models.py:53 dcf/models.py:83 dcf/models.py:138
 msgid "title"
 msgstr "заголовок"
 
-#: .\dcf\models.py:35 .\dcf\models.py:42
+#: dcf/models.py:46 dcf/models.py:54
 msgid "section"
 msgstr "раздел"
 
-#: .\dcf\models.py:36
+#: dcf/models.py:47
 msgid "sections"
 msgstr "разделы"
 
-#: .\dcf\models.py:51 .\dcf\models.py:70
+#: dcf/models.py:64 dcf/models.py:81
 msgid "group"
 msgstr "группа"
 
-#: .\dcf\models.py:52
+#: dcf/models.py:65
 msgid "groups"
 msgstr "группы"
 
-#: .\dcf\models.py:73
+#: dcf/models.py:84 dcf/models.py:142
 msgid "description"
 msgstr "описание"
 
-#: .\dcf\models.py:74
+#: dcf/models.py:85
 msgid "price"
 msgstr "стоимость"
 
-#: .\dcf\models.py:76
+#: dcf/models.py:86
 msgid "display"
 msgstr "отображать"
 
-#: .\dcf\models.py:77
+#: dcf/models.py:87
 msgid "updated"
 msgstr "Обновлено"
 
-#: .\dcf\models.py:78
+#: dcf/models.py:88
 msgid "posted"
 msgstr "Размещено"
 
-#: .\dcf\models.py:84 .\dcf\templates\dcf\item_form.html.py:5
+#: dcf/models.py:94 dcf/models.py:140 dcf/templates/dcf/item_form.html:5
 msgid "item"
 msgstr "объявление"
 
-#: .\dcf\models.py:85
+#: dcf/models.py:95
 msgid "items"
 msgstr "объявления"
 
-#: .\dcf\models.py:116
+#: dcf/models.py:133
 msgid "image"
 msgstr "изображение"
 
-#: .\dcf\templates\403.html:10
-msgid "You have no access right to that page"
-msgstr "У вас нет прав доступа к этой странице"
+#: dcf/models.py:139
+msgid "user"
+msgstr "пользователь"
 
-#: .\dcf\templates\404.html:10
-msgid "Page not found"
-msgstr "Страница не найдена"
+#: dcf/models.py:141
+#, fuzzy
+#| msgid "Update"
+msgid "date"
+msgstr "Обновить"
 
-#: .\dcf\templates\500.html:10
-msgid "Service is temporary unavailable"
-msgstr "Сервис временно недоступен"
+#: dcf/models.py:145
+msgid "complaint"
+msgstr "жалоба"
 
-#: .\dcf\templates\_base.html:37
+#: dcf/models.py:146
+msgid "complaints"
+msgstr "жалобы"
+
+#: dcf/templates/dcf/_base.html:42
 msgid "Add new"
 msgstr "Добавить"
 
-#: .\dcf\templates\_base.html:38
+#: dcf/templates/dcf/_base.html:44
 msgid "Home"
 msgstr "Главная"
 
-#: .\dcf\templates\_base.html:39 .\dcf\templates\dcf\search.html.py:6
-#: .\dcf\templates\dcf\search.html:12 .\dcf\templates\dcf\search.html.py:15
+#: dcf/templates/dcf/_base.html:45 dcf/templates/dcf/search.html:6
+#: dcf/templates/dcf/search.html:12 dcf/templates/dcf/search.html:15
 msgid "Search"
 msgstr "Поиск"
 
-#: .\dcf\templates\_base.html:46 .\dcf\templates\dcf\user_item_list.html:5
-#: .\dcf\templates\dcf\user_item_list.html:10
+#: dcf/templates/dcf/_base.html:52 dcf/templates/dcf/user_item_list.html:5
+#: dcf/templates/dcf/user_item_list.html:10
 msgid "My items"
 msgstr "Мои объявления"
 
-#: .\dcf\templates\_base.html:47 .\dcf\templates\dcf\profile.html.py:5
+#: dcf/templates/dcf/_base.html:55 dcf/templates/dcf/profile.html:5
 msgid "Profile"
 msgstr "Профиль"
 
-#: .\dcf\templates\_base.html:49
+#: dcf/templates/dcf/_base.html:58
 msgid "Logout"
 msgstr "Выйти"
 
-#: .\dcf\templates\_base.html:53
-msgid "Login via Facebook"
-msgstr "Войти с помощью Facebook"
+#: dcf/templates/dcf/_base.html:63 dcf/templates/dcf/_base.html:64
+#: templates/registration/login.html:5
+msgid "Login"
+msgstr "Войти"
 
-#: .\dcf\templates\_base.html:79
+#: dcf/templates/dcf/_base.html:93
 msgid "Powered by"
 msgstr "Работает на"
 
-#: .\dcf\templates\dcf\admin_toolbar.inc.html:6
-#: .\dcf\templates\dcf\item_confirm_delete.html:5
-#: .\dcf\templates\dcf\user_item_list.html:21
-#: .\dcf\templates\dcf\user_item_list.html:31
+#: dcf/templates/dcf/admin_toolbar.inc.html:6
+#: dcf/templates/dcf/item_confirm_delete.html:5
+#: dcf/templates/dcf/user_item_list.html:21
+#: dcf/templates/dcf/user_item_list.html:32
 msgid "Delete"
 msgstr "Удалить"
 
-#: .\dcf\templates\dcf\admin_toolbar.inc.html:7
-#: .\dcf\templates\dcf\item_form.html:5
+#: dcf/templates/dcf/admin_toolbar.inc.html:7
+#: dcf/templates/dcf/item_form.html:5
 msgid "Edit"
 msgstr "Редактировать"
 
-#: .\dcf\templates\dcf\form_pagination.inc.html:13
-#: .\dcf\templates\dcf\list_pagination.inc.html:7
+#: dcf/templates/dcf/complaint_form.html:5 dcf/views.py:228
+msgid "Complaint"
+msgstr "Жалоба"
+
+#: dcf/templates/dcf/complaint_form.html:13
+#: dcf/templates/dcf/item_detail.html:102
+msgid "Complain"
+msgstr "Пожаловаться"
+
+#: dcf/templates/dcf/form_pagination.inc.html:13
+#: dcf/templates/dcf/list_pagination.inc.html:7
 msgid "Prev"
 msgstr "Предыдущая"
 
-#: .\dcf\templates\dcf\form_pagination.inc.html:25
-#: .\dcf\templates\dcf\list_pagination.inc.html:12
+#: dcf/templates/dcf/form_pagination.inc.html:25
+#: dcf/templates/dcf/list_pagination.inc.html:12
 msgid "Next"
 msgstr "Следующая"
 
-#: .\dcf\templates\dcf\item_confirm_delete.html:13
+#: dcf/templates/dcf/item_confirm_delete.html:13
 msgid "Are you sure you want to delete"
 msgstr "Вы действительно хотите удалить"
 
-#: .\dcf\templates\dcf\item_confirm_delete.html:16
+#: dcf/templates/dcf/item_confirm_delete.html:16
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: .\dcf\templates\dcf\item_detail.html:65
+#: dcf/templates/dcf/item_detail.html:69
 msgid "Please"
 msgstr "Пожалуйста"
 
-#: .\dcf\templates\dcf\item_detail.html:65
+#: dcf/templates/dcf/item_detail.html:69
 msgid "login"
 msgstr "Войдите"
 
-#: .\dcf\templates\dcf\item_detail.html:65
+#: dcf/templates/dcf/item_detail.html:69
 msgid "to see contact information."
 msgstr "для просмотра контактной информации."
 
-#: .\dcf\templates\dcf\item_detail.html:67
+#: dcf/templates/dcf/item_detail.html:71
 msgid "Phone"
 msgstr "Телефон"
 
-#: .\dcf\templates\dcf\item_form.html:5
+#: dcf/templates/dcf/item_form.html:5
 msgid "Add"
 msgstr "Добавить"
 
-#: .\dcf\templates\dcf\item_form.html:20
+#: dcf/templates/dcf/item_form.html:20
 msgid "Save"
 msgstr "Сохранить"
 
-#: .\dcf\templates\dcf\item_list.inc.html:9
-#: .\dcf\templates\dcf\user_item_list.html:19
+#: dcf/templates/dcf/item_list.inc.html:9
+#: dcf/templates/dcf/user_item_list.html:19
 msgid "Price"
 msgstr "Стоимость"
 
-#: .\dcf\templates\dcf\item_list.inc.html:21
+#: dcf/templates/dcf/item_list.inc.html:29
 msgid "more photos available"
 msgstr "фотографий доступно"
 
-#: .\dcf\templates\dcf\item_list.inc.html:41
+#: dcf/templates/dcf/item_list.inc.html:49
 msgid "No item here yet."
 msgstr "Еще нет объявлений"
 
-#: .\dcf\templates\dcf\item_list.inc.html:42
-#: .\dcf\templates\dcf\user_item_list.html:41
+#: dcf/templates/dcf/item_list.inc.html:50
+#: dcf/templates/dcf/user_item_list.html:42
 msgid "Add one now!"
 msgstr "Добавить"
 
-#: .\dcf\templates\dcf\profile.html:13
-#: .\dcf\templates\dcf\user_item_list.html:17
+#: dcf/templates/dcf/profile.html:13 dcf/templates/dcf/user_item_list.html:17
 msgid "Update"
 msgstr "Обновить"
 
-#: .\dcf\templates\dcf\search.html:6
+#: dcf/templates/dcf/search.html:6
 msgid "Search results for query"
 msgstr "Результаты по запросу"
 
-#: .\dcf\templates\dcf\search.html:25
+#: dcf/templates/dcf/search.html:25
 #, python-format
 msgid "Search results (%(paginator.count)s items found):"
 msgstr "Результаты поиска (%(paginator.count)s найдено):"
 
-#: .\dcf\templates\dcf\search.html:28
+#: dcf/templates/dcf/search.html:28
 msgid "Not found"
 msgstr "Не найдено"
 
-#: .\dcf\templates\dcf\user_item_list.html:18
+#: dcf/templates/dcf/user_item_list.html:18
 msgid "Link"
 msgstr "Ссылка"
 
-#: .\dcf\templates\dcf\user_item_list.html:20
+#: dcf/templates/dcf/user_item_list.html:20
 msgid "Posted"
 msgstr "Размещено"
 
-#: .\dcf\templates\dcf\user_item_list.html:27
+#: dcf/templates/dcf/user_item_list.html:27
 msgid "Edit item"
 msgstr "Редактировать объявление"
 
-#: .\dcf\templates\dcf\user_item_list.html:28
+#: dcf/templates/dcf/user_item_list.html:29
 msgid "Open item"
 msgstr "Открыть объявление"
 
-#: .\dcf\templates\dcf\user_item_list.html:28
+#: dcf/templates/dcf/user_item_list.html:29
 msgid "Open"
 msgstr "Открыть"
 
-#: .\dcf\templates\dcf\user_item_list.html:40
+#: dcf/templates/dcf/user_item_list.html:41
 msgid "You have no items to show."
 msgstr "У вас нет ни одного объявления"
 
-#: .\dcf\templates\registration\login.html:5
-msgid "Login"
-msgstr "Войти"
-
-#: .\dcf\templates\registration\login.html:14
-msgid "Login via Social"
-msgstr "Войти с через социальные сети"
-
-#: .\dcf\views.py:149
+#: dcf/views.py:151
 msgid "You have reached the limit!"
 msgstr "Вы достигли лимита"
 
-#: .\dcf\views.py:197
+#: dcf/views.py:200
 msgid "Your profile settings was updated!"
 msgstr "Ваши настройки были обновлены!"
+
+#: dcf/views.py:225
+msgid "Received a complaint"
+msgstr "Поступила жалоба"
+
+#: dcf/views.py:227
+msgid "Item"
+msgstr "Объявление"
+
+#: templates/registration/login.html:14
+msgid "Login via Social"
+msgstr "Войти с через социальные сети"
+
+#~ msgid "%s updates"
+#~ msgstr "%s обновления"
+
+#~ msgid "You have no access right to that page"
+#~ msgstr "У вас нет прав доступа к этой странице"
+
+#~ msgid "Page not found"
+#~ msgstr "Страница не найдена"
+
+#~ msgid "Service is temporary unavailable"
+#~ msgstr "Сервис временно недоступен"
+
+#~ msgid "Login via Facebook"
+#~ msgstr "Войти с помощью Facebook"
