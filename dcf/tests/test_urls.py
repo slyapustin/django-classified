@@ -91,7 +91,7 @@ class DCFTestCase(BaseTestCase):
             'title': 'Danger!',
             'text': 'More bad item',
         }
-        response = self.client.post(reverse('dcf:complaint', kwargs={'item_id': self.complaint.item.id}), complain_data)
+        self.client.post(reverse('dcf:complaint', kwargs={'item_id': self.complaint.item.id}), complain_data)
         self.assertEqual(len(Complaint.objects.all()), 2)
 
     def test_user_cant_complain(self):
