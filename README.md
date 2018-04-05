@@ -65,9 +65,9 @@ Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
  * DCF_RSS_LIMIT - RSS feed items limit
  * DCF_RELATED_LIMIT - Number of related items displayed
  * DCF_ITEM_PER_PAGE - Number of items per page
- * DCF_LOGIN_TO_CONTACT - Hide contact information for unauthorized requests  
- 
-## Demo sites
- * [https://craiglists.ru/](https://craiglists.ru?utm_source=github)
- * Hosted at [Digital Ocean](https://m.do.co/c/08ce1ee690de) (referral link, you get $10 after registration)
+ * DCF_LOGIN_TO_CONTACT - Hide contact information for unauthorized requests
+
+## Credits
+
+ * Thanks [JetBrains](https://www.jetbrains.com) for the awesome [PyCharm](https://www.jetbrains.com/pycharm/) IDE.
  
