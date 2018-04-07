@@ -10,10 +10,12 @@ from django.utils.translation import ugettext as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from dcf import settings as dcf_settings
-from dcf.forms import ItemForm, ProfileForm, SearchForm
-from dcf.models import Item, Image, Group, Section, Profile
+from dcf.forms import ItemForm, ProfileForm, SearchForm, ComplaintForm
+from dcf.models import Item, Image, Group, Section, Profile, Complaint
 
 
 class FilteredListView(FormMixin, ListView):
@@ -207,3 +209,18 @@ class ProfileView(UpdateView):
 class RobotsView(TemplateView):
     template_name = 'dcf/robots.txt'
     content_type = 'text/plain'
+
+def complaint(request, pk, slug):
+	item = Item.objects.get(id=pk)
+	if request.method != 'POST':
+		form = ComplaintForm()
+	else:
+		form = ComplaintForm(request.POST)
+		if form.is_valid():
+			new_complaint = form.save(commit=False)
+			new_complaint.item = item
+			new_complaint.user = request.user
+			new_complaint.save()
+			return HttpResponseRedirect(reverse('dcf:item', args=[pk, slug]))
+	context = {'pk': pk, 'slug': slug, 'form': form}
+	return render(request, 'dcf/complaint.html', context)

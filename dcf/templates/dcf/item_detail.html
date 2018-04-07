@@ -67,8 +67,12 @@
             <hr />
             {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
                 {% trans "Please" %} <a href='{% url 'login' %}'>{% trans "login" %}</a> {%  trans "to see contact information." %}
+                <hr />
+                <a class="btn btn-primary btn-lg btn-block" href="{% url 'login' %}">{% trans "To complain of item" %}</a>
             {% else %}
-              {% trans "Phone" %}: {{ object.user.profile.phone }}
+                {% trans "Phone" %}: {{ object.user.profile.phone }}
+                <hr />
+                <a class="btn btn-primary btn-lg btn-block" href="{% url 'dcf:complaint' object.pk object.slug  %}">{% trans "To complain of item" %}</a>
             {% endif %}
         </div>
     </div>

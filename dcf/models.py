@@ -131,3 +131,18 @@ class Item(models.Model):
 class Image(models.Model):
     item = models.ForeignKey(Item)
     file = ImageField(_('image'), upload_to='images')
+
+
+@python_2_unicode_compatible
+class Complaint(models.Model):
+    item = models.ForeignKey(Item, verbose_name=_('item'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    text = models.TextField(_('text'))
+    date_added = models.DateTimeField(_('date_added'), auto_now_add=True)
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = _('complaint')
+        verbose_name_plural = _('complaints')
