@@ -6,8 +6,8 @@ python:
   - 3.6
 
 env:
-  - DJANGO="1.11"
-  - DJANGO=">=2.0,<2.1"
+  - DJANGO="django>=1.11,<2.0"
+  - DJANGO="django>=2.0,<2.1"
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=project.settings
@@ -15,9 +15,9 @@ before_install:
   - export PIP_USE_MIRRORS=true
 
 install:
+  - pip install $DJANGO --quiet
   - python setup.py install
   - pip install flake8
-  - pip install django==$DJANGO --quiet
 
 before_script:
   - flake8  --ignore=E501
@@ -31,4 +31,4 @@ after_success:
 matrix:
     exclude:
         - python: 2.7
-          env: DJANGO=">=2.0,<2.1"
+          env: DJANGO="django>=2.0,<2.1"
