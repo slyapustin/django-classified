@@ -37,14 +37,15 @@
 
 * [Twitter Bootstrap Jumbotron](http://getbootstrap.com/examples/jumbotron-narrow/)
 
-## Installation
-
-    pip install django-classified
-
-
 ## Demo project
 
 Demo project available at `demo/` folder.
+
+## Installation
+ * Install app `pip install django-classified`
+ * Add `django-classified` to the `INSTALLED_APPS` list
+ * Add `url(r'', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file.
+ * Add `'django_classified.context_processors.common_values'` to the `context_processors` list
 
 
 ## Customization:
