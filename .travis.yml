@@ -11,10 +11,11 @@ env:
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=project.settings
-  - export PYTHONPATH=$HOME/builds/inoks/dcf
+  - export PYTHONPATH=$HOME/builds/inoks/django-classified
   - export PIP_USE_MIRRORS=true
 
 install:
+  - python setup.py install
   - pip install flake8
   - pip install django==$DJANGO --quiet
 
@@ -22,7 +23,7 @@ before_script:
   - flake8  --ignore=E501
 
 script:
-  - coverage run --source='./dcf' manage.py test
+  - coverage run --source='.' demo/demo_classified/manage.py test django_classified
 
 after_success:
   - coverage report --show-missing
