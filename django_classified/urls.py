@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from django.conf.urls import url
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.sitemaps.views import sitemap as sitemap_view
 from django.views.decorators.cache import cache_page, never_cache
 
@@ -20,4 +21,7 @@ urlpatterns = [
     url(r'^user/$', views.MyItemsView.as_view(), name='user-items'),
     url(r'^user/profile/$', views.ProfileView.as_view(), name='profile'),
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
+
+    url(r'^logout$', LogoutView.as_view(), name='logout'),
+    url(r'^login', LoginView.as_view(template_name='django_classified/login.html'), name='login'),
 ]

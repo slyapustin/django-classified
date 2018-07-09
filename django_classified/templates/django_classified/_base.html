@@ -57,12 +57,12 @@
                   <a href="{% url 'django_classified:profile' %}">{% trans "Profile" %}</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
+                <li><a href="{% url 'django_classified:logout' %}?next=/">{% trans "Logout" %}</a></li>
               </ul>
             </li>
           {% else %}
             <li role="presentation">
-              <a href="{% url 'django_classified:profile' %}" title="{% trans "Login" %}">
+              <a href="{% url 'django_classified:login' %}" title="{% trans "Login" %}">
                 <span class="glyphicon glyphicon-user"></span> {% trans "Login" %}
               </a>
             </li>
