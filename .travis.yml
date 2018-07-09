@@ -7,7 +7,7 @@ python:
 
 env:
   - DJANGO="1.11"
-  - DJANGO="2.0"
+  - DJANGO=">=2.0,<2.1"
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=project.settings
@@ -15,7 +15,6 @@ before_install:
   - export PIP_USE_MIRRORS=true
 
 install:
-  - pip install -r requirements/testing.txt
   - pip install django==$DJANGO --quiet
 
 before_script:
@@ -26,3 +25,8 @@ script:
 
 after_success:
   - coverage report --show-missing
+
+matrix:
+    exclude:
+        - python: 2.7
+          env: DJANGO_VERSION=">=2.0,<2.1"
