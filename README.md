@@ -25,7 +25,7 @@
     * Russian 
     * French (thanks to [Teolemon](https://github.com/teolemon))
     * Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
-    * Help translate to other languages at [Transifex](https://www.transifex.com/inoks/dcf/)
+    * Help translate to other languages at [Transifex](https://www.transifex.com/inoks/django-classified/)
 
 ## Requirements
  
