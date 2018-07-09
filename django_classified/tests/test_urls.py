@@ -57,9 +57,6 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get(reverse('django_classified:rss'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('login'))
-        self.assertEqual(response.status_code, 200)
-
         response = self.client.get('/robots.txt')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'text/plain')
