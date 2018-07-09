@@ -6,13 +6,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     author='Sergey Lyapustin',
-    name="dcf",
-    version="0.5.2",
+    name="django-classified",
+    version="0.6",
     author_email="inoks@mail.ru",
-    description="Django Classifieds Ads Application",
+    description="Django classified ads",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/inoks/dcf",
+    url="https://github.com/inoks/django-classified",
     keywords='django classified ads',
     packages=setuptools.find_packages(),
     classifiers=(
