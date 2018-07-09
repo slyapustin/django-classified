@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase
 
 from django_classified.models import Item, Group, Profile, Section
@@ -9,7 +9,7 @@ from django_classified.settings import DCF_ITEM_PER_USER_LIMIT
 
 
 class BaseTestCase(TestCase):
-    fixtures = [
+    _fixtures = [
         'section',
         'group'
     ]
@@ -27,7 +27,15 @@ class BaseTestCase(TestCase):
         self.profile.phone = '0123456789'
         self.profile.save()
 
-        self.group = Group.objects.get(slug='new-cars')
+        self.section = Section.objects.create(
+            title='Cars'
+        )
+
+        self.group = Group.objects.create(
+            slug='new-cars',
+            title='New cars',
+            section=self.section
+        )
         self.item = Item.objects.create(
             user=self.user,
             group=self.group,
