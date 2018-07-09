@@ -1,5 +1,5 @@
 """
-Default settings for dcf app.
+Default settings for Django Classified app.
 """
 from django.conf import settings
 
@@ -25,7 +25,7 @@ DCF_RELATED_LIMIT = getattr(settings, 'DCF_RELATED_LIMIT', 6)
 DCF_RSS_LIMIT = getattr(settings, 'DCF_RSS_LIMIT', 100)
 
 # Site default description
-DCF_SITE_DESCRIPTION = getattr(settings, 'DCF_SITE_DESCRIPTION', 'Classified Advertisements Powered by Django DCF')
+DCF_SITE_DESCRIPTION = getattr(settings, 'DCF_SITE_DESCRIPTION', 'Classified Advertisements Powered by Django')
 
 # Default site name
 DCF_SITE_NAME = getattr(settings, 'DCF_SITE_NAME', 'Django Classified Ads')
