@@ -74,10 +74,6 @@ class QuickDjangoTest(object):
                 'default': {
                     'ENGINE': 'django.db.backends.sqlite3',
                     'NAME': os.path.join(self.DIRNAME, 'database.db'),
-                    'USER': '',
-                    'PASSWORD': '',
-                    'HOST': '',
-                    'PORT': '',
                 }
             },
             INSTALLED_APPS=self.INSTALLED_APPS + self.apps,
@@ -89,7 +85,7 @@ class QuickDjangoTest(object):
         )
 
         from django.test.runner import DiscoverRunner
-        test_runner = DiscoverRunner(verbosity=1)
+        test_runner = DiscoverRunner()
         django.setup()
 
         failures = test_runner.run_tests(self.apps)
