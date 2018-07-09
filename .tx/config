@@ -2,5 +2,5 @@
 host = https://www.transifex.com
 
 [dcf.core]
-file_filter = dcf/locale/<lang>/LC_MESSAGES/django.po
+file_filter = django_classified/locale/<lang>/LC_MESSAGES/django.po
 source_lang = en
