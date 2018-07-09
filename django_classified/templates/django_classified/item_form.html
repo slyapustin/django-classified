@@ -1,0 +1,25 @@
+{% extends "django_classified/_base.html" %}
+
+{% load i18n bootstrap %}
+
+{% block title %}{% if form.instance.pk %}{% trans "Edit" %}{% else %}{% trans "Add" %}{% endif %}
+  {% trans "item" %}{% endblock title %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-12">
+      <form enctype="multipart/form-data" method='post' role="form">
+        {{ formset.management_form }}
+
+        {% csrf_token %}
+
+        {{ form|bootstrap }}
+
+        {% for form in formset %}
+          {{ form|bootstrap }}
+        {% endfor %}
+        <input type='submit' class="btn" value='{% trans "Save" %}'>
+      </form>
+    </div>
+  </div>
+{% endblock body %}

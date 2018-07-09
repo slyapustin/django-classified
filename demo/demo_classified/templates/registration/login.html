@@ -1,4 +1,4 @@
-{% extends 'dcf/_base.html' %}
+{% extends 'django_classified/_base.html' %}
 
 {% load i18n %}
 
@@ -6,19 +6,24 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">{% trans "Login via Social" %}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <a href="{% url "social:begin" "facebook"%}" class="btn btn-default">Facebook</a>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">{% trans "Login" %}</h4>
+          </div>
+          <div class="modal-body">
+            <form method="POST">
+              {% csrf_token %}
+              {{ form }}
+              <br/>
+              <input type="submit" value="{% trans "Login" %}" class="btn btn-default"/>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
 {% endblock %}

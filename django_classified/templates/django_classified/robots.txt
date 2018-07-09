@@ -1,0 +1,5 @@
+User-agent: *
+
+Sitemap: {{ request.scheme }}://{{ request.get_host }}{% url 'django_classified:sitemap' %}
+Disallow: /user/
+Host: {{ request.get_host }}

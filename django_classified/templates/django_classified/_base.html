@@ -1,0 +1,130 @@
+{% spaceless %}
+
+  {% load staticfiles i18n %}
+
+  <!DOCTYPE HTML>
+  <html lang="en">
+
+  <head>
+    <title>{% block title %}{% endblock title %} | {{ DCF_SITE_NAME }}</title>
+
+    <meta name="description"
+          content="{% block meta_description %}{{ DCF_SITE_DESCRIPTION }}{% endblock meta_description %}"/>
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if GOOGLE_SITE_VERIFICATION_ID %}
+      <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION_ID }}"/>
+    {% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    {% if FACEBOOK_APP_ID %}
+      <meta property="fb:app_id" content="{{ FACEBOOK_APP_ID }}"/>
+    {% endif %}
+    <meta property="og:type" content="website"/>
+    {% block meta_og %}{% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{% static 'django_classified/img/favicon.ico' %}"/>
+
+    <link href="{% static 'django_classified/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'django_classified/css/jumbotron-narrow.css' %}" rel="stylesheet"/>
+    <link href="{% static 'django_classified/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'django_classified/css/style.css' %}" rel="stylesheet" type="text/css"/>
+
+    <link rel="alternate" type="application/rss+xml" href="{% url 'django_classified:rss' %}">
+
+  </head>
+
+  <body>
+  <div class="container">
+
+    <div class="header clearfix">
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="active"><a
+                  href="{% url 'django_classified:item-new' %}">{% trans "Add new" %}</a>
+          </li>
+          <li role="presentation"><a href="{% url 'django_classified:index' %}">{% trans "Home" %}</a></li>
+          <li role="presentation"><a href="{% url 'django_classified:search' %}">{% trans "Search" %}</a></li>
+          {% if user.is_authenticated %}
+            <li role="presentation" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'django_classified:user-items' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
+                </li>
+                <li>
+                  <a href="{% url 'django_classified:profile' %}">{% trans "Profile" %}</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
+              </ul>
+            </li>
+          {% else %}
+            <li role="presentation">
+              <a href="{% url 'django_classified:profile' %}" title="{% trans "Login" %}">
+                <span class="glyphicon glyphicon-user"></span> {% trans "Login" %}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+      <h3 class="text-muted">{{ DCF_SITE_NAME }}</h3>
+    </div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class='row'>
+          <div class="col-md-12">
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              {{ message|safe }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% block body %}
+
+    {% endblock %}
+
+    <footer class="footer">
+      <span class="pull-left">{{ DCF_SITE_NAME }}</span>
+      {% if DCF_DISPLAY_CREDITS %}
+        <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/django-classified"
+                                                             title="Django Classified Ads">Django Classified Ads</a></span>
+      {% endif %}
+    </footer>
+
+  </div>
+
+  <script src="{% static 'django_classified/js/jquery.min.js' %}"></script>
+  <script src="{% static 'django_classified/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'django_classified/js/lightbox.min.js' %}"></script>
+
+  {% block ext_scripts %}{% endblock %}
+
+  {% if GOOGLE_ANALYTICS_PROPERTY_ID %}
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+  {% endif %}
+
+  <!-- generated {% now "jS F Y H:i:s" %} -->
+  </body>
+  </html>
+{% endspaceless %}

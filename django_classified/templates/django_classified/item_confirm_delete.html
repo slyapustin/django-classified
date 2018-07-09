@@ -1,0 +1,20 @@
+{% extends "django_classified/_base.html" %}
+
+{% load humanize thumbnail i18n %}
+
+{% block title %}{% trans "Delete" %} {{ object.title }}{% endblock title %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-lg-12">
+      <form method="post">
+        {% csrf_token %}
+        <p>
+          {% trans "Are you sure you want to delete" %}
+          <a href="{{ object.get_absolute_url }}">{{ object }}</a>?
+        </p>
+        <input type="submit" value="{% trans "Confirm" %}" class="btn btn-danger">
+      </form>
+    </div>
+  </div>
+{% endblock %}

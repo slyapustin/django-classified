@@ -1,0 +1,102 @@
+{% extends "django_classified/_base.html" %}
+
+{% load humanize thumbnail i18n %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+{% block meta_description %}{{ object.description }}{% endblock meta_description %}
+{% block meta_keywords %}{{ object.get_keywords }}{% endblock meta_keywords %}
+
+{% block meta_og %}
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}"/>
+  <meta property="og:title" content="{{ object.title }}"/>
+  <meta property="og:description" content="{{ object.description }}"/>
+  {% for img in object.image_set.all %}
+    {% thumbnail img.file "x800" as im %}
+      <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ im.url }}"/>
+      <meta property="og:image:alt" content="{{ object.title }}"/>
+    {% endthumbnail %}
+  {% endfor %}
+{% endblock %}
+
+{% block body %}
+  {% include "django_classified/admin_toolbar.inc.html" %}
+
+  <div itemscope itemtype="http://schema.org/Product">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <a href='{{ object.group.get_absolute_url }}'>{{ object.group }}</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-9">
+        <h1 itemprop="name">{{ object.title }}</h1>
+      </div>
+      <div class="col-lg-3">
+                <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <meta itemprop="priceCurrency" content="{{ DCF_CURRENCY }}"/>
+                <h2 itemprop="price" content="{{ object.price|floatformat }}">{{ object.price|default:"" }}</h2>
+                </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12" itemprop="description">
+        {{ object.description|linebreaks }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        {% for img in object.image_set.all %}
+          {% thumbnail img.file "150x150" crop="center" as im %}
+            <a href='{{ img.file.url }}' data-lightbox="lightbox[{{ object.id }}]"
+               title="{{ object.title }}">
+              <img itemprop="image" src='{{ im.url }}' alt='{{ object.title }}' title='{{ object.title }}'
+                   width="{{ im.width }}" height="{{ im.height }}" class="img-rounded"/>
+            </a>
+          {% endthumbnail %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr/>
+      {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
+        {% trans "Please" %} <a href='{% url 'login' %}'>{% trans "login" %}</a>
+        {% trans "to see contact information." %}
+      {% else %}
+        {% trans "Phone" %}: {{ object.user.profile.phone }}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <hr/>
+    </div>
+    {% for item in object.related_items %}
+      <div class="col-md-2">
+        {% if item.featured_image %}
+          {% thumbnail featured_image.file "70x70" crop="center" as im %}
+            <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">
+              <img
+                      src='{{ im.url }}'
+                      alt='{{ item.title }}'
+                      title='{{ item.title }}'
+                      width="{{ im.width }}"
+                      height="{{ im.height }}"
+                      class="img-rounded"
+              />
+            </a>
+          {% endthumbnail %}
+        {% endif %}
+        <br/>
+        <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">{{ item.title|truncatewords:3 }}</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

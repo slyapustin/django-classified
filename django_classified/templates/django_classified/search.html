@@ -1,0 +1,32 @@
+{% extends "django_classified/_base.html" %}
+
+{% load i18n bootstrap %}
+
+{% block title %}
+  {% if form.q.value %}{% trans "Search results for query" %} "{{ form.q.value }}" {% else %}
+    {% trans "Search" %}{% endif %}
+{% endblock title %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-lg-6">
+      <h3>{% trans "Search" %}</h3>
+      <form method="get" role="form">
+        {{ form|bootstrap }}
+        <button type="submit" class="btn" name="page" value="1">{% trans "Search" %}</button>
+        {% if object_list|length %}
+          {% include 'django_classified/form_pagination.inc.html' %}
+        {% endif %}
+      </form>
+    </div>
+  </div>
+  <div>
+    <hr/>
+    {% if object_list|length %}
+      <h4>{% blocktrans %}Search results ({{ paginator.count }} items found):{% endblocktrans %}</h4>
+      {% include "django_classified/item_list.inc.html" with item=object %}
+    {% else %}
+      <h4>{% trans "Not found" %}</h4>
+    {% endif %}
+  </div>
+{% endblock %}

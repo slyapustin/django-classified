@@ -1,0 +1,30 @@
+{% extends "django_classified/_base.html" %}
+
+{% block title %}{{ DCF_SITE_NAME }}{% endblock title %}
+
+{% block body %}
+  {% for object in object_list %}
+    {% if forloop.first %}
+      <div class="row marketing">
+    {% endif %}
+
+  <div class="col-lg-4">
+    <h4>{{ object }} [{{ object.count }}]</h4>
+
+    {% for group in object.group_set.all %}
+      {% if group.count > 0 %}
+        <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
+          {{ group.title }} [{{ group.count }}]<br/>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if forloop.counter|divisibleby:3 or forloop.last %}
+    </div>
+    {% if not forloop.last %}
+      <div class="row marketing">
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+{% endblock %}

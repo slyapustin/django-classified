@@ -1,0 +1,52 @@
+{% load humanize thumbnail i18n %}
+
+{% for object in object_list %}
+  {% if forloop.first %}
+    <table class="table table-hover">
+    <thead>
+    <tr>
+      <td></td>
+      <td>{% trans "Price" %}</td>
+    </tr>
+    </thead>
+    <tbody>
+  {% endif %}
+<tr>
+  <td>
+    {% if object.featured_image %}
+      {% thumbnail object.featured_image.file "45x45" crop="center" as im %}
+        <a href='{{ object.get_absolute_url }}' title="{{ object.title }}">
+          <img
+                  src='{{ im.url }}'
+                  alt='{{ object.title }}'
+                  title='{{ object.title }}'
+                  width="{{ im.width }}"
+                  height="{{ im.height }}"
+                  class="img-rounded"
+          />
+          {% if object.image_count > 1 %}
+            <span class="badge badge-notify"
+                  title="{{ object.image_count|add:-1 }} {% trans 'more photos available' %}"> + {{ object.image_count|add:-1 }}</span>
+          {% endif %}
+        </a>
+      {% endthumbnail %}
+    {% endif %}
+    <a href='{{ object.get_absolute_url }}' title='{{ object.title }}'>
+      {{ object.title }}
+    </a>
+  </td>
+  <td>
+    {{ object.price|default:"" }}
+  </td>
+</tr>
+{% if forloop.last %}
+  </tbody>
+  </table>
+{% endif %}
+
+{% empty %}
+  <p>
+    {% trans "No item here yet." %}
+    <a href="{% url 'django_classified:item-new' %}">{% trans "Add one now!" %}</a>
+  </p>
+{% endfor %}

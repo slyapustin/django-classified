@@ -1,0 +1,48 @@
+{% extends "django_classified/_base.html" %}
+
+{% load humanize i18n %}
+
+{% block title %}{% trans "My items" %}{% endblock title %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>{% trans "My items" %}</h2>
+      {% for object in object_list %}
+        {% if forloop.first %}
+          <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+            <td>{% trans "Group" %}</td>
+            <td>{% trans "Update" %}</td>
+            <td>{% trans "Link" %}</td>
+            <td>{% trans "Price" %}</td>
+            <td>{% trans "Posted" %}</td>
+            <td>{% trans "Delete" %}</td>
+          </tr>
+          </thead>
+        {% endif %}
+      <tr>
+        <td><a href='{{ object.group.get_absolute_url }}'>{{ object.group }}</a></td>
+        <td><a href='{% url 'django_classified:item-edit' object.pk %}'
+               title='{% trans "Edit item" %}'>{{ object.title }}</a>
+        </td>
+        <td><a href='{{ object.get_absolute_url }}' title='{% trans "Open item" %}'>{% trans "Open" %}</a></td>
+        <td>{{ object.price|intcomma }}</td>
+        <td>{{ object.posted|date:"d.m.Y" }}</td>
+        <td><a href='{% url 'django_classified:my-delete' object.id %}'>{% trans "Delete" %}</a></td>
+      </tr>
+
+      {% if forloop.last %}
+        </table>
+      {% endif %}
+
+      {% empty %}
+        <p>
+          {% trans "You have no items to show." %}
+          <a href="{% url 'django_classified:item-new' %}">{% trans "Add one now!" %}</a>
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
