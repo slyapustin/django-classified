@@ -31,28 +31,21 @@
 ## Requirements
  
 * Python 2.7, 3.5, 3.6
-* Django 1.8, 1.9, 1.10, 1.11
-* [Python Social Auth - Application - Django](https://github.com/python-social-auth/social-app-django)
+* Django 1.11, 2.0
 
 ## Design
 
 * [Twitter Bootstrap Jumbotron](http://getbootstrap.com/examples/jumbotron-narrow/)
 
-## Credits:
-
-* [Leveraging HTML and Django Forms: Pagination of Filtered Results](http://schinckel.net/2014/08/17/leveraging-html-and-django-forms%3A-pagination-of-filtered-results/) 
-    
 ## Installation
-   [Install + activate virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
+
+    pip install django-classified
 
 
-    pip install -r requirements/base.txt
-    python ./manage.py makemigrations dcf
-    python ./manage.py migrate
-    python ./manage.py createsuperuser
-    python ./manage.py runserver
-    
-Visit [Admin Page](http://localhost:8000/admin/) and create some Sections/Group
+## Demo project
+
+Demo project available at `demo/` folder.
+
 
 ## Customization:
  
