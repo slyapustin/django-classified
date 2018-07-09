@@ -1,11 +1,10 @@
-# Django Classified Advertising Application
+# Simple Django Classified Advertising App
 
 [![Build Status](https://travis-ci.org/inoks/django-classified.svg?branch=master)](https://travis-ci.org/inoks/django-classified)
 
 ## Features
 
-* User registration
- * via social networks (Facebook as example)
+* Simple user registration
 * Item groups and categories
 * Image
     * upload multiple images per item
