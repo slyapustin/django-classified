@@ -1,6 +1,6 @@
 # Django Classified Advertising Application
 
-[![Build Status](https://travis-ci.org/inoks/dcf.svg?branch=master)](https://travis-ci.org/inoks/dcf)
+[![Build Status](https://travis-ci.org/inoks/django-classified.svg?branch=master)](https://travis-ci.org/inoks/django-classified)
 
 ## Features
 
