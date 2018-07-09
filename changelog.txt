@@ -1,21 +1,25 @@
 Changelog
 =========
-v0.7 (09/07/2018)
 
+v0.7.3 (09/07/2018)
+-----------------
+Added simple user registration form
+
+
+v0.7 (09/07/2018)
+-----------------
 Renamed to django-classified
 Added demo project
 
 
 v0.2.1 (15/04/2016)
 -----------------
-
 Custom user model is back!
 New way for providing custom settings (dispose of DCF dictionary)
 Django 1.9.5
 
 v0.2 (26/03/2016)
 -----------------
-
 Removed custom user model, since it's make impossible for app integrate with existed  solution
 Removed django_compressor integrations, due to problem with installation on some platform (searching for good solution now).
 Added initial migrations and updated installation guide in readme file.
