@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 import os
 
+from django.urls import reverse_lazy
+
 DEBUG = True
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -142,6 +144,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'login'
+LOGIN_URL = reverse_lazy('django_classified:login')
 
 DCF_SITE_NAME = 'DEMO Classified Ads'
