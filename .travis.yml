@@ -10,7 +10,7 @@ env:
   - DJANGO="django>=2.0,<2.1"
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=project.settings
+  - export DJANGO_SETTINGS_MODULE=demo.demo_classified.project.settings
   - export PYTHONPATH=$HOME/builds/inoks/django-classified
   - export PIP_USE_MIRRORS=true
 
