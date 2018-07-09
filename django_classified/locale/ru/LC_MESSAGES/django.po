@@ -17,251 +17,251 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: .\dcf\feeds.py:13
+#: .\django_classified\feeds.py:13
 #, python-format
 msgid "%s updates"
 msgstr "%s обновления"
 
-#: .\dcf\forms.py:9 .\dcf\templates\dcf\user_item_list.html.py:16
+#: .\django_classified\forms.py:9 .\django_classified\templates\django_classified\user_item_list.html.py:16
 msgid "Group"
 msgstr "Группа"
 
-#: .\dcf\forms.py:10
+#: .\django_classified\forms.py:10
 msgid "Query"
 msgstr "Запрос"
 
-#: .\dcf\models.py:14 .\dcf\models.py:75
+#: .\django_classified\models.py:14 .\django_classified\models.py:75
 msgid "phone"
 msgstr "телефон"
 
-#: .\dcf\models.py:15
+#: .\django_classified\models.py:15
 msgid "receive news"
 msgstr "получать новости"
 
-#: .\dcf\models.py:25 .\dcf\models.py:41 .\dcf\models.py:72
+#: .\django_classified\models.py:25 .\django_classified\models.py:41 .\django_classified\models.py:72
 msgid "title"
 msgstr "заголовок"
 
-#: .\dcf\models.py:35 .\dcf\models.py:42
+#: .\django_classified\models.py:35 .\django_classified\models.py:42
 msgid "section"
 msgstr "раздел"
 
-#: .\dcf\models.py:36
+#: .\django_classified\models.py:36
 msgid "sections"
 msgstr "разделы"
 
-#: .\dcf\models.py:51 .\dcf\models.py:70
+#: .\django_classified\models.py:51 .\django_classified\models.py:70
 msgid "group"
 msgstr "группа"
 
-#: .\dcf\models.py:52
+#: .\django_classified\models.py:52
 msgid "groups"
 msgstr "группы"
 
-#: .\dcf\models.py:73
+#: .\django_classified\models.py:73
 msgid "description"
 msgstr "описание"
 
-#: .\dcf\models.py:74
+#: .\django_classified\models.py:74
 msgid "price"
 msgstr "стоимость"
 
-#: .\dcf\models.py:76
+#: .\django_classified\models.py:76
 msgid "display"
 msgstr "отображать"
 
-#: .\dcf\models.py:77
+#: .\django_classified\models.py:77
 msgid "updated"
 msgstr "Обновлено"
 
-#: .\dcf\models.py:78
+#: .\django_classified\models.py:78
 msgid "posted"
 msgstr "Размещено"
 
-#: .\dcf\models.py:84 .\dcf\templates\dcf\item_form.html.py:5
+#: .\django_classified\models.py:84 .\django_classified\templates\django_classified\item_form.html.py:5
 msgid "item"
 msgstr "объявление"
 
-#: .\dcf\models.py:85
+#: .\django_classified\models.py:85
 msgid "items"
 msgstr "объявления"
 
-#: .\dcf\models.py:116
+#: .\django_classified\models.py:116
 msgid "image"
 msgstr "изображение"
 
-#: .\dcf\templates\403.html:10
+#: .\django_classified\templates\403.html:10
 msgid "You have no access right to that page"
 msgstr "У вас нет прав доступа к этой странице"
 
-#: .\dcf\templates\404.html:10
+#: .\django_classified\templates\404.html:10
 msgid "Page not found"
 msgstr "Страница не найдена"
 
-#: .\dcf\templates\500.html:10
+#: .\django_classified\templates\500.html:10
 msgid "Service is temporary unavailable"
 msgstr "Сервис временно недоступен"
 
-#: .\dcf\templates\_base.html:37
+#: .\django_classified\templates\_base.html:37
 msgid "Add new"
 msgstr "Добавить"
 
-#: .\dcf\templates\_base.html:38
+#: .\django_classified\templates\_base.html:38
 msgid "Home"
 msgstr "Главная"
 
-#: .\dcf\templates\_base.html:39 .\dcf\templates\dcf\search.html.py:6
-#: .\dcf\templates\dcf\search.html:12 .\dcf\templates\dcf\search.html.py:15
+#: .\django_classified\templates\_base.html:39 .\django_classified\templates\django_classified\search.html.py:6
+#: .\django_classified\templates\django_classified\search.html:12 .\django_classified\templates\django_classified\search.html.py:15
 msgid "Search"
 msgstr "Поиск"
 
-#: .\dcf\templates\_base.html:46 .\dcf\templates\dcf\user_item_list.html:5
-#: .\dcf\templates\dcf\user_item_list.html:10
+#: .\django_classified\templates\_base.html:46 .\django_classified\templates\django_classified\user_item_list.html:5
+#: .\django_classified\templates\django_classified\user_item_list.html:10
 msgid "My items"
 msgstr "Мои объявления"
 
-#: .\dcf\templates\_base.html:47 .\dcf\templates\dcf\profile.html.py:5
+#: .\django_classified\templates\_base.html:47 .\django_classified\templates\django_classified\profile.html.py:5
 msgid "Profile"
 msgstr "Профиль"
 
-#: .\dcf\templates\_base.html:49
+#: .\django_classified\templates\_base.html:49
 msgid "Logout"
 msgstr "Выйти"
 
-#: .\dcf\templates\_base.html:53
+#: .\django_classified\templates\_base.html:53
 msgid "Login via Facebook"
 msgstr "Войти с помощью Facebook"
 
-#: .\dcf\templates\_base.html:79
+#: .\django_classified\templates\_base.html:79
 msgid "Powered by"
 msgstr "Работает на"
 
-#: .\dcf\templates\dcf\admin_toolbar.inc.html:6
-#: .\dcf\templates\dcf\item_confirm_delete.html:5
-#: .\dcf\templates\dcf\user_item_list.html:21
-#: .\dcf\templates\dcf\user_item_list.html:31
+#: .\django_classified\templates\django_classified\admin_toolbar.inc.html:6
+#: .\django_classified\templates\django_classified\item_confirm_delete.html:5
+#: .\django_classified\templates\django_classified\user_item_list.html:21
+#: .\django_classified\templates\django_classified\user_item_list.html:31
 msgid "Delete"
 msgstr "Удалить"
 
-#: .\dcf\templates\dcf\admin_toolbar.inc.html:7
-#: .\dcf\templates\dcf\item_form.html:5
+#: .\django_classified\templates\django_classified\admin_toolbar.inc.html:7
+#: .\django_classified\templates\django_classified\item_form.html:5
 msgid "Edit"
 msgstr "Редактировать"
 
-#: .\dcf\templates\dcf\form_pagination.inc.html:13
-#: .\dcf\templates\dcf\list_pagination.inc.html:7
+#: .\django_classified\templates\django_classified\form_pagination.inc.html:13
+#: .\django_classified\templates\django_classified\list_pagination.inc.html:7
 msgid "Prev"
 msgstr "Предыдущая"
 
-#: .\dcf\templates\dcf\form_pagination.inc.html:25
-#: .\dcf\templates\dcf\list_pagination.inc.html:12
+#: .\django_classified\templates\django_classified\form_pagination.inc.html:25
+#: .\django_classified\templates\django_classified\list_pagination.inc.html:12
 msgid "Next"
 msgstr "Следующая"
 
-#: .\dcf\templates\dcf\item_confirm_delete.html:13
+#: .\django_classified\templates\django_classified\item_confirm_delete.html:13
 msgid "Are you sure you want to delete"
 msgstr "Вы действительно хотите удалить"
 
-#: .\dcf\templates\dcf\item_confirm_delete.html:16
+#: .\django_classified\templates\django_classified\item_confirm_delete.html:16
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: .\dcf\templates\dcf\item_detail.html:65
+#: .\django_classified\templates\django_classified\item_detail.html:65
 msgid "Please"
 msgstr "Пожалуйста"
 
-#: .\dcf\templates\dcf\item_detail.html:65
+#: .\django_classified\templates\django_classified\item_detail.html:65
 msgid "login"
 msgstr "Войдите"
 
-#: .\dcf\templates\dcf\item_detail.html:65
+#: .\django_classified\templates\django_classified\item_detail.html:65
 msgid "to see contact information."
 msgstr "для просмотра контактной информации."
 
-#: .\dcf\templates\dcf\item_detail.html:67
+#: .\django_classified\templates\django_classified\item_detail.html:67
 msgid "Phone"
 msgstr "Телефон"
 
-#: .\dcf\templates\dcf\item_form.html:5
+#: .\django_classified\templates\django_classified\item_form.html:5
 msgid "Add"
 msgstr "Добавить"
 
-#: .\dcf\templates\dcf\item_form.html:20
+#: .\django_classified\templates\django_classified\item_form.html:20
 msgid "Save"
 msgstr "Сохранить"
 
-#: .\dcf\templates\dcf\item_list.inc.html:9
-#: .\dcf\templates\dcf\user_item_list.html:19
+#: .\django_classified\templates\django_classified\item_list.inc.html:9
+#: .\django_classified\templates\django_classified\user_item_list.html:19
 msgid "Price"
 msgstr "Стоимость"
 
-#: .\dcf\templates\dcf\item_list.inc.html:21
+#: .\django_classified\templates\django_classified\item_list.inc.html:21
 msgid "more photos available"
 msgstr "фотографий доступно"
 
-#: .\dcf\templates\dcf\item_list.inc.html:41
+#: .\django_classified\templates\django_classified\item_list.inc.html:41
 msgid "No item here yet."
 msgstr "Еще нет объявлений"
 
-#: .\dcf\templates\dcf\item_list.inc.html:42
-#: .\dcf\templates\dcf\user_item_list.html:41
+#: .\django_classified\templates\django_classified\item_list.inc.html:42
+#: .\django_classified\templates\django_classified\user_item_list.html:41
 msgid "Add one now!"
 msgstr "Добавить"
 
-#: .\dcf\templates\dcf\profile.html:13
-#: .\dcf\templates\dcf\user_item_list.html:17
+#: .\django_classified\templates\django_classified\profile.html:13
+#: .\django_classified\templates\django_classified\user_item_list.html:17
 msgid "Update"
 msgstr "Обновить"
 
-#: .\dcf\templates\dcf\search.html:6
+#: .\django_classified\templates\django_classified\search.html:6
 msgid "Search results for query"
 msgstr "Результаты по запросу"
 
-#: .\dcf\templates\dcf\search.html:25
+#: .\django_classified\templates\django_classified\search.html:25
 #, python-format
 msgid "Search results (%(paginator.count)s items found):"
 msgstr "Результаты поиска (%(paginator.count)s найдено):"
 
-#: .\dcf\templates\dcf\search.html:28
+#: .\django_classified\templates\django_classified\search.html:28
 msgid "Not found"
 msgstr "Не найдено"
 
-#: .\dcf\templates\dcf\user_item_list.html:18
+#: .\django_classified\templates\django_classified\user_item_list.html:18
 msgid "Link"
 msgstr "Ссылка"
 
-#: .\dcf\templates\dcf\user_item_list.html:20
+#: .\django_classified\templates\django_classified\user_item_list.html:20
 msgid "Posted"
 msgstr "Размещено"
 
-#: .\dcf\templates\dcf\user_item_list.html:27
+#: .\django_classified\templates\django_classified\user_item_list.html:27
 msgid "Edit item"
 msgstr "Редактировать объявление"
 
-#: .\dcf\templates\dcf\user_item_list.html:28
+#: .\django_classified\templates\django_classified\user_item_list.html:28
 msgid "Open item"
 msgstr "Открыть объявление"
 
-#: .\dcf\templates\dcf\user_item_list.html:28
+#: .\django_classified\templates\django_classified\user_item_list.html:28
 msgid "Open"
 msgstr "Открыть"
 
-#: .\dcf\templates\dcf\user_item_list.html:40
+#: .\django_classified\templates\django_classified\user_item_list.html:40
 msgid "You have no items to show."
 msgstr "У вас нет ни одного объявления"
 
-#: .\dcf\templates\registration\login.html:5
+#: .\django_classified\templates\registration\login.html:5
 msgid "Login"
 msgstr "Войти"
 
-#: .\dcf\templates\registration\login.html:14
+#: .\django_classified\templates\registration\login.html:14
 msgid "Login via Social"
 msgstr "Войти с через социальные сети"
 
-#: .\dcf\views.py:149
+#: .\django_classified\views.py:149
 msgid "You have reached the limit!"
 msgstr "Вы достигли лимита"
 
-#: .\dcf\views.py:197
+#: .\django_classified\views.py:197
 msgid "Your profile settings was updated!"
 msgstr "Ваши настройки были обновлены!"
