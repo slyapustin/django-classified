@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
@@ -9,7 +10,8 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin, FormView
+from django.contrib.auth.forms import UserCreationForm
 
 from . import settings as dcf_settings
 from .forms import ItemForm, ProfileForm, SearchForm
@@ -207,3 +209,17 @@ class ProfileView(UpdateView):
 class RobotsView(TemplateView):
     template_name = 'django_classified/robots.txt'
     content_type = 'text/plain'
+
+
+class UserCreationFormView(FormView):
+    form_class = UserCreationForm
+    template_name = 'django_classified/new_user.html'
+    success_url = reverse_lazy('django_classified:profile')
+
+    def dispatch(self, *args, **kwargs):
+        return super(UserCreationFormView, self).dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return super(UserCreationFormView, self).form_valid(form)

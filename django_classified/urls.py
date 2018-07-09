@@ -24,4 +24,5 @@ urlpatterns = [
 
     url(r'^logout$', LogoutView.as_view(), name='logout'),
     url(r'^login', LoginView.as_view(template_name='django_classified/login.html'), name='login'),
+    url(r'^new-user$', views.UserCreationFormView.as_view(), name='new-user'),
 ]
