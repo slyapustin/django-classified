@@ -1,4 +1,4 @@
-# Django Classified App
+# Django Classified Advertising Application
 
 [![Build Status](https://travis-ci.org/inoks/dcf.svg?branch=master)](https://travis-ci.org/inoks/dcf)
 
