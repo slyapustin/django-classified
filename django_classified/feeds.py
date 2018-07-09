@@ -2,8 +2,8 @@
 from django.contrib.sites.models import Site
 from django.contrib.syndication.views import Feed
 
-from dcf import settings as dcf_settings
-from dcf.models import Item
+from . import settings as dcf_settings
+from .models import Item
 
 
 class LatestItemFeed(Feed):

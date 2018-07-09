@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from dcf.models import Item, Group, Profile, Section
-from dcf.settings import DCF_ITEM_PER_USER_LIMIT
+from django_classified.models import Item, Group, Profile, Section
+from django_classified.settings import DCF_ITEM_PER_USER_LIMIT
 
 
 class BaseTestCase(TestCase):
@@ -39,20 +39,20 @@ class BaseTestCase(TestCase):
 
 class DCFTestCase(BaseTestCase):
     def test_index_page(self):
-        response = self.client.get(reverse('dcf:index'))
+        response = self.client.get(reverse('django_classified:index'))
         self.assertContains(response, self.group.section.title)
 
     def test_pages(self):
-        response = self.client.get(reverse('dcf:robots'))
+        response = self.client.get(reverse('django_classified:robots'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('dcf:search'))
+        response = self.client.get(reverse('django_classified:search'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('dcf:sitemap'))
+        response = self.client.get(reverse('django_classified:sitemap'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(reverse('dcf:rss'))
+        response = self.client.get(reverse('django_classified:rss'))
         self.assertEqual(response.status_code, 200)
 
         response = self.client.get(reverse('login'))
@@ -76,29 +76,29 @@ class DCFTestCase(BaseTestCase):
             password=self.password
         )
 
-        response = self.client.get(reverse('dcf:profile'))
+        response = self.client.get(reverse('django_classified:profile'))
         self.assertContains(response, self.profile.phone)
 
         new_data = {'phone': '1111111111'}
-        self.client.post(reverse('dcf:profile'), new_data)
+        self.client.post(reverse('django_classified:profile'), new_data)
 
         self.profile.refresh_from_db()
         self.assertEqual(self.profile.phone, new_data['phone'])
 
     def test_item_search_by_title(self):
-        response = self.client.get(reverse('dcf:search'), {'q': self.item.title})
+        response = self.client.get(reverse('django_classified:search'), {'q': self.item.title})
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_item_search_by_description(self):
-        response = self.client.get(reverse('dcf:search'), {'q': self.item.description})
+        response = self.client.get(reverse('django_classified:search'), {'q': self.item.description})
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_item_search_by_group(self):
-        response = self.client.get(reverse('dcf:search'), {'group': self.item.group.pk})
+        response = self.client.get(reverse('django_classified:search'), {'group': self.item.group.pk})
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_item_search_not_found(self):
-        response = self.client.get(reverse('dcf:search'), {'q': 'WRONG KEYWORDS'})
+        response = self.client.get(reverse('django_classified:search'), {'q': 'WRONG KEYWORDS'})
         self.assertNotContains(response, self.item.get_absolute_url())
 
     def test_user_can_add_item(self):
@@ -109,10 +109,10 @@ class DCFTestCase(BaseTestCase):
 
         self.assertTrue(self.profile.allow_add_item(), True)
 
-        response = self.client.get(reverse('dcf:item-new'))
+        response = self.client.get(reverse('django_classified:item-new'))
         self.assertEqual(response.status_code, 200)
 
-        image_file = open('dcf/static/dcf/img/close.png', 'rb')
+        image_file = open('django_classified/static/django_classified/img/close.png', 'rb')
         item_data = {
             'image_set-TOTAL_FORMS': 1,
             'image_set-INITIAL_FORMS': 0,
@@ -123,7 +123,7 @@ class DCFTestCase(BaseTestCase):
             'price': 999,
             'is_active': True
         }
-        response = self.client.post(reverse('dcf:item-new'), item_data, follow=True)
+        response = self.client.post(reverse('django_classified:item-new'), item_data, follow=True)
         self.assertContains(response, item_data['title'])
         new_item = Item.objects.get(title=item_data['title'])
         self.assertEqual(new_item.image_count, 1)
@@ -136,7 +136,7 @@ class DCFTestCase(BaseTestCase):
 
         self.assertEqual(self.user.item_set.count(), 1)
 
-        response = self.client.get(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}))
+        response = self.client.get(reverse('django_classified:item-edit', kwargs={'pk': self.item.pk}))
         self.assertEqual(response.status_code, 200)
 
         item_data = {
@@ -148,7 +148,8 @@ class DCFTestCase(BaseTestCase):
             'price': 999,
             'is_active': True
         }
-        response = self.client.post(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}), item_data, follow=True)
+        response = self.client.post(reverse('django_classified:item-edit', kwargs={'pk': self.item.pk}), item_data,
+                                    follow=True)
         self.assertEqual(self.user.item_set.count(), 1)
         self.assertContains(response, item_data['title'])
         self.item.refresh_from_db()
@@ -168,7 +169,7 @@ class DCFTestCase(BaseTestCase):
 
         self.assertEqual(another_user.item_set.count(), 0)
 
-        response = self.client.get(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}))
+        response = self.client.get(reverse('django_classified:item-edit', kwargs={'pk': self.item.pk}))
         self.assertEqual(response.status_code, 403)
 
         item_data = {
@@ -180,7 +181,8 @@ class DCFTestCase(BaseTestCase):
             'price': 999,
             'is_active': True
         }
-        response = self.client.post(reverse('dcf:item-edit', kwargs={'pk': self.item.pk}), item_data, follow=True)
+        response = self.client.post(reverse('django_classified:item-edit', kwargs={'pk': self.item.pk}), item_data,
+                                    follow=True)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_not_add_more_than_allowed_items(self):
@@ -201,7 +203,7 @@ class DCFTestCase(BaseTestCase):
             'is_active': True
         }
         for i in range(self.user.item_set.count(), DCF_ITEM_PER_USER_LIMIT + 10):
-            self.client.post(reverse('dcf:item-new'), item_data)
+            self.client.post(reverse('django_classified:item-new'), item_data)
 
         self.assertFalse(self.profile.allow_add_item())
         self.assertEqual(self.user.item_set.count(), DCF_ITEM_PER_USER_LIMIT)
@@ -212,10 +214,10 @@ class DCFTestCase(BaseTestCase):
             password=self.password
         )
         self.assertEqual(Item.objects.all().count(), 1)
-        response = self.client.get(reverse('dcf:my-delete', kwargs={'pk': self.item.pk}))
+        response = self.client.get(reverse('django_classified:my-delete', kwargs={'pk': self.item.pk}))
         self.assertEqual(response.status_code, 200)
 
-        self.client.post(reverse('dcf:my-delete', kwargs={'pk': self.item.pk}))
+        self.client.post(reverse('django_classified:my-delete', kwargs={'pk': self.item.pk}))
         self.assertEqual(Item.objects.all().count(), 0)
 
     def test_user_can_view_own_items(self):
@@ -224,7 +226,7 @@ class DCFTestCase(BaseTestCase):
             password=self.password
         )
         self.assertEqual(Item.objects.all().count(), 1)
-        response = self.client.get(reverse('dcf:user-items'))
+        response = self.client.get(reverse('django_classified:user-items'))
         self.assertContains(response, self.item.get_absolute_url())
 
     def test_related_items(self):

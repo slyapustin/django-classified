@@ -3,7 +3,9 @@ from django.conf.urls import url
 from django.contrib.sitemaps.views import sitemap as sitemap_view
 from django.views.decorators.cache import cache_page, never_cache
 
-from dcf import views, feeds, sitemap
+from . import views, feeds, sitemap
+
+app_name = 'django_classified'
 
 urlpatterns = [
     url(r'^$', views.SectionListView.as_view(), name='index'),

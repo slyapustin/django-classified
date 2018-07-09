@@ -2,18 +2,18 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
 
-from dcf import settings as dcf_settings
-from dcf.forms import ItemForm, ProfileForm, SearchForm
-from dcf.models import Item, Image, Group, Section, Profile
+from . import settings as dcf_settings
+from .forms import ItemForm, ProfileForm, SearchForm
+from .models import Item, Image, Group, Section, Profile
 
 
 class FilteredListView(FormMixin, ListView):
@@ -44,7 +44,7 @@ class SearchView(FilteredListView):
     form_class = SearchForm
     queryset = Item.objects.filter(is_active=True)
     paginate_by = 10
-    template_name = 'dcf/search.html'
+    template_name = 'django_classified/search.html'
 
 
 class FormsetMixin(object):
@@ -148,7 +148,7 @@ class ItemCreateView(FormsetMixin, CreateView):
         profile = Profile.get_or_create_for_user(self.request.user)
         if not profile.allow_add_item():
             messages.error(self.request, _('You have reached the limit!'))
-            return redirect(reverse('dcf:user-items'))
+            return redirect(reverse('django_classified:user-items'))
 
         return super(ItemCreateView, self).dispatch(*args, **kwargs)
 
@@ -160,7 +160,7 @@ class ItemCreateView(FormsetMixin, CreateView):
 
 
 class MyItemsView(ListView):
-    template_name = 'dcf/user_item_list.html'
+    template_name = 'django_classified/user_item_list.html'
 
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
@@ -172,7 +172,7 @@ class MyItemsView(ListView):
 
 class ItemDeleteView(DeleteView):
     model = Item
-    success_url = reverse_lazy('dcf:user-items')
+    success_url = reverse_lazy('django_classified:user-items')
 
     def get_queryset(self):
         qs = super(ItemDeleteView, self).get_queryset()
@@ -188,9 +188,9 @@ class ItemDeleteView(DeleteView):
 
 
 class ProfileView(UpdateView):
-    template_name = 'dcf/profile.html'
+    template_name = 'django_classified/profile.html'
     form_class = ProfileForm
-    success_url = reverse_lazy('dcf:profile')
+    success_url = reverse_lazy('django_classified:profile')
 
     def get_object(self, queryset=None):
         return Profile.get_or_create_for_user(self.request.user)
@@ -205,5 +205,5 @@ class ProfileView(UpdateView):
 
 
 class RobotsView(TemplateView):
-    template_name = 'dcf/robots.txt'
+    template_name = 'django_classified/robots.txt'
     content_type = 'text/plain'

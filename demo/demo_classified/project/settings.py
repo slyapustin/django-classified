@@ -11,7 +11,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
@@ -97,7 +97,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -113,17 +112,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'dcf.context_processors.common_values'
+
+                'django_classified.context_processors.common_values'
             ],
+            'debug': True
         },
     },
 ]
-
-TEMPLATE_DEBUG = DEBUG
-
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'dcf', 'locale'),
-)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -137,75 +132,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'bootstrapform',
-    'social_django',
     'sorl.thumbnail',
 
-    'dcf',
+    'django_classified',
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
-
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
-
-FORCE_SCRIPT_NAME = ''
-
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
-FACEBOOK_APP_ID = ''
-
-GOOGLE_ANALYTICS_PROPERTY_ID = ''
-GOOGLE_SITE_VERIFICATION_ID = ''
-
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
-
-SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
-SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
-
-SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR_FACEBOOK_OAUTH2_KEY_HERE'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_OAUTH2_SECRET_HERE'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id,name,email',
-}
-
-# Try to load local or prod settings if such exists
-try:
-    from project.settings_local import *  # noqa
-except ImportError as e:
-    try:
-        from project.settings_prod import *  # noqa
-    except ImportError as e:
-        pass

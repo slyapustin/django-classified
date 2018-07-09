@@ -2,7 +2,7 @@
 from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 
-from dcf.models import Section, Group, Item, Image
+from .models import Section, Group, Item, Image
 
 
 class ImageInline(AdminImageMixin, admin.StackedInline):

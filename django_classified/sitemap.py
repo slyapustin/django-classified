@@ -1,7 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 
-from dcf import settings as dcf_settings
-from dcf.models import Item
+from . import settings as dcf_settings
+from .models import Item
 
 
 class ItemSitemap(Sitemap):

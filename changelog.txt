@@ -1,5 +1,10 @@
 Changelog
 =========
+v0.7 (09/07/2018)
+
+Renamed to django-classified
+Added demo project
+
 
 v0.2.1 (15/04/2016)
 -----------------

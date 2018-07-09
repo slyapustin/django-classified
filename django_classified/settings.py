@@ -1,7 +1,6 @@
 """
 Default settings for dcf app.
 """
-
 from django.conf import settings
 
 # Site currency

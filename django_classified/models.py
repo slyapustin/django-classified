@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.functional import cached_property
@@ -9,11 +9,11 @@ from django.utils.translation import ugettext as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
 
-from dcf import settings as dcf_settings
+from . import settings as dcf_settings
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone = models.CharField(_('phone'), max_length=30, null=True, blank=True)
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
@@ -51,7 +51,7 @@ class Section(models.Model):
 class Group(models.Model):
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(_('title'), max_length=100)
-    section = models.ForeignKey('Section', verbose_name=_('section'))
+    section = models.ForeignKey('Section', verbose_name=_('section'), on_delete=models.CASCADE)
 
     def __str__(self):
         return '%s - %s' % (self.section.title, self.title)
@@ -71,14 +71,14 @@ class Group(models.Model):
         super(Group, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('dcf:group', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('django_classified:group', kwargs={'pk': self.pk, 'slug': self.slug})
 
 
 @python_2_unicode_compatible
 class Item(models.Model):
     slug = models.SlugField(blank=True, null=True, max_length=100)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    group = models.ForeignKey(Group, verbose_name=_('group'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, verbose_name=_('group'), on_delete=models.CASCADE)
 
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
@@ -96,7 +96,7 @@ class Item(models.Model):
         ordering = ('-updated', )
 
     def get_absolute_url(self):
-        return reverse('dcf:item', kwargs={
+        return reverse('django_classified:item', kwargs={
             'pk': self.pk,
             'slug': self.slug
         })
@@ -129,5 +129,5 @@ class Item(models.Model):
 
 
 class Image(models.Model):
-    item = models.ForeignKey(Item)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     file = ImageField(_('image'), upload_to='images')

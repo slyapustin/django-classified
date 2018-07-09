@@ -4,5 +4,5 @@ from django.apps import AppConfig
 
 
 class DCFConfig(AppConfig):
-    name = 'dcf'
-    verbose_name = "DCF - Django Classified"
+    name = 'django_classified'
+    verbose_name = "Django Classified Ads"

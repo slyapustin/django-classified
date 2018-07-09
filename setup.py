@@ -16,9 +16,18 @@ setuptools.setup(
     keywords='django classified ads',
     packages=setuptools.find_packages(),
     classifiers=(
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 3",
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ),
+    install_requires=[
+        "django-bootstrap-form",
+        "django-filter",
+        "Django>=1.11,<2.1",
+        "Pillow>=4.0",
+        "sorl-thumbnail>=12",
+        "unidecode",
+    ],
 )

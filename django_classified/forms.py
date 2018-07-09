@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
-from dcf.models import Item, Group, Profile
+from .models import Item, Group, Profile
 
 
 class SearchForm(forms.Form):
