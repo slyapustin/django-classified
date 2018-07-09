@@ -8,11 +8,6 @@ from django_classified.settings import DCF_ITEM_PER_USER_LIMIT
 
 
 class BaseTestCase(TestCase):
-    _fixtures = [
-        'section',
-        'group'
-    ]
-
     def setUp(self):
         self.username = 'John'
         self.password = 'summer'

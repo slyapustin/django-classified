@@ -24,7 +24,7 @@ before_script:
   - flake8  --ignore=E501
 
 script:
-  - coverage run --source='.' demo/demo_classified/manage.py test django_classified
+  - coverage run --source='.' quicktest.py django_classified
 
 after_success:
   - coverage report --show-missing
