@@ -101,6 +101,13 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.email.EmailAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -115,6 +122,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
+                # Social Auth context processors
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
+                # Django Classified context processors
                 'django_classified.context_processors.common_values'
             ],
             'debug': True
@@ -135,15 +147,42 @@ INSTALLED_APPS = [
 
     'bootstrapform',
     'sorl.thumbnail',
-
     'django_classified',
+    'social_django',
+
+    'demo',
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'
+
+DCF_SITE_NAME = 'DEMO Classified'
+
+# You need to obtain Facebook Keys
+# Check docs for more info here:
+# https://python-social-auth.readthedocs.io/en/latest/backends/facebook.html
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+
+SOCIAL_AUTH_EMAIL_FORM_HTML = 'demo/email_signup.html'
+SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'demo.mail.send_validation'
+SOCIAL_AUTH_EMAIL_VALIDATION_URL = '/email-sent/'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'demo.pipelines.require_email',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.mail.mail_validation',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.debug.debug',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.debug.debug'
 )
 
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = reverse_lazy('django_classified:login')
-
-DCF_SITE_NAME = 'DEMO Classified Ads'
+EMAIL_FROM = DCF_SITE_NAME
