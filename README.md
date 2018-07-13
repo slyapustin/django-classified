@@ -4,7 +4,7 @@
 
 ## Features
 
-* Item groups and categories
+* Item groups, categories and areas (for ex. Cities ot Locations)
 * Image
     * upload multiple images per item
     * generating preview (via [sorl-thumbnail](https://github.com/mariocesar/sorl-thumbnail))

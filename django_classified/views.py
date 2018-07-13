@@ -3,17 +3,18 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
+from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
 
 from . import settings as dcf_settings
 from .forms import ItemForm, ProfileForm, SearchForm
-from .models import Item, Image, Group, Section, Profile
+from .models import Item, Image, Group, Section, Profile, Area
 
 
 class FilteredListView(FormMixin, ListView):
@@ -36,8 +37,29 @@ class FilteredListView(FormMixin, ListView):
         return self.render_to_response(context)
 
 
-class SectionListView(ListView):
-    model = Section
+class SectionListView(TemplateView):
+    template_name = 'django_classified/section_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SectionListView, self).get_context_data(**kwargs)
+
+        items_qs = Item.objects.all()
+        area = Area.get_for_request(self.request)
+        if area:
+            items_qs = items_qs.filter(area=area)
+
+        object_list = []
+        # Prepare list of tuples with object/count
+        for section in Section.objects.all():
+            groups = [(group, items_qs.filter(group=group).count()) for group in section.group_set.all()]
+            object_list.append(dict(
+                section=(section, items_qs.filter(group__section=section).count()),
+                groups=groups
+            ))
+
+        context['object_list'] = object_list
+
+        return context
 
 
 class SearchView(FilteredListView):
@@ -45,6 +67,11 @@ class SearchView(FilteredListView):
     queryset = Item.objects.filter(is_active=True)
     paginate_by = 10
     template_name = 'django_classified/search.html'
+
+    def get_initial(self):
+        initials = super(SearchView, self).get_initial()
+        initials['area'] = Area.get_for_request(self.request)
+        return initials
 
 
 class FormsetMixin(object):
@@ -112,8 +139,12 @@ class GroupDetail(SingleObjectMixin, ListView):
         context['group'] = self.object
         return context
 
-    def get_queryset(self):
-        return self.object.item_set.all()
+    def get_queryset(self, **kwargs):
+        item_qs = self.object.item_set.all()
+        area = Area.get_for_request(self.request)
+        if area:
+            return item_qs.filter(area=area)
+        return item_qs
 
 
 class ItemDetailView(DetailView):
@@ -157,6 +188,11 @@ class ItemCreateView(FormsetMixin, CreateView):
         form.save()
 
         return super(ItemCreateView, self).form_valid(form, formset)
+
+    def get_initial(self):
+        initial = super(ItemCreateView, self).get_initial()
+        initial['area'] = Area.get_for_request(self.request)
+        return initial
 
 
 class MyItemsView(ListView):
@@ -207,3 +243,17 @@ class ProfileView(UpdateView):
 class RobotsView(TemplateView):
     template_name = 'django_classified/robots.txt'
     content_type = 'text/plain'
+
+
+class SetAreaView(View):
+    def get(self, request):
+        area_slug = request.GET.get('area_slug')
+        if area_slug:
+            area = get_object_or_404(Area, slug=area_slug)
+            area.set_for_request(request)
+        else:
+            Area.delete_for_request(request)
+
+        next_url = self.request.GET.get('next') or reverse_lazy('django_classified:index')
+
+        return redirect(next_url)

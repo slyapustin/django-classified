@@ -19,19 +19,25 @@
 {% endblock %}
 
 {% block body %}
-  {% include "django_classified/admin_toolbar.inc.html" %}
 
   <div itemscope itemtype="http://schema.org/Product">
 
     <div class="row">
-      <div class="col-lg-12">
-        <a href='{{ object.group.get_absolute_url }}'>{{ object.group }}</a>
+      <div class="col-md-12">
+        <h3>
+          {% if object.area %}
+            {{ object.area }}&nbsp;&gt;&nbsp;
+          {% endif %}
+          <a href='{{ object.group.get_absolute_url }}'>{{ object.group }}</a>
+        </h3>
       </div>
     </div>
 
+    {% include "django_classified/admin_toolbar.inc.html" %}
+
     <div class="row">
       <div class="col-lg-9">
-        <h1 itemprop="name">{{ object.title }}</h1>
+        <h2 itemprop="name">{{ object.title }}</h2>
       </div>
       <div class="col-lg-3">
                 <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -66,10 +72,12 @@
     <div class="col-md-12">
       <hr/>
       {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
-        {% trans "Please" %} <a href='{% url 'login' %}'>{% trans "login" %}</a>
+        {% trans "Please" %} <a href='{% url 'django_classified:profile' %}'>{% trans "login" %}</a>
         {% trans "to see contact information." %}
       {% else %}
-        {% trans "Phone" %}: {{ object.user.profile.phone }}
+        {% if object.contact_phone %}
+          {% trans "Phone" %}: {{ object.contact_phone }}
+        {% endif %}
       {% endif %}
     </div>
   </div>

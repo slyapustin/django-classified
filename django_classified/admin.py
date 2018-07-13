@@ -2,7 +2,7 @@
 from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Section, Group, Item, Image
+from .models import Section, Group, Item, Image, Area
 
 
 class ImageInline(AdminImageMixin, admin.StackedInline):
@@ -12,8 +12,8 @@ class ImageInline(AdminImageMixin, admin.StackedInline):
 
 class ItemAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',), }
-    list_display = ('title', 'slug', 'user', 'is_active', 'posted', 'updated', 'group')
-    list_filter = ('group', 'is_active', 'posted', )
+    list_display = ('title', 'group', 'area', 'user', 'is_active', 'posted', 'updated')
+    list_filter = ('area', 'group', 'is_active', 'posted',)
     search_fields = ('title', 'body', 'user__email')
     inlines = [ImageInline]
 
@@ -29,6 +29,14 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
+class AreaAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+    )
+    prepopulated_fields = {'slug': ('title',)}
+
+
+admin.site.register(Area, AreaAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Item, ItemAdmin)

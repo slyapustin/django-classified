@@ -69,7 +69,20 @@
           {% endif %}
         </ul>
       </nav>
-      <h3 class="text-muted">{{ DCF_SITE_NAME }}</h3>
+      <h4 class="text-muted">{{ DCF_SITE_NAME }}
+        {% if area_list %}
+          <small>
+            <select id="area-selector">
+              <option value="">{% trans 'All areas' %}</option>
+              {% for area_item in area_list %}
+                <option value="{{ area_item.slug }}" {% if area.pk == area_item.pk %}selected{% endif %}>
+                  {{ area_item }}
+                </option>
+              {% endfor %}
+            </select>
+          </small>
+        {% endif %}
+      </h4>
     </div>
 
     {% if messages %}
@@ -123,6 +136,18 @@
       ga('send', 'pageview');
     </script>
   {% endif %}
+
+  <script>
+    $(function () {
+      $('#area-selector').on('change', function () {
+        var params = {
+          area_slug: this.value,
+          next: window.location.href
+        };
+        window.location = "{% url 'django_classified:set-area' %}?" + $.param(params);
+      });
+    });
+  </script>
 
   <!-- generated {% now "jS F Y H:i:s" %} -->
   </body>

@@ -9,12 +9,11 @@
     {% endif %}
 
   <div class="col-lg-4">
-    <h4>{{ object }} [{{ object.count }}]</h4>
-
-    {% for group in object.group_set.all %}
-      {% if group.count > 0 %}
+    <h4>{{ object.section.0 }} [{{ object.section.1 }}]</h4>
+    {% for group, group_count in object.groups %}
+      {% if group_count > 0 %}
         <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
-          {{ group.title }} [{{ group.count }}]<br/>
+          {{ group.title }} [{{ group_count }}]<br/>
         </a>
       {% endif %}
     {% endfor %}

@@ -13,7 +13,7 @@
       <h3>{% trans "Search" %}</h3>
       <form method="get" role="form">
         {{ form|bootstrap }}
-        <button type="submit" class="btn" name="page" value="1">{% trans "Search" %}</button>
+        <button type="submit" class="btn btn-default" name="page" value="1">{% trans "Search" %}</button>
         {% if object_list|length %}
           {% include 'django_classified/form_pagination.inc.html' %}
         {% endif %}

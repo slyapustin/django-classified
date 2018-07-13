@@ -2,10 +2,11 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
-from .models import Item, Group, Profile
+from .models import Item, Group, Profile, Area
 
 
 class SearchForm(forms.Form):
+    area = forms.ModelChoiceField(label=_('Area'), queryset=Area.objects.all(), required=False)
     group = forms.ModelChoiceField(label=_('Group'), queryset=Group.objects.all(), required=False)
     q = forms.CharField(required=False, label=_('Query'),)
 
@@ -15,6 +16,10 @@ class SearchForm(forms.Form):
         filters = {}
         if self.cleaned_data['group']:
             filters['group'] = self.cleaned_data['group']
+
+        if self.cleaned_data['area']:
+            filters['area'] = self.cleaned_data['area']
+
         filters['description__icontains'] = self.cleaned_data['q']
 
         return filters
@@ -23,10 +28,19 @@ class SearchForm(forms.Form):
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('group', 'title', 'description', 'price', 'is_active')
+        fields = (
+            'area',
+            'group',
+            'title',
+            'description',
+            'price',
+            'is_active'
+        )
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('phone', )
+        fields = (
+            'phone',
+        )

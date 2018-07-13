@@ -47,6 +47,6 @@
 {% empty %}
   <p>
     {% trans "No item here yet." %}
-    <a href="{% url 'django_classified:item-new' %}">{% trans "Add one now!" %}</a>
+    <a href="{% url 'django_classified:item-new' %}" class="btn btn-default">{% trans "Add one now!" %}</a>
   </p>
 {% endfor %}

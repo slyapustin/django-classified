@@ -29,6 +29,36 @@ class Profile(models.Model):
 
 
 @python_2_unicode_compatible
+class Area(models.Model):
+    slug = models.SlugField()
+    title = models.CharField(_('title'), max_length=100)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('area')
+        verbose_name_plural = _('areas')
+
+    @classmethod
+    def get_for_request(cls, request):
+        if 'area_pk' in request.session:
+            try:
+                return cls.objects.get(pk=request.session['area_pk'])
+            except cls.DoesNotExist:
+                return None
+        return None
+
+    def set_for_request(self, request):
+        request.session['area_pk'] = self.pk
+
+    @classmethod
+    def delete_for_request(cls, request):
+        if 'area_pk' in request.session:
+            del request.session['area_pk']
+
+
+@python_2_unicode_compatible
 class Section(models.Model):
     title = models.CharField(_('title'), max_length=100)
 
@@ -79,6 +109,7 @@ class Item(models.Model):
     slug = models.SlugField(blank=True, null=True, max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, verbose_name=_('group'), on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, verbose_name=_('area'), on_delete=models.CASCADE, null=True, blank=True)
 
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
@@ -101,9 +132,13 @@ class Item(models.Model):
             'slug': self.slug
         })
 
+    @cached_property
     def get_keywords(self):
-        # TODO need more optimal keywords selection
         return ",".join(set(self.description.split()))
+
+    @cached_property
+    def contact_phone(self):
+        return self.user.profile.phone
 
     @cached_property
     def image_count(self):

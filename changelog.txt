@@ -3,6 +3,7 @@ Changelog
 
 v0.8 (13/07/2018)
 -----------------
+ - Added Areas
  - Cleanup
 
 
