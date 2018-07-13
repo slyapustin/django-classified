@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     author='Sergey Lyapustin',
     name="django-classified",
-    version="0.7.4",
+    version="0.8",
     author_email="inoks@mail.ru",
     description="Django classified ads",
     long_description=long_description,
