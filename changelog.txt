@@ -3,7 +3,7 @@ Changelog
 
 v0.7.4 (13/07/2018)
 -----------------
- - Removed user registration outside of the app
+ - Moved user registration outside of the app
  - added demo project which handle user registration by Email/Pass or Facebook
 
 
