@@ -23,11 +23,11 @@
     <meta property="og:type" content="website"/>
     {% block meta_og %}{% endblock %}
 
-    <link rel="icon" type="image/x-icon" href="{% static 'django_classified/img/favicon.ico' %}"/>
+    <link rel="icon" type="image/x-icon" href="{% static 'django_classified/images/favicon.ico' %}"/>
 
     <link href="{% static 'django_classified/css/bootstrap.min.css' %}" rel="stylesheet"/>
     <link href="{% static 'django_classified/css/jumbotron-narrow.css' %}" rel="stylesheet"/>
-    <link href="{% static 'django_classified/css/lightbox.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'django_classified/css/lightbox.min.css' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static 'django_classified/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
     <link rel="alternate" type="application/rss+xml" href="{% url 'django_classified:rss' %}">
@@ -112,7 +112,7 @@
 
   </div>
 
-  <script src="{% static 'django_classified/js/jquery.min.js' %}"></script>
+  <script src="{% static 'django_classified/js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'django_classified/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'django_classified/js/lightbox.min.js' %}"></script>
 
