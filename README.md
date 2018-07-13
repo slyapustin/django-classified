@@ -4,7 +4,6 @@
 
 ## Features
 
-* Simple user registration
 * Item groups and categories
 * Image
     * upload multiple images per item
@@ -38,7 +37,7 @@
 
 ## Demo project
 
-Demo project available at `demo/` folder.
+Demo project with user registration (via Email/Facebook) available at `demo/` folder.
 
 ## Installation
  * Install app `pip install django-classified`
@@ -51,14 +50,14 @@ Demo project available at `demo/` folder.
  
  You can provide additional customization in settings.py
  
- * DCF_SITE_NAME - Site title
- * DCF_SITE_DESCRIPTION - Site description
- * DCF_ITEM_PER_USER_LIMIT - Max Items allowed per user
- * DCF_SITEMAP_LIMIT - Sitemap items limit 
- * DCF_RSS_LIMIT - RSS feed items limit
- * DCF_RELATED_LIMIT - Number of related items displayed
- * DCF_ITEM_PER_PAGE - Number of items per page
- * DCF_LOGIN_TO_CONTACT - Hide contact information for unauthorized requests
+ * `DCF_SITE_NAME` - Site title
+ * `DCF_SITE_DESCRIPTION` - Site description
+ * `DCF_ITEM_PER_USER_LIMIT` - Max Items allowed per user
+ * `DCF_SITEMAP_LIMIT` - Sitemap items limit
+ * `DCF_RSS_LIMIT` - RSS feed items limit
+ * `DCF_RELATED_LIMIT` - Number of related items displayed
+ * `DCF_ITEM_PER_PAGE` - Number of items per page
+ * `DCF_LOGIN_TO_CONTACT` - Hide contact information for unauthorized requests
 
 ## Credits
 
