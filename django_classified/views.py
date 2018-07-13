@@ -209,17 +209,3 @@ class ProfileView(UpdateView):
 class RobotsView(TemplateView):
     template_name = 'django_classified/robots.txt'
     content_type = 'text/plain'
-
-
-class UserCreationFormView(FormView):
-    form_class = UserCreationForm
-    template_name = 'django_classified/new_user.html'
-    success_url = reverse_lazy('django_classified:profile')
-
-    def dispatch(self, *args, **kwargs):
-        return super(UserCreationFormView, self).dispatch(*args, **kwargs)
-
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return super(UserCreationFormView, self).form_valid(form)
