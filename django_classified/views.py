@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from django.contrib import messages
-from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
@@ -10,8 +9,7 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.detail import SingleObjectMixin
-from django.views.generic.edit import FormMixin, FormView
-from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import FormMixin
 
 from . import settings as dcf_settings
 from .forms import ItemForm, ProfileForm, SearchForm
