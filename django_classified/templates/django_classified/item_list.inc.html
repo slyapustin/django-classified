@@ -1,4 +1,7 @@
-{% load humanize thumbnail i18n %}
+{% load classified %}
+{% load humanize %}
+{% load i18n %}
+{% load thumbnail %}
 
 {% for object in object_list %}
   {% if forloop.first %}
@@ -36,7 +39,7 @@
     </a>
   </td>
   <td>
-    {{ object.price|default:"" }}
+    {{ object.price|currency }}
   </td>
 </tr>
 {% if forloop.last %}
