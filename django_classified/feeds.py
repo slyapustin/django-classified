@@ -21,4 +21,4 @@ class LatestItemFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return item.description[:200]
+        return item.description
