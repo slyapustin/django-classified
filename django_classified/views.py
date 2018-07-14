@@ -64,7 +64,7 @@ class SectionListView(TemplateView):
 
 class SearchView(FilteredListView):
     form_class = SearchForm
-    queryset = Item.active
+    queryset = Item.active.all()
     paginate_by = 10
     template_name = 'django_classified/search.html'
 
