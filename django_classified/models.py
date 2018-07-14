@@ -1,8 +1,10 @@
 # -*- coding:utf-8 -*-
+from __future__ import unicode_literals
+
 from django.conf import settings
-from django.urls import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
@@ -127,7 +129,10 @@ class Item(models.Model):
     active = ActiveManager()
 
     def __str__(self):
-        return self.title
+        if not self.is_active:
+            return '[%s] %s' % (_('in active'), self.title)
+        else:
+            return self.title
 
     class Meta:
         verbose_name = _('item')

@@ -17,6 +17,7 @@
             <td>{% trans "Title" %}</td>
             <td>{% trans "Price" %}</td>
             <td>{% trans "Posted" %}</td>
+            <td>{% trans "Active" %}</td>
             <td>{% trans "Edit" %}</td>
             <td>{% trans "Delete" %}</td>
           </tr>
@@ -24,9 +25,10 @@
         {% endif %}
       <tr>
         <td><a href='{{ object.group.get_absolute_url }}'>{{ object.group }}</a></td>
-        <td><a href='{{ object.get_absolute_url }}' title='{% trans "Open item" %}'>{{ object.title }}</a></td>
+        <td><a href='{{ object.get_absolute_url }}' title='{% trans "Open item" %}'>{{ object }}</a></td>
         <td>{{ object.price|intcomma }}</td>
         <td>{{ object.posted|timesince }}</td>
+        <td>{{ object.is_active|yesno }}</td>
         <td>
           <a
                   href='{% url 'django_classified:item-edit' object.pk %}'
