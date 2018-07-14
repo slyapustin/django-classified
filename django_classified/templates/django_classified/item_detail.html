@@ -56,40 +56,42 @@
       </div>
     </div>
 
+    {% if object.iamge_count %}
+      <div class="row">
+        <div class="col-lg-12">
+          {% for img in object.image_set.all %}
+            {% thumbnail img.file "150x150" crop="center" as im %}
+              <a href='{{ img.file.url }}' data-lightbox="lightbox[{{ object.id }}]"
+                 title="{{ object.title }}">
+                <img itemprop="image" src='{{ im.url }}' alt='{{ object.title }}' title='{{ object.title }}'
+                     width="{{ im.width }}" height="{{ im.height }}" class="img-rounded"/>
+              </a>
+            {% endthumbnail %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if object.contact_phone %}
     <div class="row">
-      <div class="col-lg-12">
-        {% for img in object.image_set.all %}
-          {% thumbnail img.file "150x150" crop="center" as im %}
-            <a href='{{ img.file.url }}' data-lightbox="lightbox[{{ object.id }}]"
-               title="{{ object.title }}">
-              <img itemprop="image" src='{{ im.url }}' alt='{{ object.title }}' title='{{ object.title }}'
-                   width="{{ im.width }}" height="{{ im.height }}" class="img-rounded"/>
-            </a>
-          {% endthumbnail %}
-        {% endfor %}
+      <div class="col-md-12">
+        <hr/>
+        {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
+          {% trans "Please" %} <a href='{% url 'django_classified:profile' %}'>{% trans "login" %}</a>
+          {% trans "to see contact information." %}
+        {% else %}
+          {% trans "Contact phone" %}: {{ object.contact_phone }}
+        {% endif %}
       </div>
     </div>
-  </div>
+  {% endif %}
 
   <div class="row">
-    <div class="col-md-12">
-      <hr/>
-      {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
-        {% trans "Please" %} <a href='{% url 'django_classified:profile' %}'>{% trans "login" %}</a>
-        {% trans "to see contact information." %}
-      {% else %}
-        {% if object.contact_phone %}
-          {% trans "Phone" %}: {{ object.contact_phone }}
-        {% endif %}
-      {% endif %}
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-12">
-      <hr/>
-    </div>
     {% for item in object.related_items %}
+      {% if forloop.first %}
+        <hr/>
+      {% endif %}
       <div class="col-md-2">
         {% if item.featured_image %}
           {% thumbnail featured_image.file "70x70" crop="center" as im %}
@@ -104,8 +106,8 @@
               />
             </a>
           {% endthumbnail %}
+          <br/>
         {% endif %}
-        <br/>
         <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">{{ item.title|truncatewords:3 }}</a>
       </div>
     {% endfor %}
