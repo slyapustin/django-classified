@@ -4,6 +4,7 @@ Changelog
 v0.8.1 (14/07/2018)
 -----------------
  - Do not limit description in the RSS feed
+ - Currency format
 
 
 v0.8 (13/07/2018)
