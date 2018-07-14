@@ -38,9 +38,16 @@ class ItemForm(forms.ModelForm):
         )
 
 
+class PhoneWidget(forms.TextInput):
+    input_type = 'phone'
+
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = (
             'phone',
         )
+        widgets = {
+            'phone': PhoneWidget
+        }
