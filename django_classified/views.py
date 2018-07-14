@@ -43,7 +43,7 @@ class SectionListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(SectionListView, self).get_context_data(**kwargs)
 
-        items_qs = Item.objects.all()
+        items_qs = Item.active
         area = Area.get_for_request(self.request)
         if area:
             items_qs = items_qs.filter(area=area)
@@ -64,7 +64,7 @@ class SectionListView(TemplateView):
 
 class SearchView(FilteredListView):
     form_class = SearchForm
-    queryset = Item.objects.filter(is_active=True)
+    queryset = Item.active
     paginate_by = 10
     template_name = 'django_classified/search.html'
 
@@ -140,7 +140,7 @@ class GroupDetail(SingleObjectMixin, ListView):
         return context
 
     def get_queryset(self, **kwargs):
-        item_qs = self.object.item_set.all()
+        item_qs = self.object.item_set.filter(is_active=True)
         area = Area.get_for_request(self.request)
         if area:
             return item_qs.filter(area=area)
@@ -148,7 +148,7 @@ class GroupDetail(SingleObjectMixin, ListView):
 
 
 class ItemDetailView(DetailView):
-    queryset = Item.objects.filter(is_active=True)
+    queryset = Item.active
 
 
 class ItemUpdateView(FormsetMixin, UpdateView):

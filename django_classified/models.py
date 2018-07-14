@@ -104,6 +104,11 @@ class Group(models.Model):
         return reverse('django_classified:group', kwargs={'pk': self.pk, 'slug': self.slug})
 
 
+class ActiveManager(models.Manager):
+    def get_queryset(self):
+        return super(ActiveManager, self).get_queryset().filter(is_active=True)
+
+
 @python_2_unicode_compatible
 class Item(models.Model):
     slug = models.SlugField(blank=True, null=True, max_length=100)
@@ -114,9 +119,12 @@ class Item(models.Model):
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
     price = models.DecimalField(_('price'), max_digits=10, decimal_places=2)
-    is_active = models.BooleanField(_('display'), default=True, db_index=True)
+    is_active = models.BooleanField(_('active'), default=True, db_index=True)
     updated = models.DateTimeField(_('updated'), auto_now=True, db_index=True)
     posted = models.DateTimeField(_('posted'), auto_now_add=True)
+
+    objects = models.Manager()
+    active = ActiveManager()
 
     def __str__(self):
         return self.title
