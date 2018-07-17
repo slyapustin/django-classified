@@ -16,7 +16,10 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/inoks/django-classified",
     keywords='django classified ads',
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=('demo',)),
+    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+    include_package_data=True,
+    zip_safe=False,
     classifiers=(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',
