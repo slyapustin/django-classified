@@ -184,3 +184,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 EMAIL_FROM = DCF_SITE_NAME
+
+# Use your real email settings
+# https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-EMAIL_BACKEND
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
