@@ -3,7 +3,7 @@
 Django-classified example project with user authorization via Facebook or Email.
 
 - `git clone git@github.com:inoks/django-classified.git`
-- `cd demo/django-classified/demo/`
+- `cd django-classified/demo/demo_classified/`
 - `python3 -m venv .`
 - `source bin/activate`
 - `pip install -r requirements.txt`
