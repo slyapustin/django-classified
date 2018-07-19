@@ -37,7 +37,7 @@
 
 ## Demo project
 
-Demo project with user registration (via Email/Facebook) available at `demo/` folder.
+Demo project with user registration (via Email/Facebook) available [here](https://github.com/inoks/django-classified-demo).
 
 ## Installation
  * Install app `pip install django-classified`

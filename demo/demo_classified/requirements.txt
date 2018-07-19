@@ -1,2 +1,0 @@
-django-classified==0.8.2
-social-auth-app-django==2.1.0
