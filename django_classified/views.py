@@ -128,7 +128,7 @@ class FormsetMixin(object):
 
 
 class GroupDetail(SingleObjectMixin, ListView):
-    paginate_by = dcf_settings.DCF_ITEM_PER_PAGE
+    paginate_by = dcf_settings.ITEM_PER_PAGE
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Group.objects.all())

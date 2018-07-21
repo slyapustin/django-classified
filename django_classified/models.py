@@ -20,7 +20,7 @@ class Profile(models.Model):
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
-        return self.user.item_set.count() < dcf_settings.DCF_ITEM_PER_USER_LIMIT
+        return self.user.item_set.count() < dcf_settings.ITEM_PER_USER_LIMIT
 
     @staticmethod
     def get_or_create_for_user(user):
@@ -168,7 +168,7 @@ class Item(models.Model):
             .filter(group=self.group) \
             .exclude(pk=self.pk)
 
-        return qs[:dcf_settings.DCF_RELATED_LIMIT]
+        return qs[:dcf_settings.RELATED_LIMIT]
 
     def save(self, *args, **kwargs):
         if not self.slug:

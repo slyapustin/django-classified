@@ -28,8 +28,8 @@
 
 ## Requirements
  
-* Python 2.7, 3.5, 3.6
-* Django 1.11, 2.0
+* Python 2.7, >=3.5
+* Django >=1.11
 
 ## Design
 
@@ -58,6 +58,7 @@ Demo project with user registration (via Email/Facebook) available [here](https:
  * `DCF_RELATED_LIMIT` - Number of related items displayed
  * `DCF_ITEM_PER_PAGE` - Number of items per page
  * `DCF_LOGIN_TO_CONTACT` - Hide contact information for unauthorized requests
+ * `DCF_DISPLAY_EMPTY_GROUPS` - Display groups without items in the groups list
 
 ## Credits
 

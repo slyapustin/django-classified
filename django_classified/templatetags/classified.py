@@ -6,7 +6,7 @@ from django import template
 from django.conf import settings
 from django.utils.translation import get_language, to_locale
 
-from django_classified.settings import DCF_CURRENCY
+from django_classified.settings import CURRENCY
 
 register = template.Library()
 
@@ -25,7 +25,7 @@ def currency(value, currency=None):
     # http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_currency
 
     kwargs = {
-        'currency': currency or DCF_CURRENCY,
+        'currency': currency or CURRENCY,
         'locale': to_locale(get_language() or settings.LANGUAGE_CODE)
     }
 

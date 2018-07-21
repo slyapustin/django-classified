@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django_classified.models import Item, Group, Profile, Section
-from django_classified.settings import DCF_ITEM_PER_USER_LIMIT
+from django_classified.settings import ITEM_PER_USER_LIMIT
 
 
 class BaseTestCase(TestCase):
@@ -199,11 +199,11 @@ class DCFTestCase(BaseTestCase):
             'price': 999,
             'is_active': True
         }
-        for i in range(self.user.item_set.count(), DCF_ITEM_PER_USER_LIMIT + 10):
+        for i in range(self.user.item_set.count(), ITEM_PER_USER_LIMIT + 10):
             self.client.post(reverse('django_classified:item-new'), item_data)
 
         self.assertFalse(self.profile.allow_add_item())
-        self.assertEqual(self.user.item_set.count(), DCF_ITEM_PER_USER_LIMIT)
+        self.assertEqual(self.user.item_set.count(), ITEM_PER_USER_LIMIT)
 
     def test_user_can_delete_item(self):
         self.client.login(

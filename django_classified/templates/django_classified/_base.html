@@ -6,10 +6,10 @@
   <html lang="en">
 
   <head>
-    <title>{% block title %}{% endblock title %} | {{ DCF_SITE_NAME }}</title>
+    <title>{% block title %}{% endblock title %} | {{ DCF.SITE_NAME }}</title>
 
     <meta name="description"
-          content="{% block meta_description %}{{ DCF_SITE_DESCRIPTION }}{% endblock meta_description %}"/>
+          content="{% block meta_description %}{{ DCF.SITE_DESCRIPTION }}{% endblock meta_description %}"/>
     <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if GOOGLE_SITE_VERIFICATION_ID %}
@@ -69,7 +69,7 @@
           {% endif %}
         </ul>
       </nav>
-      <h4 class="text-muted">{{ DCF_SITE_NAME }}
+      <h4 class="text-muted">{{ DCF.SITE_NAME }}
         {% if area_list %}
           <small>
             <select id="area-selector">
@@ -103,8 +103,8 @@
     {% endblock %}
 
     <footer class="footer">
-      <span class="pull-left">{{ DCF_SITE_NAME }}</span>
-      {% if DCF_DISPLAY_CREDITS %}
+      <span class="pull-left">{{ DCF.SITE_NAME }}</span>
+      {% if DCF.DISPLAY_CREDITS %}
         <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/inoks/django-classified"
                                                              title="Django Classified Ads">Django Classified Ads</a></span>
       {% endif %}

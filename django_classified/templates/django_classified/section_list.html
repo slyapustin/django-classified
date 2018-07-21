@@ -1,6 +1,6 @@
 {% extends "django_classified/_base.html" %}
 
-{% block title %}{{ DCF_SITE_NAME }}{% endblock title %}
+{% block title %}{{ DCF.SITE_NAME }}{% endblock title %}
 
 {% block body %}
   {% for object in object_list %}
@@ -11,7 +11,7 @@
   <div class="col-lg-4">
     <h4>{{ object.section.0 }} [{{ object.section.1 }}]</h4>
     {% for group, group_count in object.groups %}
-      {% if group_count > 0 %}
+      {% if group_count > 0 or DCF.DISPLAY_EMPTY_GROUPS %}
         <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
           {{ group.title }} [{{ group_count }}]<br/>
         </a>

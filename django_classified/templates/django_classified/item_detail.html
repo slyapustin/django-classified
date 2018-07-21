@@ -44,7 +44,7 @@
       </div>
       <div class="col-lg-3">
                 <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <meta itemprop="priceCurrency" content="{{ DCF_CURRENCY }}"/>
+                <meta itemprop="priceCurrency" content="{{ DCF.CURRENCY }}"/>
                 <h2 itemprop="price" content="{{ object.price|floatformat }}">{{ object.price|currency }}</h2>
                 </span>
       </div>
@@ -77,7 +77,7 @@
     <div class="row">
       <div class="col-md-12">
         <hr/>
-        {% if DCF_LOGIN_TO_CONTACT and not user.is_authenticated %}
+        {% if DCF.LOGIN_TO_CONTACT and not user.is_authenticated %}
           {% trans "Please" %} <a href='{% url 'django_classified:profile' %}'>{% trans "login" %}</a>
           {% trans "to see contact information." %}
         {% else %}
