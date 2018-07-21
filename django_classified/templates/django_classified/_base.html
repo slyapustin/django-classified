@@ -69,8 +69,9 @@
           {% endif %}
         </ul>
       </nav>
-      <h4 class="text-muted">{{ DCF.SITE_NAME }}
+      <h4 class="text-muted"><a href="{% url 'django_classified:index' %}">{{ DCF.SITE_NAME }}</a>
         {% if area_list %}
+          &nbsp;
           <small>
             <select id="area-selector">
               <option value="">{% trans 'All areas' %}</option>

@@ -3,27 +3,18 @@
 {% block title %}{{ DCF.SITE_NAME }}{% endblock title %}
 
 {% block body %}
-  {% for object in object_list %}
-    {% if forloop.first %}
-      <div class="row marketing">
-    {% endif %}
-
-  <div class="col-lg-4">
-    <h4>{{ object.section.0 }} [{{ object.section.1 }}]</h4>
-    {% for group, group_count in object.groups %}
-      {% if group_count > 0 or DCF.DISPLAY_EMPTY_GROUPS %}
-        <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
-          {{ group.title }} [{{ group_count }}]<br/>
-        </a>
-      {% endif %}
+  <div class="row marketing">
+    {% for object in object_list %}
+      <div class="col-md-3">
+        <h4 id="{{ object.section.0.id }}">{{ object.section.0 }} [{{ object.section.1 }}]</h4>
+        {% for group, group_count in object.groups %}
+          {% if group_count > 0 or DCF.DISPLAY_EMPTY_GROUPS %}
+            <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
+              {{ group.title }}&nbsp;[{{ group_count }}]<br/>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endfor %}
   </div>
-
-  {% if forloop.counter|divisibleby:3 or forloop.last %}
-    </div>
-    {% if not forloop.last %}
-      <div class="row marketing">
-    {% endif %}
-  {% endif %}
-  {% endfor %}
 {% endblock %}

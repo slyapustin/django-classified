@@ -5,11 +5,12 @@
 {% block body %}
   <div class="row">
     <div class="col-lg-12">
-      <h1>
-        <a href="{{ object.get_absolute_url }}" title="{{ object.title }}">
+      <h4>
+        <a href="{% url 'django_classified:index' %}#{{ object.section.id }}">{{ object.section }}</a> > <a
+              href="{{ object.get_absolute_url }}" title="{{ object.title }}">
           {{ object.title }}
         </a>
-      </h1>
+      </h4>
     </div>
   </div>
 
