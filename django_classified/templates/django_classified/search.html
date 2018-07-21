@@ -23,7 +23,8 @@
   <div>
     <hr/>
     {% if object_list|length %}
-      <h4>{% blocktrans %}Search results ({{ paginator.count }} items found):{% endblocktrans %}</h4>
+      <h4>{% blocktrans with count=page_obj.paginator.count %}Search results ({{ count }} items
+        found):{% endblocktrans %}</h4>
       {% include "django_classified/item_list.inc.html" with item=object %}
     {% else %}
       <h4>{% trans "Not found" %}</h4>
