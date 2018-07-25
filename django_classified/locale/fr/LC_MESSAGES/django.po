@@ -1,23 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Django Classified App\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-25 14:50+0200\n"
-"PO-Revision-Date: 2015-05-05 14:17+0100\n"
-"Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
-"Language-Team: \n"
-"Language: fr\n"
+"PO-Revision-Date: 2018-07-25 13:03+0000\n"
+"Last-Translator: Sergey <inoks@mail.ru>\n"
+"Language-Team: French (http://www.transifex.com/inoks/django-classified/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.7.5\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: forms.py:9
 msgid "Area"
@@ -52,28 +50,20 @@ msgid "areas"
 msgstr ""
 
 #: models.py:78 models.py:86
-#, fuzzy
-#| msgid "description"
 msgid "section"
-msgstr "description"
+msgstr ""
 
 #: models.py:79
-#, fuzzy
-#| msgid "description"
 msgid "sections"
-msgstr "description"
+msgstr ""
 
 #: models.py:96 models.py:118
-#, fuzzy
-#| msgid "Group"
 msgid "group"
-msgstr "Groupe"
+msgstr ""
 
 #: models.py:97
-#, fuzzy
-#| msgid "Group"
 msgid "groups"
-msgstr "Groupe"
+msgstr ""
 
 #: models.py:122
 msgid "description"
@@ -104,10 +94,8 @@ msgid "item"
 msgstr "élément"
 
 #: models.py:139
-#, fuzzy
-#| msgid "item"
 msgid "items"
-msgstr "élément"
+msgstr ""
 
 #: models.py:181
 msgid "image"
@@ -219,10 +207,8 @@ msgid "Price"
 msgstr "Prix"
 
 #: templates/django_classified/item_list.inc.html:32
-#, fuzzy
-#| msgid "photos available"
 msgid "more photos available"
-msgstr "photos disponibles"
+msgstr ""
 
 #: templates/django_classified/item_list.inc.html:52
 msgid "No item here yet."
@@ -242,22 +228,19 @@ msgid "Search results for query"
 msgstr "Résultats de recherche pour la requête"
 
 #: templates/django_classified/search.html:26
-#, fuzzy, python-format
-#| msgid "Search results (%(paginator.count)s items found):"
+#, python-format
 msgid ""
 "Search results (%(count)s items\n"
 "        found):"
-msgstr "Résultats de recherche (%(paginator.count)s éléments trouvés):"
+msgstr ""
 
 #: templates/django_classified/search.html:30
 msgid "Not found"
 msgstr "Introuvable"
 
 #: templates/django_classified/user_item_list.html:17
-#, fuzzy
-#| msgid "title"
 msgid "Title"
-msgstr "titre"
+msgstr ""
 
 #: templates/django_classified/user_item_list.html:20
 msgid "Active"
@@ -272,10 +255,8 @@ msgid "Edit item"
 msgstr "Modifier l'élément"
 
 #: templates/django_classified/user_item_list.html:53
-#, fuzzy
-#| msgid "You have no any item to show."
 msgid "You have no items to show."
-msgstr "Vous n'avez aucun élément à afficher."
+msgstr ""
 
 #: views.py:181
 msgid "You have reached the limit!"
@@ -284,36 +265,3 @@ msgstr ""
 #: views.py:235
 msgid "Your profile settings was updated!"
 msgstr ""
-
-#~ msgid "%s updates"
-#~ msgstr "%s mises à jour"
-
-#~ msgid "phone"
-#~ msgstr "téléphone"
-
-#~ msgid "display"
-#~ msgstr "afficher"
-
-#~ msgid "You have no access right to that page"
-#~ msgstr "Vous n'avez pas accès à cette page"
-
-#~ msgid "Page not found"
-#~ msgstr "Page introuvable"
-
-#~ msgid "Service is temporary unavailable"
-#~ msgstr "Le service est temporairement indisponible"
-
-#~ msgid "Login via Facebook"
-#~ msgstr "Se connecter avec Facebook"
-
-#~ msgid "Phone"
-#~ msgstr "Téléphone"
-
-#~ msgid "Link"
-#~ msgstr "Lien"
-
-#~ msgid "Open"
-#~ msgstr "Ouvrir"
-
-#~ msgid "Login via Social"
-#~ msgstr "Se connecter avec un Réseau Social"

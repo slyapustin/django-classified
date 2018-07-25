@@ -1,23 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+# Sergey <inoks@mail.ru>, 2016
+# mic <winterfall24@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Django Classified App\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-25 14:50+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-07-25 12:51+0000\n"
+"Last-Translator: Sergey <inoks@mail.ru>\n"
+"Language-Team: Polish (http://www.transifex.com/inoks/django-classified/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: forms.py:9
 msgid "Area"
@@ -25,11 +25,11 @@ msgstr ""
 
 #: forms.py:10 templates/django_classified/user_item_list.html:16
 msgid "Group"
-msgstr ""
+msgstr "Grupa"
 
 #: forms.py:11
 msgid "Query"
-msgstr ""
+msgstr "Zapytanie"
 
 #: models.py:19 templates/django_classified/item_detail.html:90
 msgid "Contact phone"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: models.py:36 models.py:65 models.py:85 models.py:121
 msgid "title"
-msgstr ""
+msgstr "tytuł"
 
 #: models.py:42 models.py:119
 msgid "area"
@@ -53,27 +53,27 @@ msgstr ""
 
 #: models.py:78 models.py:86
 msgid "section"
-msgstr ""
+msgstr "sekcja"
 
 #: models.py:79
 msgid "sections"
-msgstr ""
+msgstr "sekcje"
 
 #: models.py:96 models.py:118
 msgid "group"
-msgstr ""
+msgstr "grupa"
 
 #: models.py:97
 msgid "groups"
-msgstr ""
+msgstr "grupy"
 
 #: models.py:122
 msgid "description"
-msgstr ""
+msgstr "opis"
 
 #: models.py:123
 msgid "price"
-msgstr ""
+msgstr "cena"
 
 #: models.py:124
 msgid "active"
@@ -81,7 +81,7 @@ msgstr ""
 
 #: models.py:125
 msgid "updated"
-msgstr ""
+msgstr "zaktualizowany"
 
 #: models.py:126
 msgid "posted"
@@ -109,14 +109,14 @@ msgstr ""
 
 #: templates/django_classified/_base.html:46
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: templates/django_classified/_base.html:47
 #: templates/django_classified/search.html:7
 #: templates/django_classified/search.html:13
 #: templates/django_classified/search.html:16
 msgid "Search"
-msgstr ""
+msgstr "Szukaj"
 
 #: templates/django_classified/_base.html:54
 #: templates/django_classified/user_item_list.html:5
@@ -127,11 +127,11 @@ msgstr ""
 #: templates/django_classified/_base.html:57
 #: templates/django_classified/profile.html:5
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/django_classified/_base.html:60
 msgid "Logout"
-msgstr ""
+msgstr "Wyloguj"
 
 #: templates/django_classified/_base.html:65
 #: templates/django_classified/_base.html:66
@@ -158,25 +158,25 @@ msgstr ""
 #: templates/django_classified/user_item_list.html:21
 #: templates/django_classified/user_item_list.html:37
 msgid "Edit"
-msgstr ""
+msgstr "Edytuj"
 
 #: templates/django_classified/form_pagination.inc.html:13
 #: templates/django_classified/list_pagination.inc.html:7
 msgid "Prev"
-msgstr ""
+msgstr "Poprzedni"
 
 #: templates/django_classified/form_pagination.inc.html:25
 #: templates/django_classified/list_pagination.inc.html:12
 msgid "Next"
-msgstr ""
+msgstr "Następny"
 
 #: templates/django_classified/item_confirm_delete.html:13
 msgid "Are you sure you want to delete"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć"
 
 #: templates/django_classified/item_confirm_delete.html:16
 msgid "Confirm"
-msgstr ""
+msgstr "Potwierdź"
 
 #: templates/django_classified/item_detail.html:77
 #: templates/django_classified/user_item_list.html:19
@@ -193,24 +193,24 @@ msgstr ""
 
 #: templates/django_classified/item_detail.html:88
 msgid "to see contact information."
-msgstr ""
+msgstr "aby zobaczyć informacje kontaktowe."
 
 #: templates/django_classified/item_form.html:5
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 #: templates/django_classified/item_form.html:21
 msgid "Save"
-msgstr ""
+msgstr "Zapisz"
 
 #: templates/django_classified/item_list.inc.html:12
 #: templates/django_classified/user_item_list.html:18
 msgid "Price"
-msgstr ""
+msgstr "Cena"
 
 #: templates/django_classified/item_list.inc.html:32
 msgid "more photos available"
-msgstr ""
+msgstr "więcej dostępnych zdjęć"
 
 #: templates/django_classified/item_list.inc.html:52
 msgid "No item here yet."
