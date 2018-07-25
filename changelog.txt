@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.8.6 (25/07/2018)
+-----------------
+ - Updated Polish and Turkish translations
+
+
 v0.8.5 (25/07/2018)
 -----------------
  - Updated translations
