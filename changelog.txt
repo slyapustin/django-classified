@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.8.5 (25/07/2018)
+-----------------
+ - Updated translations
+
+
 v0.8.4 (21/07/2018)
 -----------------
  - Template updates
