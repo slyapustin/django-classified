@@ -8,260 +8,261 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 21:56+0200\n"
+"POT-Creation-Date: 2018-07-25 13:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\django_classified\feeds.py:13
-#, python-format
-msgid "%s updates"
+#: forms.py:9
+msgid "Area"
 msgstr ""
 
-#: .\django_classified\forms.py:9 .\django_classified\templates\django_classified\user_item_list.html.py:16
+#: forms.py:10 templates/django_classified/user_item_list.html:16
 msgid "Group"
 msgstr ""
 
-#: .\django_classified\forms.py:10
+#: forms.py:11
 msgid "Query"
 msgstr ""
 
-#: .\django_classified\models.py:14 .\django_classified\models.py:75
-msgid "phone"
+#: models.py:19 templates/django_classified/item_detail.html:90
+msgid "Contact phone"
 msgstr ""
 
-#: .\django_classified\models.py:15
+#: models.py:20
 msgid "receive news"
 msgstr ""
 
-#: .\django_classified\models.py:25 .\django_classified\models.py:41 .\django_classified\models.py:72
+#: models.py:36 models.py:65 models.py:85 models.py:121
 msgid "title"
 msgstr ""
 
-#: .\django_classified\models.py:35 .\django_classified\models.py:42
+#: models.py:42 models.py:119
+msgid "area"
+msgstr ""
+
+#: models.py:43
+msgid "areas"
+msgstr ""
+
+#: models.py:78 models.py:86
 msgid "section"
 msgstr ""
 
-#: .\django_classified\models.py:36
+#: models.py:79
 msgid "sections"
 msgstr ""
 
-#: .\django_classified\models.py:51 .\django_classified\models.py:70
+#: models.py:96 models.py:118
 msgid "group"
 msgstr ""
 
-#: .\django_classified\models.py:52
+#: models.py:97
 msgid "groups"
 msgstr ""
 
-#: .\django_classified\models.py:73
+#: models.py:122
 msgid "description"
 msgstr ""
 
-#: .\django_classified\models.py:74
+#: models.py:123
 msgid "price"
 msgstr ""
 
-#: .\django_classified\models.py:76
-msgid "display"
+#: models.py:124
+msgid "active"
 msgstr ""
 
-#: .\django_classified\models.py:77
+#: models.py:125
 msgid "updated"
 msgstr ""
 
-#: .\django_classified\models.py:78
+#: models.py:126
 msgid "posted"
 msgstr ""
 
-#: .\django_classified\models.py:84 .\django_classified\templates\django_classified\item_form.html.py:5
+#: models.py:133
+msgid "in active"
+msgstr ""
+
+#: models.py:138 templates/django_classified/item_form.html:6
 msgid "item"
 msgstr ""
 
-#: .\django_classified\models.py:85
+#: models.py:139
 msgid "items"
 msgstr ""
 
-#: .\django_classified\models.py:116
+#: models.py:181
 msgid "image"
 msgstr ""
 
-#: .\django_classified\templates\403.html:10
-msgid "You have no access right to that page"
-msgstr ""
-
-#: .\django_classified\templates\404.html:10
-msgid "Page not found"
-msgstr ""
-
-#: .\django_classified\templates\500.html:10
-msgid "Service is temporary unavailable"
-msgstr ""
-
-#: .\django_classified\templates\_base.html:37
+#: templates/django_classified/_base.html:44
 msgid "Add new"
 msgstr ""
 
-#: .\django_classified\templates\_base.html:38
+#: templates/django_classified/_base.html:46
 msgid "Home"
 msgstr ""
 
-#: .\django_classified\templates\_base.html:39 .\django_classified\templates\django_classified\search.html.py:6
-#: .\django_classified\templates\django_classified\search.html:12 .\django_classified\templates\django_classified\search.html.py:15
+#: templates/django_classified/_base.html:47
+#: templates/django_classified/search.html:7
+#: templates/django_classified/search.html:13
+#: templates/django_classified/search.html:16
 msgid "Search"
 msgstr ""
 
-#: .\django_classified\templates\_base.html:46 .\django_classified\templates\django_classified\user_item_list.html:5
-#: .\django_classified\templates\django_classified\user_item_list.html:10
+#: templates/django_classified/_base.html:54
+#: templates/django_classified/user_item_list.html:5
+#: templates/django_classified/user_item_list.html:10
 msgid "My items"
 msgstr ""
 
-#: .\django_classified\templates\_base.html:47 .\django_classified\templates\django_classified\profile.html.py:5
+#: templates/django_classified/_base.html:57
+#: templates/django_classified/profile.html:5
 msgid "Profile"
 msgstr ""
 
-#: .\django_classified\templates\_base.html:49
+#: templates/django_classified/_base.html:60
 msgid "Logout"
 msgstr ""
 
-#: .\django_classified\templates\_base.html:53
-msgid "Login via Facebook"
-msgstr ""
-
-#: .\django_classified\templates\_base.html:79
-msgid "Powered by"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\admin_toolbar.inc.html:6
-#: .\django_classified\templates\django_classified\item_confirm_delete.html:5
-#: .\django_classified\templates\django_classified\user_item_list.html:21
-#: .\django_classified\templates\django_classified\user_item_list.html:31
-msgid "Delete"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\admin_toolbar.inc.html:7
-#: .\django_classified\templates\django_classified\item_form.html:5
-msgid "Edit"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\form_pagination.inc.html:13
-#: .\django_classified\templates\django_classified\list_pagination.inc.html:7
-msgid "Prev"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\form_pagination.inc.html:25
-#: .\django_classified\templates\django_classified\list_pagination.inc.html:12
-msgid "Next"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_confirm_delete.html:13
-msgid "Are you sure you want to delete"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_confirm_delete.html:16
-msgid "Confirm"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_detail.html:64
-msgid "Please"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_detail.html:64
-msgid "login"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_detail.html:64
-msgid "to see contact information."
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_detail.html:66
-msgid "Phone"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_form.html:5
-msgid "Add"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_form.html:20
-msgid "Save"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_list.inc.html:9
-#: .\django_classified\templates\django_classified\user_item_list.html:19
-msgid "Price"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_list.inc.html:21
-msgid "more photos available"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_list.inc.html:41
-msgid "No item here yet."
-msgstr ""
-
-#: .\django_classified\templates\django_classified\item_list.inc.html:42
-#: .\django_classified\templates\django_classified\user_item_list.html:41
-msgid "Add one now!"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\profile.html:13
-#: .\django_classified\templates\django_classified\user_item_list.html:17
-msgid "Update"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\search.html:6
-msgid "Search results for query"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\search.html:25
-#, python-format
-msgid "Search results (%(paginator.count)s items found):"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\search.html:28
-msgid "Not found"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\user_item_list.html:18
-msgid "Link"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\user_item_list.html:20
-msgid "Posted"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\user_item_list.html:27
-msgid "Edit item"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\user_item_list.html:28
-msgid "Open item"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\user_item_list.html:28
-msgid "Open"
-msgstr ""
-
-#: .\django_classified\templates\django_classified\user_item_list.html:40
-msgid "You have no items to show."
-msgstr ""
-
-#: .\django_classified\templates\registration\login.html:5
+#: templates/django_classified/_base.html:65
+#: templates/django_classified/_base.html:66
 msgid "Login"
 msgstr ""
 
-#: .\django_classified\templates\registration\login.html:14
-msgid "Login via Social"
+#: templates/django_classified/_base.html:77
+msgid "All areas"
 msgstr ""
 
-#: .\django_classified\views.py:149
+#: templates/django_classified/_base.html:109
+msgid "Powered by"
+msgstr ""
+
+#: templates/django_classified/admin_toolbar.inc.html:7
+#: templates/django_classified/item_confirm_delete.html:5
+#: templates/django_classified/user_item_list.html:22
+#: templates/django_classified/user_item_list.html:42
+msgid "Delete"
+msgstr ""
+
+#: templates/django_classified/admin_toolbar.inc.html:10
+#: templates/django_classified/item_form.html:5
+#: templates/django_classified/user_item_list.html:21
+#: templates/django_classified/user_item_list.html:37
+msgid "Edit"
+msgstr ""
+
+#: templates/django_classified/form_pagination.inc.html:13
+#: templates/django_classified/list_pagination.inc.html:7
+msgid "Prev"
+msgstr ""
+
+#: templates/django_classified/form_pagination.inc.html:25
+#: templates/django_classified/list_pagination.inc.html:12
+msgid "Next"
+msgstr ""
+
+#: templates/django_classified/item_confirm_delete.html:13
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: templates/django_classified/item_confirm_delete.html:16
+msgid "Confirm"
+msgstr ""
+
+#: templates/django_classified/item_detail.html:77
+#: templates/django_classified/user_item_list.html:19
+msgid "Posted"
+msgstr ""
+
+#: templates/django_classified/item_detail.html:87
+msgid "Please"
+msgstr ""
+
+#: templates/django_classified/item_detail.html:87
+msgid "login"
+msgstr ""
+
+#: templates/django_classified/item_detail.html:88
+msgid "to see contact information."
+msgstr ""
+
+#: templates/django_classified/item_form.html:5
+msgid "Add"
+msgstr ""
+
+#: templates/django_classified/item_form.html:21
+msgid "Save"
+msgstr ""
+
+#: templates/django_classified/item_list.inc.html:12
+#: templates/django_classified/user_item_list.html:18
+msgid "Price"
+msgstr ""
+
+#: templates/django_classified/item_list.inc.html:32
+msgid "more photos available"
+msgstr ""
+
+#: templates/django_classified/item_list.inc.html:52
+msgid "No item here yet."
+msgstr ""
+
+#: templates/django_classified/item_list.inc.html:53
+#: templates/django_classified/user_item_list.html:54
+msgid "Add one now!"
+msgstr ""
+
+#: templates/django_classified/profile.html:13
+msgid "Update"
+msgstr ""
+
+#: templates/django_classified/search.html:6
+msgid "Search results for query"
+msgstr ""
+
+#: templates/django_classified/search.html:26
+#, python-format
+msgid ""
+"Search results (%(count)s items\n"
+"        found):"
+msgstr ""
+
+#: templates/django_classified/search.html:30
+msgid "Not found"
+msgstr ""
+
+#: templates/django_classified/user_item_list.html:17
+msgid "Title"
+msgstr ""
+
+#: templates/django_classified/user_item_list.html:20
+msgid "Active"
+msgstr ""
+
+#: templates/django_classified/user_item_list.html:28
+msgid "Open item"
+msgstr ""
+
+#: templates/django_classified/user_item_list.html:35
+msgid "Edit item"
+msgstr ""
+
+#: templates/django_classified/user_item_list.html:53
+msgid "You have no items to show."
+msgstr ""
+
+#: views.py:181
 msgid "You have reached the limit!"
 msgstr ""
 
-#: .\django_classified\views.py:197
+#: views.py:235
 msgid "Your profile settings was updated!"
 msgstr ""
