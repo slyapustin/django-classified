@@ -247,7 +247,6 @@ class DCFTestCase(BaseTestCase):
 
         self.assertEqual(new_group.slug, 'some-cool-staff')
 
-
     def test_add_favorites(self):
         farovites = self.user.favorites.add(self.item)
         self.assertEqual(len(farovites), 1)

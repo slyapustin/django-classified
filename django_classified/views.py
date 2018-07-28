@@ -157,9 +157,9 @@ class ItemDetailView(DetailView):
         user = self.request.user
         obj = self.get_object()
         if not user.is_anonymous() and obj in user.favorites.all():
-           context['like'] = 'mark'
+            context['like'] = 'mark'
         else:
-           context['like'] = 'unmark'
+            context['like'] = 'unmark'
         return context
 
 
@@ -275,7 +275,7 @@ class MyFavoritesItemsView(ListView):
     template_name = 'django_classified/user_favorites_list.html'
 
     def get_queryset(self):
-        Customer= self.request.user
+        Customer = self.request.user
         return Customer.favorites.all()
 
     @method_decorator(login_required)
@@ -312,8 +312,8 @@ def add_favorites(request):
     if request.is_ajax():
         user.favorites.add(item_id)
         FavoritsInfo.objects.create(
-            customuser = user,
-            item = Item.objects.get(pk=item_id)
+            customuser=user,
+            item=Item.objects.get(pk=item_id)
         )
         message = "success"
     else:
@@ -329,8 +329,8 @@ def del_favorites(request):
     if request.is_ajax():
         user.favorites.remove(item_id)
         FavoritsInfo.objects.filter(
-            customuser = user,
-            item = Item.objects.get(pk=item_id)
+            customuser=user,
+            item=Item.objects.get(pk=item_id)
         ).delete()
         message = 'success'
     else:
