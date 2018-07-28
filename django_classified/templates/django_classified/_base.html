@@ -53,6 +53,8 @@
               <ul class="dropdown-menu">
                 <li><a href="{% url 'django_classified:user-items' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
                 </li>
+                <li><a href="{% url 'django_classified:fav' %}">{% trans "My favorites" %} ({{ user.favorites.count }})</a>
+                </li>
                 <li>
                   <a href="{% url 'django_classified:profile' %}">{% trans "Profile" %}</a>
                 </li>
@@ -115,6 +117,7 @@
   <script src="{% static 'django_classified/js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'django_classified/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'django_classified/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'django_classified/js/main.min.js' %}"></script>
 
   {% block ext_scripts %}{% endblock %}
 

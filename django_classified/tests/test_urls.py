@@ -246,3 +246,16 @@ class DCFTestCase(BaseTestCase):
         )
 
         self.assertEqual(new_group.slug, 'some-cool-staff')
+
+
+    def test_add_favorites(self):
+        farovites = self.user.favorites.add(self.item)
+        self.assertEqual(len(farovites), 1)
+
+    def test_remove_favorites(self):
+        self.user.favorites.add(self.item)
+        before_fav = self.user.favorites.count()
+
+        self.user.favorites.remove(self.item)
+        after_fav = self.user.favorites.count()
+        self.assertNotEquals(before_fav, after_fav)
