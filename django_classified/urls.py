@@ -23,4 +23,8 @@ urlpatterns = [
     url(r'^user/my/delete/(?P<pk>\d+)/$', views.ItemDeleteView.as_view(), name='my-delete'),
     url(r'^user/logout/$', LogoutView.as_view(), name='logout'),
     url(r'^user/set-area/$', views.SetAreaView.as_view(), name='set-area'),
+    url(r'^user/fav/$', views.MyFavoritesItemsView.as_view(), name='fav'),
+    url(r'^user/my/favdel/(?P<pk>\d+)/$', views.FavItemDeleteView.as_view(), name='fav-delete'),
+    url(r'^add_favorites/', views.add_favorites),
+    url(r'^del_favorites/', views.del_favorites),
 ]

@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
@@ -11,10 +12,11 @@ from django.views.generic import DetailView, CreateView, UpdateView, ListView, D
 from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
+from django.views.decorators.csrf import csrf_exempt
 
 from . import settings as dcf_settings
 from .forms import ItemForm, ProfileForm, SearchForm
-from .models import Item, Image, Group, Section, Profile, Area
+from .models import Item, Image, Group, Section, Profile, Area, FavoritsInfo
 
 
 class FilteredListView(FormMixin, ListView):
@@ -150,6 +152,16 @@ class GroupDetail(SingleObjectMixin, ListView):
 class ItemDetailView(DetailView):
     queryset = Item.active
 
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetailView, self).get_context_data(**kwargs)
+        user = self.request.user
+        obj = self.get_object()
+        if not user.is_anonymous() and obj in user.favorites.all():
+            context['like'] = 'mark'
+        else:
+            context['like'] = 'unmark'
+        return context
+
 
 class ItemUpdateView(FormsetMixin, UpdateView):
     is_update_view = True
@@ -257,3 +269,70 @@ class SetAreaView(View):
         next_url = self.request.GET.get('next') or reverse_lazy('django_classified:index')
 
         return redirect(next_url)
+
+
+class MyFavoritesItemsView(ListView):
+    template_name = 'django_classified/user_favorites_list.html'
+
+    def get_queryset(self):
+        Customer = self.request.user
+        return Customer.favorites.all()
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(MyFavoritesItemsView, self).dispatch(*args, **kwargs)
+
+
+class FavItemDeleteView(DeleteView):
+    model = Item
+    success_url = reverse_lazy('my')
+
+    def get_object(self, queryset=None):
+        obj = super(FavItemDeleteView, self).get_object()
+        if not obj.user == self.request.user and not self.request.user.is_superuser:
+            raise PermissionDenied
+        return obj
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        user = self.request.user
+        user.favorites.remove(obj)
+        return HttpResponseRedirect(reverse_lazy('my'))
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(FavItemDeleteView, self).dispatch(*args, **kwargs)
+
+
+@csrf_exempt
+@login_required
+def add_favorites(request):
+    item_id = request.POST.get('item')
+    user = request.user
+    if request.is_ajax():
+        user.favorites.add(item_id)
+        FavoritsInfo.objects.create(
+            customuser=user,
+            item=Item.objects.get(pk=item_id)
+        )
+        message = "success"
+    else:
+        message = "error"
+    return JsonResponse({'msg': message})
+
+
+@csrf_exempt
+@login_required
+def del_favorites(request):
+    item_id = request.POST.get('item')
+    user = request.user
+    if request.is_ajax():
+        user.favorites.remove(item_id)
+        FavoritsInfo.objects.filter(
+            customuser=user,
+            item=Item.objects.get(pk=item_id)
+        ).delete()
+        message = 'success'
+    else:
+        message = "error"
+    return JsonResponse({'msg': message})

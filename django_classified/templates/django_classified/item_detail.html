@@ -4,6 +4,7 @@
 {% load humanize %}
 {% load i18n %}
 {% load thumbnail %}
+{% load staticfiles %}
 
 {% block title %}{{ object.title }}{% endblock title %}
 {% block meta_description %}{{ object.description }}{% endblock meta_description %}
@@ -40,7 +41,16 @@
 
     <div class="row">
       <div class="col-lg-9">
-        <h2 itemprop="name">{{ object.title }}</h2>
+        <h2 itemprop="name">
+          {% if user.is_authenticated and object.user != user %}
+            {% if object in user.favorites.all %}
+              <span id="{{ object.id }}" class="star glyphicon glyphicon-star" aria-hidden="true"></span>
+            {% else %}
+              <span id="{{ object.id }}" class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            {% endif %}
+          {% endif %} 
+          {{ object.title }}
+        </h2>
       </div>
       <div class="col-lg-3">
                 <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">

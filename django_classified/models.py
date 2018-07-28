@@ -18,6 +18,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone = models.CharField(_('Contact phone'), max_length=30, null=True, blank=True)
     receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
+    favorites = models.ManyToManyField('Item', related_name='favorites', db_index=True)
 
     def allow_add_item(self):
         return self.user.item_set.count() < dcf_settings.ITEM_PER_USER_LIMIT
@@ -179,3 +180,9 @@ class Item(models.Model):
 class Image(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     file = ImageField(_('image'), upload_to='images')
+
+
+class FavoritInfo(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    item = models.ForeignKey(Item)
+    liked = models.DateTimeField(null=True, blank=True, auto_now_add=True)

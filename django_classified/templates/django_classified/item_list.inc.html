@@ -41,6 +41,15 @@
   <td>
     {{ object.price|currency }}
   </td>
+  <td>
+    {% if user.is_authenticated and object.user != user %}
+        {% if object in user.favorites.all %}
+            <span id="{{ object.id }}" class="star glyphicon glyphicon-star" aria-hidden="true"></span>
+        {% else %}
+            <span id="{{ object.id }}" class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+        {% endif %}
+    {% endif %}
+  </td>
 </tr>
 {% if forloop.last %}
   </tbody>
