@@ -41,10 +41,34 @@ Demo project with user registration (via Email/Facebook) available [here](https:
 
 ## Installation
  * Install app `pip install django-classified`
- * Add `django-classified` to the `INSTALLED_APPS` list
- * Add `url(r'', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file.
- * Add `'django_classified.context_processors.common_values'` to the `context_processors` list
+ * Add `django_classified` to the `INSTALLED_APPS`:
 
+```python
+INSTALLED_APPS = (
+    ...
+    'bootstrapform',  # This is required by Django Classified
+    'sorl.thumbnail',  # This is required by Django Classified
+
+    'django_classified',
+)
+```
+
+ * Add `url(r'', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file:
+
+```python
+urlpatterns = patterns(
+    ...
+    url(r'', include('django_classified.urls', namespace='django_classified'),
+    ...
+)
+```
+
+ * Add `'django_classified.context_processors.common_values'` to the settings `TEMPLATES` `context_processors` list:
+
+```python
+TEMPLATES[0]['OPTIONS']['context_processors'].append('django_classified.context_processors.common_values')
+
+```
 
 ## Customization:
  
