@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.8.9 (02/08/2018)
+-----------------
+ - Display version in the credits section
+
+
 v0.8.8 (02/08/2018)
 -----------------
  - Added Django 2.1 support

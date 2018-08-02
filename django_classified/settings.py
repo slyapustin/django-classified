@@ -3,6 +3,8 @@ Default settings for Django Classified app.
 """
 from django.conf import settings
 
+from django_classified import get_version
+
 # Site currency
 CURRENCY = getattr(settings, 'DCF_CURRENCY', 'USD')
 
@@ -35,3 +37,5 @@ SITEMAP_LIMIT = getattr(settings, 'DCF_SITEMAP_LIMIT', 1000)
 
 # Display empty group in the groups list
 DISPLAY_EMPTY_GROUPS = getattr(settings, 'DCF_DISPLAY_EMPTY_GROUPS', False)
+
+VERSION = get_version()
