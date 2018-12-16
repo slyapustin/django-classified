@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.8.10 (16/12/2018)
+-----------------
+ - Fixed Items search at Admin page
+
+
 v0.8.9 (02/08/2018)
 -----------------
  - Display version in the credits section
