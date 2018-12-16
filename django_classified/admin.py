@@ -14,7 +14,7 @@ class ItemAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',), }
     list_display = ('title', 'group', 'area', 'user', 'is_active', 'posted', 'updated')
     list_filter = ('area', 'group', 'is_active', 'posted',)
-    search_fields = ('title', 'body', 'user__email')
+    search_fields = ('title', 'user__email')
     inlines = [ImageInline]
 
 
