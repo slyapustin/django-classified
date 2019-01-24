@@ -46,6 +46,8 @@ Demo project with user registration (via Email/Facebook) available [here](https:
 ```python
 INSTALLED_APPS = (
     ...
+    'django.contrib.sites',  # This is required by Django Classified
+
     'bootstrapform',  # This is required by Django Classified
     'sorl.thumbnail',  # This is required by Django Classified
 
