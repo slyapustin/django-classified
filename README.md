@@ -1,6 +1,6 @@
 # Simple Django Classified Advertising App
 
-[![Build Status](https://travis-ci.org/inoks/django-classified.svg?branch=master)](https://travis-ci.org/inoks/django-classified)
+[![Build Status](https://travis-ci.com/inoks/django-classified.svg?branch=master)](https://travis-ci.com/inoks/django-classified)
 
 ## Features
 
@@ -89,4 +89,3 @@ TEMPLATES[0]['OPTIONS']['context_processors'].append('django_classified.context_
 ## Credits
 
  * Thanks [JetBrains](https://www.jetbrains.com) for the awesome [PyCharm](https://www.jetbrains.com/pycharm/) IDE.
- 
