@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.8.11 (16/12/2018)
+-----------------
+ - Django 2.2 support
+
+
 v0.8.10 (16/12/2018)
 -----------------
  - Fixed Items search at Admin page
