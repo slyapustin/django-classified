@@ -3,7 +3,7 @@ import setuptools
 
 from django_classified import get_version  # noqa isort:skip
 
-with open("README.md", "r") as fh:
+with open("README.md") as fh:
     long_description = fh.read()
 
 setuptools.setup(
@@ -24,13 +24,14 @@ setuptools.setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ),
     install_requires=[
         "django-bootstrap-form",
         "django-filter",
-        "Django>=1.11,<2.2",
+        "Django>=1.11,<2.3",
         "Pillow>=4.0",
         "sorl-thumbnail>=12",
         "unidecode",

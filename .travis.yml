@@ -1,15 +1,18 @@
+dist: xenial
+
 language: python
 
 python:
-  - 2.7
-  - 3.5
-  - 3.6
-  - 3.7
+  - "2.7"
+  - "3.5"
+  - "3.6"
+  - "3.7"
 
 env:
   - DJANGO="django>=1.11,<2.0"
   - DJANGO="django>=2.0,<2.1"
   - DJANGO="django>=2.1,<2.2"
+  - DJANGO="django>=2.2,<2.3"
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=demo.demo_classified.project.settings
@@ -32,8 +35,10 @@ after_success:
   - coverage report --show-missing
 
 matrix:
-    exclude:
-        - python: 2.7
-          env: DJANGO="django>=2.0,<2.1"
-        - python: 2.7
-          env: DJANGO="django>=2.1,<2.2"
+  exclude:
+    - python: "2.7"
+      env: DJANGO="django>=2.0,<2.1"
+    - python: "2.7"
+      env: DJANGO="django>=2.1,<2.2"
+    - python: "2.7"
+      env: DJANGO="django>=2.2,<2.3"
