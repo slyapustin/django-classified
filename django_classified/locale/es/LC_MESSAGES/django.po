@@ -20,7 +20,7 @@ msgstr ""
 
 #: forms.py:9
 msgid "Area"
-msgstr ""
+msgstr "Region"
 
 #: forms.py:10 templates/django_classified/user_item_list.html:16
 msgid "Group"
@@ -28,205 +28,205 @@ msgstr "Grupo"
 
 #: forms.py:11
 msgid "Query"
-msgstr ""
+msgstr "Consulta"
 
 #: models.py:19 templates/django_classified/item_detail.html:90
 msgid "Contact phone"
-msgstr ""
+msgstr "Celular"
 
 #: models.py:20
 msgid "receive news"
-msgstr ""
+msgstr "recibir noticias"
 
 #: models.py:36 models.py:65 models.py:85 models.py:121
 msgid "title"
-msgstr ""
+msgstr "titulo"
 
 #: models.py:42 models.py:119
 msgid "area"
-msgstr ""
+msgstr "region"
 
 #: models.py:43
 msgid "areas"
-msgstr ""
+msgstr "regiones"
 
 #: models.py:78 models.py:86
 msgid "section"
-msgstr ""
+msgstr "sección"
 
 #: models.py:79
 msgid "sections"
-msgstr ""
+msgstr "secciónes"
 
 #: models.py:96 models.py:118
 msgid "group"
-msgstr ""
+msgstr "grupo"
 
 #: models.py:97
 msgid "groups"
-msgstr ""
+msgstr "grupos"
 
 #: models.py:122
 msgid "description"
-msgstr ""
+msgstr "descripción"
 
 #: models.py:123
 msgid "price"
-msgstr ""
+msgstr "precio"
 
 #: models.py:124
 msgid "active"
-msgstr ""
+msgstr "activo"
 
 #: models.py:125
 msgid "updated"
-msgstr ""
+msgstr "actualizado"
 
 #: models.py:126
 msgid "posted"
-msgstr ""
+msgstr "publicado"
 
 #: models.py:133
 msgid "in active"
-msgstr ""
+msgstr "en proceso"
 
 #: models.py:138 templates/django_classified/item_form.html:6
 msgid "item"
-msgstr ""
+msgstr "articulo"
 
 #: models.py:139
 msgid "items"
-msgstr ""
+msgstr "articulos"
 
 #: models.py:181
 msgid "image"
-msgstr ""
+msgstr "imagen"
 
 #: templates/django_classified/_base.html:44
 msgid "Add new"
-msgstr ""
+msgstr "Agregar nuevo"
 
 #: templates/django_classified/_base.html:46
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: templates/django_classified/_base.html:47
 #: templates/django_classified/search.html:7
 #: templates/django_classified/search.html:13
 #: templates/django_classified/search.html:16
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: templates/django_classified/_base.html:54
 #: templates/django_classified/user_item_list.html:5
 #: templates/django_classified/user_item_list.html:10
 msgid "My items"
-msgstr ""
+msgstr "Mis articulos"
 
 #: templates/django_classified/_base.html:57
 #: templates/django_classified/profile.html:5
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #: templates/django_classified/_base.html:60
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #: templates/django_classified/_base.html:65
 #: templates/django_classified/_base.html:66
 msgid "Login"
-msgstr ""
+msgstr "Iniciar sesión"
 
 #: templates/django_classified/_base.html:77
 msgid "All areas"
-msgstr ""
+msgstr "Regiones"
 
 #: templates/django_classified/_base.html:109
 msgid "Powered by"
-msgstr ""
+msgstr "Diseñado con "
 
 #: templates/django_classified/admin_toolbar.inc.html:7
 #: templates/django_classified/item_confirm_delete.html:5
 #: templates/django_classified/user_item_list.html:22
 #: templates/django_classified/user_item_list.html:42
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: templates/django_classified/admin_toolbar.inc.html:10
 #: templates/django_classified/item_form.html:5
 #: templates/django_classified/user_item_list.html:21
 #: templates/django_classified/user_item_list.html:37
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: templates/django_classified/form_pagination.inc.html:13
 #: templates/django_classified/list_pagination.inc.html:7
 msgid "Prev"
-msgstr ""
+msgstr "Anterior"
 
 #: templates/django_classified/form_pagination.inc.html:25
 #: templates/django_classified/list_pagination.inc.html:12
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #: templates/django_classified/item_confirm_delete.html:13
 msgid "Are you sure you want to delete"
-msgstr ""
+msgstr "Estas seguro que quieres borrarlo"
 
 #: templates/django_classified/item_confirm_delete.html:16
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: templates/django_classified/item_detail.html:77
 #: templates/django_classified/user_item_list.html:19
 msgid "Posted"
-msgstr ""
+msgstr "Publicado"
 
 #: templates/django_classified/item_detail.html:87
 msgid "Please"
-msgstr ""
+msgstr "Por favor"
 
 #: templates/django_classified/item_detail.html:87
 msgid "login"
-msgstr ""
+msgstr "nombre"
 
 #: templates/django_classified/item_detail.html:88
 msgid "to see contact information."
-msgstr ""
+msgstr "ver las contactos."
 
 #: templates/django_classified/item_form.html:5
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: templates/django_classified/item_form.html:21
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: templates/django_classified/item_list.inc.html:12
 #: templates/django_classified/user_item_list.html:18
 msgid "Price"
-msgstr ""
+msgstr "Precio"
 
 #: templates/django_classified/item_list.inc.html:32
 msgid "more photos available"
-msgstr ""
+msgstr "más fotos disponibles"
 
 #: templates/django_classified/item_list.inc.html:52
 msgid "No item here yet."
-msgstr ""
+msgstr "Ningún artículo aquí todavía."
 
 #: templates/django_classified/item_list.inc.html:53
 #: templates/django_classified/user_item_list.html:54
 msgid "Add one now!"
-msgstr ""
+msgstr "Agregar uno ahora!"
 
 #: templates/django_classified/profile.html:13
 msgid "Update"
-msgstr ""
+msgstr "Actualizar"
 
 #: templates/django_classified/search.html:6
 msgid "Search results for query"
-msgstr ""
+msgstr "Resultados de búsqueda"
 
 #: templates/django_classified/search.html:26
 #, python-format
@@ -234,35 +234,37 @@ msgid ""
 "Search results (%(count)s items\n"
 "        found):"
 msgstr ""
+"Resultados de la búsqueda (%(count) articulos\n"
+"        encontró):"
 
 #: templates/django_classified/search.html:30
 msgid "Not found"
-msgstr ""
+msgstr "No encontro nada"
 
 #: templates/django_classified/user_item_list.html:17
 msgid "Title"
-msgstr ""
+msgstr "Titulo"
 
 #: templates/django_classified/user_item_list.html:20
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #: templates/django_classified/user_item_list.html:28
 msgid "Open item"
-msgstr ""
+msgstr "Abrir articulo"
 
 #: templates/django_classified/user_item_list.html:35
 msgid "Edit item"
-msgstr ""
+msgstr "Editar articulo"
 
 #: templates/django_classified/user_item_list.html:53
-msgid "You have no items to show."
-msgstr ""
+msgid "You have no items to display."
+msgstr "No tienes articulos para mostrar."
 
 #: views.py:181
 msgid "You have reached the limit!"
-msgstr ""
+msgstr "¡Has alcanzado el límite!"
 
 #: views.py:235
 msgid "Your profile settings was updated!"
-msgstr ""
+msgstr "¡Su configuración de perfil se actualizó!"
