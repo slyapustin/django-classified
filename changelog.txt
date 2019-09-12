@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.8.12 (13/09/2019)
+-----------------
+ - Added Spanish translation. https://github.com/4bimcad
+
+
 v0.8.11 (16/12/2018)
 -----------------
  - Django 2.2 support
