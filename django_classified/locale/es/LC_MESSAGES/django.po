@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Sergey <inoks@mail.ru>, 2016
 msgid ""
@@ -233,9 +233,7 @@ msgstr "Resultados de búsqueda"
 msgid ""
 "Search results (%(count)s items\n"
 "        found):"
-msgstr ""
-"Resultados de la búsqueda (%(count) articulos\n"
-"        encontró):"
+msgstr "Resultados de la búsqueda (%(count)s articulos encontró):"
 
 #: templates/django_classified/search.html:30
 msgid "Not found"
