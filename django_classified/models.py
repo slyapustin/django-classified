@@ -1,12 +1,8 @@
-# -*- coding:utf-8 -*-
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.functional import cached_property
-from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
@@ -30,7 +26,6 @@ class Profile(models.Model):
             return Profile.objects.create(user=user)
 
 
-@python_2_unicode_compatible
 class Area(models.Model):
     slug = models.SlugField()
     title = models.CharField(_('title'), max_length=100)
@@ -60,7 +55,6 @@ class Area(models.Model):
             del request.session['area_pk']
 
 
-@python_2_unicode_compatible
 class Section(models.Model):
     title = models.CharField(_('title'), max_length=100)
 
@@ -79,7 +73,6 @@ class Section(models.Model):
         verbose_name_plural = _('sections')
 
 
-@python_2_unicode_compatible
 class Group(models.Model):
     slug = models.SlugField(blank=True, null=True)
     title = models.CharField(_('title'), max_length=100)
@@ -111,7 +104,6 @@ class ActiveManager(models.Manager):
         return super(ActiveManager, self).get_queryset().filter(is_active=True)
 
 
-@python_2_unicode_compatible
 class Item(models.Model):
     slug = models.SlugField(blank=True, null=True, max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

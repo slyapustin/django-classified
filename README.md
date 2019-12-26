@@ -10,7 +10,7 @@
     * generating preview (via [sorl-thumbnail](https://github.com/mariocesar/sorl-thumbnail))
     * display using [Lightbox JS](http://lokeshdhakar.com/projects/lightbox2/) library
 * Search ability
-* SEO optimisation
+* SEO optimization
     * SEO-friendly urls 
     * generating META description and meta keywords
     * sitemap.xml
@@ -29,8 +29,8 @@
 
 ## Requirements
  
-* Python 2.7, >=3.5
-* Django >=1.11
+* Python >=3.6
+* Django >=2.0
 
 ## Design
 
@@ -46,7 +46,6 @@ Demo project with user registration (via Email/Facebook) available [here](https:
 
 ```python
 INSTALLED_APPS = (
-    ...
     'django.contrib.sites',  # This is required by Django Classified
 
     'bootstrapform',  # This is required by Django Classified
@@ -60,9 +59,7 @@ INSTALLED_APPS = (
 
 ```python
 urlpatterns = patterns(
-    ...
     url(r'', include('django_classified.urls', namespace='django_classified'),
-    ...
 )
 ```
 

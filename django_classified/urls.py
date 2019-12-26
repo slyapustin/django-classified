@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 from django.conf.urls import url
 from django.contrib.auth.views import LogoutView
 from django.contrib.sitemaps.views import sitemap as sitemap_view
