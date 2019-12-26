@@ -31,11 +31,14 @@ setuptools.setup(
         "django-bootstrap-form",
         "django-filter",
         "Django>=2.0,<3.1",
-        "Pillow>=4.0",
-        # "sorl-thumbnail>=12.6",  # Wait for release https://github.com/jazzband/sorl-thumbnail/pull/604
-        "sorl-thumbnail @ git+ssh://github.com/jazzband/sorl-thumbnail@4fe1854",
+        "Pillow>=6.0",
+        "sorl-thumbnail>=12.6.0",
         "unidecode",
         # Babel is used for currency formatting
         'Babel>=1.0,<3.0',
     ],
+    # Remove dependency links after it will be released https://github.com/jazzband/sorl-thumbnail/pull/604
+    dependency_links=[
+        'git+https://github.com/jazzband/sorl-thumbnail.git@12.6.0-release#egg=sorl-thumbnail-12.6.0'    
+    ]
 )
