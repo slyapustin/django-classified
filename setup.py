@@ -39,6 +39,6 @@ setuptools.setup(
     ],
     # Remove dependency links after it will be released https://github.com/jazzband/sorl-thumbnail/pull/604
     dependency_links=[
-        'git+https://github.com/jazzband/sorl-thumbnail.git@12.6.0-release#egg=sorl-thumbnail-12.6.0'    
+        'git+https://github.com/jazzband/sorl-thumbnail.git@12.6.0-release#egg=sorl-thumbnail-12.6.0'
     ]
 )
