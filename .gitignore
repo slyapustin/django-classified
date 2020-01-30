@@ -1,3 +1,7 @@
 *.pyc
 .idea/
 *.db
+dist/
+.vscode/
+build/
+django_classified.egg-info/

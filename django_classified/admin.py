@@ -1,5 +1,4 @@
-﻿# -*- coding:utf-8 -*-
-from django.contrib import admin
+﻿from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 
 from .models import Section, Group, Item, Image, Area
