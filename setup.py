@@ -20,13 +20,13 @@ setuptools.setup(
     python_requires=">=3.6",
     include_package_data=True,
     zip_safe=False,
-    classifiers=(
+    classifiers=[
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-    ),
+    ],
     install_requires=[
         "django-bootstrap-form",
         "django-filter",
