@@ -11,7 +11,7 @@ setuptools.setup(
     name="django-classified",
     version=get_version().replace(' ', '-'),
     author_email="s.lyapustin@gmail.com",
-    description="Django classified ads",
+    description="Django Classified",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/inoks/django-classified",
@@ -32,13 +32,9 @@ setuptools.setup(
         "django-filter",
         "Django>=2.0,<3.1",
         "Pillow>=6.0",
-        "sorl-thumbnail>=12.6.0",
+        "sorl-thumbnail>=12.6",
         "unidecode",
         # Babel is used for currency formatting
         'Babel>=1.0,<3.0',
-    ],
-    # Remove dependency links after it will be released https://github.com/jazzband/sorl-thumbnail/pull/604
-    dependency_links=[
-        'git+https://github.com/jazzband/sorl-thumbnail.git@12.6.0-release#egg=sorl-thumbnail-12.6.0'
     ]
 )
