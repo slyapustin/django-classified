@@ -1,6 +1,6 @@
 # Simple Django Classified Advertising App
 
-[![Build Status](https://travis-ci.com/inoks/django-classified.svg?branch=master)](https://travis-ci.com/inoks/django-classified)
+[![Build Status](https://travis-ci.com/slyapustin/django-classified.svg?branch=master)](https://travis-ci.com/slyapustin/django-classified)
 
 ## Features
 
@@ -38,7 +38,7 @@
 
 ## Demo project
 
-Demo project with user registration (via Email/Facebook) available [here](https://github.com/inoks/django-classified-demo).
+Demo project with user registration (via Email/Facebook) available [here](https://github.com/slyapustin/django-classified-demo).
 
 ## Installation
  * Install app `pip install django-classified`
