@@ -1,7 +1,7 @@
 ﻿from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Section, Group, Item, Image, Area
+from .models import Section, Group, Item, Image, Area, Profile
 
 
 class ImageInline(AdminImageMixin, admin.StackedInline):
@@ -33,9 +33,15 @@ class AreaAdmin(admin.ModelAdmin):
         'title',
     )
     prepopulated_fields = {'slug': ('title',)}
+    
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('phone',)
+    search_fields = ('phone',)
+
 
 
 admin.site.register(Area, AreaAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Item, ItemAdmin)
+admin.site.register(Profile, ProfileAdmin)
