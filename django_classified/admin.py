@@ -34,7 +34,7 @@ class AreaAdmin(admin.ModelAdmin):
     )
     prepopulated_fields = {'slug': ('title',)}
 
-    
+
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone')
     search_fields = ('user__username', 'phone')
