@@ -33,11 +33,11 @@ class AreaAdmin(admin.ModelAdmin):
         'title',
     )
     prepopulated_fields = {'slug': ('title',)}
+
     
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone')
     search_fields = ('user__username', 'phone')
-
 
 
 admin.site.register(Area, AreaAdmin)
