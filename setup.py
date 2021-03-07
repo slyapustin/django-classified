@@ -31,7 +31,7 @@ setuptools.setup(
     install_requires=[
         "django-bootstrap-form",
         "django-filter",
-        "Django>=2.0,<3.2",
+        "Django>=2.2,<3.2",
         "Pillow>=6.0",
         "sorl-thumbnail>=12.6",
         "unidecode",
