@@ -7,6 +7,10 @@ from django.utils.translation import ugettext as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
 
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+from sorl.thumbnail import delete as tn_delete
+
 from . import settings as dcf_settings
 
 
@@ -170,4 +174,10 @@ class Item(models.Model):
 
 class Image(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    file = ImageField(_('image'), upload_to='images')
+    file = ImageField(_('image'), upload_to=dcf_settings.IMAGE_STORAGE)
+
+
+@receiver(pre_delete, sender=Image)
+def delete_mediafiles(sender, instance, **kwargs):
+	tn_delete(instance.file.name)
+
