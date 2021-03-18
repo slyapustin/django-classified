@@ -38,4 +38,7 @@ SITEMAP_LIMIT = getattr(settings, 'DCF_SITEMAP_LIMIT', 1000)
 # Display empty group in the groups list
 DISPLAY_EMPTY_GROUPS = getattr(settings, 'DCF_DISPLAY_EMPTY_GROUPS', False)
 
+# Set location of uploaded images linked to items
+IMAGE_STORAGE = getattr(settings, 'DCF_IMAGE_STORAGE', 'images')
+
 VERSION = get_version()
