@@ -179,5 +179,4 @@ class Image(models.Model):
 
 @receiver(pre_delete, sender=Image)
 def delete_mediafiles(sender, instance, **kwargs):
-	tn_delete(instance.file.name)
-
+    tn_delete(instance.file.name)
