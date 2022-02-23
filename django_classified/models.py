@@ -34,6 +34,7 @@ class Area(models.Model):
         return self.title
 
     class Meta:
+        order_by = ['title']
         verbose_name = _('area')
         verbose_name_plural = _('areas')
 
@@ -69,6 +70,7 @@ class Section(models.Model):
             .count()
 
     class Meta:
+        order_by = ['title']
         verbose_name = _('section')
         verbose_name_plural = _('sections')
 
