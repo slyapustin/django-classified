@@ -14,7 +14,7 @@ setuptools.setup(
     description="Django Classified",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/inoks/django-classified",
+    url="https://github.com/slyapustin/django-classified",
     keywords='django classified ads',
     packages=setuptools.find_packages(exclude=('demo',)),
     python_requires=">=3.6",
