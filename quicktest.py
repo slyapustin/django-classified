@@ -81,7 +81,9 @@ class QuickDjangoTest(object):
             ROOT_URLCONF='django_classified.tests.urls',
             STATIC_URL='/static/',
             TEMPLATES=self.TEMPLATES,
-            SITE_ID=1
+            SITE_ID=1,
+            SECRET_KEY='fake-secret-key',
+            DEFAULT_AUTO_FIELD='django.db.models.AutoField'
         )
 
         from django.test.runner import DiscoverRunner
