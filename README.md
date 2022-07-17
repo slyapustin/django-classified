@@ -1,6 +1,4 @@
-# Simple Django Classified Advertising App
-
-[![Build Status](https://travis-ci.com/slyapustin/django-classified.svg?branch=master)](https://travis-ci.com/slyapustin/django-classified)
+# Django Classified
 
 ## Features
 
