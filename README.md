@@ -29,8 +29,8 @@
 
 ## Requirements
  
-* Python >=3.6
-* Django >=2.0
+* Python >=3.8
+* Django >=3.2
 
 ## Design
 

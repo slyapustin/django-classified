@@ -3,7 +3,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import ImageField
 from unidecode import unidecode
 
@@ -13,7 +13,7 @@ from . import settings as dcf_settings
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone = models.CharField(_('Contact phone'), max_length=30, null=True, blank=True)
-    receive_news = models.BooleanField(_('receive news'), default=True, db_index=True)
+    receive_news = models.BooleanField(_('Receive news'), default=True, db_index=True)
 
     def allow_add_item(self):
         return self.user.item_set.count() < dcf_settings.ITEM_PER_USER_LIMIT
@@ -28,13 +28,13 @@ class Profile(models.Model):
 
 class Area(models.Model):
     slug = models.SlugField()
-    title = models.CharField(_('title'), max_length=100)
+    title = models.CharField(_('Title'), max_length=100)
 
     def __str__(self):
         return self.title
 
     class Meta:
-        order_by = ['title']
+        ordering = ['title']
         verbose_name = _('area')
         verbose_name_plural = _('areas')
 
@@ -70,7 +70,7 @@ class Section(models.Model):
             .count()
 
     class Meta:
-        order_by = ['title']
+        ordering = ['title']
         verbose_name = _('section')
         verbose_name_plural = _('sections')
 
