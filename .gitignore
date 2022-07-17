@@ -6,3 +6,5 @@ dist/
 build/
 django_classified.egg-info/
 .DS_Store
+venv/
+
