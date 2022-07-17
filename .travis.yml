@@ -23,7 +23,7 @@ install:
   - pip install coverage
 
 before_script:
-  - flake8  --ignore=E501,E122
+  - flake8
 
 script:
   - coverage run --source='.' quicktest.py django_classified
