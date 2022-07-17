@@ -1,6 +1,6 @@
 Changelog
 =========
-v1.0.0 (TDB)
+v1.0.0 (17/07/2022)
 -----------------
  - Drop Python 3.6,2.7 support
  - Drop Django support for versions < 3.2
