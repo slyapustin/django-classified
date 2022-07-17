@@ -12,7 +12,6 @@ env:
   - DJANGO="django>=4.0,<4.1"
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=demo.demo_classified.project.settings
   - export PYTHONPATH=$HOME/builds/slyapustin/django-classified
   - export PIP_USE_MIRRORS=true
 
