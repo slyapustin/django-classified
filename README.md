@@ -44,31 +44,41 @@ Demo project with user registration (via Email/Facebook) available [here](https:
 
 ```python
 INSTALLED_APPS = [
-    # Django applications required by Django Classified
+    # Default Django applications
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.sessions',
-    'django.contrib.sitemaps',
-    'django.contrib.sites',
     'django.contrib.staticfiles',
-    
+
+     # Required by Django Classified
+    'django.contrib.sites',
+    'django.contrib.humanize',
+    'django.contrib.sitemaps',
+
      # External applications required by Django Classified
     'bootstrapform',
     'sorl.thumbnail',
-    
+
     # Django Classified
     'django_classified',
 ]
 ```
 
- * Add `url(r'', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file:
+ * Add `SITE_ID` to `settings.py` file:
+ 
+ ```python
+ SITE_ID = 1
+ ```
+
+ * Import `include` in addition to `path` and add `url(r'', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file:
 
 ```python
+from django.urls import path, include
+
 urlpatterns = patterns(
-    url(r'', include('django_classified.urls', namespace='django_classified'),
+    path(r'', include('django_classified.urls', namespace='django_classified')),
 )
 ```
 
