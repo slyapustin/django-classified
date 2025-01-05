@@ -1,5 +1,11 @@
 Changelog
 =========
+v1.1.0 (05/01/2025)
+-----------------
+ - Added support for Python 3.11-3.13, dropped Python 3.8 support
+ - Added Django 4.2-5.2 support, dropped Django 3.2 support
+
+
 v1.0.0 (17/07/2022)
 -----------------
  - Drop Python 3.6,2.7 support
