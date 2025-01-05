@@ -8,13 +8,16 @@ jobs:
     strategy:
       matrix:
         python-version: [
-          "3.8",
           "3.9",
           "3.10",
+          "3.11",
+          "3.12",
+          "3.13",
           ]
         django-version: [
-          "django>=3.2,<3.3",
-          "django>=4.0,<4.1",
+          "django>=4.2,<5.0",
+          "django>=5.0,<5.1",
+          "django>=5.1,<5.2",
         ]
 
     steps:
