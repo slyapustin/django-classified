@@ -1,5 +1,10 @@
 Changelog
 =========
+v1.1.b (05/01/2025)
+-----------------
+ - Fix Pypi deployemnt
+
+
 v1.1.0 (05/01/2025)
 -----------------
  - Added support for Python 3.11-3.13, dropped Python 3.8 support

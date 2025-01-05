@@ -1,9 +1,6 @@
-name: PyPi Release
+name: Publish to PyPI
 
-# https://help.github.com/en/actions/reference/events-that-trigger-workflows
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the master branch
   push:
     branches:
       - master
@@ -11,30 +8,31 @@ on:
     types:
       - created
 
-# based on https://github.com/pypa/gh-action-pypi-publish
-
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.x" # Use the latest Python version for publishing
 
       - name: Install dependencies
-        run: >-
-          python -m pip install --upgrade setuptools wheel twine
+        run: |
+          python -m pip install --upgrade pip setuptools wheel twine
 
-      - name: Build
-        run: >-
+      - name: Build the package
+        run: |
           python setup.py sdist bdist_wheel
 
-      # We do this, since failures on test.pypi aren't that bad
+      - name: Check the package
+        run: |
+          twine check dist/*
+
       - name: Publish to Test PyPI
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -43,7 +41,7 @@ jobs:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository-url: https://test.pypi.org/legacy/
 
-      - name: Publish distribution 📦 to PyPI
+      - name: Publish to PyPI
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
