@@ -8,3 +8,5 @@ django_classified.egg-info/
 .DS_Store
 venv/
 .coverage
+.env
+
