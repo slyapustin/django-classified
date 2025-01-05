@@ -3,7 +3,7 @@ import setuptools
 
 from django_classified import get_version  # noqa isort:skip
 
-with open("README.md") as fh:
+with open("README.md", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
@@ -33,10 +33,10 @@ setuptools.setup(
         "django-bootstrap-form",
         "django-filter",
         "Django>=4.2,<5.2",
-        "Pillow>=6.0",
-        "sorl-thumbnail>=12.6",
+        "Pillow",
+        "sorl-thumbnail",
         "unidecode",
         # Babel is used for currency formatting
-        "Babel>=1.0,<3.0",
+        "babel",
     ],
 )
