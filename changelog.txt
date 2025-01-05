@@ -1,8 +1,8 @@
 Changelog
 =========
-v1.1.b (05/01/2025)
+v1.1 (05/01/2025)
 -----------------
- - Fix Pypi deployemnt
+ - Fix PyPI deployment
 
 
 v1.1.0 (05/01/2025)
