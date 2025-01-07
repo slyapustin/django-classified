@@ -30,7 +30,7 @@ RSS_LIMIT = getattr(settings, 'DCF_RSS_LIMIT', 100)
 SITE_DESCRIPTION = getattr(settings, 'DCF_SITE_DESCRIPTION', 'Classified Advertisements Powered by Django')
 
 # Default site name
-SITE_NAME = getattr(settings, 'DCF_SITE_NAME', 'Django Classified Ads')
+SITE_NAME = getattr(settings, 'DCF_SITE_NAME', 'Django Classified')
 
 # Sitemap items limit
 SITEMAP_LIMIT = getattr(settings, 'DCF_SITEMAP_LIMIT', 1000)
