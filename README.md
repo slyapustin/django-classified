@@ -28,7 +28,7 @@
 ## Requirements
 
 - Python >=3.9
-- Django >=4.2
+- Django >=4.2, <5.2
 
 ## Design
 
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
      # External applications required by Django Classified
     'bootstrapform',
     'sorl.thumbnail',
+    'django_filters',
 
     # Django Classified
     'django_classified',
@@ -73,21 +74,20 @@ INSTALLED_APPS = [
 SITE_ID = 1
 ```
 
-- Import `include` in addition to `path` and add `url(r'', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file:
+- Import `include` in addition to `path` and add `path('', include('django_classified.urls', namespace='django_classified')),` to the project `urls.py` file:
 
 ```python
 from django.urls import path, include
 
-urlpatterns = patterns(
-    path(r'', include('django_classified.urls', namespace='django_classified')),
-)
+urlpatterns = [
+    path('', include('django_classified.urls', namespace='django_classified')),
+]
 ```
 
 - Add `'django_classified.context_processors.common_values'` to the settings `TEMPLATES` `context_processors` list:
 
 ```python
 TEMPLATES[0]['OPTIONS']['context_processors'].append('django_classified.context_processors.common_values')
-
 ```
 
 ## Customization:
@@ -103,3 +103,8 @@ You can provide additional customization in settings.py
 - `DCF_ITEM_PER_PAGE` - Number of items per page
 - `DCF_LOGIN_TO_CONTACT` - Hide contact information for unauthorized requests
 - `DCF_DISPLAY_EMPTY_GROUPS` - Display groups without items in the groups list
+- `DCF_CURRENCY` - Site currency (default: 'USD')
+
+## Current Version
+
+The current version is 1.1.1 (January 2025).
