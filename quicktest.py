@@ -6,7 +6,7 @@ import django
 from django.conf import settings
 
 
-class QuickDjangoTest(object):
+class QuickDjangoTest:
     """
     A quick way to run the Django test suite without a fully-configured project.
 
