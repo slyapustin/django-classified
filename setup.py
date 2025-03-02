@@ -35,7 +35,6 @@ setuptools.setup(
         "Django>=4.2,<5.2",
         "Pillow",
         "sorl-thumbnail",
-        "unidecode",
         # Babel is used for currency formatting
         "babel",
     ],

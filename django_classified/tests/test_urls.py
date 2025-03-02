@@ -244,3 +244,12 @@ class DCFTestCase(BaseTestCase):
         )
 
         self.assertEqual(new_group.slug, 'some-cool-staff')
+        
+        # Test with non-Latin characters
+        arabic_group = Group.objects.create(
+            title='بيت للأجار',
+            section=section
+        )
+        
+        # The slug should preserve the Arabic characters
+        self.assertEqual(arabic_group.slug, 'بيت-للأجار')

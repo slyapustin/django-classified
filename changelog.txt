@@ -1,5 +1,11 @@
 Changelog
 =========
+v1.1.2 (02/03/2025)
+-----------------
+ - Added support for non-Latin characters in slugs (URLs)
+ - Improved multilingual support for Arabic, Cyrillic, and other non-Latin scripts
+
+
 v1.1.1 (05/01/2025)
 -----------------
  - Fix PyPI deployment

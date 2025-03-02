@@ -16,6 +16,7 @@
   - RSS feed
   - Google Analytics integration
   - [Open Graph protocol](http://ogp.me/) support
+  - Support for non-Latin characters in URLs (Arabic, Cyrillic, etc.)
 - Caching
 - Translation
   - English
@@ -107,4 +108,4 @@ You can provide additional customization in settings.py
 
 ## Current Version
 
-The current version is 1.1.1 (January 2025).
+The current version is 1.1.2 (March 2025).

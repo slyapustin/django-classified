@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.db import models
-from django.template.defaultfilters import slugify
+from django.utils.text import slugify
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import ImageField
-from unidecode import unidecode
 
 from . import settings as dcf_settings
 
@@ -94,7 +93,7 @@ class Group(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unidecode(self.title))
+            self.slug = slugify(self.title, allow_unicode=True)
         super(Group, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -166,7 +165,7 @@ class Item(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unidecode(self.title))
+            self.slug = slugify(self.title, allow_unicode=True)
         super(Item, self).save(*args, **kwargs)
 
 
