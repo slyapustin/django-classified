@@ -57,7 +57,13 @@
                   <a href="{% url 'django_classified:profile' %}">{% trans "Profile" %}</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="{% url 'django_classified:logout' %}?next=/">{% trans "Logout" %}</a></li>
+                <li>
+                  <form method="post" action="{% url 'django_classified:logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="/" />
+                    <button type="submit" class="btn btn-link" style="text-decoration: none; color: #333; width: 100%; text-align: left; padding: 3px 20px;">{% trans "Logout" %}</button>
+                  </form>
+                </li>
               </ul>
             </li>
           {% else %}
