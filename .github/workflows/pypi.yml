@@ -38,11 +38,11 @@ jobs:
 
       - name: Publish to Test PyPI
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
+        continue-on-error: true
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
           attestations: false
-          skip-existing: true
 
       - name: Publish to PyPI
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
