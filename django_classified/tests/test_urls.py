@@ -332,3 +332,14 @@ class DCFTestCase(BaseTestCase):
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, safe_url)
+
+    def test_urls_in_description_are_clickable(self):
+        item = Item.objects.create(
+            user=self.user,
+            group=self.group,
+            title='Item with URL',
+            description='Check out https://example.com for details',
+            price=100,
+        )
+        response = self.client.get(item.get_absolute_url())
+        self.assertContains(response, '<a href="https://example.com"')

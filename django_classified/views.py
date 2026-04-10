@@ -166,7 +166,11 @@ class GroupDetail(SingleObjectMixin, ListView):
 
 
 class ItemDetailView(DetailView):
-    queryset = Item.active.select_related('group__section', 'area', 'user__profile').prefetch_related('image_set')
+    queryset = (
+        Item.active
+        .select_related('group__section', 'area', 'user__profile')
+        .prefetch_related('image_set')
+    )
 
 
 class ItemUpdateView(LoginRequiredMixin, FormsetMixin, UpdateView):
