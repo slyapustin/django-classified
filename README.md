@@ -62,7 +62,7 @@ INSTALLED_APPS = [
      # External applications required by Django Classified
     'bootstrapform',
     'sorl.thumbnail',
-    'django_filter',
+    'django_filters',
 
     # Django Classified
     'django_classified',
