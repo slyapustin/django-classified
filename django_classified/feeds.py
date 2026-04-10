@@ -14,7 +14,7 @@ class LatestItemFeed(Feed):
         return Site.objects.get_current().name
 
     def items(self):
-        return Item.active.order_by('-updated')[:dcf_settings.RSS_LIMIT]
+        return Item.active.select_related('group').order_by('-updated')[:dcf_settings.RSS_LIMIT]
 
     def item_title(self, item):
         return item.title

@@ -12,7 +12,7 @@ class ItemSitemap(Sitemap):
         return obj.updated
 
     def items(self):
-        return Item.active.all()[:dcf_settings.SITEMAP_LIMIT]
+        return Item.active.select_related('group').all()[:dcf_settings.SITEMAP_LIMIT]
 
 
 sitemaps_dict = {

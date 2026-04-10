@@ -98,6 +98,34 @@ class DCFTestCase(BaseTestCase):
         response = self.client.get(reverse('django_classified:search'), {'q': 'WRONG KEYWORDS'})
         self.assertNotContains(response, self.item.get_absolute_url())
 
+    def test_item_search_by_title_only(self):
+        item = Item.objects.create(
+            user=self.user,
+            group=self.group,
+            title='Unique Gadget XYZ',
+            description='A regular product listing',
+            price=50,
+        )
+        response = self.client.get(reverse('django_classified:search'), {'q': 'Gadget XYZ'})
+        self.assertContains(response, item.get_absolute_url())
+
+    def test_item_search_multi_word_matches_across_fields(self):
+        item = Item.objects.create(
+            user=self.user,
+            group=self.group,
+            title='Vintage Camera',
+            description='Excellent condition, barely used',
+            price=200,
+        )
+        # 'Vintage' is in title, 'condition' is in description
+        response = self.client.get(reverse('django_classified:search'), {'q': 'Vintage condition'})
+        self.assertContains(response, item.get_absolute_url())
+
+    def test_item_search_multi_word_partial_miss(self):
+        # All words must match somewhere
+        response = self.client.get(reverse('django_classified:search'), {'q': 'Tesla NONEXISTENT'})
+        self.assertNotContains(response, self.item.get_absolute_url())
+
     def test_user_can_add_item(self):
         self.client.login(
             username=self.username,
