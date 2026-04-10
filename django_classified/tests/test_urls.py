@@ -253,3 +253,54 @@ class DCFTestCase(BaseTestCase):
 
         # The slug should preserve the Arabic characters
         self.assertEqual(arabic_group.slug, 'بيت-للأجار')
+
+    def test_empty_section_appears_on_homepage(self):
+        Section.objects.create(title='Empty Section')
+        response = self.client.get(reverse('django_classified:index'))
+        self.assertContains(response, 'Empty Section')
+
+    def test_non_latin_slug_url_resolves(self):
+        arabic_group = Group.objects.create(
+            title='بيت للأجار',
+            section=self.section
+        )
+        item = Item.objects.create(
+            user=self.user,
+            group=arabic_group,
+            title='عقار جديد',
+            description='A listing with Arabic title',
+            price=1000,
+        )
+        response = self.client.get(item.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(arabic_group.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_required_views_redirect(self):
+        protected_urls = [
+            reverse('django_classified:item-new'),
+            reverse('django_classified:user-items'),
+            reverse('django_classified:profile'),
+            reverse('django_classified:item-edit', kwargs={'pk': self.item.pk}),
+            reverse('django_classified:my-delete', kwargs={'pk': self.item.pk}),
+        ]
+        for url in protected_urls:
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 302, f'{url} should redirect when not logged in')
+
+    def test_set_area_prevents_open_redirect(self):
+        response = self.client.get(
+            reverse('django_classified:set-area'),
+            {'next': 'https://evil.com'}
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertNotIn('evil.com', response.url)
+
+    def test_set_area_allows_safe_redirect(self):
+        safe_url = reverse('django_classified:search')
+        response = self.client.get(
+            reverse('django_classified:set-area'),
+            {'next': safe_url}
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, safe_url)
