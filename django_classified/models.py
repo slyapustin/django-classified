@@ -14,6 +14,9 @@ class Profile(models.Model):
     phone = models.CharField(_('Contact phone'), max_length=30, null=True, blank=True)
     receive_news = models.BooleanField(_('Receive news'), default=True, db_index=True)
 
+    def __str__(self):
+        return str(self.user)
+
     def allow_add_item(self):
         return self.user.item_set.count() < dcf_settings.ITEM_PER_USER_LIMIT
 
@@ -94,7 +97,7 @@ class Group(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title, allow_unicode=True)
-        super(Group, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('django_classified:group', kwargs={'pk': self.pk, 'slug': self.slug})
@@ -102,7 +105,7 @@ class Group(models.Model):
 
 class ActiveManager(models.Manager):
     def get_queryset(self):
-        return super(ActiveManager, self).get_queryset().filter(is_active=True)
+        return super().get_queryset().filter(is_active=True)
 
 
 class Item(models.Model):
@@ -123,7 +126,7 @@ class Item(models.Model):
 
     def __str__(self):
         if not self.is_active:
-            return '[%s] %s' % (_('in active'), self.title)
+            return '[%s] %s' % (_('inactive'), self.title)
         else:
             return self.title
 
@@ -166,9 +169,16 @@ class Item(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title, allow_unicode=True)
-        super(Item, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Image(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     file = ImageField(_('image'), upload_to='images')
+
+    def __str__(self):
+        return _('Image for %(item)s') % {'item': self.item.title}
+
+    class Meta:
+        verbose_name = _('image')
+        verbose_name_plural = _('images')

@@ -13,16 +13,19 @@
   <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}"/>
   <meta property="og:title" content="{{ object.title }}"/>
   <meta property="og:description" content="{{ object.description }}"/>
-  {% for img in object.image_set.all %}
+  {% with images=object.image_set.all %}
+  {% for img in images %}
     {% thumbnail img.file "x800" as im %}
       <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ im.url }}"/>
       <meta property="og:image:alt" content="{{ object.title }}"/>
     {% endthumbnail %}
   {% endfor %}
+  {% endwith %}
 {% endblock %}
 
 {% block body %}
 
+  {% with images=object.image_set.all %}
   <div itemscope itemtype="http://schema.org/Product">
 
     <div class="row">
@@ -56,10 +59,10 @@
       </div>
     </div>
 
-    {% if object.image_count %}
+    {% if images %}
       <div class="row">
         <div class="col-lg-12">
-          {% for img in object.image_set.all %}
+          {% for img in images %}
             {% thumbnail img.file "150x150" crop="center" as im %}
               <a href='{{ img.file.url }}' data-lightbox="lightbox[{{ object.id }}]"
                  title="{{ object.title }}">
@@ -78,6 +81,7 @@
       </div>
     </div>
   </div>
+  {% endwith %}
 
   {% if object.contact_phone %}
     <div class="row">
@@ -100,7 +104,7 @@
       {% endif %}
       <div class="col-md-2">
         {% if item.featured_image %}
-          {% thumbnail featured_image.file "70x70" crop="center" as im %}
+          {% thumbnail item.featured_image.file "70x70" crop="center" as im %}
             <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">
               <img
                       src='{{ im.url }}'

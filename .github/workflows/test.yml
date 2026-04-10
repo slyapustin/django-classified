@@ -32,9 +32,9 @@ jobs:
             django-version: "django>=5.0,<5.1"
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -42,7 +42,7 @@ jobs:
       run: |
         pip install --upgrade pip setuptools wheel --quiet
         pip install "${{ matrix.django-version }}" --quiet
-        python setup.py install
+        pip install . --quiet
         pip install flake8
         pip install coverage
 
