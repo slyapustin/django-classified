@@ -151,11 +151,12 @@ class Item(models.Model):
 
     @cached_property
     def image_count(self):
-        return self.image_set.count()
+        return len(self.image_set.all())
 
     @cached_property
     def featured_image(self):
-        return self.image_set.all().first()
+        images = self.image_set.all()
+        return images[0] if images else None
 
     @cached_property
     def related_items(self):

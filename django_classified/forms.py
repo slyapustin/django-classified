@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 from .models import Item, Group, Profile, Area
@@ -9,19 +10,24 @@ class SearchForm(forms.Form):
     group = forms.ModelChoiceField(label=_('Group'), queryset=Group.objects.all(), required=False)
     q = forms.CharField(required=False, label=_('Query'),)
 
-    def filter_by(self):
-        # TODO search using more than one field
-        # TODO split query string and make seaprate search by words
-        filters = {}
+    def get_queryset_filter(self):
+        q_filter = Q()
+
         if self.cleaned_data['group']:
-            filters['group'] = self.cleaned_data['group']
+            q_filter &= Q(group=self.cleaned_data['group'])
 
         if self.cleaned_data['area']:
-            filters['area'] = self.cleaned_data['area']
+            q_filter &= Q(area=self.cleaned_data['area'])
 
-        filters['description__icontains'] = self.cleaned_data['q']
+        query = self.cleaned_data.get('q', '').strip()
+        if query:
+            words = query.split()
+            for word in words:
+                q_filter &= (
+                    Q(title__icontains=word) | Q(description__icontains=word)
+                )
 
-        return filters
+        return q_filter
 
 
 class ItemForm(forms.ModelForm):
