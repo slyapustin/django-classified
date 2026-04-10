@@ -78,7 +78,7 @@ class SectionListView(TemplateView):
 
 class SearchView(FilteredListView):
     form_class = SearchForm
-    queryset = Item.active.select_related('group', 'area').prefetch_related('image_set')
+    queryset = Item.active.prefetch_related('image_set')
     paginate_by = 10
     template_name = 'django_classified/search.html'
 
@@ -157,7 +157,6 @@ class GroupDetail(SingleObjectMixin, ListView):
         item_qs = (
             self.object.item_set
             .filter(is_active=True)
-            .select_related('group', 'area')
             .prefetch_related('image_set')
         )
         area = Area.get_for_request(self.request)
@@ -167,7 +166,7 @@ class GroupDetail(SingleObjectMixin, ListView):
 
 
 class ItemDetailView(DetailView):
-    queryset = Item.active.select_related('group__section', 'area', 'user__profile')
+    queryset = Item.active.select_related('group__section', 'area', 'user__profile').prefetch_related('image_set')
 
 
 class ItemUpdateView(LoginRequiredMixin, FormsetMixin, UpdateView):
@@ -214,7 +213,7 @@ class MyItemsView(LoginRequiredMixin, ListView):
     template_name = 'django_classified/user_item_list.html'
 
     def get_queryset(self):
-        return Item.objects.filter(user=self.request.user).select_related('group')
+        return Item.objects.filter(user=self.request.user).select_related('group__section')
 
 
 class ItemDeleteView(LoginRequiredMixin, DeleteView):
