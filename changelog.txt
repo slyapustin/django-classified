@@ -1,5 +1,16 @@
 Changelog
 =========
+v1.2.1 (10/04/2026)
+-----------------
+ - Search now matches both title and description fields
+ - Search splits query into words (each word must match in either field)
+ - URLs in item descriptions are now rendered as clickable links (#66)
+ - Added select_related/prefetch_related to views to reduce database queries
+ - Optimized image_count and featured_image to use prefetch cache
+ - Updated CI to GitHub Actions v6 (Node.js 24)
+ - Switched PyPI publishing to Trusted Publishers (OIDC)
+
+
 v1.2.0 (10/04/2026)
 -----------------
  - Dropped Python 3.9 support, now requires Python 3.10+

@@ -118,4 +118,4 @@ You can provide additional customization in settings.py
 
 ## Current Version
 
-The current version is 1.2.0 (April 2026).
+The current version is 1.2.1 (April 2026).
