@@ -17,11 +17,10 @@ setuptools.setup(
     url="https://github.com/slyapustin/django-classified",
     keywords="django classified",
     packages=setuptools.find_packages(exclude=("demo",)),
-    python_requires=">=3.9",
+    python_requires=">=3.10",
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
@@ -32,7 +31,7 @@ setuptools.setup(
     install_requires=[
         "django-bootstrap-form",
         "django-filter",
-        "Django>=4.2,<5.2",
+        "Django>=5.2,<6.1",
         "Pillow",
         "sorl-thumbnail",
         # Babel is used for currency formatting
