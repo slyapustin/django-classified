@@ -1,15 +1,17 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.utils.decorators import method_decorator
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView, TemplateView
 from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import FormMixin
+
+from django.db import models
 
 from . import settings as dcf_settings
 from .forms import ItemForm, ProfileForm, SearchForm
@@ -40,23 +42,36 @@ class SectionListView(TemplateView):
     template_name = 'django_classified/section_list.html'
 
     def get_context_data(self, **kwargs):
-        context = super(SectionListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
-        items_qs = Item.active
         area = Area.get_for_request(self.request)
+
+        item_filter = models.Q(item__is_active=True)
         if area:
-            items_qs = items_qs.filter(area=area)
+            item_filter &= models.Q(item__area=area)
 
-        object_list = []
-        # Prepare list of tuples with object/count
-        for section in Section.objects.all():
-            groups = [(group, items_qs.filter(group=group).count()) for group in section.group_set.all()]
-            object_list.append(dict(
-                section=(section, items_qs.filter(group__section=section).count()),
-                groups=groups
-            ))
+        groups = (
+            Group.objects
+            .select_related('section')
+            .annotate(item_count=models.Count('item', filter=item_filter))
+            .order_by('section__title', 'title')
+        )
 
-        context['object_list'] = object_list
+        sections_dict = {
+            section.pk: {'section': (section, 0), 'groups': []}
+            for section in Section.objects.all()
+        }
+        for group in groups:
+            section = group.section
+            if section.pk not in sections_dict:
+                sections_dict[section.pk] = {'section': (section, 0), 'groups': []}
+            sections_dict[section.pk]['groups'].append((group, group.item_count))
+            sections_dict[section.pk]['section'] = (
+                section,
+                sections_dict[section.pk]['section'][1] + group.item_count,
+            )
+
+        context['object_list'] = list(sections_dict.values())
 
         return context
 
@@ -68,12 +83,12 @@ class SearchView(FilteredListView):
     template_name = 'django_classified/search.html'
 
     def get_initial(self):
-        initials = super(SearchView, self).get_initial()
+        initials = super().get_initial()
         initials['area'] = Area.get_for_request(self.request)
         return initials
 
 
-class FormsetMixin(object):
+class FormsetMixin:
     object = None
 
     def get(self, request, *args, **kwargs):
@@ -131,10 +146,10 @@ class GroupDetail(SingleObjectMixin, ListView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Group.objects.all())
-        return super(GroupDetail, self).get(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(GroupDetail, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['group'] = self.object
         return context
 
@@ -150,79 +165,67 @@ class ItemDetailView(DetailView):
     queryset = Item.active
 
 
-class ItemUpdateView(FormsetMixin, UpdateView):
+class ItemUpdateView(LoginRequiredMixin, FormsetMixin, UpdateView):
     is_update_view = True
     model = Item
     form_class = ItemForm
     formset_class = inlineformset_factory(Item, Image, fields=('file',))
 
     def get_object(self, *args, **kwargs):
-        obj = super(ItemUpdateView, self).get_object(*args, **kwargs)
+        obj = super().get_object(*args, **kwargs)
         if not obj.user == self.request.user and not self.request.user.is_superuser:
             raise PermissionDenied
         return obj
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ItemUpdateView, self).dispatch(*args, **kwargs)
 
-
-class ItemCreateView(FormsetMixin, CreateView):
+class ItemCreateView(LoginRequiredMixin, FormsetMixin, CreateView):
     is_update_view = False
     model = Item
     form_class = ItemForm
     formset_class = inlineformset_factory(Item, Image, extra=3, fields=('file', ))
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        profile = Profile.get_or_create_for_user(self.request.user)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+        profile = Profile.get_or_create_for_user(request.user)
         if not profile.allow_add_item():
-            messages.error(self.request, _('You have reached the limit!'))
+            messages.error(request, _('You have reached the limit!'))
             return redirect(reverse('django_classified:user-items'))
-
-        return super(ItemCreateView, self).dispatch(*args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form, formset):
         form.instance.user = self.request.user
         form.save()
 
-        return super(ItemCreateView, self).form_valid(form, formset)
+        return super().form_valid(form, formset)
 
     def get_initial(self):
-        initial = super(ItemCreateView, self).get_initial()
+        initial = super().get_initial()
         initial['area'] = Area.get_for_request(self.request)
         return initial
 
 
-class MyItemsView(ListView):
+class MyItemsView(LoginRequiredMixin, ListView):
     template_name = 'django_classified/user_item_list.html'
 
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(MyItemsView, self).dispatch(*args, **kwargs)
 
-
-class ItemDeleteView(DeleteView):
+class ItemDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('django_classified:user-items')
 
     def get_queryset(self):
-        qs = super(ItemDeleteView, self).get_queryset()
+        qs = super().get_queryset()
 
         if not self.request.user.is_superuser:
             qs = qs.filter(user=self.request.user)
 
         return qs
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ItemDeleteView, self).dispatch(*args, **kwargs)
 
-
-class ProfileView(UpdateView):
+class ProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'django_classified/profile.html'
     form_class = ProfileForm
     success_url = reverse_lazy('django_classified:profile')
@@ -232,11 +235,7 @@ class ProfileView(UpdateView):
 
     def form_valid(self, form):
         messages.success(self.request, _('Your profile settings was updated!'))
-        return super(ProfileView, self).form_valid(form)
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ProfileView, self).dispatch(*args, **kwargs)
+        return super().form_valid(form)
 
 
 class RobotsView(TemplateView):
@@ -253,6 +252,10 @@ class SetAreaView(View):
         else:
             Area.delete_for_request(request)
 
-        next_url = self.request.GET.get('next') or reverse_lazy('django_classified:index')
+        next_url = self.request.GET.get('next', '')
+        if not url_has_allowed_host_and_scheme(
+            next_url, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+        ):
+            next_url = reverse('django_classified:index')
 
         return redirect(next_url)

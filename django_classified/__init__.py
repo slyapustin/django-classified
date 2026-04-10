@@ -1,4 +1,4 @@
-VERSION = (1, 1, 2)
+VERSION = (1, 2, 0)
 
 
 def get_version():
@@ -9,7 +9,3 @@ def get_version():
         version = f"{version}.{VERSION[2]}"
 
     return version
-
-
-default_app_config = "django_classified.apps.DjangoClassifiedConfig"
-name = "django_classified"

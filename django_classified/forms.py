@@ -38,7 +38,7 @@ class ItemForm(forms.ModelForm):
 
 
 class PhoneWidget(forms.TextInput):
-    input_type = 'phone'
+    input_type = 'tel'
 
 
 class ProfileForm(forms.ModelForm):
