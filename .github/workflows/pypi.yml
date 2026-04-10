@@ -11,15 +11,17 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
 
     steps:
       - name: Check out the code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.x" # Use the latest Python version for publishing
+          python-version: "3.x"
 
       - name: Install dependencies
         run: |
@@ -37,14 +39,8 @@ jobs:
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository-url: https://test.pypi.org/legacy/
-          verbose: true
 
       - name: Publish to PyPI
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
