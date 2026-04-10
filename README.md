@@ -2,7 +2,7 @@
 
 ## Features
 
-- Item groups, categories and areas (for ex. Cities ot Locations)
+- Item groups, categories and areas (for ex. Cities or Locations)
 - Image
   - upload multiple images per item
   - generating preview (via [sorl-thumbnail](https://github.com/mariocesar/sorl-thumbnail))
@@ -14,7 +14,7 @@
   - sitemap.xml
   - robots.txt
   - RSS feed
-  - Google Analytics integration
+  - Google Analytics 4 (GA4) integration
   - [Open Graph protocol](http://ogp.me/) support
   - Support for non-Latin characters in URLs (Arabic, Cyrillic, etc.)
 - Caching
@@ -28,12 +28,12 @@
 
 ## Requirements
 
-- Python >=3.9
-- Django >=4.2, <5.2
+- Python >=3.10
+- Django >=5.2, <6.1
 
 ## Design
 
-- [Twitter Bootstrap Jumbotron](http://getbootstrap.com/examples/jumbotron-narrow/)
+- [Bootstrap 3 Jumbotron](https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/)
 
 ## Demo project
 
@@ -62,7 +62,7 @@ INSTALLED_APPS = [
      # External applications required by Django Classified
     'bootstrapform',
     'sorl.thumbnail',
-    'django_filters',
+    'django_filter',
 
     # Django Classified
     'django_classified',
@@ -108,4 +108,4 @@ You can provide additional customization in settings.py
 
 ## Current Version
 
-The current version is 1.1.2 (March 2025).
+The current version is 1.2.0 (April 2026).
