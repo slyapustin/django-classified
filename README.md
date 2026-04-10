@@ -19,11 +19,16 @@
   - Support for non-Latin characters in URLs (Arabic, Cyrillic, etc.)
 - Caching
 - Translation
+  - Arabic
+  - Azerbaijani
   - English
-  - Russian
   - French (thanks to [Teolemon](https://github.com/teolemon))
-  - Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
+  - German
+  - Polish
+  - Portuguese
+  - Russian
   - Spanish (thanks to [4bimcad](https://github.com/4bimcad))
+  - Turkish (thanks to [Mirat Can Bayrak](https://github.com/miratcan))
   - Help translate to other languages at [Transifex](https://www.transifex.com/inoks/django-classified/)
 
 ## Requirements
@@ -62,7 +67,6 @@ INSTALLED_APPS = [
      # External applications required by Django Classified
     'bootstrapform',
     'sorl.thumbnail',
-    'django_filters',
 
     # Django Classified
     'django_classified',
@@ -105,6 +109,12 @@ You can provide additional customization in settings.py
 - `DCF_LOGIN_TO_CONTACT` - Hide contact information for unauthorized requests
 - `DCF_DISPLAY_EMPTY_GROUPS` - Display groups without items in the groups list
 - `DCF_CURRENCY` - Site currency (default: 'USD')
+
+### Optional integrations
+
+- `GOOGLE_ANALYTICS_PROPERTY_ID` - Google Analytics 4 measurement ID (e.g. 'G-XXXXXXXXXX')
+- `GOOGLE_SITE_VERIFICATION_ID` - Google Search Console verification code
+- `FACEBOOK_APP_ID` - Facebook App ID for Open Graph integration
 
 ## Current Version
 
