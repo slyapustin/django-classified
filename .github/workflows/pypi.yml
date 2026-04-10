@@ -42,6 +42,7 @@ jobs:
         with:
           repository-url: https://test.pypi.org/legacy/
           attestations: false
+          skip-existing: true
 
       - name: Publish to PyPI
         if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
