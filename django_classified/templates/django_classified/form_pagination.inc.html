@@ -2,8 +2,8 @@
 
 <nav>
   <ul class="pagination">
-    <li>
-      <button class="btn btn-default"
+    <li class="page-item{% if not page_obj.has_previous %} disabled{% endif %}">
+      <button class="page-link"
               name="page"
               value="{% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% endif %}"
               type="submit"
@@ -14,8 +14,8 @@
       </button>
     </li>
 
-    <li>
-      <button class="btn btn-default"
+    <li class="page-item{% if not page_obj.has_next %} disabled{% endif %}">
+      <button class="page-link"
               name="page"
               value="{% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}"
               type="submit"

@@ -30,3 +30,14 @@ def currency(value, currency=None):
     }
 
     return format_currency(value, **kwargs)
+
+
+@register.simple_tag(name='og_locale')
+def og_locale():
+    """
+    Return the active language as an Open Graph locale, e.g. en_US.
+
+    Open Graph expects language_TERRITORY, while Django's language codes are
+    lowercase and hyphenated ('en-us'), so the two are not interchangeable.
+    """
+    return to_locale(get_language() or settings.LANGUAGE_CODE)

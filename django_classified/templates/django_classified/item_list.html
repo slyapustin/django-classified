@@ -1,28 +1,27 @@
 {% extends "django_classified/_base.html" %}
 
-{% block title %}{{ object }}{% endblock %}
+{% load i18n %}
+
+{# Group title first: the specific term matters more than the parent section #}
+{# in a search result, and Group.__str__ leads with the section.            #}
+{% block title %}{{ object.title }} — {{ object.section.title }}{% endblock %}
+
+{% block meta_description %}{% blocktrans count counter=page_obj.paginator.count with group_title=object.title section_title=object.section.title %}{{ group_title }} classified ads in {{ section_title }}. Browse {{ counter }} listing.{% plural %}{{ group_title }} classified ads in {{ section_title }}. Browse {{ counter }} listings.{% endblocktrans %}{% endblock meta_description %}
+
+{% block meta_og %}
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}"/>
+  <meta property="og:title" content="{{ object.title }}"/>
+  <meta property="og:description" content="{% blocktrans count counter=page_obj.paginator.count with group_title=object.title section_title=object.section.title %}{{ group_title }} classified ads in {{ section_title }}. Browse {{ counter }} listing.{% plural %}{{ group_title }} classified ads in {{ section_title }}. Browse {{ counter }} listings.{% endblocktrans %}"/>
+{% endblock %}
 
 {% block body %}
-  <div class="row">
-    <div class="col-lg-12">
-      <h4>
-        <a href="{% url 'django_classified:index' %}#{{ object.section.id }}">{{ object.section }}</a> > <a
-              href="{{ object.get_absolute_url }}" title="{{ object.title }}">
-          {{ object.title }}
-        </a>
-      </h4>
-    </div>
-  </div>
+  <p class="dcf-eyebrow">
+    <a href="{% url 'django_classified:index' %}#{{ object.section.id }}">{{ object.section.title }}</a>
+  </p>
 
-  <div class="row">
-    <div class="col-lg-12">
-      {% include "django_classified/item_list.inc.html" %}
-    </div>
-  </div>
+  <h2 class="dcf-page-title">{{ object.title }}</h2>
 
-  <div class="row">
-    <div class="col-lg-12">
-      {% include "django_classified/list_pagination.inc.html" %}
-    </div>
-  </div>
+  {% include "django_classified/item_list.inc.html" %}
+
+  {% include "django_classified/list_pagination.inc.html" %}
 {% endblock body %}
