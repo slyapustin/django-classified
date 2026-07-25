@@ -6,18 +6,20 @@
 - Image
   - upload multiple images per item
   - generating preview (via [sorl-thumbnail](https://github.com/mariocesar/sorl-thumbnail))
-  - display using [Lightbox JS](http://lokeshdhakar.com/projects/lightbox2/) library
+  - display in a Bootstrap 5 modal with a carousel
 - Search ability
-- SEO optimization
-  - SEO-friendly urls
-  - generating META description and meta keywords
-  - sitemap.xml
-  - robots.txt
+- SEO
+  - SEO-friendly URLs, including non-Latin characters (Arabic, Cyrillic, etc.)
+  - `sitemap.xml` covering both item and category pages
+  - Self-referencing canonical URLs
+  - Per-page meta descriptions, including category pages
+  - [JSON-LD](https://schema.org/Product) structured data (`Product`, `BreadcrumbList`) on item pages
+  - [Open Graph](http://ogp.me/) and Twitter card tags
+  - `robots.txt`, and `noindex` on search, profile and form pages
+  - `<html lang>` follows the active translation
   - RSS feed
   - Google Analytics 4 (GA4) integration
-  - [Open Graph protocol](http://ogp.me/) support
-  - Support for non-Latin characters in URLs (Arabic, Cyrillic, etc.)
-- Caching
+- Caching of `robots.txt` and the RSS feed
 - Translation
   - Arabic
   - Azerbaijani
@@ -38,7 +40,15 @@
 
 ## Design
 
-- [Bootstrap 3 Jumbotron](https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/)
+- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/)
+- No external requests: no jQuery, no CDN, no webfonts. The only script is
+  Bootstrap's own bundle, and typography uses system font stacks.
+- Light and dark themes via Bootstrap's `data-bs-theme` attribute
+- Accessible defaults: visible focus styles, `prefers-reduced-motion` respected,
+  and a print stylesheet
+
+All templates live under `django_classified/templates/django_classified/` and can
+be overridden by placing a file of the same name earlier on the template path.
 
 ## Demo project
 
@@ -65,7 +75,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
      # External applications required by Django Classified
-    'bootstrapform',
     'sorl.thumbnail',
 
     # Django Classified
@@ -108,6 +117,7 @@ You can provide additional customization in settings.py
 - `DCF_ITEM_PER_PAGE` - Number of items per page
 - `DCF_LOGIN_TO_CONTACT` - Hide contact information for unauthorized requests
 - `DCF_DISPLAY_EMPTY_GROUPS` - Display groups without items in the groups list
+- `DCF_DISPLAY_CREDITS` - Show the "Powered by Django Classified" footer credit (default: `True`)
 - `DCF_CURRENCY` - Site currency (default: 'USD')
 
 ### Optional integrations
@@ -116,6 +126,26 @@ You can provide additional customization in settings.py
 - `GOOGLE_SITE_VERIFICATION_ID` - Google Search Console verification code
 - `FACEBOOK_APP_ID` - Facebook App ID for Open Graph integration
 
+## Upgrading to 1.3
+
+1.3 migrates the bundled templates from Bootstrap 3 to Bootstrap 5 and removes
+several dependencies. If you use the templates as shipped, upgrading with
+`pip install -U django-classified` is all you need. Otherwise:
+
+- **Remove `'bootstrapform'` from `INSTALLED_APPS`.** `django-bootstrap-form` is
+  no longer a dependency, so leaving it listed raises `ModuleNotFoundError`. The
+  `bootstrap` template filter is now provided by this package and keeps its name,
+  so `{% load i18n bootstrap %}` still works.
+- **If you override any bundled template**, it is now Bootstrap 5 markup. The old
+  Bootstrap 3 classes (`form-group`, `control-label`, `help-block`, `pull-right`,
+  `btn-default`, glyphicons) are gone.
+- **These static files were removed**: jQuery, lightbox2, the Glyphicons fonts,
+  `jumbotron-narrow.css`, and `bootstrap.min.css.map`. Reference them from your
+  own project if you still need them.
+- Item images now open in a Bootstrap modal with a carousel instead of lightbox2.
+
+See `changelog.txt` for the full list.
+
 ## Current Version
 
-The current version is 1.2.1 (April 2026).
+The current version is 1.3 (July 2026).

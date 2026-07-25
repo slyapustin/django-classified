@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% if form.non_field_errors %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {% for non_field_error in form.non_field_errors %}
+      {{ non_field_error }}
+    {% endfor %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{% trans 'Close' %}"></button>
+  </div>
+{% endif %}
+
+{% for field in form.hidden_fields %}
+  {{ field }}
+{% endfor %}
+
+{% for field in form.visible_fields %}
+  {% include 'django_classified/forms/field.html' %}
+{% endfor %}

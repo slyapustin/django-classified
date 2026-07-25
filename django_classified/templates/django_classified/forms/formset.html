@@ -1,0 +1,5 @@
+{{ formset.management_form }}
+
+{% for form in formset %}
+  {% include 'django_classified/forms/form.html' with form=form %}
+{% endfor %}

@@ -1,6 +1,637 @@
+/*
+ * Django Classified — "card index" theme.
+ *
+ * The app's structure is a two-level catalogue (Section -> Group -> Item), so the
+ * visual language borrows from a library card index: sections read as labelled
+ * dividers, groups as ruled entries carrying counts, items as typed cards.
+ *
+ * Implemented as an override layer on Bootstrap 5.3's own custom properties
+ * rather than as competing rules, so component internals keep working and dark
+ * mode comes almost free.
+ *
+ * No webfonts: the package deliberately ships zero external requests, so the
+ * personality comes from how the system stacks are set — wide-tracked uppercase
+ * dividers, and prices in tabular monospace so digits align down the column.
+ */
+
+:root {
+    /* Palette */
+    --dcf-ink: #16283c;
+    --dcf-ink-soft: #5a6b7d;
+    --dcf-stock: #fcfcfa;
+    --dcf-field: #e7edf2;
+    --dcf-rule: #c3d2de;
+    --dcf-tab: #c8892e;
+    --dcf-stamp: #a32e1c;
+
+    /* Type */
+    --dcf-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --dcf-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* Bootstrap overrides */
+    --bs-body-bg: var(--dcf-field);
+    --bs-body-color: var(--dcf-ink);
+    --bs-body-font-family: var(--dcf-font-body);
+    --bs-body-font-size: 1rem;
+    --bs-body-line-height: 1.6;
+    --bs-border-color: var(--dcf-rule);
+    --bs-border-radius: 3px;
+    --bs-border-radius-sm: 2px;
+    --bs-border-radius-lg: 4px;
+    /* Bootstrap 5.3 resolves anchor colour from the -rgb triplet, so setting
+       only --bs-link-color leaves every link the default Bootstrap blue. */
+    --bs-link-color: var(--dcf-ink);
+    --bs-link-color-rgb: 22, 40, 60;
+    --bs-link-hover-color: var(--dcf-stamp);
+    --bs-link-hover-color-rgb: 163, 46, 28;
+    --bs-secondary-color: var(--dcf-ink-soft);
+    --bs-emphasis-color: var(--dcf-ink);
+    --bs-heading-color: var(--dcf-ink);
+}
+
+body {
+    padding: 2rem 0 3rem;
+    background-image: linear-gradient(var(--dcf-field), var(--dcf-field));
+}
+
+/* The whole app sits on one card. Narrow measure keeps listing lines scannable. */
+.container {
+    max-width: 60rem;
+    padding: 2rem 2.25rem 2.5rem;
+    background: var(--dcf-stock);
+    border: 1px solid var(--dcf-rule);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 var(--dcf-rule), 0 12px 32px -24px rgba(22, 40, 60, .5);
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .75rem 1.5rem;
+    margin-bottom: 2.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--dcf-ink);
+}
+
+/* The site name is the page's h1 on every view, so item and group headings can
+   sit at h2 without leaving a document with no h1 at all. */
+.dcf-masthead {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+}
+
+.dcf-masthead > a {
+    color: var(--dcf-ink);
+    text-decoration: none;
+}
+
+.dcf-masthead > a:hover {
+    color: var(--dcf-stamp);
+}
+
+.header .nav {
+    gap: .15rem;
+}
+
+/* Nav reads as index tabs rather than pills. */
+.header .nav-link {
+    padding: .3rem .7rem;
+    color: var(--dcf-ink-soft);
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+}
+
+.header .nav-link:hover,
+.header .nav-link:focus-visible {
+    color: var(--dcf-ink);
+    background: none;
+    border-bottom-color: var(--dcf-tab);
+}
+
+.header .nav-link.show {
+    color: var(--dcf-ink);
+    border-bottom-color: var(--dcf-ink);
+}
+
+.header .nav-link svg {
+    margin-top: -2px;
+}
+
+#area-selector {
+    margin-left: .35rem;
+    padding: .1rem 1.6rem .1rem .4rem;
+    color: var(--dcf-ink-soft);
+    font-family: var(--dcf-font-mono);
+    font-size: .78rem;
+    background-color: transparent;
+    border-color: var(--dcf-rule);
+}
+
+/* --------------------------------------------------------- section index */
+
+/* Own class rather than reusing .marketing, which other templates also carry as
+   a plain spacing wrapper.
+
+   Multi-column rather than grid: sections have wildly different lengths, and a
+   grid leaves a ragged hole whenever the count is not a multiple of the column
+   count. Columns pack and balance instead. */
+.dcf-index {
+    columns: 3 14rem;
+    column-gap: 2.5rem;
+}
+
+.dcf-section {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+}
+
+.dcf-search {
+    max-width: 30rem;
+}
+
+.dcf-empty {
+    color: var(--dcf-ink-soft);
+}
+
+/* The manila divider tab. Its notched corner is the one ornamental move on the
+   page; everything else stays flat and ruled. */
+.dcf-section__tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: .5rem;
+    max-width: 100%;
+    margin: 0 0 .75rem;
+    padding: .28rem .7rem;
+    color: var(--dcf-ink);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background: var(--dcf-tab);
+    border-radius: 3px 10px 0 0;
+}
+
+.dcf-section__count {
+    font-family: var(--dcf-font-mono);
+    font-size: .72rem;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    opacity: .75;
+}
+
+.dcf-section__groups {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--dcf-ink);
+}
+
+.dcf-group {
+    border-bottom: 1px solid var(--dcf-rule);
+}
+
+.dcf-group > a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .42rem .25rem .42rem 0;
+    color: var(--dcf-ink);
+    text-decoration: none;
+}
+
+.dcf-group > a:hover,
+.dcf-group > a:focus-visible {
+    color: var(--dcf-stamp);
+    background: linear-gradient(90deg, rgba(200, 137, 46, .13), transparent 70%);
+}
+
+.dcf-group__count {
+    flex: none;
+    color: var(--dcf-ink-soft);
+    font-family: var(--dcf-font-mono);
+    font-size: .8rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------- listings */
+
+/* Prices are the signature: monospace and tabular so they align into a
+   readable column, which is the actual task on a listings page. */
+.dcf-price {
+    color: var(--dcf-stamp);
+    font-family: var(--dcf-font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    white-space: nowrap;
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: rgba(200, 137, 46, .09);
+
+    margin-bottom: 0;
+}
+
+.table > thead td {
+    padding: .35rem .5rem;
+    color: var(--dcf-ink-soft);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dcf-ink);
+}
+
+.table > tbody td {
+    padding: .7rem .5rem;
+    vertical-align: middle;
+    border-bottom-color: var(--dcf-rule);
+}
+
+/* Header must follow the cells it labels, or the Price column reads
+   left-aligned above right-aligned figures. */
+.table td:last-child,
+.table th:last-child {
+    text-align: end;
+}
+
+.table a {
+    text-decoration: none;
+}
+
+.table a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
 .badge-notify {
-    background: gray;
     position: relative;
-    top: -20px;
-    left: -15px;
+    top: -18px;
+    left: -14px;
+    padding: .18em .4em;
+    color: var(--dcf-stock);
+    font-family: var(--dcf-font-mono);
+    font-size: .62rem;
+    font-variant-numeric: tabular-nums;
+    background: var(--dcf-ink);
+    border-radius: 2px;
+}
+
+/* ---------------------------------------------------------- item detail */
+
+/* Standalone page heading, used where there is no price to sit beside it. */
+.dcf-page-title {
+    margin: 0 0 1.25rem;
+    padding-bottom: .75rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    border-bottom: 2px solid var(--dcf-ink);
+}
+
+.dcf-eyebrow {
+    margin-bottom: .35rem;
+    color: var(--dcf-ink-soft);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+.dcf-eyebrow a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--dcf-rule);
+}
+
+.dcf-eyebrow a:hover {
+    color: var(--dcf-stamp);
+}
+
+.dcf-item-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .5rem 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--dcf-ink);
+}
+
+.dcf-item-head h2 {
+    max-width: 34rem;
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+}
+
+/* The stamped price block. */
+.dcf-item-price {
+    margin: 0;
+    padding: .2rem 0 .2rem .9rem;
+    font-size: 1.75rem;
+    border-left: 3px solid var(--dcf-stamp);
+}
+
+.dcf-description {
+    max-width: 42rem;
+    margin: 1.5rem 0 0;
+}
+
+.dcf-description p:last-child {
+    margin-bottom: 0;
+}
+
+.dcf-meta {
+    margin-top: 1.5rem;
+    padding-top: .75rem;
+    color: var(--dcf-ink-soft);
+    font-family: var(--dcf-font-mono);
+    font-size: .78rem;
+    border-top: 1px solid var(--dcf-rule);
+}
+
+.dcf-contact {
+    margin-top: 1.25rem;
+    padding: .85rem 1rem;
+    background: var(--dcf-field);
+    border-left: 3px solid var(--dcf-tab);
+    border-radius: 0 3px 3px 0;
+}
+
+.dcf-contact__value {
+    font-family: var(--dcf-font-mono);
+    font-weight: 600;
+}
+
+.dcf-subhead:first-child {
+    margin-top: 0;
+}
+
+.dcf-subhead {
+    margin: 2.25rem 0 1rem;
+    color: var(--dcf-ink-soft);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- gallery */
+
+.dcf-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-thumb {
+    padding: 0;
+    background: none;
+    border: 1px solid var(--dcf-rule);
+    border-radius: 3px;
+    cursor: zoom-in;
+    transition: border-color .12s ease, transform .12s ease;
+}
+
+.gallery-thumb:hover {
+    border-color: var(--dcf-tab);
+    transform: translateY(-1px);
+}
+
+.gallery-thumb img {
+    display: block;
+    border-radius: 2px;
+}
+
+.dcf-related {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+    gap: 1rem;
+}
+
+.dcf-related a {
+    color: var(--dcf-ink);
+    font-size: .85rem;
+    line-height: 1.35;
+    text-decoration: none;
+}
+
+.dcf-related a:hover {
+    color: var(--dcf-stamp);
+}
+
+.dcf-related img {
+    display: block;
+    margin-bottom: .4rem;
+    border: 1px solid var(--dcf-rule);
+    border-radius: 3px;
+}
+
+/* ------------------------------------------------------------------ forms */
+
+.form-label {
+    margin-bottom: .3rem;
+    color: var(--dcf-ink-soft);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.form-control,
+.form-select {
+    border-color: var(--dcf-rule);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--dcf-tab);
+    box-shadow: 0 0 0 3px rgba(200, 137, 46, .22);
+}
+
+/* Price and phone are data, not prose. */
+#id_price,
+#id_phone {
+    font-family: var(--dcf-font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+.btn {
+    --bs-btn-padding-x: 1.1rem;
+    --bs-btn-padding-y: .45rem;
+    --bs-btn-font-size: .82rem;
+    --bs-btn-font-weight: 700;
+    --bs-btn-border-radius: 3px;
+
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.btn-success {
+    --bs-btn-bg: var(--dcf-ink);
+    --bs-btn-border-color: var(--dcf-ink);
+    --bs-btn-hover-bg: var(--dcf-stamp);
+    --bs-btn-hover-border-color: var(--dcf-stamp);
+    --bs-btn-active-bg: var(--dcf-stamp);
+    --bs-btn-active-border-color: var(--dcf-stamp);
+}
+
+.btn-secondary {
+    --bs-btn-color: var(--dcf-ink);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--dcf-rule);
+    --bs-btn-hover-color: var(--dcf-stock);
+    --bs-btn-hover-bg: var(--dcf-ink);
+    --bs-btn-hover-border-color: var(--dcf-ink);
+}
+
+.btn-danger {
+    --bs-btn-bg: var(--dcf-stamp);
+    --bs-btn-border-color: var(--dcf-stamp);
+}
+
+.pagination {
+    --bs-pagination-color: var(--dcf-ink);
+    --bs-pagination-bg: transparent;
+    --bs-pagination-border-color: var(--dcf-rule);
+    --bs-pagination-hover-color: var(--dcf-stock);
+    --bs-pagination-hover-bg: var(--dcf-ink);
+    --bs-pagination-hover-border-color: var(--dcf-ink);
+    --bs-pagination-focus-bg: transparent;
+    --bs-pagination-border-radius: 3px;
+    --bs-pagination-font-size: .8rem;
+
+    margin-top: 1.5rem;
+}
+
+.page-link {
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------------- footer */
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .5rem 1.5rem;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    color: var(--dcf-ink-soft);
+    font-size: .78rem;
+    border-top: 1px solid var(--dcf-rule);
+}
+
+.footer a {
+    color: var(--dcf-ink-soft);
+}
+
+/* ------------------------------------------------------------ dark theme */
+
+[data-bs-theme="dark"] {
+    --dcf-ink: #e8eef4;
+    --dcf-ink-soft: #93a4b5;
+    --dcf-stock: #17222e;
+    --dcf-field: #101820;
+    --dcf-rule: #2c3b4a;
+    --dcf-tab: #d3a253;
+    --dcf-stamp: #e8705c;
+
+    --bs-body-bg: var(--dcf-field);
+    --bs-body-color: var(--dcf-ink);
+    --bs-border-color: var(--dcf-rule);
+    --bs-link-color: var(--dcf-ink);
+    --bs-link-color-rgb: 232, 238, 244;
+    --bs-link-hover-color-rgb: 232, 112, 92;
+    --bs-heading-color: var(--dcf-ink);
+}
+
+[data-bs-theme="dark"] .container {
+    box-shadow: none;
+}
+
+[data-bs-theme="dark"] .dcf-section__tab,
+[data-bs-theme="dark"] .badge-notify {
+    color: var(--dcf-field);
+}
+
+/* --------------------------------------------------------- quality floor */
+
+a:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.gallery-thumb:focus-visible,
+.page-link:focus-visible {
+    outline: 2px solid var(--dcf-tab);
+    outline-offset: 2px;
+}
+
+@media (max-width: 575.98px) {
+    body {
+        padding: 0 0 2rem;
+    }
+
+    .container {
+        padding: 1.25rem 1.1rem 1.75rem;
+        border-inline: 0;
+        border-radius: 0;
+    }
+
+    .header {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .header .nav {
+        justify-content: flex-start;
+    }
+
+    .dcf-item-head h2 {
+        font-size: 1.45rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-thumb,
+    .carousel-item {
+        transition: none;
+    }
+}
+
+@media print {
+    body {
+        padding: 0;
+    }
+
+    .container {
+        max-width: none;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .header .nav,
+    .footer {
+        display: none;
+    }
 }

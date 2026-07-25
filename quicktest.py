@@ -29,7 +29,6 @@ class QuickDjangoTest:
         'django.contrib.sites',
         'django.contrib.staticfiles',
 
-        'bootstrapform',
         'sorl.thumbnail',
     )
     MIDDLEWARE = [

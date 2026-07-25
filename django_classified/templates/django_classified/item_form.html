@@ -5,21 +5,27 @@
 {% block title %}{% if form.instance.pk %}{% trans "Edit" %}{% else %}{% trans "Add" %}{% endif %}
   {% trans "item" %}{% endblock title %}
 
+{% block meta_robots %}<meta name="robots" content="noindex, nofollow"/>{% endblock meta_robots %}
+
 {% block body %}
-  <div class="row">
-    <div class="col-md-12">
-      <form enctype="multipart/form-data" method='post' role="form">
-        {{ formset.management_form }}
+  <h2 class="dcf-subhead">
+    {% if form.instance.pk %}{% trans "Edit" %}{% else %}{% trans "Add" %}{% endif %} {% trans "item" %}
+  </h2>
 
-        {% csrf_token %}
+  <form enctype="multipart/form-data" method='post' class="dcf-search">
+    {{ formset.management_form }}
 
-        {{ form|bootstrap }}
+    {% csrf_token %}
 
-        {% for form in formset %}
-          {{ form|bootstrap }}
-        {% endfor %}
-        <input type='submit' class="btn btn-success" value='{% trans "Save" %}'>
-      </form>
-    </div>
-  </div>
+    {{ form|bootstrap }}
+
+    <h2 class="dcf-subhead">{% trans "Photos" %}</h2>
+
+    {# Named image_form so it does not shadow the outer `form` in this scope. #}
+    {% for image_form in formset %}
+      {{ image_form|bootstrap }}
+    {% endfor %}
+
+    <input type='submit' class="btn btn-success" value='{% trans "Save" %}'>
+  </form>
 {% endblock body %}

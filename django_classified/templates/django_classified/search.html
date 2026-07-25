@@ -7,27 +7,26 @@
     {% trans "Search" %}{% endif %}
 {% endblock title %}
 
+{# Search URLs are an unbounded, thin-content space. Keep them out of the index #}
+{# but let crawlers follow through to the listings they surface.                #}
+{% block meta_robots %}<meta name="robots" content="noindex, follow"/>{% endblock meta_robots %}
+
 {% block body %}
-  <div class="row">
-    <div class="col-lg-6">
-      <h3>{% trans "Search" %}</h3>
-      <form method="get" role="form">
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-default" name="page" value="1">{% trans "Search" %}</button>
-        {% if object_list|length %}
-          {% include 'django_classified/form_pagination.inc.html' %}
-        {% endif %}
-      </form>
-    </div>
-  </div>
-  <div>
-    <hr/>
+  <h2 class="dcf-subhead">{% trans "Search" %}</h2>
+
+  <form method="get" role="search" class="dcf-search">
+    {{ form|bootstrap }}
+    <button type="submit" class="btn btn-success" name="page" value="1">{% trans "Search" %}</button>
     {% if object_list|length %}
-      <h4>{% blocktrans with count=page_obj.paginator.count %}Search results ({{ count }} items
-        found):{% endblocktrans %}</h4>
-      {% include "django_classified/item_list.inc.html" with item=object %}
-    {% else %}
-      <h4>{% trans "Not found" %}</h4>
+      {% include 'django_classified/form_pagination.inc.html' %}
     {% endif %}
-  </div>
+  </form>
+
+  {% if object_list|length %}
+    <h2 class="dcf-subhead">{% blocktrans with count=page_obj.paginator.count %}Search results ({{ count }} items
+      found):{% endblocktrans %}</h2>
+    {% include "django_classified/item_list.inc.html" with item=object %}
+  {% else %}
+    <p class="dcf-empty">{% trans "Not found" %}</p>
+  {% endif %}
 {% endblock %}

@@ -6,13 +6,13 @@
 {% load thumbnail %}
 
 {% block title %}{{ object.title }}{% endblock title %}
-{% block meta_description %}{{ object.description }}{% endblock meta_description %}
+{% block meta_description %}{{ object.description|truncatechars:160 }}{% endblock meta_description %}
 {% block meta_keywords %}{{ object.get_keywords }}{% endblock meta_keywords %}
 
 {% block meta_og %}
   <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}"/>
   <meta property="og:title" content="{{ object.title }}"/>
-  <meta property="og:description" content="{{ object.description }}"/>
+  <meta property="og:description" content="{{ object.description|truncatechars:160 }}"/>
   {% with images=object.image_set.all %}
   {% for img in images %}
     {% thumbnail img.file "x800" as im %}
@@ -26,100 +26,179 @@
 {% block body %}
 
   {% with images=object.image_set.all %}
-  <div itemscope itemtype="http://schema.org/Product">
 
-    <div class="row">
-      <div class="col-md-12">
-        <h3>
-          {% if object.area %}
-            {{ object.area }}&nbsp;&gt;&nbsp;
-          {% endif %}
-          <a href='{{ object.group.get_absolute_url }}'>{{ object.group }}</a>
-        </h3>
-      </div>
-    </div>
+  {# JSON-LD rather than inline microdata: Google's preferred format, and one #}
+  {# block is easier to keep correct than attributes spread across the page.  #}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "{{ object.title|escapejs }}",
+      "description": "{{ object.description|escapejs }}",
+      "category": "{{ object.group|escapejs }}",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}",
+      "image": [{% for img in images %}"{{ request.scheme }}://{{ request.get_host }}{{ img.file.url }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+      "offers": {
+        "@type": "Offer",
+        "price": "{{ object.price|floatformat:2 }}",
+        "priceCurrency": "{{ DCF.CURRENCY }}",
+        "availability": "https://schema.org/InStock",
+        "url": "{{ request.scheme }}://{{ request.get_host }}{{ object.get_absolute_url }}"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ object.group.section|escapejs }}",
+          "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'django_classified:index' %}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ object.group.title|escapejs }}",
+          "item": "{{ request.scheme }}://{{ request.get_host }}{{ object.group.get_absolute_url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ object.title|escapejs }}"
+        }
+      ]
+    }
+  </script>
 
-    {% include "django_classified/admin_toolbar.inc.html" %}
+  <p class="dcf-eyebrow">
+    {% if object.area %}{{ object.area }} &middot; {% endif %}
+    {{ object.group.section.title }} &middot;
+    <a href='{{ object.group.get_absolute_url }}'>{{ object.group.title }}</a>
+  </p>
 
-    <div class="row">
-      <div class="col-lg-9">
-        <h2 itemprop="name">{{ object.title }}</h2>
-      </div>
-      <div class="col-lg-3">
-                <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <meta itemprop="priceCurrency" content="{{ DCF.CURRENCY }}"/>
-                <h2 itemprop="price" content="{{ object.price|floatformat }}">{{ object.price|currency }}</h2>
-                </span>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12" itemprop="description">
-        {{ object.description|urlize|linebreaks }}
-      </div>
-    </div>
-
-    {% if images %}
-      <div class="row">
-        <div class="col-lg-12">
-          {% for img in images %}
-            {% thumbnail img.file "150x150" crop="center" as im %}
-              <a href='{{ img.file.url }}' data-lightbox="lightbox[{{ object.id }}]"
-                 title="{{ object.title }}">
-                <img itemprop="image" src='{{ im.url }}' alt='{{ object.title }}' title='{{ object.title }}'
-                     width="{{ im.width }}" height="{{ im.height }}" class="img-rounded"/>
-              </a>
-            {% endthumbnail %}
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    <div class="row">
-      <div class="col-lg-12">
-        <small>{% trans 'Posted' %}: {{ object.posted|timesince }} ago</small>
-      </div>
-    </div>
+  <div class="dcf-item-head">
+    <h2>{{ object.title }}</h2>
+    <p class="dcf-item-price dcf-price">{{ object.price|currency }}</p>
   </div>
-  {% endwith %}
 
-  {% if object.contact_phone %}
-    <div class="row">
-      <div class="col-md-12">
-        <hr/>
-        {% if DCF.LOGIN_TO_CONTACT and not user.is_authenticated %}
-          {% trans "Please" %} <a href='{% url 'django_classified:profile' %}'>{% trans "login" %}</a>
-          {% trans "to see contact information." %}
-        {% else %}
-          {% trans "Contact phone" %}: {{ object.contact_phone }}
-        {% endif %}
+  {% include "django_classified/admin_toolbar.inc.html" %}
+
+  <div class="dcf-description">
+    {{ object.description|urlize|linebreaks }}
+  </div>
+
+  {% if images %}
+    <div class="dcf-gallery">
+      {% for img in images %}
+        {% thumbnail img.file "150x150" crop="center" as im %}
+          <button type="button" class="gallery-thumb" data-bs-toggle="modal"
+                  data-bs-target="#gallery-{{ object.id }}" data-slide-index="{{ forloop.counter0 }}"
+                  aria-label="{% blocktrans with n=forloop.counter %}View photo {{ n }}{% endblocktrans %}">
+            <img src='{{ im.url }}' alt='{{ object.title }}'
+                 width="{{ im.width }}" height="{{ im.height }}"/>
+          </button>
+        {% endthumbnail %}
+      {% endfor %}
+    </div>
+
+    {# Replaces lightbox2, which required jQuery. Bootstrap's own modal and #}
+    {# carousel cover this with no additional dependency.                   #}
+    <div class="modal fade" id="gallery-{{ object.id }}" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5">{{ object.title }}</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="{% trans 'Close' %}"></button>
+          </div>
+          <div class="modal-body">
+            <div id="carousel-{{ object.id }}" class="carousel slide">
+              <div class="carousel-inner">
+                {% for img in images %}
+                  {% thumbnail img.file "1200" as im %}
+                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                      <img src='{{ im.url }}' alt='{{ object.title }}' class="d-block w-100 rounded"/>
+                    </div>
+                  {% endthumbnail %}
+                {% endfor %}
+              </div>
+              {% if images|length > 1 %}
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carousel-{{ object.id }}" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">{% trans "Previous" %}</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#carousel-{{ object.id }}" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">{% trans "Next" %}</span>
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   {% endif %}
 
-  <div class="row">
-    {% for item in object.related_items %}
-      {% if forloop.first %}
-        <hr/>
+  {% if object.contact_phone %}
+    <div class="dcf-contact">
+      {% if DCF.LOGIN_TO_CONTACT and not user.is_authenticated %}
+        {% trans "Please" %} <a href='{% url 'django_classified:profile' %}'>{% trans "login" %}</a>
+        {% trans "to see contact information." %}
+      {% else %}
+        {% trans "Contact phone" %}:
+        <span class="dcf-contact__value">{{ object.contact_phone }}</span>
       {% endif %}
-      <div class="col-md-2">
-        {% if item.featured_image %}
-          {% thumbnail item.featured_image.file "70x70" crop="center" as im %}
-            <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">
-              <img
-                      src='{{ im.url }}'
-                      alt='{{ item.title }}'
-                      title='{{ item.title }}'
-                      width="{{ im.width }}"
-                      height="{{ im.height }}"
-                      class="img-rounded"
-              />
-            </a>
-          {% endthumbnail %}
-          <br/>
-        {% endif %}
-        <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">{{ item.title|truncatewords:3 }}</a>
-      </div>
-    {% endfor %}
-  </div>
+    </div>
+  {% endif %}
+
+  <p class="dcf-meta">{% trans 'Posted' %}: {{ object.posted|timesince }} ago</p>
+
+  {% endwith %}
+
+  {% if object.related_items %}
+    <h2 class="dcf-subhead">{% trans "Related items" %}</h2>
+    <div class="dcf-related">
+      {% for item in object.related_items %}
+        <a href='{{ item.get_absolute_url }}' title="{{ item.title }}">
+          {% if item.featured_image %}
+            {% thumbnail item.featured_image.file "70x70" crop="center" as im %}
+              <img src='{{ im.url }}' alt='{{ item.title }}'
+                   width="{{ im.width }}" height="{{ im.height }}"/>
+            {% endthumbnail %}
+          {% endif %}
+          {{ item.title|truncatewords:3 }}
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block ext_scripts %}
+  <script>
+    // Open the gallery on the thumbnail that was clicked, not always the first.
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('[data-slide-index]').forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+          var modal = document.querySelector(this.dataset.bsTarget);
+
+          if (!modal) {
+            return;
+          }
+
+          var carousel = modal.querySelector('.carousel');
+
+          if (!carousel) {
+            return;
+          }
+
+          bootstrap.Carousel.getOrCreateInstance(carousel).to(Number(this.dataset.slideIndex));
+        });
+      });
+    });
+  </script>
 {% endblock %}
