@@ -1,9 +1,11 @@
 {% spaceless %}
 
-  {% load static i18n %}
+  {% load static i18n classified %}
+
+  {% get_current_language as LANGUAGE_CODE %}
 
   <!DOCTYPE HTML>
-  <html lang="en">
+  <html lang="{{ LANGUAGE_CODE }}">
 
   <head>
     <title>{% block title %}{% endblock title %} | {{ DCF.SITE_NAME }}</title>
@@ -12,22 +14,30 @@
           content="{% block meta_description %}{{ DCF.SITE_DESCRIPTION }}{% endblock meta_description %}"/>
     <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta_robots %}{% endblock meta_robots %}
     {% if GOOGLE_SITE_VERIFICATION_ID %}
       <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION_ID }}"/>
     {% endif %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+    {# Self-referencing canonical without the query string, so paginated and #}
+    {# area-filtered variants of a listing do not compete with each other.   #}
+    {% block canonical %}
+      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"/>
+    {% endblock canonical %}
+
     {% if FACEBOOK_APP_ID %}
       <meta property="fb:app_id" content="{{ FACEBOOK_APP_ID }}"/>
     {% endif %}
     <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="{{ DCF.SITE_NAME }}"/>
+    <meta property="og:locale" content="{% og_locale %}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
     {% block meta_og %}{% endblock %}
 
     <link rel="icon" type="image/x-icon" href="{% static 'django_classified/images/favicon.ico' %}"/>
 
     <link href="{% static 'django_classified/css/bootstrap.min.css' %}" rel="stylesheet"/>
-    <link href="{% static 'django_classified/css/jumbotron-narrow.css' %}" rel="stylesheet"/>
-    <link href="{% static 'django_classified/css/lightbox.min.css' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static 'django_classified/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
     <link rel="alternate" type="application/rss+xml" href="{% url 'django_classified:rss' %}">
@@ -37,49 +47,12 @@
   <body>
   <div class="container">
 
-    <div class="header clearfix">
-      <nav>
-        <ul class="nav nav-pills pull-right">
-          <li role="presentation" class="active"><a
-                  href="{% url 'django_classified:item-new' %}">{% trans "Add new" %}</a>
-          </li>
-          <li role="presentation"><a href="{% url 'django_classified:index' %}">{% trans "Home" %}</a></li>
-          <li role="presentation"><a href="{% url 'django_classified:search' %}">{% trans "Search" %}</a></li>
-          {% if user.is_authenticated %}
-            <li role="presentation" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-user"></span> {{ user.username }} <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'django_classified:user-items' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
-                </li>
-                <li>
-                  <a href="{% url 'django_classified:profile' %}">{% trans "Profile" %}</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <form method="post" action="{% url 'django_classified:logout' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="/" />
-                    <button type="submit" class="btn btn-link" style="text-decoration: none; color: #333; width: 100%; text-align: left; padding: 3px 20px;">{% trans "Logout" %}</button>
-                  </form>
-                </li>
-              </ul>
-            </li>
-          {% else %}
-            <li role="presentation">
-              <a href="{% url 'django_classified:profile' %}" title="{% trans "Login" %}">
-                <span class="glyphicon glyphicon-user"></span> {% trans "Login" %}
-              </a>
-            </li>
-          {% endif %}
-        </ul>
-      </nav>
-      <h4 class="text-muted"><a href="{% url 'django_classified:index' %}">{{ DCF.SITE_NAME }}</a>
+    <header class="header">
+      <h1 class="dcf-masthead"><a href="{% url 'django_classified:index' %}">{{ DCF.SITE_NAME }}</a>
         {% if area_list %}
-          &nbsp;
           <small>
-            <select id="area-selector">
+            <select id="area-selector" class="form-select form-select-sm d-inline-block w-auto"
+                    aria-label="{% trans 'All areas' %}">
               <option value="">{% trans 'All areas' %}</option>
               {% for area_item in area_list %}
                 <option value="{{ area_item.slug }}" {% if area.pk == area_item.pk %}selected{% endif %}>
@@ -89,18 +62,64 @@
             </select>
           </small>
         {% endif %}
-      </h4>
-    </div>
+      </h1>
+
+      <nav aria-label="{{ DCF.SITE_NAME }}">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'django_classified:item-new' %}">{% trans "Add new" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'django_classified:index' %}">{% trans "Home" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'django_classified:search' %}">{% trans "Search" %}</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                 aria-expanded="false">
+                {% include "django_classified/person_icon.inc.svg" %} {{ user.username }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item"
+                     href="{% url 'django_classified:user-items' %}">{% trans "My items" %} ({{ user.item_set.count }})</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'django_classified:profile' %}">{% trans "Profile" %}</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li>
+                  <form method="post" action="{% url 'django_classified:logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="/"/>
+                    <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'django_classified:profile' %}" title="{% trans "Login" %}">
+                {% include "django_classified/person_icon.inc.svg" %} {% trans "Login" %}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
 
     {% if messages %}
       {% for message in messages %}
-        <div class='row'>
-          <div class="col-md-12">
-            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              {{ message }}
-            </div>
-          </div>
+        {# Django's default error tag is "error"; Bootstrap names that variant "danger". #}
+        <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show"
+             role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"
+                  aria-label="{% trans 'Close' %}"></button>
         </div>
       {% endfor %}
     {% endif %}
@@ -110,18 +129,17 @@
     {% endblock %}
 
     <footer class="footer">
-      <span class="pull-left">{{ DCF.SITE_NAME }}</span>
+      <span>{{ DCF.SITE_NAME }}</span>
       {% if DCF.DISPLAY_CREDITS %}
-        <span class="pull-right">{% trans "Powered by" %} <a href="https://github.com/slyapustin/django-classified"
-                                                             title="Django Classified">Django Classified (v{{ DCF.VERSION }})</a></span>
+        <span>{% trans "Powered by" %} <a href="https://github.com/slyapustin/django-classified"
+                                          title="Django Classified">Django Classified
+          (v{{ DCF.VERSION }})</a></span>
       {% endif %}
     </footer>
 
   </div>
 
-  <script src="{% static 'django_classified/js/jquery-3.3.1.min.js' %}"></script>
-  <script src="{% static 'django_classified/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'django_classified/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'django_classified/js/bootstrap.bundle.min.js' %}"></script>
 
   {% block ext_scripts %}{% endblock %}
 
@@ -136,13 +154,20 @@
   {% endif %}
 
   <script>
-    $(function () {
-      $('#area-selector').on('change', function () {
-        var params = {
+    document.addEventListener('DOMContentLoaded', function () {
+      var selector = document.getElementById('area-selector');
+
+      if (!selector) {
+        return;
+      }
+
+      selector.addEventListener('change', function () {
+        var params = new URLSearchParams({
           area_slug: this.value,
           next: window.location.href
-        };
-        window.location = "{% url 'django_classified:set-area' %}?" + $.param(params);
+        });
+
+        window.location = '{% url 'django_classified:set-area' %}?' + params.toString();
       });
     });
   </script>

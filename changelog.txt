@@ -1,5 +1,58 @@
 Changelog
 =========
+v1.3 (25/07/2026)
+-----------------
+ - Migrated the bundled templates from Bootstrap 3.3.7 (2016) to Bootstrap 5.3.8.
+ - Removed jQuery entirely. The only remaining script is Bootstrap's own bundle;
+   the area selector is now plain JavaScript using URLSearchParams.
+ - Removed lightbox2, which existed only to display item images and was the last
+   thing requiring jQuery. Images now open in a Bootstrap modal containing a
+   carousel, clicked thumbnail first, with no additional dependency.
+ - Removed the bundled Glyphicons font files (5 files, ~200KB): Bootstrap 5 ships
+   no icon font. The single icon still needed is an inlined MIT-licensed SVG path.
+ - Dropped jumbotron-narrow.css; Bootstrap 5 has no jumbotron component. The
+   layout rules that still matter moved into style.css.
+ - Bundled static assets went from roughly 1MB to 344KB.
+ - The vendored form filter now emits Bootstrap 5 markup: mb-3 groups,
+   form-label, form-text, invalid-feedback, form-select on selects,
+   form-check-input on checkboxes and radios, and is-invalid on errored fields.
+ - Django messages tagged "error" now render as alert-danger; Bootstrap has never
+   had an alert-error variant, so those messages previously rendered unstyled.
+ - Fixed the permanently-highlighted "Add new" nav pill, which carried a
+   hard-coded active class.
+
+ Redesigned the bundled templates around the app's own structure: sections read
+ as labelled dividers, groups as ruled entries with counts, and prices are set in
+ tabular monospace so they align down a listing column. Uses only system font
+ stacks, so there are still no external requests. Supports Bootstrap's
+ data-bs-theme dark mode, respects prefers-reduced-motion, and ships visible
+ focus styles and a print stylesheet.
+
+ SEO:
+ - <html lang> now reflects the active language instead of being hard-coded to
+   "en". With 10 translations shipped, every non-English page was previously
+   declaring itself English.
+ - Added self-referencing canonical URLs, og:site_name, og:locale and
+   twitter:card. Added a `canonical` and a `meta_robots` template block.
+ - Category (Group) pages are now in sitemap.xml. Only Items were listed before,
+   so the natural landing pages for category searches were absent entirely.
+   Groups with no active items are excluded, and lastmod is annotated in the
+   queryset rather than fetched per row.
+ - Category pages now carry their own meta description and Open Graph tags
+   instead of inheriting the site-wide description on every page.
+ - Item pages emit JSON-LD Product and BreadcrumbList, replacing the inline
+   microdata. Mixing both formats for one entity sends conflicting signals.
+ - Search, profile, item form and delete-confirmation pages are now noindex.
+   Search URLs in particular were an unbounded, indexable, thin-content space.
+ - The index page title no longer renders as "Site Name | Site Name".
+ - Every page now has exactly one h1. The site name in the masthead was an h4,
+   so documents had no h1 at all.
+ - Table headers use <th scope="col"> instead of <td>.
+
+ Breaking: any project overriding the bundled templates or relying on the removed
+ static files will need updating. The `bootstrap` template library keeps its name.
+
+
 v1.2.2 (25/07/2026)
 -----------------
  - Fixed installation on Python 3.12+: dropped the django-bootstrap-form

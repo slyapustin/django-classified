@@ -1,20 +1,35 @@
 {% extends "django_classified/_base.html" %}
 
-{% block title %}{{ DCF.SITE_NAME }}{% endblock title %}
+{% load i18n %}
+
+{# Not SITE_NAME: the base template already appends it, which produced a #}
+{# duplicated "Name | Name" title on the index page.                     #}
+{% block title %}{% trans "Classified ads" %}{% endblock title %}
 
 {% block body %}
-  <div class="row marketing">
+  <div class="dcf-index">
     {% for object in object_list %}
-      <div class="col-md-3">
-        <h4 id="{{ object.section.0.id }}">{{ object.section.0 }} [{{ object.section.1 }}]</h4>
-        {% for group, group_count in object.groups %}
-          {% if group_count > 0 or DCF.DISPLAY_EMPTY_GROUPS %}
-            <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
-              {{ group.title }}&nbsp;[{{ group_count }}]<br/>
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
+      <section class="dcf-section">
+        <h2 class="dcf-section__tab" id="{{ object.section.0.id }}">
+          {{ object.section.0 }}
+          <span class="dcf-section__count">{{ object.section.1 }}</span>
+        </h2>
+
+        <ul class="dcf-section__groups">
+          {% for group, group_count in object.groups %}
+            {% if group_count > 0 or DCF.DISPLAY_EMPTY_GROUPS %}
+              <li class="dcf-group">
+                <a href='{{ group.get_absolute_url }}' title="{{ group.title }}">
+                  <span>{{ group.title }}</span>
+                  <span class="dcf-group__count">{{ group_count }}</span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </section>
+    {% empty %}
+      <p>{% trans "No item here yet." %}</p>
     {% endfor %}
   </div>
 {% endblock %}

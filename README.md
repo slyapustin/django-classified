@@ -6,7 +6,7 @@
 - Image
   - upload multiple images per item
   - generating preview (via [sorl-thumbnail](https://github.com/mariocesar/sorl-thumbnail))
-  - display using [Lightbox JS](http://lokeshdhakar.com/projects/lightbox2/) library
+  - display in a Bootstrap 5 modal with a carousel
 - Search ability
 - SEO optimization
   - SEO-friendly urls
@@ -38,7 +38,8 @@
 
 ## Design
 
-- [Bootstrap 3 Jumbotron](https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/)
+- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/)
+- No JavaScript dependencies beyond Bootstrap's own bundle (no jQuery)
 
 ## Demo project
 
@@ -117,4 +118,4 @@ You can provide additional customization in settings.py
 
 ## Current Version
 
-The current version is 1.2.2 (July 2026).
+The current version is 1.3 (July 2026).

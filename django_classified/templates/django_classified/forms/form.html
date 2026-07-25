@@ -1,9 +1,11 @@
+{% load i18n %}
+
 {% if form.non_field_errors %}
-  <div class="alert alert-danger">
-    <a class="close" data-dismiss="alert">&times;</a>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
     {% for non_field_error in form.non_field_errors %}
       {{ non_field_error }}
     {% endfor %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{% trans 'Close' %}"></button>
   </div>
 {% endif %}
 
