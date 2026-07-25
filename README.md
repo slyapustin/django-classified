@@ -65,7 +65,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
      # External applications required by Django Classified
-    'bootstrapform',
     'sorl.thumbnail',
 
     # Django Classified
@@ -118,4 +117,4 @@ You can provide additional customization in settings.py
 
 ## Current Version
 
-The current version is 1.2.1 (April 2026).
+The current version is 1.2.2 (July 2026).

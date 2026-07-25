@@ -29,7 +29,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        "django-bootstrap-form",
         "Django>=5.2,<6.1",
         "Pillow",
         "sorl-thumbnail",

@@ -1,5 +1,24 @@
 Changelog
 =========
+v1.2.2 (25/07/2026)
+-----------------
+ - Fixed installation on Python 3.12+: dropped the django-bootstrap-form
+   dependency, whose bootstrapform.meta module imports distutils at load time.
+   distutils was removed from the stdlib in Python 3.12 (PEP 632), so following
+   the README on a clean 3.12/3.13 environment failed with
+   "ModuleNotFoundError: No module named 'distutils'" before the app could start.
+   It only appeared to work where setuptools happened to be installed, since
+   setuptools vendors a distutils shim.
+ - Vendored the Bootstrap 3 `bootstrap` form filter into
+   django_classified.templatetags.bootstrap. The template library keeps its name,
+   so existing {% load i18n bootstrap %} overrides continue to work.
+ - `bootstrapform` is no longer required in INSTALLED_APPS — remove it.
+ - Added a clean-install CI job that installs the package into a stock
+   python:3.13-slim image without setuptools, so import-time regressions in
+   dependencies are visible instead of being masked by the distutils shim.
+ - Added tests for the vendored form filter.
+
+
 v1.2.1 (10/04/2026)
 -----------------
  - Search now matches both title and description fields

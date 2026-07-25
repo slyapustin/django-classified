@@ -54,3 +54,45 @@ jobs:
     - name: Generate Coverage Report
       run: |
         coverage report --show-missing
+
+  clean-install:
+    # The matrix job above runs `pip install --upgrade pip setuptools wheel`
+    # before installing the package. setuptools ships a vendored copy of
+    # distutils and registers an import hook for it, so on that machine any
+    # dependency doing `import distutils` keeps working even on Python 3.12+,
+    # where distutils was removed from the stdlib (PEP 632).
+    #
+    # Stock python:3.12/3.13 images ship pip and nothing else. That difference
+    # hid an import-time failure in django-bootstrap-form through the whole 1.2.x
+    # line: CI was green while `pip install django-classified` could not start on
+    # a clean modern environment.
+    #
+    # This job installs the package and nothing else, asserts setuptools really is
+    # absent, and only then runs the suite — so the environment users actually get
+    # is the one being tested.
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Install and test without setuptools present
+      run: |
+        docker run --rm -v "$PWD:/src" -w /src python:3.13-slim bash -euo pipefail -c '
+          pip install . --quiet
+
+          echo "--- runtime environment ---"
+          pip list
+
+          python - <<PY
+        import importlib.util
+        import sys
+
+        if importlib.util.find_spec("setuptools") is not None:
+            sys.exit(
+                "setuptools is present in the runtime environment: this job can no "
+                "longer detect distutils-style import regressions."
+            )
+        print("confirmed: no setuptools, no vendored distutils shim")
+        PY
+
+          python quicktest.py django_classified
+        '
